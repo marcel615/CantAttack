@@ -1,0 +1,32 @@
+# Unity 생성 캐시/빌드 폴더
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# 유저 설정 (컴퓨터마다 다름)
+UserSettings/
+
+# Visual Studio / JetBrains Rider 관련
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Mac/Windows 시스템 파일
+.DS_Store
+Thumbs.db
