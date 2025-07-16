@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\cameramanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\cameramanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Camera.cs",
-              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Camera.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Camera.cs",
-              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Camera.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Camera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAYAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "CameraManager.cs",
+              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\CameraManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CameraManager.cs",
+              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\CameraManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CameraManager.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAIwD0AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T06:02:48.282Z",
+              "WhenOpened": "2025-07-15T07:15:19.488Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAADwvyUAAABYAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAADwvyIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T05:13:22.626Z",
               "EditorCaption": ""
