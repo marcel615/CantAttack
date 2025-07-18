@@ -53,8 +53,11 @@ public class Player : MonoBehaviour
     bool isDashing;
     float DashTime = 0.4f;
     float DashTimer;
+    bool isDashCoolTime;    //회피 쿨타임
+    float DashCoolTime = 1f;
+    float DashCoolTimer;
     float DashSpeed = 12f;
-    
+
 
 
 
@@ -184,8 +187,11 @@ public class Player : MonoBehaviour
         }
 
         //D값에 따른 플레이어 회피기
-        if (D && canControl)
+        if (D && !isDashCoolTime && canControl)
         {
+            DashCoolTimer = DashCoolTime;
+            isDashCoolTime = true;
+
             DashTimer = DashTime;
             isDashing = true;
             InvincibleTimer = DashTime;
@@ -208,6 +214,19 @@ public class Player : MonoBehaviour
                 isDashing = false;
 
                 rigid.gravityScale = prevGravity;
+            }
+        }
+        //회피기 쿨타임 계산
+        if (isDashCoolTime)
+        {
+            if (DashCoolTimer > 0)
+            {
+                DashCoolTimer -= Time.deltaTime;
+            }
+            else
+            {
+                DashCoolTimer = 0; 
+                isDashCoolTime = false;
             }
         }
 
