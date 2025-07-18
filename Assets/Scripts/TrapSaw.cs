@@ -27,9 +27,9 @@ public class TrapSaw : MonoBehaviour
     //플레이어 및 적들과의 충돌 시 로직 구현
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("PlayerHitBox"))
         {
-            Player player = collision.GetComponent<Player>();
+            Player player = collision.GetComponentInParent<Player>();
             if (player != null)
             {
                 player.OnDamaged(transform.position);
@@ -39,9 +39,9 @@ public class TrapSaw : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("PlayerHitBox"))
         {
-            Player player = collision.GetComponent<Player>();
+            Player player = collision.GetComponentInParent<Player>();
             Rigidbody2D playerRigid = player.GetComponent<Rigidbody2D>();
             if (playerRigid != null)
             {
