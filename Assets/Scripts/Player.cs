@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
 
     //조작 제한 플래그
     bool canControl = true;
-    bool isKnockedBack = false;
 
     //발 밑에 땅이 있는지 체크
     bool isGrounded;
@@ -43,6 +42,8 @@ public class Player : MonoBehaviour
     float InvincibleTime_Hitted = 1.5f;
     float InvincibleTimer;
 
+    bool isKnockedBackInvincible;
+    bool isKnockedBack = false; //조작 제한 플래그 too
     float KnockedBackTime = 0.3f;
     float KnockedBackTimer;
 
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
     int jumpCount = 0;
 
     //회피 관련 변수들
-    bool isDashing;
+    bool isDashing;  //조작 제한 플래그 too
     float DashTime = 0.4f;
     float DashTimer;
     bool isDashCoolTime;    //회피 쿨타임
@@ -137,7 +138,11 @@ public class Player : MonoBehaviour
                 playerHitBoxCollider.enabled = true;
                 InvincibleTimer = 0;
                 isInvincible = false;
-                spriteRenderer.color = new Color(1, 1, 1, 1f); //투명해졌던거 다시 원상복귀
+                if (isKnockedBackInvincible)
+                {
+                    isKnockedBackInvincible = false;
+                    spriteRenderer.color = new Color(1, 1, 1, 1f); //투명해졌던거 다시 원상복귀                    
+                }
             }
         }
 
@@ -270,6 +275,8 @@ public class Player : MonoBehaviour
             //무적 타이머, 넉백 타이머 실행
             isInvincible = true;
             InvincibleTimer = InvincibleTime_Hitted;
+
+            isKnockedBackInvincible = true;
             isKnockedBack = true;
             KnockedBackTimer = KnockedBackTime;
 
