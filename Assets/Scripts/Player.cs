@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+    //내 자식 오브젝트 관련
+    CapsuleCollider2D playerHitBoxCollider;
+
     //다른 객체들
     public CameraManager mainCamera;
 
@@ -76,6 +79,11 @@ public class Player : MonoBehaviour
             mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<CameraManager>();
             mainCamera.SetTarget(transform);
         }
+        //자식오브젝트 HitBox의 Collider 연결
+        if (playerHitBoxCollider == null)
+        {
+            playerHitBoxCollider = transform.Find("HitBox").GetComponent<CapsuleCollider2D>();
+        }
 
         //땅 체크 오브젝트 할당
         groundCheckObj = transform.Find("GroundCheckObject");
@@ -121,10 +129,12 @@ public class Player : MonoBehaviour
         {
             if(InvincibleTimer > 0)
             {
+                playerHitBoxCollider.enabled = false;
                 InvincibleTimer -= Time.deltaTime;
             }
             else
             {
+                playerHitBoxCollider.enabled = true;
                 InvincibleTimer = 0;
                 isInvincible = false;
                 spriteRenderer.color = new Color(1, 1, 1, 1f); //투명해졌던거 다시 원상복귀
