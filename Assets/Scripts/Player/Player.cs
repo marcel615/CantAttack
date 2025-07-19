@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    PlayerStatus status;
 
     //내 자식 오브젝트 관련
     public CapsuleCollider2D playerHitBoxCollider;
@@ -78,9 +79,11 @@ public class Player : MonoBehaviour
             Destroy(gameObject);    //파괴
         }
 
+        //내 컴포넌트 연결
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        status = GetComponent<PlayerStatus>();
 
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         //HitBox의 Collider 연결
@@ -274,10 +277,13 @@ public class Player : MonoBehaviour
     }
 
     // 데미지를 입었을 때 이 메소드 호출
-    public void OnDamaged(Vector2 targetPos)
+    public void OnDamaged(Vector2 hitPosition, int damage)
     {
         if (!isInvincible)
         {
+            //데미지 이벤트 발행
+            //PlayerEvents.InvokePlayerDamaged();
+
             //무적 타이머, 넉백 타이머 실행
             isInvincible = true;
             InvincibleTimer = InvincibleTime_Hitted;
@@ -287,7 +293,7 @@ public class Player : MonoBehaviour
             KnockedBackTimer = KnockedBackTime;
 
             //넉백 구현
-            if (transform.position.x < targetPos.x)
+            if (transform.position.x < hitPosition.x)
             {
                 rigid.AddForce(new Vector2(-0.5f, 1f) * 15, ForceMode2D.Impulse);
             }

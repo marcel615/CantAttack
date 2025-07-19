@@ -14,6 +14,9 @@ public class TrapBall : MonoBehaviour
     float speed = 12f;   //발사 속도
     float vanishTime = 3f; //존재 시간
 
+    //기본 변수
+    int damage = 1;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -36,15 +39,10 @@ public class TrapBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerHitBox"))
+        if (collision.TryGetComponent<IDamageable>(out IDamageable target))
         {
-            Player player = collision.GetComponentInParent<Player>();
-            if (player != null)
-            {
-                player.OnDamaged(transform.position);
-                Destroy(gameObject);
-            }
-
+            target.TakeDamage(transform.position, damage);
+            Destroy(gameObject);
         }
     }
 

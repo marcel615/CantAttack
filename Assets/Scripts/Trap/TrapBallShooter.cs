@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TrapBallShooter : MonoBehaviour
 {
+    //발사 시작 포인트
+    [SerializeField] private Transform firePoint;
+
     // 발사체 프리팹
     public GameObject ballPrefab;
-
-    //발사 시작 포인트
-    Transform firePoint;
 
     //발사 간격
     bool isFireCoolTime;
@@ -22,11 +22,12 @@ public class TrapBallShooter : MonoBehaviour
 
     private void Awake()
     {
+        if (firePoint == null) firePoint = transform.Find("FirePoint");
         
     }
     void Start()
     {
-        firePoint = transform.Find("FirePoint");
+
     }
 
     void Update()
