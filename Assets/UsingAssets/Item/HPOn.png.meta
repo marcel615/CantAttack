@@ -148,7 +148,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Apple_0
+      name: HPOn_0
       rect:
         serializedVersion: 2
         x: 0
@@ -156,7 +156,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,7 +169,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_1
+      name: HPOn_1
       rect:
         serializedVersion: 2
         x: 32
@@ -177,7 +177,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -190,7 +190,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_2
+      name: HPOn_2
       rect:
         serializedVersion: 2
         x: 64
@@ -198,7 +198,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -211,7 +211,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_3
+      name: HPOn_3
       rect:
         serializedVersion: 2
         x: 96
@@ -219,7 +219,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -232,7 +232,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_4
+      name: HPOn_4
       rect:
         serializedVersion: 2
         x: 128
@@ -240,7 +240,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -253,7 +253,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_5
+      name: HPOn_5
       rect:
         serializedVersion: 2
         x: 160
@@ -261,7 +261,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -274,7 +274,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_6
+      name: HPOn_6
       rect:
         serializedVersion: 2
         x: 192
@@ -282,7 +282,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -295,7 +295,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_7
+      name: HPOn_7
       rect:
         serializedVersion: 2
         x: 224
@@ -303,7 +303,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -316,7 +316,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_8
+      name: HPOn_8
       rect:
         serializedVersion: 2
         x: 256
@@ -324,7 +324,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -337,7 +337,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_9
+      name: HPOn_9
       rect:
         serializedVersion: 2
         x: 288
@@ -345,7 +345,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -358,7 +358,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_10
+      name: HPOn_10
       rect:
         serializedVersion: 2
         x: 320
@@ -366,7 +366,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -379,7 +379,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_11
+      name: HPOn_11
       rect:
         serializedVersion: 2
         x: 352
@@ -387,7 +387,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -400,7 +400,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_12
+      name: HPOn_12
       rect:
         serializedVersion: 2
         x: 384
@@ -408,7 +408,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -421,7 +421,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_13
+      name: HPOn_13
       rect:
         serializedVersion: 2
         x: 416
@@ -429,7 +429,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -442,7 +442,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_14
+      name: HPOn_14
       rect:
         serializedVersion: 2
         x: 448
@@ -450,7 +450,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -463,7 +463,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_15
+      name: HPOn_15
       rect:
         serializedVersion: 2
         x: 480
@@ -471,7 +471,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -484,7 +484,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple_16
+      name: HPOn_16
       rect:
         serializedVersion: 2
         x: 512
@@ -492,7 +492,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -515,23 +515,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Apple_0: 7293598183456022363
-      Apple_1: 3211865404380153573
-      Apple_10: 1535906679059638393
-      Apple_11: -6207369124864647917
-      Apple_12: 7209791866757004406
-      Apple_13: -1462588236305530756
-      Apple_14: 4023135878370671054
-      Apple_15: -337911150936919937
-      Apple_16: 9139289913481491577
-      Apple_2: 4808522734667448011
-      Apple_3: -8577097333041121892
-      Apple_4: 1419576285154770477
-      Apple_5: -7706788487438311687
-      Apple_6: 8638710384840876012
-      Apple_7: -4689406079702324653
-      Apple_8: -4804661220611782958
-      Apple_9: 542562350195365616
+      HPOn_0: 7293598183456022363
+      HPOn_1: 3211865404380153573
+      HPOn_10: 1535906679059638393
+      HPOn_11: -6207369124864647917
+      HPOn_12: 7209791866757004406
+      HPOn_13: -1462588236305530756
+      HPOn_14: 4023135878370671054
+      HPOn_15: -337911150936919937
+      HPOn_16: 9139289913481491577
+      HPOn_2: 4808522734667448011
+      HPOn_3: -8577097333041121892
+      HPOn_4: 1419576285154770477
+      HPOn_5: -7706788487438311687
+      HPOn_6: 8638710384840876012
+      HPOn_7: -4689406079702324653
+      HPOn_8: -4804661220611782958
+      HPOn_9: 542562350195365616
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

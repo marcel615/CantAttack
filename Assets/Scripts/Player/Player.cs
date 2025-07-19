@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
-    PlayerStatus status;
+    public PlayerStatus status;
 
     //내 자식 오브젝트 관련
     public CapsuleCollider2D playerHitBoxCollider;
@@ -281,8 +281,10 @@ public class Player : MonoBehaviour
     {
         if (!isInvincible)
         {
-            //데미지 이벤트 발행
-            //PlayerEvents.InvokePlayerDamaged();
+
+            //status에 데미지 적용 후 이벤트 발행
+            DamageApply(damage);
+            PlayerEvents.InvokePlayerDamaged();
 
             //무적 타이머, 넉백 타이머 실행
             isInvincible = true;
@@ -304,6 +306,24 @@ public class Player : MonoBehaviour
             }
             spriteRenderer.color = new Color(1, 1, 1, 0.4f); //피격 시 반투명하게 됨
         }
+
+    }
+    //데미지 적용시키는 메소드
+    void DamageApply(int damage)
+    {
+        if(status.CurrentHP - damage > 0)
+        {
+            status.CurrentHP -= damage;
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    //죽는 메소드(아직 미구현)
+    void Die()
+    {
 
     }
 

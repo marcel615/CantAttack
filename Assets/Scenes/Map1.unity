@@ -638,7 +638,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Portrait: {fileID: 1044413905}
   HPContainer: {fileID: 1354047751}
-  HPPrefab: {fileID: 738768139238489285, guid: c332ad8ff21ab2f41b25c74f304b4ce1, type: 3}
+  HPOnCellPrefab: {fileID: 738768139238489285, guid: c332ad8ff21ab2f41b25c74f304b4ce1, type: 3}
+  HPOffCellPrefab: {fileID: 738768139238489285, guid: 392e947cff30551448823e75158ce5aa, type: 3}
 --- !u!1 &629806325
 GameObject:
   m_ObjectHideFlags: 0
@@ -8171,8 +8172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444a5e785f4b68a439d758d3778dd08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 894906719402937487, guid: c1da5c0514edbf44ea46c45b6282dccf, type: 3}
   firePoint: {fileID: 420058472}
+  ballPrefab: {fileID: 894906719402937487, guid: c1da5c0514edbf44ea46c45b6282dccf, type: 3}
 --- !u!61 &1452787006
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8557,6 +8558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce561c6a4f7af54788d0fb293dba7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: {fileID: 0}
   playerHitBoxCollider: {fileID: 460719215}
   groundCheckObj: {fileID: 1220369295}
 --- !u!61 &1987201914
@@ -8616,6 +8618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f5c35802d5eee4ca98faa9f0180c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentHP: 4
 --- !u!1 &2023454209
 GameObject:
   m_ObjectHideFlags: 0

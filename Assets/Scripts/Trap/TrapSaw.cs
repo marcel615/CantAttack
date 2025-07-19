@@ -9,7 +9,7 @@ public class TrapSaw : MonoBehaviour
     CircleCollider2D circleCollider;
 
     //기본 변수
-    int damage = 1;
+    [SerializeField] private int damage = 1;
 
 
     private void Awake()

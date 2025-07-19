@@ -10,7 +10,7 @@ public static class PlayerEvents
     public static event Action OnPlayerSpawned_NoArgument;
 
     //Player가 데미지를 입을 때
-    public static event Action<int> OnPlayerDamaged;
+    public static event Action OnPlayerDamaged;
 
     //Player의 Start()에서 이벤트 발행
     public static void InvokePlayerSpawned(Transform transform)
@@ -18,8 +18,9 @@ public static class PlayerEvents
         OnPlayerSpawned?.Invoke(transform);
         OnPlayerSpawned_NoArgument?.Invoke();
     }
-    public static void InvokePlayerDamaged(int Damage)
+    //Player의 OnDamaged()에서 이벤트 발행
+    public static void InvokePlayerDamaged()
     {
-        OnPlayerDamaged?.Invoke(Damage);
+        OnPlayerDamaged?.Invoke();
     }
 }

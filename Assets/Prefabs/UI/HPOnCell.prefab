@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2306104843362252658}
   - component: {fileID: 6149449039299776283}
   m_Layer: 5
-  m_Name: HPCell
+  m_Name: HPOnCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

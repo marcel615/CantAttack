@@ -25,13 +25,10 @@ public class TrapBallShooter : MonoBehaviour
         if (firePoint == null) firePoint = transform.Find("FirePoint");
         
     }
-    void Start()
-    {
-
-    }
 
     void Update()
     {
+        //발사 쿨타임 적용
         if (!isFireCoolTime && detectedTarget != null)
         {
             FireCoolTimer = FireCoolTime;
@@ -57,6 +54,7 @@ public class TrapBallShooter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //플레이어 감지 시 detectedTarget에 저장
         if (collision.CompareTag("Player"))
         {
             detectedTarget = collision.gameObject;
@@ -64,12 +62,14 @@ public class TrapBallShooter : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //플레이어 감지 시 detectedTarget에 저장되어 있는 값 삭제
         if (collision.CompareTag("Player") && collision.gameObject == detectedTarget)
         {
             detectedTarget = null;
         }
     }
 
+    //발사
     void Fire()
     {
         GameObject ball = Instantiate(ballPrefab, firePoint.position, Quaternion.identity);

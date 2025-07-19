@@ -10,12 +10,12 @@ public class CameraManager : MonoBehaviour
 
     //카메라가 따라다닐 플레이어객체
     Transform target;
-    Tilemap tilemap;
 
     //기본 변수들
     Vector3 ClampedPosition; //맵의 경계에 다다르면 해당 경계를 기준으로 카메라 마지노선 설정
 
     //맵 경계
+    Tilemap tilemap;
     public Vector2 minPosition; //맵의 왼쪽 하단 경계
     public Vector2 maxPosition; //맵의 오른쪽 상단 경계
 
@@ -55,6 +55,7 @@ public class CameraManager : MonoBehaviour
         transform.position = ClampedPosition;
 
     }
+
     //이벤트 구독
     private void OnEnable()
     {
