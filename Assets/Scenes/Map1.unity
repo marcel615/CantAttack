@@ -8524,6 +8524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce561c6a4f7af54788d0fb293dba7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitBoxCollider: {fileID: 460719215}
+  groundCheckObj: {fileID: 1220369295}
   mainCamera: {fileID: 0}
 --- !u!61 &1987201914
 BoxCollider2D:

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //Player 오브젝트 중복체크를 위한 private 인스턴스 생성
+    private static Player instance;
+
     //내 컴포넌트
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
 
     //내 자식 오브젝트 관련
-    CapsuleCollider2D playerHitBoxCollider;
+    public CapsuleCollider2D playerHitBoxCollider;
+    public Transform groundCheckObj;
 
     //다른 객체들
     public CameraManager mainCamera;
@@ -31,9 +35,8 @@ public class Player : MonoBehaviour
     //조작 제한 플래그
     bool canControl = true;
 
-    //발 밑에 땅이 있는지 체크
+    //발 밑에 땅이 있는지 체크 관련 변수들
     bool isGrounded;
-    Transform groundCheckObj;
     float checkRadius = 0.2f;
     LayerMask groundLayer;
 
@@ -67,9 +70,28 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        // Player 인스턴스 처음 할당할 때
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else //기존 Player 인스턴스가 존재할 때
+        {
+            Destroy(gameObject);    //파괴
+        }
+
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
+        //HitBox의 Collider 연결
+        if (playerHitBoxCollider == null) playerHitBoxCollider = transform.Find("HitBox")?.GetComponent<CapsuleCollider2D>();
+        //땅 체크 오브젝트 연결
+        if (groundCheckObj == null) groundCheckObj = transform.Find("GroundCheckObject")?.GetComponent<Transform>();
+        
+        groundLayer = LayerMask.GetMask("Ground");
 
     }
     private void Start()
@@ -80,15 +102,6 @@ public class Player : MonoBehaviour
             mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<CameraManager>();
             mainCamera.SetTarget(transform);
         }
-        //자식오브젝트 HitBox의 Collider 연결
-        if (playerHitBoxCollider == null)
-        {
-            playerHitBoxCollider = transform.Find("HitBox").GetComponent<CapsuleCollider2D>();
-        }
-
-        //땅 체크 오브젝트 할당
-        groundCheckObj = transform.Find("GroundCheckObject");
-        groundLayer = LayerMask.GetMask("Ground");
 
     }
     private void Update()
