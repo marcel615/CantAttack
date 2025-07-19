@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     //Manager들 및 자주 참조하는 오브젝트들 연결
     public UIManager UIManager;
     public Player Player;
+    public CameraManager CameraManager;
 
 
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         //인스펙터에서 연결 까먹었을 경우에 대비
         if (UIManager == null) UIManager = transform.Find("UIManager")?.GetComponent<UIManager>();
         if (Player == null) Player = GameObject.Find("Player")?.GetComponent<Player>();
+        if (CameraManager == null) CameraManager = GameObject.Find("CameraManager")?.GetComponent<CameraManager>();
 
     }
 

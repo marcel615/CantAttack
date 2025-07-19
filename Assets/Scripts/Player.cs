@@ -16,9 +16,6 @@ public class Player : MonoBehaviour
     public CapsuleCollider2D playerHitBoxCollider;
     public Transform groundCheckObj;
 
-    //다른 객체들
-    public CameraManager mainCamera;
-
     //키 입력 추적 변수들
     float H; //좌우
     bool J; //점프
@@ -96,12 +93,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        //메인 카메라 설정
-        if (mainCamera == null)
-        {
-            mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<CameraManager>();
-            mainCamera.SetTarget(transform);
-        }
+        //플레이어 스폰 이벤트 발행
+        PlayerEvents.InvokePlayerSpawned(transform);
 
     }
     private void Update()

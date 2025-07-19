@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class CameraManager : MonoBehaviour
 {
+    //CameraManager 오브젝트 중복체크를 위한 private 인스턴스 생성
+    private static CameraManager instance;
+
     //카메라가 따라다닐 플레이어객체
     Transform target;
     Tilemap tilemap;
@@ -18,29 +21,23 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
+        // CameraManager 인스턴스 처음 할당할 때
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else //기존 CameraManager 인스턴스가 존재할 때
+        {
+            Destroy(gameObject);    //파괴
+        }
 
     }
     private void Start()
     {
-        //각 맵마다의 경계를 확인하기 위한 작업
+        //타일맵 정보 획득
         tilemap = FindObjectOfType<Tilemap>();
-        minPosition = tilemap.localBounds.min;
-        minPosition.y = minPosition.y + 1; //타일맵의 타일앵커가 왼쪽 하단이 아니라 정중앙이기 때문에 발생하는 오차 정정
-        maxPosition = tilemap.localBounds.max;
-        
-        //Debug.Log(minPosition + "" + maxPosition);
-
-        //경계값에다가 해상도에 맞는 가로, 세로 폭을 더하고 빼는 작업으로 적절한 카메라 위치 조정
-        float cameraHeightHalf = Camera.main.orthographicSize;
-        float cameraWidthHalf = cameraHeightHalf * Camera.main.aspect;
-        
-        minPosition.x = minPosition.x + cameraWidthHalf;
-        minPosition.y = minPosition.y + cameraHeightHalf;
-        maxPosition.x = maxPosition.x - cameraWidthHalf;
-        maxPosition.y = maxPosition.y - cameraHeightHalf;
-        
-        //Debug.Log(minPosition + "" + maxPosition);
-        
+        SetCameraMinMaxPosition();
 
     }
 
@@ -58,10 +55,39 @@ public class CameraManager : MonoBehaviour
         transform.position = ClampedPosition;
 
     }
+    //이벤트 구독
+    private void OnEnable()
+    {
+        //플레이어 스폰 이벤트 구독
+        PlayerEvents.OnPlayerSpawned += SetTarget;
+    }
+    private void OnDisable()
+    {
+        //플레이어 스폰 이벤트 구독
+        PlayerEvents.OnPlayerSpawned -= SetTarget;
+    }
 
     //플레이어 위치 받아오는 메소드
     public void SetTarget(Transform t)
     {
         target = t;
+    }
+
+    //카메라의 Min, Max Position을 획득하기 위한 메소드
+    void SetCameraMinMaxPosition()
+    {
+        minPosition = tilemap.localBounds.min;
+        minPosition.y = minPosition.y + 1; //타일맵의 타일앵커가 왼쪽 하단이 아니라 정중앙이기 때문에 발생하는 오차 정정
+        maxPosition = tilemap.localBounds.max;
+
+        //경계값에다가 해상도에 맞는 가로, 세로 폭을 더하고 빼는 작업으로 적절한 카메라 위치 조정
+        float cameraHeightHalf = Camera.main.orthographicSize;
+        float cameraWidthHalf = cameraHeightHalf * Camera.main.aspect;
+
+        minPosition.x = minPosition.x + cameraWidthHalf;
+        minPosition.y = minPosition.y + cameraHeightHalf;
+        maxPosition.x = maxPosition.x - cameraWidthHalf;
+        maxPosition.y = maxPosition.y - cameraHeightHalf;
+
     }
 }
