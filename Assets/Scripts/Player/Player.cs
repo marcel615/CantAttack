@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     public CapsuleCollider2D playerHitBoxCollider;
     public Transform groundCheckObj;
 
+    //저장 및 불러오기 대상 변수
+    public Vector2 savePosition;
+
     //키 입력 추적 변수들
     float H; //좌우
     bool J; //점프

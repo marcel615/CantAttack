@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public int MaxHP { get; private set; } = 5;
+    public int MaxHP = 5;
     public int CurrentHP = 4;
 
 
