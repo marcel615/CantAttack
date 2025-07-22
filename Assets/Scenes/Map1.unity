@@ -689,6 +689,7 @@ MonoBehaviour:
   UIManager: {fileID: 2023454210}
   Player: {fileID: 1987201913}
   CameraManager: {fileID: 1669988257}
+  isTest: 1
 --- !u!1 &687570002
 GameObject:
   m_ObjectHideFlags: 0
@@ -7778,7 +7779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18525b637a86b2d4d991951c3721aaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testSaveData: {fileID: 0}
+  testSaveData: {fileID: 11400000, guid: a70cd1290ae03a74aa643e2a295a9f8d, type: 2}
   firstSaveData: {fileID: 11400000, guid: 17b4b06740b85154a98e65c5d7c97c34, type: 2}
 --- !u!4 &1021092142
 Transform:
@@ -8606,9 +8607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce561c6a4f7af54788d0fb293dba7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 0}
+  status: {fileID: 1987201915}
   playerHitBoxCollider: {fileID: 460719215}
   groundCheckObj: {fileID: 1220369295}
+  savePosition: {x: 0, y: 0}
 --- !u!61 &1987201914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8666,6 +8668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f5c35802d5eee4ca98faa9f0180c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHP: 5
   CurrentHP: 4
 --- !u!114 &1987201916
 MonoBehaviour:
@@ -8679,6 +8682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51ca162d4908bf4c8f542a2b5121a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1987201913}
+  playerStatus: {fileID: 1987201915}
 --- !u!1 &2023454209
 GameObject:
   m_ObjectHideFlags: 0

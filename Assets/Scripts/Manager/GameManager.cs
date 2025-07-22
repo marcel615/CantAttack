@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public Player Player;
     public CameraManager CameraManager;
 
+    //지금 실행이 테스트인지 체크하는 플래그
+    public bool isTest;
 
 
     private void Awake()

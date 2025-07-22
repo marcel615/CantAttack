@@ -6,16 +6,24 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    //테스트 세이브 관련
-    public ScriptableObject testSaveData;
-    string TestSaveFileName = "TestSaveFile.json";
-    string TestSavePath => Path.Combine(Application.persistentDataPath, TestSaveFileName);
+    /// <초기값세팅관련>
+    //테스트인지 확인 
     bool isTestSave;
-
+    //테스트 세이브 관련
+    public SaveDataSO testSaveData;
+    string TestSaveFileName = "TestSaveFile.json";
+    //string TestSavePath => Path.Combine(Application.persistentDataPath, TestSaveFileName);
+    string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder", TestSaveFileName);
     //실제 세이브 관련
-    public ScriptableObject firstSaveData;
+    public SaveDataSO firstSaveData;
     string SaveFileName = "SaveFile.json";
     string SavePath => Path.Combine(Application.persistentDataPath, SaveFileName);
+    //초기값 세이브&로드 Path관련 
+    string NowSavePath;
+    /// </초기값세팅관련>
+
+    //세이브 및 로드에 사용될 데이터
+    SaveData saveData;
 
     //딕셔너리로 SaveData 내 여러 Data분류 가능하게 하기
     Dictionary<string, ISaveLoadable> SaveLoadDic;
@@ -24,13 +32,19 @@ public class SaveManager : MonoBehaviour
     int ISaveLoadableSum;
     int ISaveLoadableCount = 0;
 
-    //세이브 기능 시 얻게 되는 세이브데이터
-    SaveData saveData;
 
+
+    private void Awake()
+    {
+        //딕셔너리 초기화
+        SaveLoadDic = new Dictionary<string, ISaveLoadable>();
+        //Json파일 경로 선택 및 saveData 할당
+        CheckTestOrNot();
+    }
     private void Start()
     {
         //ISaveLoadable 상속한 오브젝트 총 개수 구하기
-        ISaveLoadableSum = GetSaveUnitCount(saveData);
+        ISaveLoadableSum = GetSaveUnitCount();
         //딕셔너리 완성을 위해 이벤트 발행
         SystemEvents.InvokeSaveDicKeyRequested(this);
     }
@@ -48,9 +62,15 @@ public class SaveManager : MonoBehaviour
             {
                 Load(saveData);
             }
-            
+
+        }
+        else
+        {
+            //만약에 key가 중복될 경우 디버깅
+            Debug.LogWarning($"중복된 DicKey: {saveLoadable.DicKey}");
         }
     }
+
     //각 SaveData 가져와서 SaveData 만들기
     public SaveData GetSaveData()
     {
@@ -62,11 +82,13 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    //내일 세부적으로 구현
+    //saveData 로드하기
     public void Load(SaveData saveData)
     {
         SaveLoadDic["PlayerSaveHandler"].Load(saveData.playerSaveData);
+        Debug.Log("로드 완!");
     }
+
     //저장하라는 이벤트 구독
     private void OnEnable()
     {
@@ -77,15 +99,51 @@ public class SaveManager : MonoBehaviour
         SystemEvents.OnSaveRequest -= save;
     }
 
+    //현재 테스트인지 실제인지 확인
+    void CheckTestOrNot()
+    {
+        isTestSave = GameManager.Instance.isTest;
+        //초기값으로 테스트 or 실제 선택
+        if (isTestSave)
+        {
+            NowSavePath = TestSavePath;
+            MakeJsonOrNot(testSaveData.saveDataSO);
+        }
+        else
+        {
+            NowSavePath = SavePath;
+            MakeJsonOrNot(firstSaveData.saveDataSO);
+        }
+    }
+    //Json 파일이 경로에 없으면 생성하고 saveData 할당, 있으면 saveData 할당만 하기
+    void MakeJsonOrNot(SaveData data)
+    {
+        if (!File.Exists(NowSavePath))
+        {
+            string json = JsonUtility.ToJson(data, true);
+            File.WriteAllText(NowSavePath, json);
+
+            saveData = data;
+        }
+        else
+        {
+            string json = File.ReadAllText(NowSavePath);
+            saveData = JsonUtility.FromJson<SaveData>(json);
+        }
+
+    }
     //저장하라는 이벤트 들어오면 실행
     void save()
     {
         saveData = GetSaveData();
         //saveData를 Json파일에 덮어쓰기 작업
+        string json = JsonUtility.ToJson(saveData, true);
+        File.WriteAllText(NowSavePath, json);
+
     }
 
     //SaveData 내에 ISaveLoadable 상속한 오브젝트 개수 구하기
-    int GetSaveUnitCount(SaveData saveData)
+    int GetSaveUnitCount()
     {
         var fields = typeof(SaveData).GetFields(BindingFlags.Public | BindingFlags.Instance);
         return fields.Length;

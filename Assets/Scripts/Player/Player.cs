@@ -88,6 +88,8 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         status = GetComponent<PlayerStatus>();
 
+        transform.position = savePosition;
+
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         //HitBox의 Collider 연결
         if (playerHitBoxCollider == null) playerHitBoxCollider = transform.Find("HitBox")?.GetComponent<CapsuleCollider2D>();
