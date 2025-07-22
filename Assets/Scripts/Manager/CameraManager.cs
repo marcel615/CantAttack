@@ -60,12 +60,12 @@ public class CameraManager : MonoBehaviour
     private void OnEnable()
     {
         //플레이어 스폰 이벤트 구독
-        PlayerEvents.OnPlayerSpawned += SetTarget;
+        PlayerEvents.OnPlayerSpawned_CameraManager += SetTarget;
     }
     private void OnDisable()
     {
         //플레이어 스폰 이벤트 구독
-        PlayerEvents.OnPlayerSpawned -= SetTarget;
+        PlayerEvents.OnPlayerSpawned_CameraManager -= SetTarget;
     }
 
     //플레이어 위치 받아오는 메소드

@@ -6,21 +6,21 @@ using UnityEngine;
 public static class PlayerEvents
 {
     //Player가 스폰될 때
-    public static event Action<Transform> OnPlayerSpawned;
-    public static event Action OnPlayerSpawned_NoArgument;
+    public static event Action<Transform> OnPlayerSpawned_CameraManager;
+    public static event Action<int, int> OnPlayerSpawned_HPUIManager;
 
     //Player가 데미지를 입을 때
-    public static event Action OnPlayerDamaged;
+    public static event Action<int, int> OnPlayerDamaged_HPUIManager;
 
     //Player의 Start()에서 이벤트 발행
-    public static void InvokePlayerSpawned(Transform transform)
+    public static void InvokePlayerSpawned(Transform transform, int maxHP, int currentHP)
     {
-        OnPlayerSpawned?.Invoke(transform);
-        OnPlayerSpawned_NoArgument?.Invoke();
+        OnPlayerSpawned_CameraManager?.Invoke(transform);
+        OnPlayerSpawned_HPUIManager?.Invoke(maxHP, currentHP);
     }
     //Player의 OnDamaged()에서 이벤트 발행
-    public static void InvokePlayerDamaged()
+    public static void InvokePlayerDamaged(int maxHp, int currentHp)
     {
-        OnPlayerDamaged?.Invoke();
+        OnPlayerDamaged_HPUIManager?.Invoke(maxHp, currentHp);
     }
 }

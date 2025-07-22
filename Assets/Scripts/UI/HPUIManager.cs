@@ -32,29 +32,30 @@ public class HPUIManager : MonoBehaviour
     private void OnEnable()
     {
         //플레이어 스폰 이벤트 구독
-        PlayerEvents.OnPlayerSpawned_NoArgument += SetHP;
+        PlayerEvents.OnPlayerSpawned_HPUIManager += SetHP;
         //플레이어 데미지 이벤트 구독
-        PlayerEvents.OnPlayerDamaged += SetHP;
+        PlayerEvents.OnPlayerDamaged_HPUIManager += SetHP;
     }
     private void OnDisable()
     {
         //플레이어 스폰 이벤트 구독
-        PlayerEvents.OnPlayerSpawned_NoArgument -= SetHP;
+        PlayerEvents.OnPlayerSpawned_HPUIManager -= SetHP;
         //플레이어 데미지 이벤트 구독
-        PlayerEvents.OnPlayerDamaged -= SetHP;
+        PlayerEvents.OnPlayerDamaged_HPUIManager -= SetHP;
     }
     //HP칸 채우기
-    void SetHP()
+    void SetHP(int maxHP, int currentHP)
     {
+        //이벤트로 받은 정보 가져오기
+        MaxHP = maxHP;
+        CurrentHP = currentHP;
+
         //일단 HPPrefab들 다 제거
         foreach (Transform child in HPContainer.transform)
         {
             Destroy(child.gameObject);
         }
-        //PlayerStatus에 저장되어 있는 Player 정보 가져오기
-        CurrentHP = GameManager.Instance.Player.status.CurrentHP;
-        MaxHP = GameManager.Instance.Player.status.MaxHP;
-        //CurrentHP에 맞도록 HPPrefab 채우기
+        //HPPrefab 채우기
         for (int i = 0; i < CurrentHP; i++)
         {
             Instantiate(HPOnCellPrefab, HPContainer.transform);

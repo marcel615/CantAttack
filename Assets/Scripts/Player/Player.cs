@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         //플레이어 스폰 이벤트 발행
-        PlayerEvents.InvokePlayerSpawned(transform);
+        PlayerEvents.InvokePlayerSpawned(transform, status.MaxHP, status.CurrentHP);
 
     }
     private void Update()
@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
 
             //status에 데미지 적용 후 이벤트 발행
             DamageApply(damage);
-            PlayerEvents.InvokePlayerDamaged();
+            PlayerEvents.InvokePlayerDamaged(status.MaxHP, status.CurrentHP);
 
             //무적 타이머, 넉백 타이머 실행
             isInvincible = true;

@@ -5,7 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSaveData
 {
-    public int MaxHP;
+    //PlayerStatus.cs
+    public int MaxHP;   
     public int CurrentHP;
+    //Player.cs
     public Vector2 position;
 }
