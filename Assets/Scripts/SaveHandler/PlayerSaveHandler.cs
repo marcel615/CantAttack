@@ -8,6 +8,13 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
     [SerializeField] Player player;
     [SerializeField] PlayerStatus playerStatus;
 
+    private void Awake()
+    {
+        //내 컴포넌트 연결
+        player = GetComponent<Player>();
+        playerStatus = GetComponent<PlayerStatus>();
+    }
+
     //ISaveLoadable 인터페이스 구현
     public string DicKey => "PlayerSaveHandler";
 

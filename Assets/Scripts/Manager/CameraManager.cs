@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class CameraManager : MonoBehaviour
 {
-    //CameraManager 오브젝트 중복체크를 위한 private 인스턴스 생성
-    private static CameraManager instance;
+    //오브젝트 중복체크를 위한 인스턴스 생성
+    private static CameraManager Instance;
 
     //카메라가 따라다닐 플레이어객체
     Transform target;
@@ -21,16 +21,15 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        // CameraManager 인스턴스 처음 할당할 때
-        if (instance == null)
+        // 기존 인스턴스가 존재할 때 && 지금 새로운 인스턴스가 생성되려고 할 때
+        if (Instance != null && Instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);    //중복되지 않도록 지금 새롭게 생성되는 놈은 파괴시킨다
+            return;
         }
-        else //기존 CameraManager 인스턴스가 존재할 때
-        {
-            Destroy(gameObject);    //파괴
-        }
+        // 인스턴스 처음 할당
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
     }
     private void Start()

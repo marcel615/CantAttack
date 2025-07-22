@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    //오브젝트 중복체크를 위한 인스턴스 생성
+    private static UIManager Instance;
+
     //자식 오브젝트 (UI 오브젝트)
     //Canvas
     public GameObject UICanvas;
@@ -18,6 +21,16 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        // 기존 인스턴스가 존재할 때 && 지금 새로운 인스턴스가 생성되려고 할 때
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);    //중복되지 않도록 지금 새롭게 생성되는 놈은 파괴시킨다
+            return;
+        }
+        // 인스턴스 처음 할당
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         if (UICanvas == null) UICanvas = transform.Find("UICanvas")?.gameObject;
         if (HPPanel == null) HPPanel = transform.Find("UICanvas/HPPanel")?.gameObject;

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //Player 오브젝트 중복체크를 위한 private 인스턴스 생성
-    private static Player instance;
+    //오브젝트 중복체크를 위한 인스턴스 생성
+    private static Player Instance;
+
+    //세이브, 로드 변수
+    public Vector2 savePosition;
 
     //내 컴포넌트
     Rigidbody2D rigid;
@@ -17,8 +20,6 @@ public class Player : MonoBehaviour
     public CapsuleCollider2D playerHitBoxCollider;
     public Transform groundCheckObj;
 
-    //저장 및 불러오기 대상 변수
-    public Vector2 savePosition;
 
     //키 입력 추적 변수들
     float H; //좌우
@@ -71,16 +72,15 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        // Player 인스턴스 처음 할당할 때
-        if (instance == null)
+        // 기존 인스턴스가 존재할 때 && 지금 새로운 인스턴스가 생성되려고 할 때
+        if (Instance != null && Instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);    //중복되지 않도록 지금 새롭게 생성되는 놈은 파괴시킨다
+            return;
         }
-        else //기존 Player 인스턴스가 존재할 때
-        {
-            Destroy(gameObject);    //파괴
-        }
+        // 인스턴스 처음 할당
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         //내 컴포넌트 연결
         rigid = GetComponent<Rigidbody2D>();
@@ -88,7 +88,6 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         status = GetComponent<PlayerStatus>();
 
-        transform.position = savePosition;
 
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         //HitBox의 Collider 연결
@@ -101,8 +100,6 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        //플레이어 스폰 이벤트 발행
-        PlayerEvents.InvokePlayerSpawned(transform, status.MaxHP, status.CurrentHP);
 
     }
     private void Update()
@@ -279,6 +276,26 @@ public class Player : MonoBehaviour
             animator.SetBool("isFalling", false);
         }
 
+    }
+    private void OnEnable()
+    {
+        //세이브 로드 이후 초기화
+        SystemEvents.OnDataLoadFinished += InitFromSave;
+    }
+    private void OnDisable()
+    {
+        //세이브 로드 이후 초기화
+        SystemEvents.OnDataLoadFinished -= InitFromSave;
+    }
+
+    //세이브 로드 이후 초기화
+    void InitFromSave()
+    {
+        //플레이어 위치 초기화
+        transform.position = savePosition;
+
+        //플레이어 스폰 이벤트 발행
+        PlayerEvents.InvokePlayerSpawned(transform, status.MaxHP, status.CurrentHP);
     }
 
     // 데미지를 입었을 때 이 메소드 호출
