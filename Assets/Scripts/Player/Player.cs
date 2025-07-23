@@ -29,23 +29,23 @@ public class Player : MonoBehaviour
     bool P; //패링
 
     //기본 변수들
-    float normalSpeed = 6f;
-    float jumpPower = 10f;
-    float isHeadToRight = 1; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
+    public float normalSpeed = 6f;
+    public float jumpPower = 10f;
+    public float isHeadToRight = 1; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
     float prevGravity;
 
     //조작 제한 플래그
-    bool canControl = true;
+    public bool canControl = true;
 
     //발 밑에 땅이 있는지 체크 관련 변수들
-    bool isGrounded;
+    public bool isGrounded;
     float checkRadius = 0.2f;
     LayerMask groundLayer;
 
     //무적 및 피격 관련 변수들
-    bool isInvincible = false;
-    float InvincibleTime_Hitted = 1.5f;
-    float InvincibleTimer;
+    public bool isInvincible = false;
+    public float InvincibleTime_Hitted = 1.5f;
+    public float InvincibleTimer;
 
     bool isKnockedBackInvincible;
     bool isKnockedBack = false; //조작 제한 플래그 too
@@ -53,13 +53,13 @@ public class Player : MonoBehaviour
     float KnockedBackTimer;
 
     //점프 관련 변수들
-    bool isJumping;
+    public bool isJumping;
     float MaxJumpTime = 0.3f;
     float MaxJumpTimer;
     int jumpCount = 0;
 
     //회피 관련 변수들
-    bool isDashing;  //조작 제한 플래그 too
+    public bool isDashing;  //조작 제한 플래그 too
     float DashTime = 0.4f;
     float DashTimer;
     bool isDashCoolTime;    //회피 쿨타임
@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
             canControl = false;
         }
 
+        /*
         //H값에 따른 플레이어 캐릭터가 바라보는 방향 및 애니메이션 설정
         if (H != 0 && canControl)
         {
@@ -135,6 +136,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+        */
 
         //무적 시간 제어하기
         if (isInvincible)
@@ -170,7 +172,7 @@ public class Player : MonoBehaviour
                 isKnockedBack = false;
             }
         }
-
+        /*
         //J값에 따른 플레이어 점프 && 땅에 서있으면 && jumpCount가 0이면 점프하도록
         if (J && isGrounded && jumpCount == 0 && canControl)
         {
@@ -211,7 +213,8 @@ public class Player : MonoBehaviour
         {
             jumpCount = 0;
         }
-
+        */
+        /*
         //D값에 따른 플레이어 회피기
         if (D && !isDashCoolTime && canControl)
         {
@@ -255,16 +258,18 @@ public class Player : MonoBehaviour
                 isDashCoolTime = false;
             }
         }
-
+        */
 
     }
     private void FixedUpdate()
     {
+        /*
         //플레이어 기본 움직임 설정
         if (canControl)
         {
             rigid.velocity = new Vector2(H * normalSpeed, rigid.velocity.y);
         }
+        */
 
         //플레이어 캐릭터가 떨어지고 있을 때 작업. 1.애니메이션 변수 조정
         if (rigid.velocity.y < -0.01f)

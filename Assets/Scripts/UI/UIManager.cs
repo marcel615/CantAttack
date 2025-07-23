@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     private static UIManager Instance;
 
+    //내 컴포넌트
+    public UIInputController uiInputController;
+
     //자식 오브젝트 (UI 오브젝트)
     //Canvas
     public GameObject UICanvas;
@@ -22,6 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject ContinueButton;
     public GameObject SettingButton;
     public GameObject SaveAndExitButton;
+
 
 
 
