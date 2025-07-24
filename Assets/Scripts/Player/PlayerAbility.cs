@@ -57,7 +57,7 @@ public class PlayerAbility : MonoBehaviour
             if (DashTimer > 0)
             {
                 rigid.velocity = new Vector2(player.isHeadToRight * DashSpeed, 0);
-                DashTimer -= Time.deltaTime;
+                DashTimer -= Time.fixedDeltaTime;
             }
             else
             {
@@ -72,7 +72,7 @@ public class PlayerAbility : MonoBehaviour
         {
             if (DashCoolTimer > 0)
             {
-                DashCoolTimer -= Time.deltaTime;
+                DashCoolTimer -= Time.fixedDeltaTime;
             }
             else
             {

@@ -33,7 +33,7 @@ public class PlayerJump : MonoBehaviour
         //점프 눌렸을 때 플래그 && 땅에 서있으면 && jumpCount가 0이면 점프하도록
         if (jumpPressed && player.isGrounded && jumpCount == 0 && player.canControl)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, player.jumpPower);
+            rigid.velocity = new Vector2(rigid.velocity.x, player.normaljumpPower);
             jumpCount = 1;
             MaxJumpTimer = MaxJumpTime;
             player.isJumping = true;
@@ -50,7 +50,7 @@ public class PlayerJump : MonoBehaviour
             {
                 if (MaxJumpTimer > 0) //점프 높이 제약 걸기
                 {
-                    rigid.velocity = new Vector2(rigid.velocity.x, player.jumpPower);
+                    rigid.velocity = new Vector2(rigid.velocity.x, player.normaljumpPower);
                     MaxJumpTimer -= Time.fixedDeltaTime;
 
                 }

@@ -9130,6 +9130,7 @@ GameObject:
   - component: {fileID: 1987201920}
   - component: {fileID: 1987201919}
   - component: {fileID: 1987201918}
+  - component: {fileID: 1987201921}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9306,7 +9307,16 @@ MonoBehaviour:
   playerHitBoxCollider: {fileID: 460719215}
   groundCheckObj: {fileID: 1220369295}
   normalSpeed: 6
+  jumpPower: 10
+  isHeadToRight: 1
   canControl: 1
+  isJumping: 0
+  isDashing: 0
+  isGrounded: 0
+  isInvincible: 0
+  InvincibleTime_Hitted: 1.5
+  InvincibleTimer: 0
+  isKnockedBackInvincible: 0
 --- !u!61 &1987201914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9426,6 +9436,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fba0aeb7316ecb44aa9caa5f9b55a3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1987201921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987201907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1861ba04890058742a45aa8aa9839a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2023454209
