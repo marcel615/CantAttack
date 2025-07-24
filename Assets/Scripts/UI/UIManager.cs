@@ -9,9 +9,6 @@ public class UIManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     private static UIManager Instance;
 
-    //내 컴포넌트
-    public UIInputController uiInputController;
-
     //자식 오브젝트 (UI 오브젝트)
     //Canvas
     public GameObject UICanvas;
@@ -19,9 +16,9 @@ public class UIManager : MonoBehaviour
     public GameObject HPPanel;
     public GameObject Portrait;
     public GameObject HPContainer;
-    //MenuPanel
-    public GameObject MenuPanel;
-    //public GameObject MenuSelectPanel;
+    //SystemMenuPanel
+    public GameObject SystemMenuPanel;
+    //public GameObject SystemMenuSelectPanel;
     public GameObject ContinueButton;
     public GameObject SettingButton;
     public GameObject SaveAndExitButton;
@@ -48,8 +45,8 @@ public class UIManager : MonoBehaviour
         if (Portrait == null) Portrait = transform.Find("UICanvas/HPPanel/Portrait")?.gameObject;
         if (HPContainer == null) HPContainer = transform.Find("UICanvas/HPPanel/HPContainer")?.gameObject;
 
-        if (MenuPanel == null) MenuPanel = transform.Find("UICanvas/MenuPanel")?.gameObject;
-        //if (MenuSelectPanel == null) MenuSelectPanel = transform.Find("UICanvas/MenuPanel/MenuSelectPanel")?.gameObject;
+        if (SystemMenuPanel == null) SystemMenuPanel = transform.Find("UICanvas/SystemMenuPanel")?.gameObject;
+        //if (MenuSelectPanel == null) MenuSelectPanel = transform.Find("UICanvas/MenuPanel/SystemMenuSelectPanel")?.gameObject;
         if (ContinueButton == null) ContinueButton = transform.Find("UICanvas/MenuPanel/ContinueButton")?.gameObject;
         if (SettingButton == null) SettingButton = transform.Find("UICanvas/MenuPanel/SettingButton")?.gameObject;
         if (SaveAndExitButton == null) SaveAndExitButton = transform.Find("UICanvas/MenuPanel/SaveAndExitButton")?.gameObject;

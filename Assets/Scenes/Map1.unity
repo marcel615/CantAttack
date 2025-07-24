@@ -7836,13 +7836,14 @@ GameObject:
   - component: {fileID: 863391757}
   - component: {fileID: 863391759}
   - component: {fileID: 863391758}
+  - component: {fileID: 863391761}
   m_Layer: 5
-  m_Name: MenuPanel
+  m_Name: SystemMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &863391757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7901,6 +7902,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863391756}
   m_CullTransparentMesh: 1
+--- !u!114 &863391761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863391756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9a550fddef7b048b644e7ea6b53e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SystemMenuSelectPanel: {fileID: 1270858381}
+  ContinueButton: {fileID: 736474067}
+  SettingButton: {fileID: 1178015358}
+  SaveAndExitButton: {fileID: 1726208590}
 --- !u!1 &956581289
 GameObject:
   m_ObjectHideFlags: 0
@@ -8464,7 +8481,7 @@ GameObject:
   - component: {fileID: 1270858384}
   - component: {fileID: 1270858383}
   m_Layer: 5
-  m_Name: MenuSelectPanel
+  m_Name: SystemMenuSelectPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9302,16 +9319,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce561c6a4f7af54788d0fb293dba7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  savePosition: {x: 0, y: 0}
   status: {fileID: 1987201915}
   playerHitBoxCollider: {fileID: 460719215}
   groundCheckObj: {fileID: 1220369295}
+  savePosition: {x: 0, y: 0}
+  playerContext: 0
   normalSpeed: 6
-  jumpPower: 10
+  normaljumpPower: 10
   isHeadToRight: 1
   canControl: 1
   isJumping: 0
   isDashing: 0
+  isKnockedBack: 0
   isGrounded: 0
   isInvincible: 0
   InvincibleTime_Hitted: 1.5
@@ -9480,12 +9499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcad3a4671c4a149a11d301ba9e7402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiInputController: {fileID: 2023454212}
   UICanvas: {fileID: 956581289}
   HPPanel: {fileID: 554580255}
   Portrait: {fileID: 1044413905}
   HPContainer: {fileID: 1354047751}
-  MenuPanel: {fileID: 863391756}
+  SystemMenuPanel: {fileID: 863391756}
   ContinueButton: {fileID: 736474065}
   SettingButton: {fileID: 1178015356}
   SaveAndExitButton: {fileID: 1726208588}
@@ -9515,9 +9533,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2023454209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dead13a1a00860049af810f4ce4bbbb5, type: 3}
+  m_Script: {fileID: 11500000, guid: e86420b1ccf4c9243945e3a08817efc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  systemMenu: {fileID: 863391761}
 --- !u!1 &2070708110
 GameObject:
   m_ObjectHideFlags: 0

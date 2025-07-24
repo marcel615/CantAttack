@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,9 @@ public class Player : MonoBehaviour
 
     //세이브, 로드 변수
     public Vector2 savePosition;
+
+    //컨텍스트 enum 정보
+    public InputContext playerContext = InputContext.Player;
 
     //기본 변수들
     public float normalSpeed = 6f;
