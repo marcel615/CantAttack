@@ -17,6 +17,8 @@ public class SystemMenuInputController : MonoBehaviour
     //이벤트 구독
     private void OnEnable()
     {
+        //SystemMenuOpen 이벤트 구독
+        InputEvents.SystemMenu.OnSystemMenuOpen += SystemMenuOpen;
         //Cancel 이벤트 구독
         InputEvents.SystemMenu.OnCancel += ESC;
         //Submit 이벤트 구독
@@ -26,12 +28,20 @@ public class SystemMenuInputController : MonoBehaviour
     }
     private void OnDisable()
     {
+        //SystemMenuOpen 이벤트 구독
+        InputEvents.SystemMenu.OnSystemMenuOpen -= SystemMenuOpen;
         //이동 이벤트 구독
         InputEvents.SystemMenu.OnCancel -= ESC;
         //Submit 이벤트 구독
         InputEvents.SystemMenu.OnSubmit -= Enter;
         //Interact 이벤트 구독
         InputEvents.SystemMenu.OnInteract -= E;
+    }
+
+    //SettingOpen 이벤트 구독
+    void SystemMenuOpen()
+    {
+        systemMenu.SystemMenuOpen();
     }
 
     //Cancel 이벤트 구독

@@ -66,9 +66,8 @@ public class InputManager : MonoBehaviour
                 InputEvents.Player.InvokeJumpHold(J_ing);
                 InputEvents.Player.InvokeDash(D);
                 InputEvents.Player.InvokeParry(P);
+                InputEvents.Player.InvokeCancel(Esc);
 
-                //SystemMenu 진입이벤트
-                InputEvents.SystemMenu.InvokeCancel(Esc);
 
                 break;
 

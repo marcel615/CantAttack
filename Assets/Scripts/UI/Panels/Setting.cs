@@ -27,9 +27,6 @@ public class Setting : MonoBehaviour
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
-    //현재 선택된 UI 객체(버튼 등)
-    GameObject selected;
-
 
     private void Awake()
     {
@@ -57,24 +54,27 @@ public class Setting : MonoBehaviour
         ControlsButton.onClick.AddListener(OnClickControls);
         UIAndAccessibilityButton.onClick.AddListener(OnClickUIAndAccessibility);
     }
-
+    //어디선가 Setting 패널을 열었을 때
     public void SettingOpen()
     {
-        OpenPanel(SettingSelectPanel);
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, SettingSelectPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext, true);
-
     }
+
     ///<Input>
     public void ESC(bool esc)
     {
         if(panelStack.Count > 0)
         {
-            Back();
+            //뒤로가기
+            UIPanelController.Back(panelStack, ref currentPanel);
         }
         else
         {
-            Close();
-            InputEvents.InvokeContextUpdate(InputContext.Player, true);
+            //닫기
+            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+            InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);
+            InputEvents.SystemMenu.InvokeSystemMenuOpen();
         }
     }
     public void Enter(bool enter)
@@ -83,74 +83,28 @@ public class Setting : MonoBehaviour
     }
     public void E(bool e)
     {
-        TriggerSelectAction();
+        UIUtility.TriggerSelectAction();
     }
     /// </Input>
 
-    void OpenPanel(GameObject newPanel)
-    {
-        if(currentPanel != null)
-        {
-            panelStack.Push(currentPanel);
-            currentPanel.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-        currentPanel = newPanel;
-        currentPanel.SetActive(true);
-        InputEvents.InvokeSelectFirstSelectable(currentPanel);
-
-    }
-    void Back()
-    {
-        currentPanel.SetActive(false);
-        currentPanel = panelStack.Pop();
-        currentPanel.SetActive(true);
-        InputEvents.InvokeSelectFirstSelectable(currentPanel);
-    }
-    void Close()
-    {
-        currentPanel.SetActive(false);
-        gameObject.SetActive(false);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-    }
-    void TriggerSelectAction()
-    {
-        //포커싱된 오브젝트 할당
-        selected = EventSystem.current.currentSelectedGameObject;
-        Button selectedButton = selected.GetComponent<Button>();
-
-        //포커싱된 오브젝트 클릭
-        if (selectedButton != null)
-        {
-            selectedButton.onClick.Invoke();
-        }
-        //포커싱된 오브젝트 해제
-        selected = null;
-        selectedButton = null;
-    }
-
-
     void OnClickGamePlay()
     {
-        OpenPanel(GamePlayPanel);
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, GamePlayPanel, gameObject);
     }
     void OnClickGraphics()
     {
-        OpenPanel(GraphicsPanel);
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, GraphicsPanel, gameObject);
     }
     void OnClickAudio()
     {
-        OpenPanel(AudioPanel);
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, AudioPanel, gameObject);
     }
     void OnClickControls()
     {
-        OpenPanel(ControlsPanel);
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, ControlsPanel, gameObject);
     }
     void OnClickUIAndAccessibility()
     {
-        OpenPanel(UIAndAccessibilityPanel);
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, UIAndAccessibilityPanel, gameObject);
     }
 }

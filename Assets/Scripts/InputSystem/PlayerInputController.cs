@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PlayerInputController : MonoBehaviour
     PlayerMove playerMove;
     PlayerJump playerJump;
     PlayerAbility playerAbility;
+    PlayerUIInput playerUIInput;
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class PlayerInputController : MonoBehaviour
         playerMove = GetComponent<PlayerMove>();
         playerJump = GetComponent<PlayerJump>();
         playerAbility = GetComponent<PlayerAbility>();
+        playerUIInput = GetComponent<PlayerUIInput>();
     }
 
     //이벤트 구독
@@ -31,7 +34,9 @@ public class PlayerInputController : MonoBehaviour
         InputEvents.Player.OnDash += Dash;
         //패링 이벤트 구독
         InputEvents.Player.OnParry += Parry;
-    }
+        //ESC 이벤트 (시스템 메뉴 열기) 구독
+        InputEvents.Player.OnCancel += Cancel;
+}
     private void OnDisable()
     {
         //이동 이벤트 구독
@@ -44,6 +49,8 @@ public class PlayerInputController : MonoBehaviour
         InputEvents.Player.OnDash -= Dash;
         //패링 이벤트 구독
         InputEvents.Player.OnParry -= Parry;
+        //ESC 이벤트 (시스템 메뉴 열기) 구독
+        InputEvents.Player.OnCancel -= Cancel;
     }
 
     //이동 이벤트 구독
@@ -70,6 +77,11 @@ public class PlayerInputController : MonoBehaviour
     void Parry(bool p)
     {
         playerAbility.Parry(p);
+    }
+    void Cancel(bool esc)
+    {
+        if(esc)
+            playerUIInput.ESC(esc);
     }
 
 

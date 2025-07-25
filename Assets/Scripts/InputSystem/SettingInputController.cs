@@ -46,7 +46,6 @@ public class SettingInputController : MonoBehaviour
         setting.SettingOpen();
     }
 
-
     //Cancel 이벤트 구독
     void ESC(bool esc)
     {

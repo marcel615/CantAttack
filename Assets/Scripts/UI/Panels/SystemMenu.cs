@@ -18,10 +18,8 @@ public class SystemMenu : MonoBehaviour
     public InputContext thisContext = InputContext.SystemMenu;
 
     //SystemMenu 조작 관련 변수
-    bool isOpen;
-
-    //현재 선택된 UI 객체(버튼 등)
-    GameObject selected;
+    Stack<GameObject> panelStack = new Stack<GameObject>();
+    GameObject currentPanel;
 
 
     private void Awake()
@@ -42,20 +40,27 @@ public class SystemMenu : MonoBehaviour
     }
 
 
+    //어디선가 SystemMenu 패널을 열었을 때
+    public void SystemMenuOpen()
+    {
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, SystemMenuSelectPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, true);
+    }
 
+    ///<Input>
     public void ESC(bool esc)
     {
-        if (!isOpen)
+        if (panelStack.Count > 0)
         {
-            Open();
-            InputEvents.InvokeContextUpdate(thisContext, true);
+            //뒤로가기
+            UIPanelController.Back(panelStack, ref currentPanel);
         }
         else
         {
-            Close();
-            InputEvents.InvokeContextUpdate(thisContext, false);
+            //닫기
+            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+            InputEvents.InvokeContextUpdate(InputContext.Player, true);
         }
-
     }
     public void Enter(bool enter)
     {
@@ -63,48 +68,20 @@ public class SystemMenu : MonoBehaviour
     }
     public void E(bool e)
     {
-        //포커싱된 오브젝트 할당
-        selected = EventSystem.current.currentSelectedGameObject;
-        Button selectedButton = selected.GetComponent<Button>();
-
-        //포커싱된 오브젝트 클릭
-        if (selectedButton != null)
-        {
-            selectedButton.onClick.Invoke();
-        }
-        //포커싱된 오브젝트 해제
-        selected = null;
-        selectedButton = null;
-
+        UIUtility.TriggerSelectAction();
     }
-
-    void Open()
-    {
-        gameObject.SetActive(true);
-        SystemMenuSelectPanel.SetActive(true);
-        isOpen = true;
-
-        InputEvents.InvokeSelectFirstSelectable(SystemMenuSelectPanel);
-    }
-    void Close()
-    {
-        gameObject.SetActive(false);
-        SystemMenuSelectPanel.SetActive(false);
-        isOpen = false;
-    }
+    /// </Input>
 
     void OnClickContinue()
     {
-        Close();
-        InputEvents.InvokeContextUpdate(thisContext, false);
+        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        InputEvents.InvokeContextUpdate(InputContext.Player, true);
     }
     void OnClickSetting()
     {
-        Close();
-        InputEvents.InvokeContextUpdate(thisContext, false);
+        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
         InputEvents.InvokeContextUpdate(InputContext.Setting, true);
         InputEvents.Setting.InvokeSettingOpen();
-
     }
     void OnClickSaveAndExit()
     {

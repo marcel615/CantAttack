@@ -12,6 +12,8 @@ public class PlayerInputEvents
     public event Action<bool> OnDash;
     //패링 이벤트
     public event Action<bool> OnParry;
+    //ESC 이벤트 (시스템 메뉴 열기)
+    public event Action<bool> OnCancel;
 
     //Horizontal 이동 이벤트
     public void InvokeMove(float h)
@@ -37,5 +39,10 @@ public class PlayerInputEvents
     public void InvokeParry(bool p)
     {
         OnParry?.Invoke(p);
+    }
+    //ESC 이벤트 (시스템 메뉴 열기)
+    public void InvokeCancel(bool esc)
+    {
+        OnCancel?.Invoke(esc);
     }
 }
