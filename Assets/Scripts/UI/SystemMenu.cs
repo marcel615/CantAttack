@@ -14,11 +14,11 @@ public class SystemMenu : MonoBehaviour
     [SerializeField] private Button SettingButton;
     [SerializeField] private Button SaveAndExitButton;
 
+    //컨텍스트 enum 정보
+    public InputContext systemMenuContext = InputContext.SystemMenu;
+
     //SystemMenu 조작 관련 변수
     bool isOpen;
-
-    //EventSystem 관련
-    GameObject selected;
 
 
     private void Awake()
@@ -45,12 +45,12 @@ public class SystemMenu : MonoBehaviour
         if (!isOpen)
         {
             Open();
-            InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);
+            InputEvents.InvokeContextUpdate(systemMenuContext, true);
         }
         else
         {
             Close();
-            InputEvents.InvokeContextUpdate(InputContext.SystemMenu, false);
+            InputEvents.InvokeContextUpdate(systemMenuContext, false);
         }
 
     }
@@ -83,6 +83,9 @@ public class SystemMenu : MonoBehaviour
     }
     void OnClickSetting()
     {
+        Close();
+        InputEvents.InvokeContextUpdate(InputContext.SystemMenu, false);
+        InputEvents.InvokeContextUpdate(InputContext.Setting, true);
 
     }
     void OnClickSaveAndExit()

@@ -77,7 +77,14 @@ public class InputManager : MonoBehaviour
 
                 break;
 
-            //InputEvents.InvokeUseHealItem(R);
+            case InputContext.Setting:
+                InputEvents.InvokeCancel(Esc);
+                InputEvents.InvokeSubmit(Enter);
+                InputEvents.InvokeInteract(E);
+
+                break;
+
+                //InputEvents.InvokeUseHealItem(R);
 
         }
 
