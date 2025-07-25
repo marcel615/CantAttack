@@ -61,6 +61,8 @@ public class InputManager : MonoBehaviour
         switch (currentContext)
         {
             case InputContext.Player:
+                if (Esc)
+                    H = 0;  //UI 패널 열었을 때 Player 좌우 움직임 멈추기
                 InputEvents.Player.InvokeMove(H);
                 InputEvents.Player.InvokeJump(J);
                 InputEvents.Player.InvokeJumpHold(J_ing);

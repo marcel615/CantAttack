@@ -78,6 +78,7 @@ public class PlayerInputController : MonoBehaviour
     {
         playerAbility.Parry(p);
     }
+    //ESC 이벤트 (시스템 메뉴 열기) 구독
     void Cancel(bool esc)
     {
         if(esc)
