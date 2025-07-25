@@ -155,6 +155,8 @@ public class SaveManager : MonoBehaviour
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(NowSavePath, json);
 
+        //세이브 끝나면 이벤트 발행
+        SystemEvents.InvokeSaveEnd();
     }
 
     //SaveData 내에 ISaveLoadable 상속한 오브젝트 개수 구하기

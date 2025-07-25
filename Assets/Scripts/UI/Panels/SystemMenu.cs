@@ -38,7 +38,17 @@ public class SystemMenu : MonoBehaviour
         SettingButton.onClick.AddListener(OnClickSetting);
         SaveAndExitButton.onClick.AddListener(OnClickSaveAndExit);
     }
-
+    //이벤트 구독
+    private void OnEnable()
+    {
+        //OnClickSaveAndExit 이후 세이브 완료되면 발행되는 이벤트 구독
+        SystemEvents.OnSaveEnd += SaveEnd;
+    }
+    private void OnDisable()
+    {
+        //OnClickSaveAndExit 이후 세이브 완료되면 발행되는 이벤트 구독
+        SystemEvents.OnSaveEnd -= SaveEnd;
+    }
 
     //어디선가 SystemMenu 패널을 열었을 때
     public void SystemMenuOpen()
@@ -84,6 +94,11 @@ public class SystemMenu : MonoBehaviour
         InputEvents.Setting.InvokeSettingOpen();
     }
     void OnClickSaveAndExit()
+    {
+        SystemEvents.InvokeSaveRequest();
+    }
+    //OnClickSaveAndExit 이후 세이브 완료되면 발행되는 이벤트 구독
+    void SaveEnd()
     {
 
     }

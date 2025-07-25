@@ -9,6 +9,8 @@ public static class SystemEvents
     public static event Action<SaveManager> OnSaveDicKeyRequest;
     //저장하라는 이벤트
     public static event Action OnSaveRequest;
+    //저장이 끝났다는 이벤트
+    public static event Action OnSaveEnd;
     //세이브파일 로드가 끝났다는 이벤트
     public static event Action OnDataLoadFinished;
 
@@ -18,9 +20,14 @@ public static class SystemEvents
         OnSaveDicKeyRequest?.Invoke(saveManager);
     }
     //저장하라는 이벤트
-    public static void InvokeSaveRequested()
+    public static void InvokeSaveRequest()
     {
         OnSaveRequest?.Invoke();
+    }
+    //저장이 끝났다는 이벤트
+    public static void InvokeSaveEnd()
+    {
+        OnSaveEnd?.Invoke();
     }
     //세이브파일 로드가 끝났다는 이벤트
     public static void InvokeDataLoadFinished()

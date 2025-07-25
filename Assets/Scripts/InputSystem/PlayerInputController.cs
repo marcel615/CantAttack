@@ -61,7 +61,8 @@ public class PlayerInputController : MonoBehaviour
     //점프 이벤트 구독
     void Jump(bool j)
     {
-        playerJump.Jump(j);
+        if (j) 
+            playerJump.Jump(j);
     }
     //점프 홀딩 이벤트 구독
     void Jump_Hold(bool j_Hold)
@@ -71,12 +72,14 @@ public class PlayerInputController : MonoBehaviour
     //대쉬 이벤트 구독
     void Dash(bool d)
     {
-        playerAbility.Dash(d);
+        if (d)
+            playerAbility.Dash(d);
     }
     //패링 이벤트 구독
     void Parry(bool p)
     {
-        playerAbility.Parry(p);
+        if (p)
+            playerAbility.Parry(p);
     }
     //ESC 이벤트 (시스템 메뉴 열기) 구독
     void Cancel(bool esc)

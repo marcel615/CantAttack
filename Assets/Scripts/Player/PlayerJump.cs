@@ -11,8 +11,7 @@ public class PlayerJump : MonoBehaviour
     Player player;
 
     //Jump 관련 입력 변수
-    bool J;
-    bool jumpPressed;   //Jump 눌렀을 때 플래그
+    bool J; //Jump 눌렀을 때 플래그
     bool J_Hold;
 
     //Jump 관련 변수
@@ -31,7 +30,7 @@ public class PlayerJump : MonoBehaviour
     private void FixedUpdate()
     {        
         //점프 눌렸을 때 플래그 && 땅에 서있으면 && jumpCount가 0이면 점프하도록
-        if (jumpPressed && player.isGrounded && jumpCount == 0 && player.canControl)
+        if (J && player.isGrounded && jumpCount == 0 && player.canControl)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, player.normaljumpPower);
             jumpCount = 1;
@@ -41,7 +40,7 @@ public class PlayerJump : MonoBehaviour
             animator.SetTrigger("isJump"); //애니메이션 변수 설정
 
         }
-        jumpPressed = false;
+        J = false;
 
         //1단 점프 한정으로 점프키를 누르고 있는 동안 점프 높이 높아지도록 
         if (J_Hold && player.isJumping)
@@ -77,12 +76,7 @@ public class PlayerJump : MonoBehaviour
 
     public void Jump(bool j)
     {
-        if (j)
-        {
-            jumpPressed = true;
-        }
         J = j;
-
     }
     public void Jump_Hold(bool j_Hold)
     {

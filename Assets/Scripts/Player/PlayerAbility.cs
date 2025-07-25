@@ -13,8 +13,7 @@ public class PlayerAbility : MonoBehaviour
     float prevGravity;
 
     //Dash 관련 입력 변수
-    bool D;
-    bool dashPressed;   //Dash 눌렀을 때 플래그
+    bool D;  //Dash 눌렀을 때 플래그
 
     //Dash 관련 변수들
     float DashTime = 0.4f;
@@ -36,7 +35,7 @@ public class PlayerAbility : MonoBehaviour
     private void FixedUpdate()
     {
         //플레이어 회피기
-        if (dashPressed && !isDashCoolTime && player.canControl)
+        if (D && !isDashCoolTime && player.canControl)
         {
             DashCoolTimer = DashCoolTime;
             isDashCoolTime = true;
@@ -50,7 +49,7 @@ public class PlayerAbility : MonoBehaviour
             rigid.gravityScale = 0;
             rigid.velocity = new Vector2(player.isHeadToRight * DashSpeed, 0);
         }
-        dashPressed = false;
+        D = false;
 
         if (player.isDashing)
         {
@@ -85,12 +84,7 @@ public class PlayerAbility : MonoBehaviour
     
     public void Dash(bool d)
     {
-        if (d)
-        {
-            dashPressed = true;
-        }
         D = d;
-
     }
     public void Parry(bool p)
     {
