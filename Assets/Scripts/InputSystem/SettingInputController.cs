@@ -17,22 +17,35 @@ public class SettingInputController : MonoBehaviour
     //이벤트 구독
     private void OnEnable()
     {
+        //SettingOpen 이벤트 구독
+        InputEvents.Setting.OnSettingOpen += SettingOpen;
+
         //Cancel 이벤트 구독
-        InputEvents.OnCancel += ESC;
+        InputEvents.Setting.OnCancel += ESC;
         //Submit 이벤트 구독
-        InputEvents.OnSubmit += Enter;
+        InputEvents.Setting.OnSubmit += Enter;
         //Interact 이벤트 구독
-        InputEvents.OnInteract += E;
+        InputEvents.Setting.OnInteract += E;
     }
     private void OnDisable()
     {
+        //SettingOpen 이벤트 구독
+        InputEvents.Setting.OnSettingOpen -= SettingOpen;
+
         //이동 이벤트 구독
-        InputEvents.OnCancel -= ESC;
+        InputEvents.Setting.OnCancel -= ESC;
         //Submit 이벤트 구독
-        InputEvents.OnSubmit -= Enter;
+        InputEvents.Setting.OnSubmit -= Enter;
         //Interact 이벤트 구독
-        InputEvents.OnInteract -= E;
+        InputEvents.Setting.OnInteract -= E;
     }
+
+    //SettingOpen 이벤트 구독
+    void SettingOpen()
+    {
+        setting.SettingOpen();
+    }
+
 
     //Cancel 이벤트 구독
     void ESC(bool esc)

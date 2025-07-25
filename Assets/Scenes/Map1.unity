@@ -2152,7 +2152,7 @@ GameObject:
   - component: {fileID: 554580257}
   - component: {fileID: 554580259}
   m_Layer: 5
-  m_Name: HPPanel
+  m_Name: PlayerHUDPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10485,6 +10485,7 @@ MonoBehaviour:
   ContinueButton: {fileID: 736474067}
   SettingButton: {fileID: 1178015358}
   SaveAndExitButton: {fileID: 1726208590}
+  thisContext: 1
 --- !u!1 &863464514
 GameObject:
   m_ObjectHideFlags: 0
@@ -14963,6 +14964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fad8920dfa070e47ba0f9d045ff0660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setting: {fileID: 2042251166}
 --- !u!1 &2036290941
 GameObject:
   m_ObjectHideFlags: 0
@@ -15198,6 +15200,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947bc9989eb3e3044b5161c4dfde180d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SettingSelectPanel: {fileID: 834201034}
+  GamePlayPanel: {fileID: 2081188797}
+  GraphicsPanel: {fileID: 302261473}
+  AudioPanel: {fileID: 345732470}
+  ControlsPanel: {fileID: 959461620}
+  UIAndAccessibilityPanel: {fileID: 1265729613}
+  GamePlayButton: {fileID: 2056848202}
+  GraphicsButton: {fileID: 62150592}
+  AudioButton: {fileID: 486180385}
+  ControlsButton: {fileID: 1332773700}
+  UIAndAccessibilityButton: {fileID: 1574207490}
+  thisContext: 2
 --- !u!114 &2042251167
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,12 +53,6 @@ public class UIManager : MonoBehaviour
 
 
     }
-    private void OnEnable()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(ContinueButton);
-
-    }
 
 
 }

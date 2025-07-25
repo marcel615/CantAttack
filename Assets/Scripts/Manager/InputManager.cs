@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -59,28 +61,28 @@ public class InputManager : MonoBehaviour
         switch (currentContext)
         {
             case InputContext.Player:
-                InputEvents.InvokeMove(H);
-                InputEvents.InvokeJump(J);
-                InputEvents.InvokeJumpHold(J_ing);
-                InputEvents.InvokeDash(D);
-                InputEvents.InvokeParry(P);
+                InputEvents.Player.InvokeMove(H);
+                InputEvents.Player.InvokeJump(J);
+                InputEvents.Player.InvokeJumpHold(J_ing);
+                InputEvents.Player.InvokeDash(D);
+                InputEvents.Player.InvokeParry(P);
 
                 //SystemMenu 진입이벤트
-                InputEvents.InvokeCancel(Esc);
+                InputEvents.SystemMenu.InvokeCancel(Esc);
 
                 break;
 
             case InputContext.SystemMenu:
-                InputEvents.InvokeCancel(Esc);
-                InputEvents.InvokeSubmit(Enter);
-                InputEvents.InvokeInteract(E);
+                InputEvents.SystemMenu.InvokeCancel(Esc);
+                InputEvents.SystemMenu.InvokeSubmit(Enter);
+                InputEvents.SystemMenu.InvokeInteract(E);
 
                 break;
 
             case InputContext.Setting:
-                InputEvents.InvokeCancel(Esc);
-                InputEvents.InvokeSubmit(Enter);
-                InputEvents.InvokeInteract(E);
+                InputEvents.Setting.InvokeCancel(Esc);
+                InputEvents.Setting.InvokeSubmit(Enter);
+                InputEvents.Setting.InvokeInteract(E);
 
                 break;
 
@@ -96,10 +98,12 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         InputEvents.OnContextUpdate += ContextManage;
+        InputEvents.OnSelectFirstSelectable += SelectFirstButton;
     }
     private void OnDisable()
     {
         InputEvents.OnContextUpdate -= ContextManage;
+        InputEvents.OnSelectFirstSelectable -= SelectFirstButton;
 
     }
     void ContextManage(InputContext context, bool state)
@@ -115,11 +119,20 @@ public class InputManager : MonoBehaviour
         {
             currentContext = InputContext.Player;
             currentContextState = true;
+        }        
+    }
+    
+    void SelectFirstButton(GameObject panel)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+
+        Selectable firstSelectable = panel.GetComponentInChildren<Selectable>();
+        if(firstSelectable != null)
+        {
+            firstSelectable.Select();
         }
 
-        
     }
-
 
 
 

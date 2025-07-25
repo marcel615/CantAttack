@@ -22,28 +22,28 @@ public class PlayerInputController : MonoBehaviour
     private void OnEnable()
     {
         //이동 이벤트 구독
-        InputEvents.OnMove += Move;
+        InputEvents.Player.OnMove += Move;
         //점프 이벤트 구독
-        InputEvents.OnJump += Jump;
+        InputEvents.Player.OnJump += Jump;
         //점프 홀딩 이벤트 구독
-        InputEvents.OnJumpHold += Jump_Hold;
+        InputEvents.Player.OnJumpHold += Jump_Hold;
         //대쉬 이벤트 구독
-        InputEvents.OnDash += Dash;
+        InputEvents.Player.OnDash += Dash;
         //패링 이벤트 구독
-        InputEvents.OnParry += Parry;
+        InputEvents.Player.OnParry += Parry;
     }
     private void OnDisable()
     {
         //이동 이벤트 구독
-        InputEvents.OnMove -= Move;
+        InputEvents.Player.OnMove -= Move;
         //점프 이벤트 구독
-        InputEvents.OnJump -= Jump;
+        InputEvents.Player.OnJump -= Jump;
         //점프 홀딩 이벤트 구독
-        InputEvents.OnJumpHold -= Jump_Hold;
+        InputEvents.Player.OnJumpHold -= Jump_Hold;
         //대쉬 이벤트 구독
-        InputEvents.OnDash -= Dash;
+        InputEvents.Player.OnDash -= Dash;
         //패링 이벤트 구독
-        InputEvents.OnParry -= Parry;
+        InputEvents.Player.OnParry -= Parry;
     }
 
     //이동 이벤트 구독

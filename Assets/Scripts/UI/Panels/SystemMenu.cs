@@ -15,10 +15,13 @@ public class SystemMenu : MonoBehaviour
     [SerializeField] private Button SaveAndExitButton;
 
     //컨텍스트 enum 정보
-    public InputContext systemMenuContext = InputContext.SystemMenu;
+    public InputContext thisContext = InputContext.SystemMenu;
 
     //SystemMenu 조작 관련 변수
     bool isOpen;
+
+    //현재 선택된 UI 객체(버튼 등)
+    GameObject selected;
 
 
     private void Awake()
@@ -45,12 +48,12 @@ public class SystemMenu : MonoBehaviour
         if (!isOpen)
         {
             Open();
-            InputEvents.InvokeContextUpdate(systemMenuContext, true);
+            InputEvents.InvokeContextUpdate(thisContext, true);
         }
         else
         {
             Close();
-            InputEvents.InvokeContextUpdate(systemMenuContext, false);
+            InputEvents.InvokeContextUpdate(thisContext, false);
         }
 
     }
@@ -60,6 +63,18 @@ public class SystemMenu : MonoBehaviour
     }
     public void E(bool e)
     {
+        //포커싱된 오브젝트 할당
+        selected = EventSystem.current.currentSelectedGameObject;
+        Button selectedButton = selected.GetComponent<Button>();
+
+        //포커싱된 오브젝트 클릭
+        if (selectedButton != null)
+        {
+            selectedButton.onClick.Invoke();
+        }
+        //포커싱된 오브젝트 해제
+        selected = null;
+        selectedButton = null;
 
     }
 
@@ -68,6 +83,8 @@ public class SystemMenu : MonoBehaviour
         gameObject.SetActive(true);
         SystemMenuSelectPanel.SetActive(true);
         isOpen = true;
+
+        InputEvents.InvokeSelectFirstSelectable(SystemMenuSelectPanel);
     }
     void Close()
     {
@@ -79,13 +96,14 @@ public class SystemMenu : MonoBehaviour
     void OnClickContinue()
     {
         Close();
-        InputEvents.InvokeContextUpdate(InputContext.SystemMenu, false);
+        InputEvents.InvokeContextUpdate(thisContext, false);
     }
     void OnClickSetting()
     {
         Close();
-        InputEvents.InvokeContextUpdate(InputContext.SystemMenu, false);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.Setting, true);
+        InputEvents.Setting.InvokeSettingOpen();
 
     }
     void OnClickSaveAndExit()

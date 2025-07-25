@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPUIManager : MonoBehaviour
+public class PlayerHUD : MonoBehaviour
 {
     //자식 오브젝트들
     public GameObject Portrait;
