@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -36,8 +37,9 @@ public class MainMenu : MonoBehaviour
         if (SettingButton == null) SettingButton = transform.Find("MainMenuSelectPanel/SettingButton")?.GetComponent<Button>();
         if (QuitButton == null) QuitButton = transform.Find("MainMenuSelectPanel/QuitButton")?.GetComponent<Button>();
 
+        //초기화 작업
+        SelectFirstButton();
     }
-
     private void Start()
     {
         ContinueButton.onClick.AddListener(OnClickContinue);
@@ -45,13 +47,17 @@ public class MainMenu : MonoBehaviour
         SettingButton.onClick.AddListener(OnClickSetting);
         QuitButton.onClick.AddListener(OnClickQuit);
     }
-    //이벤트 구독
-    private void OnEnable()
-    {
 
-    }
-    private void OnDisable()
+    void SelectFirstButton()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+
+        Selectable firstSelectable = MainMenuSelectPanel.GetComponentInChildren<Selectable>();
+        if (firstSelectable != null)
+        {
+            firstSelectable.Select();
+        }
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, MainMenuSelectPanel, gameObject);
 
     }
 

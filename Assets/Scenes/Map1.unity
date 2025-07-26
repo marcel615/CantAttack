@@ -12026,7 +12026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testSaveData: {fileID: 11400000, guid: a70cd1290ae03a74aa643e2a295a9f8d, type: 2}
-  realSaveData: {fileID: 0}
+  realSaveData: {fileID: 11400000, guid: 17b4b06740b85154a98e65c5d7c97c34, type: 2}
 --- !u!4 &1021092142
 Transform:
   m_ObjectHideFlags: 0
@@ -16679,7 +16679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1880111983
 RectTransform:
   m_ObjectHideFlags: 0

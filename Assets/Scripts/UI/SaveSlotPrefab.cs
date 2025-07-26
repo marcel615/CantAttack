@@ -40,15 +40,7 @@ public class SaveSlotPrefab : MonoBehaviour
     }
     public void OnSlotClicked()
     {
-        if (File.Exists(saveFilePath))
-        {
-
-        }
-        else
-        {
-
-        }
-
+        SystemEvents.InvokeDataLoadStart(slotIndex);
     }
     public void DeleteSaveFile()
     {

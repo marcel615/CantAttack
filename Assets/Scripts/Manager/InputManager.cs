@@ -11,8 +11,11 @@ public class InputManager : MonoBehaviour
     private static InputManager Instance;
 
     //Context 관리 변수들
-    InputContext currentContext;
+    InputContext currentContext = InputContext.MainMenu;
     bool currentContextState = true;
+
+    //키 입력 가능한지 플래그
+    bool isInputPossible = true;
 
     //키 입력 추적 변수들
     float H; //좌우
@@ -44,6 +47,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if (!isInputPossible) return; //입력 불가능한 상태면 입력 못받도록
+
         //사용자 입력들 받아오기
         H = Input.GetAxisRaw("Horizontal");
         J = Input.GetButtonDown("Jump");
@@ -114,11 +119,15 @@ public class InputManager : MonoBehaviour
     {
         InputEvents.OnContextUpdate += ContextManage;
         InputEvents.OnSelectFirstSelectable += SelectFirstButton;
+        SystemEvents.OnDataLoadStart += BlockInput;
+        SystemEvents.OnDataLoadFinished += UnblockInput;
     }
     private void OnDisable()
     {
         InputEvents.OnContextUpdate -= ContextManage;
         InputEvents.OnSelectFirstSelectable -= SelectFirstButton;
+        SystemEvents.OnDataLoadStart -= BlockInput;
+        SystemEvents.OnDataLoadFinished -= UnblockInput;
 
     }
     void ContextManage(InputContext context, bool state)
@@ -147,6 +156,14 @@ public class InputManager : MonoBehaviour
             firstSelectable.Select();
         }
 
+    }
+    void BlockInput(int whatever)
+    {
+        isInputPossible = !isInputPossible;
+    }
+    void UnblockInput()
+    {
+        isInputPossible = !isInputPossible;
     }
 
 

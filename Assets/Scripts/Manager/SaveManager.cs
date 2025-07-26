@@ -9,35 +9,31 @@ public class SaveManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     private static SaveManager Instance;
 
-    /// <초기값세팅관련>
-    //테스트인지 확인 
-    bool isTestSave;
-    //테스트 세이브 관련
-    public SaveDataSO testSaveData;
-    string TestSaveFileName = "TestSaveFile.json";
-    //string TestSavePath => Path.Combine(Application.persistentDataPath, TestSaveFileName);
-    string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder", TestSaveFileName);
-    //실제 세이브 관련
-    public SaveDataSO realSaveData;
-    string SaveFileName = "SaveFile.json";
-    string SavePath => Path.Combine(Application.persistentDataPath, SaveFileName);
-    //초기값 세이브&로드 Path관련 
-    string NowSavePath;
-    /// </초기값세팅관련>
-
-    //세이브 및 로드에 사용될 데이터
-    SaveData saveData;
-
     //딕셔너리로 SaveData 내 여러 Data분류 가능하게 하기
     Dictionary<string, ISaveLoadable> SaveLoadDic;
 
-    //ISaveLoadable 상속한 오브젝트 개수
+    //ISaveLoadable 인터페이스 상속한 오브젝트 개수
     int ISaveLoadableSum;
     int ISaveLoadableCount = 0;
 
-    //세이브로드 관련
-    string TestSP => Path.Combine(Application.dataPath, "TestSaveFolder");
-    string SP => Application.persistentDataPath;
+
+    //테스트인지 확인 
+    bool isTestSave;
+
+    //세이브&로드 Path 관련
+    string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder");  //테스트 경로
+    string RealSavePath => Application.persistentDataPath;                        //실제 경로
+
+    //초기 세이브 데이터
+    public SaveDataSO testSaveData; //테스트 데이터
+    public SaveDataSO realSaveData; //실제 데이터
+
+
+    //현재 정해진 세이브&로드 Path 
+    string NowSavePath;
+    //현재 세이브&로드에 사용될 데이터
+    SaveData saveData;
+
 
 
 
@@ -55,74 +51,23 @@ public class SaveManager : MonoBehaviour
 
         //딕셔너리 초기화
         SaveLoadDic = new Dictionary<string, ISaveLoadable>();
-        
-        //Json파일 경로 선택 및 saveData 할당
-        CheckTestOrNot();
 
-    }
-    private void Start()
-    {
-        
         //ISaveLoadable 상속한 오브젝트 총 개수 구하기
         ISaveLoadableSum = GetSaveUnitCount();
-        //딕셔너리 완성을 위해 이벤트 발행
-        SystemEvents.InvokeSaveDicKeyRequested(this);
-        
-    }
-
-    //딕셔너리 설정
-    public void GetDicKey(ISaveLoadable saveLoadable)
-    {
-        if (!SaveLoadDic.ContainsKey(saveLoadable.DicKey))
-        {
-            SaveLoadDic.Add(saveLoadable.DicKey, saveLoadable);
-
-            //모든 인터페이스 딕셔너리 완성되면 Load() 실행하도록
-            ISaveLoadableCount++;
-            if(ISaveLoadableCount == ISaveLoadableSum)
-            {
-                Load(saveData);
-            }
-
-        }
-        else
-        {
-            //만약에 key가 중복될 경우 디버깅
-            Debug.LogWarning($"중복된 DicKey: {saveLoadable.DicKey}");
-        }
-    }
-
-    //각 SaveData 가져와서 SaveData 만들기
-    public SaveData GetSaveData()
-    {
-        return new SaveData
-        {
-            playerSaveData = (PlayerSaveData)SaveLoadDic["PlayerSaveHandler"].Save()
-
-        };
-
-    }
-
-    //saveData 로드하기
-    public void Load(SaveData saveData)
-    {
-        SaveLoadDic["PlayerSaveHandler"].Load(saveData.playerSaveData);
-
-        Debug.Log("로드 완!");
-        SystemEvents.InvokeDataLoadFinished(); //이 이벤트 구독한 곳에서는 이벤트 발생 시 InitFromSave() 메소드 실행하도록 구현
     }
 
     //이벤트 구독
     private void OnEnable()
     {
-        SystemEvents.OnSaveRequest += save;     //저장하라는 이벤트 구독
         SystemEvents.OnDataLoadStart += SaveFileLoadStart; //세이브파일 로드 시작하라는 이벤트 구독
+        SystemEvents.OnSaveRequest += Save;     //저장하라는 이벤트 구독
     }
     private void OnDisable()
     {
-        SystemEvents.OnSaveRequest -= save;     //저장하라는 이벤트 구독
         SystemEvents.OnDataLoadStart -= SaveFileLoadStart; //세이브파일 로드 시작하라는 이벤트 구독
+        SystemEvents.OnSaveRequest -= Save;     //저장하라는 이벤트 구독
     }
+    /// <Load>
     //세이브파일 로드 시작
     void SaveFileLoadStart(int num)
     {
@@ -131,13 +76,13 @@ public class SaveManager : MonoBehaviour
         if (isTestSave)
         {
             string fileName = $"TestSaveFile{num}.json";
-            NowSavePath = Path.Combine(TestSP, fileName);
+            NowSavePath = Path.Combine(TestSavePath, fileName);
             CheckSaveFile(testSaveData.saveDataSO);
         }
         else
         {
             string fileName = $"SaveFile{num}.json";
-            NowSavePath = Path.Combine(SP, fileName);
+            NowSavePath = Path.Combine(RealSavePath, fileName);
             CheckSaveFile(realSaveData.saveDataSO);
         }
 
@@ -160,52 +105,41 @@ public class SaveManager : MonoBehaviour
     }
     void MakeDicKeyAndLoad()
     {
-        //ISaveLoadable 상속한 오브젝트 총 개수 구하기
-        ISaveLoadableSum = GetSaveUnitCount();
         //딕셔너리 완성을 위해 이벤트 발행
         SystemEvents.InvokeSaveDicKeyRequested(this);
     }
-
-
-    //현재 테스트인지 실제인지 확인, 파일 경로 설정
-    void CheckTestOrNot()
+    //딕셔너리 설정
+    public void GetDicKey(ISaveLoadable saveLoadable)
     {
-        isTestSave = GameManager.Instance.isTest;
-        //초기값으로 테스트 or 실제 선택
-        if (isTestSave)
+        if (!SaveLoadDic.ContainsKey(saveLoadable.DicKey))
         {
-            NowSavePath = TestSavePath;
-
-
-            MakeJsonOrNot(testSaveData.saveDataSO);
+            SaveLoadDic.Add(saveLoadable.DicKey, saveLoadable);
+            ISaveLoadableCount++;
         }
         else
         {
-            NowSavePath = SavePath;
-
-
-            MakeJsonOrNot(realSaveData.saveDataSO);
+            //만약에 key가 중복될 경우 디버깅
+            Debug.LogWarning($"중복된 DicKey: {saveLoadable.DicKey}");
+        }
+        //모든 인터페이스 딕셔너리 완성되면 Load() 실행하도록
+        if (ISaveLoadableCount == ISaveLoadableSum)
+        {
+            Load(saveData);
         }
     }
-    //Json 파일이 경로에 없으면 생성하고 saveData 할당, 있으면 saveData 할당만 하기
-    void MakeJsonOrNot(SaveData data)
+    //saveData 로드하기
+    public void Load(SaveData saveData)
     {
-        if (!File.Exists(NowSavePath))
-        {
-            string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(NowSavePath, json);
+        SaveLoadDic["PlayerSaveHandler"].Load(saveData.playerSaveData);
 
-            saveData = data;
-        }
-        else
-        {
-            string json = File.ReadAllText(NowSavePath);
-            saveData = JsonUtility.FromJson<SaveData>(json);
-        }
-
+        Debug.Log("로드 완!");
+        SystemEvents.InvokeDataLoadFinished(); //이 이벤트 구독한 곳에서는 이벤트 발생 시 InitFromSaveFileLoad() 메소드 실행하도록 구현
     }
+    /// </Load>
+
+    /// <Save>
     //저장하라는 이벤트 들어오면 실행
-    void save()
+    void Save()
     {
         saveData = GetSaveData();
         //saveData를 Json파일에 덮어쓰기 작업
@@ -215,6 +149,16 @@ public class SaveManager : MonoBehaviour
         //세이브 끝나면 이벤트 발행
         SystemEvents.InvokeSaveEnd();
     }
+    //분산된 SaveData 가져와서 정식 SaveData 만들기
+    public SaveData GetSaveData()
+    {
+        return new SaveData
+        {
+            playerSaveData = (PlayerSaveData)SaveLoadDic["PlayerSaveHandler"].Save()
+
+        };
+    }
+    /// </Save>
 
     //SaveData 내에 ISaveLoadable 상속한 오브젝트 개수 구하기
     int GetSaveUnitCount()

@@ -12,16 +12,16 @@ public class PlayerStatus : MonoBehaviour
     private void OnEnable()
     {
         //세이브 로드 이후 초기화
-        SystemEvents.OnDataLoadFinished += InitFromSave;
+        SystemEvents.OnDataLoadFinished += InitFromSaveFileLoad;
     }
     private void OnDisable()
     {
         //세이브 로드 이후 초기화
-        SystemEvents.OnDataLoadFinished -= InitFromSave;
+        SystemEvents.OnDataLoadFinished -= InitFromSaveFileLoad;
     }
 
     //세이브 로드 이후 초기화
-    void InitFromSave()
+    void InitFromSaveFileLoad()
     {
 
     }

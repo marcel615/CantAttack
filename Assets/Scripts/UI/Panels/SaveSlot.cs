@@ -28,8 +28,11 @@ public class SaveSlot : MonoBehaviour
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
-    //SaveSlot 채우기 관련
-    string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder");
+    //테스트인지 확인 
+    bool isTestSave;
+    //세이브&로드 Path 관련
+    string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder");  //테스트 경로
+    string RealSavePath => Application.persistentDataPath;                        //실제 경로
 
     private void Awake()
     {
@@ -57,10 +60,21 @@ public class SaveSlot : MonoBehaviour
     //이벤트 구독
     private void OnEnable()
     {
+        //세이브 로드 시작하면
+        SystemEvents.OnDataLoadStart += LoadStart;
 
     }
     private void OnDisable()
     {
+        //세이브 로드 시작하면
+        SystemEvents.OnDataLoadStart -= LoadStart;
+
+    }
+    //세이브 로드 시작하면
+    void LoadStart(int whatever)
+    {
+        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        InputEvents.InvokeContextUpdate(InputContext.Player, true);
 
     }
 
@@ -108,8 +122,20 @@ public class SaveSlot : MonoBehaviour
             GameObject slotGameObject = Instantiate(SlotPrefab, ContentPanel.transform);
             SaveSlotPrefab saveSlotPrefab = slotGameObject.GetComponent<SaveSlotPrefab>();
 
-            string fileName = $"TestSaveFile{i}.json";
-            string filePath = Path.Combine(TestSavePath, fileName);
+            //Test인지 확인 후 세이브파일 경로 알아낸 뒤 SaveSlot.Init() 실행
+            isTestSave = GameManager.Instance.isTest;
+            string fileName;
+            string filePath;
+            if (isTestSave)
+            {
+                fileName = $"TestSaveFile{i}.json";
+                filePath = Path.Combine(TestSavePath, fileName);
+            }
+            else
+            {
+                fileName = $"SaveFile{i}.json";
+                filePath = Path.Combine(RealSavePath, fileName);
+            }
             saveSlotPrefab.Init(i, filePath);
         }
     }
