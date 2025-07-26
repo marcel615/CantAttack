@@ -18,7 +18,7 @@ public class SaveManager : MonoBehaviour
     //string TestSavePath => Path.Combine(Application.persistentDataPath, TestSaveFileName);
     string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder", TestSaveFileName);
     //실제 세이브 관련
-    public SaveDataSO firstSaveData;
+    public SaveDataSO realSaveData;
     string SaveFileName = "SaveFile.json";
     string SavePath => Path.Combine(Application.persistentDataPath, SaveFileName);
     //초기값 세이브&로드 Path관련 
@@ -34,6 +34,10 @@ public class SaveManager : MonoBehaviour
     //ISaveLoadable 상속한 오브젝트 개수
     int ISaveLoadableSum;
     int ISaveLoadableCount = 0;
+
+    //세이브로드 관련
+    string TestSP => Path.Combine(Application.dataPath, "TestSaveFolder");
+    string SP => Application.persistentDataPath;
 
 
 
@@ -51,16 +55,19 @@ public class SaveManager : MonoBehaviour
 
         //딕셔너리 초기화
         SaveLoadDic = new Dictionary<string, ISaveLoadable>();
+        
         //Json파일 경로 선택 및 saveData 할당
         CheckTestOrNot();
 
     }
     private void Start()
     {
+        
         //ISaveLoadable 상속한 오브젝트 총 개수 구하기
         ISaveLoadableSum = GetSaveUnitCount();
         //딕셔너리 완성을 위해 이벤트 발행
         SystemEvents.InvokeSaveDicKeyRequested(this);
+        
     }
 
     //딕셔너리 설정
@@ -100,21 +107,67 @@ public class SaveManager : MonoBehaviour
     public void Load(SaveData saveData)
     {
         SaveLoadDic["PlayerSaveHandler"].Load(saveData.playerSaveData);
+
         Debug.Log("로드 완!");
-        SystemEvents.InvokeDataLoadFinished();
+        SystemEvents.InvokeDataLoadFinished(); //이 이벤트 구독한 곳에서는 이벤트 발생 시 InitFromSave() 메소드 실행하도록 구현
     }
 
-    //저장하라는 이벤트 구독
+    //이벤트 구독
     private void OnEnable()
     {
-        SystemEvents.OnSaveRequest += save;
+        SystemEvents.OnSaveRequest += save;     //저장하라는 이벤트 구독
+        SystemEvents.OnDataLoadStart += SaveFileLoadStart; //세이브파일 로드 시작하라는 이벤트 구독
     }
     private void OnDisable()
     {
-        SystemEvents.OnSaveRequest -= save;
+        SystemEvents.OnSaveRequest -= save;     //저장하라는 이벤트 구독
+        SystemEvents.OnDataLoadStart -= SaveFileLoadStart; //세이브파일 로드 시작하라는 이벤트 구독
+    }
+    //세이브파일 로드 시작
+    void SaveFileLoadStart(int num)
+    {
+        isTestSave = GameManager.Instance.isTest;
+        //초기값으로 테스트 or 실제 선택하고 NowSavePath 지정 후 CheckSaveFile() 실행
+        if (isTestSave)
+        {
+            string fileName = $"TestSaveFile{num}.json";
+            NowSavePath = Path.Combine(TestSP, fileName);
+            CheckSaveFile(testSaveData.saveDataSO);
+        }
+        else
+        {
+            string fileName = $"SaveFile{num}.json";
+            NowSavePath = Path.Combine(SP, fileName);
+            CheckSaveFile(realSaveData.saveDataSO);
+        }
+
+    }
+    //Json 파일이 경로에 있으면 saveData 할당, 없으면 json파일 생성하고 saveData 할당
+    void CheckSaveFile(SaveData saveDataSO)
+    {
+        if (File.Exists(NowSavePath))
+        {
+            string json = File.ReadAllText(NowSavePath);
+            saveData = JsonUtility.FromJson<SaveData>(json);
+        }
+        else
+        {
+            string json = JsonUtility.ToJson(saveDataSO, true);
+            File.WriteAllText(NowSavePath, json);
+            saveData = saveDataSO;
+        }
+        MakeDicKeyAndLoad();
+    }
+    void MakeDicKeyAndLoad()
+    {
+        //ISaveLoadable 상속한 오브젝트 총 개수 구하기
+        ISaveLoadableSum = GetSaveUnitCount();
+        //딕셔너리 완성을 위해 이벤트 발행
+        SystemEvents.InvokeSaveDicKeyRequested(this);
     }
 
-    //현재 테스트인지 실제인지 확인
+
+    //현재 테스트인지 실제인지 확인, 파일 경로 설정
     void CheckTestOrNot()
     {
         isTestSave = GameManager.Instance.isTest;
@@ -122,12 +175,16 @@ public class SaveManager : MonoBehaviour
         if (isTestSave)
         {
             NowSavePath = TestSavePath;
+
+
             MakeJsonOrNot(testSaveData.saveDataSO);
         }
         else
         {
             NowSavePath = SavePath;
-            MakeJsonOrNot(firstSaveData.saveDataSO);
+
+
+            MakeJsonOrNot(realSaveData.saveDataSO);
         }
     }
     //Json 파일이 경로에 없으면 생성하고 saveData 할당, 있으면 saveData 할당만 하기

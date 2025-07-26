@@ -94,7 +94,9 @@ public class MainMenu : MonoBehaviour
     void OnClickLoadGame()
     {
         UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-        //InputEvents.InvokeContextUpdate(InputContext.Player, true);
+        InputEvents.InvokeContextUpdate(InputContext.SaveSlot, true);
+        InputEvents.SaveSlot.InvokeSaveSlotOpen(thisContext);
+
     }
     void OnClickSetting()
     {

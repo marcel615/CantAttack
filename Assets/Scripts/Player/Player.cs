@@ -121,7 +121,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        savePosition = transform.position;
 
 
     }

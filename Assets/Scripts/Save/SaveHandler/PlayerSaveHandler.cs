@@ -24,7 +24,7 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
         {
             MaxHP = playerStatus.MaxHP,
             CurrentHP = playerStatus.CurrentHP,
-            position = player.savePosition
+            position = player.transform.position,
 
         };
     }
