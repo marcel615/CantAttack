@@ -99,12 +99,16 @@ public class MainMenu : MonoBehaviour
     void OnClickSetting()
     {
         UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-        //InputEvents.InvokeContextUpdate(InputContext.Setting, true);
-        //InputEvents.Setting.InvokeSettingOpen();
+        InputEvents.InvokeContextUpdate(InputContext.Setting, true);
+        InputEvents.Setting.InvokeSettingOpen(thisContext);
     }
     void OnClickQuit()
     {
-
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
     }
 
 }

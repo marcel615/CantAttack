@@ -28,7 +28,7 @@ public class Setting : MonoBehaviour
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
     Color InGameBackGroundColor;
-    Color MainMenuBackGroundColor = new Color(0f, 0f, 0f, 1f);
+    Color MainMenuBackGroundColor = new Color32(110, 110, 110, 255); //메인메뉴 배경 색
 
 
     private void Awake()

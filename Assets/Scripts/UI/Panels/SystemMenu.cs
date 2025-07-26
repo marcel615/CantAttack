@@ -105,7 +105,10 @@ public class SystemMenu : MonoBehaviour
     //OnClickSaveAndExit 이후 세이브 완료되면 발행되는 이벤트 구독
     void SaveEnd()
     {
-
+        //현재 UI 닫고 메인메뉴로 나가기
+        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
+        InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
     }
 
 
