@@ -39,9 +39,9 @@ public class SystemMenuInputController : MonoBehaviour
     }
 
     //SettingOpen 이벤트 구독
-    void SystemMenuOpen()
+    void SystemMenuOpen(InputContext sourceInputContext)
     {
-        systemMenu.SystemMenuOpen();
+        systemMenu.SystemMenuOpen(sourceInputContext);
     }
 
     //Cancel 이벤트 구독

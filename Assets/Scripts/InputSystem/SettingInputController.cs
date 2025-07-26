@@ -41,9 +41,9 @@ public class SettingInputController : MonoBehaviour
     }
 
     //SettingOpen 이벤트 구독
-    void SettingOpen()
+    void SettingOpen(InputContext sourceInputContext)
     {
-        setting.SettingOpen();
+        setting.SettingOpen(sourceInputContext);
     }
 
     //Cancel 이벤트 구독

@@ -16,6 +16,7 @@ public class SystemMenu : MonoBehaviour
 
     //컨텍스트 enum 정보
     public InputContext thisContext = InputContext.SystemMenu;
+    public InputContext beforeContext;
 
     //SystemMenu 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
@@ -51,8 +52,9 @@ public class SystemMenu : MonoBehaviour
     }
 
     //어디선가 SystemMenu 패널을 열었을 때
-    public void SystemMenuOpen()
+    public void SystemMenuOpen(InputContext sourceInputContext)
     {
+        beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, SystemMenuSelectPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext, true);
     }
@@ -69,7 +71,10 @@ public class SystemMenu : MonoBehaviour
         {
             //닫기
             UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-            InputEvents.InvokeContextUpdate(InputContext.Player, true);
+            if(beforeContext == InputContext.Player)
+            {
+                InputEvents.InvokeContextUpdate(InputContext.Player, true);
+            }
         }
     }
     public void Enter(bool enter)
@@ -91,7 +96,7 @@ public class SystemMenu : MonoBehaviour
     {
         UIPanelController.Close(ref currentPanel, gameObject, thisContext);
         InputEvents.InvokeContextUpdate(InputContext.Setting, true);
-        InputEvents.Setting.InvokeSettingOpen();
+        InputEvents.Setting.InvokeSettingOpen(thisContext);
     }
     void OnClickSaveAndExit()
     {

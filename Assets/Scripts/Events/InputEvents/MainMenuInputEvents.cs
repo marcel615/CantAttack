@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class SystemMenuInputEvents
+public class MainMenuInputEvents
 {
-    //SystemMenu UI에 접근하기 위한 이벤트
-    public event Action<InputContext> OnSystemMenuOpen;
+    //MainMenu UI에 접근하기 위한 이벤트
+    public event Action<InputContext> OnMainMenuOpen;
 
     //ESC 이벤트 (나가기, 메뉴 열기)
     public event Action<bool> OnCancel;
@@ -13,10 +16,10 @@ public class SystemMenuInputEvents
     public event Action<bool> OnInteract;
 
 
-    //SystemMenu UI에 접근하기 위한 이벤트
-    public void InvokeSystemMenuOpen(InputContext sourceInputContext)
+    //MainMenu UI에 접근하기 위한 이벤트
+    public void InvokeMainMenuOpen(InputContext sourceInputContext)
     {
-        OnSystemMenuOpen?.Invoke(sourceInputContext);
+        OnMainMenuOpen?.Invoke(sourceInputContext);
     }
 
     //ESC 이벤트 (나가기, 메뉴 열기)
@@ -34,5 +37,4 @@ public class SystemMenuInputEvents
     {
         OnInteract?.Invoke(e);
     }
-
 }

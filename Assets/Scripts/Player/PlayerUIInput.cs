@@ -10,7 +10,8 @@ public class PlayerUIInput : MonoBehaviour
     public void ESC(bool esc)
     {
         InputEvents.InvokeContextUpdate(thisContext, false);
+        //SystemMenu ¿ÀÇÂ
         InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);
-        InputEvents.SystemMenu.InvokeSystemMenuOpen();
+        InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
     }
 }

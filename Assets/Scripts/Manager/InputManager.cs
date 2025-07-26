@@ -87,6 +87,20 @@ public class InputManager : MonoBehaviour
 
                 break;
 
+            case InputContext.MainMenu:
+                InputEvents.MainMenu.InvokeCancel(Esc);
+                InputEvents.MainMenu.InvokeSubmit(Enter);
+                InputEvents.MainMenu.InvokeInteract(E);
+
+                break;
+
+            case InputContext.SaveSlot:
+                InputEvents.SaveSlot.InvokeCancel(Esc);
+                InputEvents.SaveSlot.InvokeSubmit(Enter);
+                InputEvents.SaveSlot.InvokeInteract(E);
+
+                break;
+
                 //InputEvents.InvokeUseHealItem(R);
 
         }

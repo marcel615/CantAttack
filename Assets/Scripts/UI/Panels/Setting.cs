@@ -22,10 +22,13 @@ public class Setting : MonoBehaviour
 
     //컨텍스트 enum 정보
     public InputContext thisContext = InputContext.Setting;
+    public InputContext beforeContext;
 
     //Setting 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
+    Color InGameBackGroundColor;
+    Color MainMenuBackGroundColor = new Color(0f, 0f, 0f, 1f);
 
 
     private void Awake()
@@ -44,6 +47,7 @@ public class Setting : MonoBehaviour
         if (ControlsButton == null) ControlsButton = transform.Find("SettingSelectPanel/ControlsButton")?.GetComponent<Button>();
         if (UIAndAccessibilityButton == null) UIAndAccessibilityButton = transform.Find("SettingSelectPanel/UIAndAccessibilityButton")?.GetComponent<Button>();
 
+        InGameBackGroundColor = gameObject.GetComponent<Image>().color;
     }
 
     private void Start()
@@ -55,10 +59,22 @@ public class Setting : MonoBehaviour
         UIAndAccessibilityButton.onClick.AddListener(OnClickUIAndAccessibility);
     }
     //어디선가 Setting 패널을 열었을 때
-    public void SettingOpen()
+    public void SettingOpen(InputContext sourceInputContext)
     {
+        beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, SettingSelectPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext, true);
+
+        //이전 컨텍스트가 MainMenu였을 경우 배경 투명도 반투명
+        if(beforeContext == InputContext.MainMenu)
+        {
+            gameObject.GetComponent<Image>().color = MainMenuBackGroundColor;
+        }
+        //이전 컨텍스트가 MainMenu가 아닐 경우 배경 검은색
+        else
+        {
+            gameObject.GetComponent<Image>().color = InGameBackGroundColor;
+        }
     }
 
     ///<Input>
@@ -73,8 +89,16 @@ public class Setting : MonoBehaviour
         {
             //닫기
             UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-            InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);
-            InputEvents.SystemMenu.InvokeSystemMenuOpen();
+            if (beforeContext == InputContext.SystemMenu)
+            {
+                InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);
+                InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
+            }
+            else if (beforeContext == InputContext.MainMenu)
+            {
+                InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
+                InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
+            }
         }
     }
     public void Enter(bool enter)

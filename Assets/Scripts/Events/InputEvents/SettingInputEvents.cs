@@ -3,10 +3,10 @@ using System;
 public class SettingInputEvents
 {
     //Setting UI에 접근하기 위한 이벤트
-    public event Action OnSettingOpen;
+    public event Action<InputContext> OnSettingOpen;
 
 
-    //ESC 이벤트 (나가기, 메뉴 열기)
+    //ESC 이벤트 (나가기)
     public event Action<bool> OnCancel;
     //Enter 이벤트 (선택)
     public event Action<bool> OnSubmit;
@@ -16,13 +16,13 @@ public class SettingInputEvents
 
 
     //Setting UI에 접근하기 위한 이벤트
-    public void InvokeSettingOpen()
+    public void InvokeSettingOpen(InputContext sourceInputContext)
     {
-        OnSettingOpen?.Invoke();
+        OnSettingOpen?.Invoke(sourceInputContext);
     }
 
 
-    //ESC 이벤트 (나가기, 메뉴 열기)
+    //ESC 이벤트 (나가기)
     public void InvokeCancel(bool esc)
     {
         OnCancel?.Invoke(esc);

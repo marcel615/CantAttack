@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class SystemMenuInputEvents
+public class SaveSlotInputEvents
 {
-    //SystemMenu UI에 접근하기 위한 이벤트
-    public event Action<InputContext> OnSystemMenuOpen;
+    //SaveSlot UI에 접근하기 위한 이벤트
+    public event Action<InputContext> OnSaveSlotOpen;
 
     //ESC 이벤트 (나가기, 메뉴 열기)
     public event Action<bool> OnCancel;
@@ -13,10 +16,10 @@ public class SystemMenuInputEvents
     public event Action<bool> OnInteract;
 
 
-    //SystemMenu UI에 접근하기 위한 이벤트
-    public void InvokeSystemMenuOpen(InputContext sourceInputContext)
+    //SaveSlot UI에 접근하기 위한 이벤트
+    public void InvokeSaveSlotOpen(InputContext sourceInputContext)
     {
-        OnSystemMenuOpen?.Invoke(sourceInputContext);
+        OnSaveSlotOpen?.Invoke(sourceInputContext);
     }
 
     //ESC 이벤트 (나가기, 메뉴 열기)

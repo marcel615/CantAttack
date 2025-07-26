@@ -22,6 +22,9 @@ public static class InputEvents
     public static PlayerInputEvents Player { get; private set; } = new PlayerInputEvents();
     public static SystemMenuInputEvents SystemMenu { get; private set; } = new SystemMenuInputEvents();
     public static SettingInputEvents Setting { get; private set; } = new SettingInputEvents();
+    public static MainMenuInputEvents MainMenu { get; private set; } = new MainMenuInputEvents();
+    public static SaveSlotInputEvents SaveSlot { get; private set; } = new SaveSlotInputEvents();
+
 
     /*
     /// <?>
