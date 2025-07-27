@@ -26,7 +26,7 @@ public class SaveSlotPrefab : MonoBehaviour
         slotButton.onClick.AddListener(OnSlotClicked);
     }
     
-    void SetSaveSlot()
+    public void SetSaveSlot()
     {
         SaveFileName.GetComponent<TextMeshProUGUI>().text = $"Save File {slotIndex}";
         if (File.Exists(saveFilePath))

@@ -19,6 +19,8 @@ public class SaveSlot : MonoBehaviour
 
     //SaveSlot 프리팹
     [SerializeField] private GameObject SlotPrefab;
+    private List<SaveSlotPrefab> slotList = new List<SaveSlotPrefab>();
+    int slotCount = 30;
 
     //컨텍스트 enum 정보
     public InputContext thisContext = InputContext.SaveSlot;
@@ -47,16 +49,10 @@ public class SaveSlot : MonoBehaviour
         if (SaveSlot3 == null) SaveSlot3 = transform.Find("SaveSlotSelectPanel/SaveSlot3")?.GetComponent<Button>();
         if (SaveSlot4 == null) SaveSlot4 = transform.Find("SaveSlotSelectPanel/SaveSlot4")?.GetComponent<Button>();
         
+        //SaveSlot 생성
         InitSaveSlotPrefab();
     }
 
-    private void Start()
-    {
-        SaveSlot1.onClick.AddListener(OnSaveSlot1);
-        SaveSlot2.onClick.AddListener(OnSaveSlot2);
-        SaveSlot3.onClick.AddListener(OnSaveSlot3);
-        SaveSlot4.onClick.AddListener(OnSaveSlot4);
-    }
     //이벤트 구독
     private void OnEnable()
     {
@@ -81,6 +77,8 @@ public class SaveSlot : MonoBehaviour
     //어디선가 SaveSlot 패널을 열었을 때
     public void SaveSlotOpen(InputContext sourceInputContext)
     {
+        UpdateSaveSlot();
+
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, ContentPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext, true);
@@ -114,13 +112,14 @@ public class SaveSlot : MonoBehaviour
         UIUtility.TriggerSelectAction();
     }
     /// </Input>
-
+    //SaveSlot 생성하는 메소드
     void InitSaveSlotPrefab()
     {
-        for (int i = 1; i < 31; i++)
+        for (int i = 1; i < slotCount + 1; i++)
         {
             GameObject slotGameObject = Instantiate(SlotPrefab, ContentPanel.transform);
             SaveSlotPrefab saveSlotPrefab = slotGameObject.GetComponent<SaveSlotPrefab>();
+            slotList.Add(saveSlotPrefab);
 
             //Test인지 확인 후 세이브파일 경로 알아낸 뒤 SaveSlot.Init() 실행
             isTestSave = GameManager.Instance.isTest;
@@ -137,28 +136,19 @@ public class SaveSlot : MonoBehaviour
                 filePath = Path.Combine(RealSavePath, fileName);
             }
             saveSlotPrefab.Init(i, filePath);
+
         }
     }
-
-    void OnSaveSlot1()
+    //SaveSlot의 보이는 정보 업데이트 메소드
+    void UpdateSaveSlot()
     {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-        //InputEvents.InvokeContextUpdate(InputContext.Player, true);
-    }
-    void OnSaveSlot2()
-    {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-        //InputEvents.InvokeContextUpdate(InputContext.Player, true);
-    }
-    void OnSaveSlot3()
-    {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-        //InputEvents.InvokeContextUpdate(InputContext.Setting, true);
-        //InputEvents.Setting.InvokeSettingOpen();
-    }
-    void OnSaveSlot4()
-    {
-
+        for (int i = 0; i < slotList.Count; i++)
+        {
+            if (slotList[i] != null)
+            {
+                slotList[i].SetSaveSlot();
+            }
+        }
     }
 
 }

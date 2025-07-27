@@ -110,26 +110,36 @@ public class InputManager : MonoBehaviour
 
         }
 
-
-
-
     }
     //이벤트 구독
     private void OnEnable()
     {
+        //Context 변경 이벤트
         InputEvents.OnContextUpdate += ContextManage;
+        //패널 내 버튼에 포커스
         InputEvents.OnSelectFirstSelectable += SelectFirstButton;
+
+        //세이브&로드 이벤트로 입력 받는 거 제한 걸 때
+        SystemEvents.OnSaveRequest += () => BlockInput();
+        SystemEvents.OnSaveEnd += UnblockInput;
         SystemEvents.OnDataLoadStart += BlockInput;
         SystemEvents.OnDataLoadFinished += UnblockInput;
     }
     private void OnDisable()
     {
+        //Context 변경 이벤트
         InputEvents.OnContextUpdate -= ContextManage;
+        //패널 내 버튼에 포커스
         InputEvents.OnSelectFirstSelectable -= SelectFirstButton;
+
+        //세이브&로드 이벤트로 입력 받는 거 제한 걸 때
+        SystemEvents.OnSaveRequest -= () => BlockInput();
+        SystemEvents.OnSaveEnd -= UnblockInput;
         SystemEvents.OnDataLoadStart -= BlockInput;
         SystemEvents.OnDataLoadFinished -= UnblockInput;
 
     }
+    //Context 변경 이벤트
     void ContextManage(InputContext context, bool state)
     {
         //받은 컨텍스트가 On일 때
@@ -145,7 +155,7 @@ public class InputManager : MonoBehaviour
             currentContextState = true;
         }        
     }
-    
+    //패널 내 버튼에 포커스
     void SelectFirstButton(GameObject panel)
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -157,7 +167,9 @@ public class InputManager : MonoBehaviour
         }
 
     }
-    void BlockInput(int whatever)
+
+    //세이브&로드 이벤트로 입력 받는 거 제한 걸 때
+    void BlockInput(int whatever = 1)
     {
         isInputPossible = !isInputPossible;
     }
