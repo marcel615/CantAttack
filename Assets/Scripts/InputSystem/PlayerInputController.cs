@@ -9,7 +9,8 @@ public class PlayerInputController : MonoBehaviour
     Player player;
     PlayerMove playerMove;
     PlayerJump playerJump;
-    PlayerAbility playerAbility;
+    PlayerDash playerDash;
+    PlayerParry playerParry;
     PlayerUIInput playerUIInput;
 
     private void Awake()
@@ -17,7 +18,9 @@ public class PlayerInputController : MonoBehaviour
         player = GetComponent<Player>();
         playerMove = GetComponent<PlayerMove>();
         playerJump = GetComponent<PlayerJump>();
-        playerAbility = GetComponent<PlayerAbility>();
+        playerDash = GetComponent<PlayerDash>();
+        playerParry = GetComponent<PlayerParry>();
+
         playerUIInput = GetComponent<PlayerUIInput>();
     }
 
@@ -73,13 +76,13 @@ public class PlayerInputController : MonoBehaviour
     void Dash(bool d)
     {
         if (d)
-            playerAbility.Dash(d);
+            playerDash.Dash(d);
     }
     //패링 이벤트 구독
     void Parry(bool p)
     {
         if (p)
-            playerAbility.Parry(p);
+            playerParry.Parry(p);
     }
     //ESC 이벤트 (시스템 메뉴 열기) 구독
     void Cancel(bool esc)

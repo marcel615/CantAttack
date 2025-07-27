@@ -19,6 +19,9 @@ public static class PlayerEvents
     //Player에서 피격 전용 무적시간 종료되었을 때
     public static event Action OnPlayerKnockedBackInvincibleOver;
 
+    //PlayerParry가 성공했을 때
+    public static event Action OnPlayerParrySuccess;
+
 
 
     //Player의 Start()에서 이벤트 발행
@@ -41,5 +44,10 @@ public static class PlayerEvents
     public static void InvokePlayerKnockedBackInvincibleOver()
     {
         OnPlayerKnockedBackInvincibleOver?.Invoke();
+    }
+    //PlayerParry가 성공했을 때
+    public static void InvokePlayerParrySuccess()
+    {
+        OnPlayerParrySuccess?.Invoke();
     }
 }

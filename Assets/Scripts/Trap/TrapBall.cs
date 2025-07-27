@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class TrapBall : MonoBehaviour
+public class TrapBall : MonoBehaviour, IParryable
 {
     //내 컴포넌트
     Rigidbody2D rigid;
@@ -16,6 +16,7 @@ public class TrapBall : MonoBehaviour
 
     //기본 변수
     [SerializeField] private int damage = 1;
+    Coroutine vanishCoroutine;
 
     private void Awake()
     {
@@ -24,18 +25,15 @@ public class TrapBall : MonoBehaviour
     void Start()
     {
         rigid.velocity = direction * speed;
-        Destroy(gameObject, vanishTime);
+        vanishCoroutine = StartCoroutine(VanishAfterTime());
 
     }
-
-    void Update()
+    private IEnumerator VanishAfterTime()
     {
-        if(Target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        yield return new WaitForSeconds(vanishTime);
+        Destroy(gameObject);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -56,6 +54,22 @@ public class TrapBall : MonoBehaviour
     void SetDirection()
     {
         direction = (Target.transform.position - transform.position).normalized; //방향 normalize하기
-
     }
+
+    //패링 인터페이스 구현
+    public void OnParried(GameObject parryOrigin)
+    {
+        Vector2 reflectDir = (transform.position - parryOrigin.transform.position).normalized;
+        rigid.velocity = reflectDir * speed;
+
+        // 기존 타이머 취소
+        if (vanishCoroutine != null)
+        {
+            StopCoroutine(vanishCoroutine);
+        }
+
+        vanishCoroutine = StartCoroutine(VanishAfterTime());
+    }
+
+
 }
