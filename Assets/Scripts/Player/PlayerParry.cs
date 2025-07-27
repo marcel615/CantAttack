@@ -11,6 +11,8 @@ public class PlayerParry : MonoBehaviour
 
     //내 자식 오브젝트 관련
     public CircleCollider2D playerParryCollider;
+    //패리 이펙트 프리팹
+    public GameObject parryEffect;
 
     //기본 변수들
     float prevGravity;
@@ -68,6 +70,10 @@ public class PlayerParry : MonoBehaviour
             prevGravity = rigid.gravityScale;
             rigid.gravityScale = 0;
             rigid.velocity = new Vector2(0, 0);
+
+            //패리 이펙트 시작
+            var Effect = Instantiate(parryEffect, transform.position, Quaternion.identity).GetComponent<ParryCircleEffect>();
+            Effect.SetDeleteTime(ParryTimer);
         }
         P = false;
 
@@ -109,6 +115,4 @@ public class PlayerParry : MonoBehaviour
     {
         P = p;
     }
-
-
 }

@@ -17583,6 +17583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerParryCollider: {fileID: 1996119867}
+  parryEffect: {fileID: 609752739202394652, guid: b4a0dbf037bc9934f8b819ebdb936772, type: 3}
 --- !u!1 &1996119865
 GameObject:
   m_ObjectHideFlags: 0
