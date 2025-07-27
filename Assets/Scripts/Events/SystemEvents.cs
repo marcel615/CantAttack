@@ -18,6 +18,10 @@ public static class SystemEvents
     //세이브파일 로드 끝났다는 이벤트
     public static event Action OnDataLoadFinished;
 
+    //세이브파일이 없다면 생성하고, 있다면 가장 최근 세이브파일 열도록 하는 이벤트
+    public static event Action ONNewGameORLatestSave;
+
+
     //SaveManager의 딕셔너리 설정 이벤트 발행
     public static void InvokeSaveDicKeyRequested(SaveManager saveManager)
     {
@@ -44,6 +48,12 @@ public static class SystemEvents
     public static void InvokeDataLoadFinished()
     {
         OnDataLoadFinished?.Invoke();
+    }
+
+    //세이브파일이 없다면 생성하고, 있다면 가장 최근 세이브파일 열도록 하는 이벤트
+    public static void InvokeNewGameORLatestSave()
+    {
+        ONNewGameORLatestSave?.Invoke();
     }
 
 }

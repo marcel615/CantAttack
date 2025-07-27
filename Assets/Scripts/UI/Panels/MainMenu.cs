@@ -94,8 +94,10 @@ public class MainMenu : MonoBehaviour
 
     void OnClickContinue()
     {
+        SystemEvents.InvokeNewGameORLatestSave();
+
         UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-        //InputEvents.InvokeContextUpdate(InputContext.Player, true);
+        InputEvents.InvokeContextUpdate(InputContext.Player, true);
     }
     void OnClickLoadGame()
     {

@@ -20,7 +20,7 @@ public class SaveSlot : MonoBehaviour
     //SaveSlot 프리팹
     [SerializeField] private GameObject SlotPrefab;
     private List<SaveSlotPrefab> slotList = new List<SaveSlotPrefab>();
-    int slotCount = 30;
+    int slotCount = 30; //해당 변수 나중에 SaveManager에서 관리
 
     //컨텍스트 enum 정보
     public InputContext thisContext = InputContext.SaveSlot;

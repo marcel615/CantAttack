@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -16,6 +18,9 @@ public class SaveManager : MonoBehaviour
     int ISaveLoadableSum;
     int ISaveLoadableCount = 0;
 
+
+    //세이브파일 개수 
+    int slotCount = 30; //나중에 이 값 세이브로드변수로 저장하기
 
     //테스트인지 확인 
     bool isTestSave;
@@ -61,11 +66,15 @@ public class SaveManager : MonoBehaviour
     {
         SystemEvents.OnDataLoadStart += SaveFileLoadStart; //세이브파일 로드 시작하라는 이벤트 구독
         SystemEvents.OnSaveRequest += Save;     //저장하라는 이벤트 구독
+        
+        SystemEvents.ONNewGameORLatestSave += NewGameORLatestSave; //세이브파일이 없다면 생성하고, 있다면 가장 최근 세이브파일 열도록 하는 이벤트
     }
     private void OnDisable()
     {
         SystemEvents.OnDataLoadStart -= SaveFileLoadStart; //세이브파일 로드 시작하라는 이벤트 구독
         SystemEvents.OnSaveRequest -= Save;     //저장하라는 이벤트 구독
+
+        SystemEvents.ONNewGameORLatestSave -= NewGameORLatestSave; //세이브파일이 없다면 생성하고, 있다면 가장 최근 세이브파일 열도록 하는 이벤트
     }
     /// <Load>
     //세이브파일 로드 시작
@@ -159,6 +168,54 @@ public class SaveManager : MonoBehaviour
         };
     }
     /// </Save>
+    
+
+    //세이브파일이 없다면 생성하고, 있다면 가장 최근 세이브파일 열도록 하는 이벤트
+    void NewGameORLatestSave()
+    {
+        isTestSave = GameManager.Instance.isTest;
+
+        string fileName;
+        string filePath;
+        int latestIndex = -1;
+
+        DateTime latestTime = DateTime.MinValue;
+
+        //가장 최근 세이브파일이 존재하면 latestIndex값 갱신
+        for (int i = 1; i < slotCount + 1; i++)
+        {
+            if (isTestSave)
+            {
+                fileName = $"TestSaveFile{i}.json";
+                filePath = Path.Combine(TestSavePath, fileName);
+            }
+            else
+            {
+                fileName = $"SaveFile{i}.json";
+                filePath = Path.Combine(RealSavePath, fileName);
+            }
+            if (File.Exists(filePath))
+            {
+                DateTime modifiedTime = File.GetLastWriteTime(filePath);
+                if (modifiedTime > latestTime)
+                {
+                    latestTime = modifiedTime;
+                    latestIndex = i;
+                }
+            }
+        }
+        //New Game 일 때
+        if (latestIndex == -1)
+        {
+            SystemEvents.InvokeDataLoadStart(1);
+        }
+        //가장 최근 세이브파일 열 때
+        else
+        {
+            SystemEvents.InvokeDataLoadStart(latestIndex);
+        }
+
+    }
 
     //SaveData 내에 ISaveLoadable 상속한 오브젝트 개수 구하기
     int GetSaveUnitCount()
