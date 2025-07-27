@@ -19,11 +19,9 @@ public class SaveManager : MonoBehaviour
     int ISaveLoadableCount = 0;
 
 
-    //세이브파일 개수 
-    int slotCount = 30; //나중에 이 값 세이브로드변수로 저장하기
-
     //테스트인지 확인 
     bool isTestSave;
+    int slotCount; //세이브파일 개수 
 
     //세이브&로드 Path 관련
     string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder");  //테스트 경로
@@ -140,6 +138,7 @@ public class SaveManager : MonoBehaviour
     public void Load(SaveData saveData)
     {
         SaveLoadDic["PlayerSaveHandler"].Load(saveData.playerSaveData);
+        SaveLoadDic["SystemSaveHandler"].Load(saveData.playerSaveData);
 
         Debug.Log("로드 완!");
         SystemEvents.InvokeDataLoadFinished(); //이 이벤트 구독한 곳에서는 이벤트 발생 시 InitFromSaveFileLoad() 메소드 실행하도록 구현
@@ -174,6 +173,7 @@ public class SaveManager : MonoBehaviour
     void NewGameORLatestSave()
     {
         isTestSave = GameManager.Instance.isTest;
+        slotCount = GameManager.Instance.slotCount;
 
         string fileName;
         string filePath;

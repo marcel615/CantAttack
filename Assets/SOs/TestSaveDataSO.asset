@@ -17,3 +17,5 @@ MonoBehaviour:
       MaxHP: 10
       CurrentHP: 8
       position: {x: -7, y: 10}
+    systemSaveData:
+      slotCount: 30

@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     public static GameManager Instance { get; private set; }
 
+    //세이브슬롯 개수
+    public int slotCount = 30;
+
+
     //지금 실행이 테스트인지 체크하는 플래그
     public bool isTest;
 
