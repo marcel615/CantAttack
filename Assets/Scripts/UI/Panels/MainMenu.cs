@@ -61,7 +61,7 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    //어디선가 SystemMenu 패널을 열었을 때
+    //어디선가 MainMenu 패널을 열었을 때
     public void MainMenuOpen(InputContext sourceInputContext)
     {
         beforeContext = sourceInputContext;

@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     public GameObject SettingButton;
     public GameObject SaveAndExitButton;
 
+    //MainMenu
+    [SerializeField] private GameObject MainMenuPanel;
+
 
 
 
@@ -52,6 +55,8 @@ public class UIManager : MonoBehaviour
         if (SaveAndExitButton == null) SaveAndExitButton = transform.Find("UICanvas/MenuPanel/SaveAndExitButton")?.gameObject;
 
 
+        if (MainMenuPanel == null) MainMenuPanel = transform.Find("UICanvas/MainMenuPanel")?.gameObject;
+        MainMenuPanel.SetActive(true);
     }
 
 

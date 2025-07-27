@@ -23,9 +23,18 @@ public class PlayerAbility : MonoBehaviour
     float DashCoolTimer;
     float DashSpeed = 12f;
 
+    //Parry 관련 입력 변수
+    bool P;  //Parry 눌렀을 때 플래그
+
+    //Parry 관련 변수들
+    float ParryTime = 0.4f;
+    float ParryTimer;
+    bool isParryCoolTime;    //패리 쿨타임
+    float ParryCoolTime = 1f;
+    float ParryCoolTimer;
 
 
-    
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -80,6 +89,56 @@ public class PlayerAbility : MonoBehaviour
             }
         }
 
+
+        /*
+        //플레이어 패링기
+        if (P && !isParryCoolTime && player.canControl)
+        {
+            ParryCoolTimer = ParryCoolTime;
+            isParryCoolTime = true;
+
+            ParryTimer = ParryTime;
+            //player.isDashing = true;
+            //player.InvincibleTimer = DashTime;
+            //player.isInvincible = true;
+
+            prevGravity = rigid.gravityScale;
+            rigid.gravityScale = 0;
+            //rigid.velocity = new Vector2(player.isHeadToRight * DashSpeed, 0);
+        }
+        P = false;
+
+        if (player.isDashing)
+        {
+            if (ParryTimer > 0)
+            {
+                //rigid.velocity = new Vector2(player.isHeadToRight * DashSpeed, 0);
+                ParryTimer -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                ParryTimer = 0;
+                //player.isDashing = false;
+
+                rigid.gravityScale = prevGravity;
+            }
+        }
+        //패링기 쿨타임 계산
+        if (isParryCoolTime)
+        {
+            if (ParryCoolTimer > 0)
+            {
+                ParryCoolTimer -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                ParryCoolTimer = 0;
+                isParryCoolTime = false;
+            }
+        }
+        */
+
+
     }
     
     public void Dash(bool d)
@@ -88,6 +147,6 @@ public class PlayerAbility : MonoBehaviour
     }
     public void Parry(bool p)
     {
-
+        P = p;
     }
 }

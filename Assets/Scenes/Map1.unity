@@ -16694,7 +16694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1880111983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17787,6 +17787,7 @@ MonoBehaviour:
   ContinueButton: {fileID: 736474065}
   SettingButton: {fileID: 1178015356}
   SaveAndExitButton: {fileID: 1726208588}
+  MainMenuPanel: {fileID: 1880111982}
 --- !u!4 &2023454211
 Transform:
   m_ObjectHideFlags: 0
