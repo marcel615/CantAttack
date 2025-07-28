@@ -28,12 +28,6 @@ public class PlayerMove : MonoBehaviour
         {
             rigid.velocity = new Vector2(H * player.normalSpeed, rigid.velocity.y);
         }
-    }
-
-    public void Move(float h)
-    {
-        H = h;
-
         //H값에 따른 플레이어 캐릭터가 바라보는 방향 및 애니메이션 설정
         if (H != 0 && player.canControl)
         {
@@ -45,6 +39,14 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+        //Move를 더이상 받지 않는데도 계속 움직이는 상황 해결하기 위해 H = 0으로 초기화시켜주기
+        H = 0;
+
+    }
+
+    public void Move(float h)
+    {
+        H = h;
     }
 
 }

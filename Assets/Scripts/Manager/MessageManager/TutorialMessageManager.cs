@@ -27,10 +27,10 @@ public class TutorialMessageManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         messageDict = new Dictionary<string, string>();
-        GetMessageDic();
+        SetMessageDic();
 
     }
-    void GetMessageDic()
+    void SetMessageDic()
     {
         foreach (var msg in tutorialMessages)
         {
@@ -38,6 +38,7 @@ public class TutorialMessageManager : MonoBehaviour
                 messageDict.Add(msg.messageID, msg.messageKor);
         }
     }
+    /*
     public string GetMessage(string msgID)
     {
         if (messageDict.ContainsKey(msgID))
@@ -49,6 +50,7 @@ public class TutorialMessageManager : MonoBehaviour
             return $"[튜토리얼 메시지 없음: {msgID}]";
         }
     }
+    */
     public void ShowMessage(List<TutorialMessageSO> msgSOs)
     {
         List<string> Messages = new List<string>();
