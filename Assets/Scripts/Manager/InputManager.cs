@@ -72,6 +72,7 @@ public class InputManager : MonoBehaviour
                 InputEvents.Player.InvokeDash(D);
                 InputEvents.Player.InvokeParry(P);
                 InputEvents.Player.InvokeCancel(Esc);
+                InputEvents.Player.InvokeInteract(E);
 
 
                 break;

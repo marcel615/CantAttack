@@ -12,6 +12,7 @@ public class PlayerInputController : MonoBehaviour
     PlayerDash playerDash;
     PlayerParry playerParry;
     PlayerUIInput playerUIInput;
+    PlayerInteraction playerInteraction;
 
     private void Awake()
     {
@@ -20,8 +21,8 @@ public class PlayerInputController : MonoBehaviour
         playerJump = GetComponent<PlayerJump>();
         playerDash = GetComponent<PlayerDash>();
         playerParry = GetComponent<PlayerParry>();
-
         playerUIInput = GetComponent<PlayerUIInput>();
+        playerInteraction = GetComponent<PlayerInteraction>();
     }
 
     //이벤트 구독
@@ -39,7 +40,9 @@ public class PlayerInputController : MonoBehaviour
         InputEvents.Player.OnParry += Parry;
         //ESC 이벤트 (시스템 메뉴 열기) 구독
         InputEvents.Player.OnCancel += Cancel;
-}
+        //Interact 이벤트 구독
+        InputEvents.Player.OnInteract += E;
+    }
     private void OnDisable()
     {
         //이동 이벤트 구독
@@ -54,6 +57,8 @@ public class PlayerInputController : MonoBehaviour
         InputEvents.Player.OnParry -= Parry;
         //ESC 이벤트 (시스템 메뉴 열기) 구독
         InputEvents.Player.OnCancel -= Cancel;
+        //Interact 이벤트 구독
+        InputEvents.Player.OnInteract -= E;
     }
 
     //이동 이벤트 구독
@@ -89,6 +94,12 @@ public class PlayerInputController : MonoBehaviour
     {
         if(esc)
             playerUIInput.ESC(esc);
+    }
+    //Interact 이벤트 구독
+    void E(bool e)
+    {
+        if (e)
+            playerInteraction.E(e);
     }
 
 
