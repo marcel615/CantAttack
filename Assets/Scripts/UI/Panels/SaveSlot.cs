@@ -26,7 +26,7 @@ public class SaveSlot : MonoBehaviour
     public InputContext thisContext = InputContext.SaveSlot;
     public InputContext beforeContext;
 
-    //SystemMenu 조작 관련 변수
+    //SaveSlot 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 

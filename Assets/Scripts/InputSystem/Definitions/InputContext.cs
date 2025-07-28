@@ -9,6 +9,7 @@ public enum InputContext
     Setting,      // 세팅 UI
     MainMenu,     // 메인 메뉴 UI
     SaveSlot,     // 세이브 슬롯 리스트 UI
+    Dialogue,     // 메시지(Dialogue) UI
     //Inventory,    // 인벤토리
     //DialogueUI
 }

@@ -13,6 +13,7 @@ public class TutorialMessageManager : MonoBehaviour
     private Dictionary<string, string> messageDict;
 
 
+
     private void Awake()
     {
         // 기존 인스턴스가 존재할 때 && 지금 새로운 인스턴스가 생성되려고 할 때
@@ -47,6 +48,21 @@ public class TutorialMessageManager : MonoBehaviour
         {
             return $"[튜토리얼 메시지 없음: {msgID}]";
         }
+    }
+    public void ShowMessage(List<TutorialMessageSO> msgSOs)
+    {
+        List<string> Messages = new List<string>();
+
+        foreach (var msg in msgSOs)
+        {
+            if (messageDict.ContainsKey(msg.messageID))
+            {
+                Messages.Add(msg.messageKor);
+            }
+        }
+        //Dialogue 열고 메시지리스트도 전달하도록 구현
+        InputEvents.Dialogue.InvokeDialogueOpen(InputContext.Player, Messages);
+
     }
 
 }

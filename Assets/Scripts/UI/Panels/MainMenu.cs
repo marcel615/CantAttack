@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     public InputContext thisContext = InputContext.MainMenu;
     public InputContext beforeContext;
 
-    //SystemMenu 조작 관련 변수
+    //MainMenu 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 

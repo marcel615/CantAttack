@@ -16,6 +16,4 @@ MonoBehaviour:
     playerSaveData:
       MaxHP: 10
       CurrentHP: 8
-      position: {x: -7, y: 10}
-    systemSaveData:
-      slotCount: 30
+      position: {x: -5.5, y: 0}
