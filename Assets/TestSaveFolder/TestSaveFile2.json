@@ -1,0 +1,11 @@
+{
+    "playerSaveData": {
+        "MaxHP": 10,
+        "CurrentHP": 8,
+        "position": {
+            "x": -5.5,
+            "y": 0.0
+        }
+    },
+    "systemSaveData": {}
+}
