@@ -490,6 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159005968}
   - component: {fileID: 159005969}
+  - component: {fileID: 159005970}
   m_Layer: 0
   m_Name: MessageController
   m_TagString: Untagged
@@ -522,6 +523,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32f409ac7ab32694ea108f18522450e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &159005970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159005967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8728abb0b57679e489761a5df95135dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &240878882
@@ -3079,6 +3092,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interacableText: {fileID: 1478507977}
   npcID: NPC01
+  NPCMessages:
+  - {fileID: 11400000, guid: 3ee287b19bc924448b74fbb3ef2ca94e, type: 2}
+  - {fileID: 11400000, guid: 739450507d2e92a4083c9635c3e413dd, type: 2}
 --- !u!1 &736474065
 GameObject:
   m_ObjectHideFlags: 0
@@ -15564,6 +15580,7 @@ GameObject:
   - component: {fileID: 1259382800}
   - component: {fileID: 1259382801}
   - component: {fileID: 1259382799}
+  - component: {fileID: 1259382802}
   m_Layer: 0
   m_Name: MessageManager
   m_TagString: Untagged
@@ -15622,6 +15639,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialMessageManager: {fileID: 1259382799}
+  npcMessageManager: {fileID: 1259382802}
+--- !u!114 &1259382802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259382798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236a4b994616ae64494a983cb7f40bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCMessages:
+  - {fileID: 11400000, guid: 3ee287b19bc924448b74fbb3ef2ca94e, type: 2}
+  - {fileID: 11400000, guid: 739450507d2e92a4083c9635c3e413dd, type: 2}
 --- !u!1 &1265729613
 GameObject:
   m_ObjectHideFlags: 0
@@ -19261,13 +19294,14 @@ GameObject:
   - component: {fileID: 1987201913}
   - component: {fileID: 1987201915}
   - component: {fileID: 1987201916}
+  - component: {fileID: 1987201921}
   - component: {fileID: 1987201917}
   - component: {fileID: 1987201920}
   - component: {fileID: 1987201919}
   - component: {fileID: 1987201923}
   - component: {fileID: 1987201924}
-  - component: {fileID: 1987201921}
   - component: {fileID: 1987201922}
+  - component: {fileID: 1987201925}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -19618,6 +19652,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerParryCollider: {fileID: 1996119867}
   parryEffect: {fileID: 609752739202394652, guid: b4a0dbf037bc9934f8b819ebdb936772, type: 3}
+--- !u!114 &1987201925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987201907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b75a97843ff6724a8140c6646c89220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisContext: 0
 --- !u!1 &1996119865
 GameObject:
   m_ObjectHideFlags: 0

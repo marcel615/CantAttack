@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: NPCMessage 1
   m_EditorClassIdentifier: 
   messageID: NPC01_002
-  messageKor: "\uC124\uB9C8 \uC800 \uB4A4\uC5D0 \uC788\uB358 \uC7A5\uC560\uBB3C\uB4E4\uC744"
+  messageKor: "\uC124\uB9C8 \uC800 \uC7A5\uC560\uBB3C\uB4E4\uC744 \uB118\uC5B4\uC628\uAC74\uAC00?"

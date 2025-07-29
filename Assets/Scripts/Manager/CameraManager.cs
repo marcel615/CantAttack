@@ -79,6 +79,7 @@ public class CameraManager : MonoBehaviour
         minPosition = tilemap.localBounds.min;
         minPosition.y = minPosition.y + 1; //타일맵의 타일앵커가 왼쪽 하단이 아니라 정중앙이기 때문에 발생하는 오차 정정
         maxPosition = tilemap.localBounds.max;
+        maxPosition.x = maxPosition.x - 1; //오차 정정
 
         //경계값에다가 해상도에 맞는 가로, 세로 폭을 더하고 빼는 작업으로 적절한 카메라 위치 조정
         float cameraHeightHalf = Camera.main.orthographicSize;

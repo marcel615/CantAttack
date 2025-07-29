@@ -29,7 +29,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        //MessageManager.Instance.tutorialMessageManager.ShowMessage(tutorialMessages);
+        MessageManager.Instance.npcMessageManager.ShowMessage(npc.NPCMessages);
 
     }
 

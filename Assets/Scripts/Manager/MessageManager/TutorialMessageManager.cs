@@ -38,19 +38,6 @@ public class TutorialMessageManager : MonoBehaviour
                 messageDict.Add(msg.messageID, msg.messageKor);
         }
     }
-    /*
-    public string GetMessage(string msgID)
-    {
-        if (messageDict.ContainsKey(msgID))
-        {
-            return messageDict[msgID];
-        }
-        else
-        {
-            return $"[튜토리얼 메시지 없음: {msgID}]";
-        }
-    }
-    */
     public void ShowMessage(List<TutorialMessageSO> msgSOs)
     {
         List<string> Messages = new List<string>();

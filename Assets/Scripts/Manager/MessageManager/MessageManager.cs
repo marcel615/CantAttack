@@ -9,6 +9,7 @@ public class MessageManager : MonoBehaviour
 
     //³» ÄÄÆ÷³ÍÆ®
     public TutorialMessageManager tutorialMessageManager;
+    public NPCMessageManager npcMessageManager;
 
     private void Awake()
     {
