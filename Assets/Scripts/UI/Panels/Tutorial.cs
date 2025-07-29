@@ -39,12 +39,11 @@ public class Tutorial : MonoBehaviour
     }
     public void TutorialClose()
     {
-        if (currentPanel == null)
+        if (currentPanel != null)
         {
-            Debug.Log("Test");
+            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+            message = null;
         }
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-        message = null;
     }
 
 }

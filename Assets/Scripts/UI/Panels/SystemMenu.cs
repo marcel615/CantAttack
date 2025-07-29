@@ -76,6 +76,10 @@ public class SystemMenu : MonoBehaviour
             {
                 InputEvents.InvokeContextUpdate(InputContext.Player, true);
             }
+            if (beforeContext == InputContext.Setting)
+            {
+                InputEvents.InvokeContextUpdate(InputContext.Player, true);
+            }
         }
     }
     public void Enter(bool enter)

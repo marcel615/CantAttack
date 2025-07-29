@@ -9,9 +9,13 @@ public class PlayerUIInput : MonoBehaviour
 
     public void ESC(bool esc)
     {
+        //Tutorial ´Ýµµ·Ï ±¸Çö
+        TutorialEvents.InvokeTutorialClose();
         InputEvents.InvokeContextUpdate(thisContext, false);
+
         //SystemMenu ¿ÀÇÂ
         InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);
         InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
+
     }
 }
