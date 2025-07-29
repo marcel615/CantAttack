@@ -21,6 +21,9 @@ public static class SystemEvents
     //세이브파일이 없다면 생성하고, 있다면 가장 최근 세이브파일 열도록 하는 이벤트
     public static event Action ONNewGameORLatestSave;
 
+    //MapManager에서 해당 Scene에서의 map의 minpos와 maxpos를 계산완료했다는 이벤트
+    public static event Action<Vector3, Vector3> OnGetMapPos;
+
 
     //SaveManager의 딕셔너리 설정 이벤트 발행
     public static void InvokeSaveDicKeyRequested(SaveManager saveManager)
@@ -55,5 +58,10 @@ public static class SystemEvents
     {
         ONNewGameORLatestSave?.Invoke();
     }
-
+    
+    //MapManager에서 해당 Scene에서의 map의 minpos와 maxpos를 계산완료했다는 이벤트
+    public static void InvokeGetMapPos(Vector3 minPos, Vector3 maxPos)
+    {
+        OnGetMapPos?.Invoke(minPos, maxPos);
+    }
 }

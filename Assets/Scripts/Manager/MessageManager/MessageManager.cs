@@ -23,11 +23,9 @@ public class MessageManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-
         //내 컴포넌트 연결
         tutorialMessageManager = GetComponent<TutorialMessageManager>();
-
-
+        npcMessageManager = GetComponent<NPCMessageManager>();
     }
 
 }

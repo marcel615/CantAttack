@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class InputManager : MonoBehaviour
 {
     //오브젝트 중복체크를 위한 인스턴스 생성
-    private static InputManager Instance;
+    public static InputManager Instance;
 
     //Context 관리 변수들
-    InputContext currentContext = InputContext.MainMenu;
+    InputContext currentContext = InputContext.Boot;
     bool currentContextState = true;
 
     //키 입력 가능한지 플래그
@@ -65,6 +65,10 @@ public class InputManager : MonoBehaviour
         //이벤트 발행
         switch (currentContext)
         {
+            case InputContext.Boot:
+
+                break;
+
             case InputContext.Player:
                 InputEvents.Player.InvokeMove(H);
                 InputEvents.Player.InvokeJump(J);

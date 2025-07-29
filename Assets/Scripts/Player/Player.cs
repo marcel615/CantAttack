@@ -24,8 +24,8 @@ public class Player : MonoBehaviour
     public PlayerStatus status;
 
     //내 자식 오브젝트 관련
-    public CapsuleCollider2D playerHitBoxCollider;
     public Transform groundCheckObj;
+    public CapsuleCollider2D playerHitBoxCollider;
 
     //세이브, 로드 변수
     public Vector2 savePosition;

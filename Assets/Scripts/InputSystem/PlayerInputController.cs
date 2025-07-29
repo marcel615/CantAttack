@@ -6,16 +6,17 @@ using UnityEngine;
 public class PlayerInputController : MonoBehaviour
 {
     //내 컴포넌트
-    Player player;
-    PlayerMove playerMove;
-    PlayerJump playerJump;
-    PlayerDash playerDash;
-    PlayerParry playerParry;
-    PlayerUIInput playerUIInput;
-    PlayerInteraction playerInteraction;
+    [SerializeField] private Player player;
+    [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private PlayerJump playerJump;
+    [SerializeField] private PlayerDash playerDash;
+    [SerializeField] private PlayerParry playerParry;
+    [SerializeField] private PlayerUIInput playerUIInput;
+    [SerializeField] private PlayerInteraction playerInteraction;
 
     private void Awake()
     {
+        //내 컴포넌트 연결
         player = GetComponent<Player>();
         playerMove = GetComponent<PlayerMove>();
         playerJump = GetComponent<PlayerJump>();

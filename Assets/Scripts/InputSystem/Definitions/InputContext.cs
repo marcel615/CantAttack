@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum InputContext
 {
+    Boot,         // 부팅 중
     Player,       // 플레이어 
     SystemMenu,   // 시스템 메뉴 UI
     Setting,      // 세팅 UI

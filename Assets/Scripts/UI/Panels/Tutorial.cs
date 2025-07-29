@@ -19,6 +19,11 @@ public class Tutorial : MonoBehaviour
     //출력할 메시지들
     string message;
 
+    private void Awake()
+    {
+        //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
+        if (TextArea == null) TextArea = transform.Find("TutorialMessage")?.GetComponent<TextMeshProUGUI>();
+    }
 
     //어디선가 Tutorial 패널을 열었을 때
     public void TutorialOpen(string msg)

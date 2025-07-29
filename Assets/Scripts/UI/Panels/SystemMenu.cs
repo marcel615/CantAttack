@@ -32,13 +32,14 @@ public class SystemMenu : MonoBehaviour
         if (SaveAndExitButton == null) SaveAndExitButton = transform.Find("SystemMenuSelectPanel/SaveAndExitButton")?.GetComponent<Button>();
 
     }
-
-    private void Start()
+    public void Init()
     {
+        //버튼들 AddListener 달아주기
         ContinueButton.onClick.AddListener(OnClickContinue);
         SettingButton.onClick.AddListener(OnClickSetting);
         SaveAndExitButton.onClick.AddListener(OnClickSaveAndExit);
     }
+
     //이벤트 구독
     private void OnEnable()
     {

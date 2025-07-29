@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
@@ -141,6 +142,8 @@ public class SaveManager : MonoBehaviour
         SaveLoadDic["SystemSaveHandler"].Load(saveData.playerSaveData);
 
         Debug.Log("로드 완!");
+        //Test
+        SceneManager.LoadScene("Map1");
         SystemEvents.InvokeDataLoadFinished(); //이 이벤트 구독한 곳에서는 이벤트 발생 시 InitFromSaveFileLoad() 메소드 실행하도록 구현
     }
     /// </Load>

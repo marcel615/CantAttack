@@ -49,15 +49,16 @@ public class Setting : MonoBehaviour
 
         InGameBackGroundColor = gameObject.GetComponent<Image>().color;
     }
-
-    private void Start()
+    public void Init()
     {
+        //버튼들 AddListener 달아주기
         GamePlayButton.onClick.AddListener(OnClickGamePlay);
         GraphicsButton.onClick.AddListener(OnClickGraphics);
         AudioButton.onClick.AddListener(OnClickAudio);
         ControlsButton.onClick.AddListener(OnClickControls);
         UIAndAccessibilityButton.onClick.AddListener(OnClickUIAndAccessibility);
     }
+
     //어디선가 Setting 패널을 열었을 때
     public void SettingOpen(InputContext sourceInputContext)
     {

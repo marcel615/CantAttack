@@ -23,6 +23,12 @@ public class Dialogue : MonoBehaviour
     int messagesCount;
     int messagesMax;
 
+    private void Awake()
+    {
+        //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
+        if (TextArea == null) TextArea = transform.Find("DialgueMessage")?.GetComponent<TextMeshProUGUI>();
+    }
+
     //어디선가 Dialogue 패널을 열었을 때
     public void DialogueOpen(InputContext sourceInputContext, List<string> msg)
     {

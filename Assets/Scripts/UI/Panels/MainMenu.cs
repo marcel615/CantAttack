@@ -40,8 +40,9 @@ public class MainMenu : MonoBehaviour
         //초기화 작업
         SelectFirstButton();
     }
-    private void Start()
+    public void Init()
     {
+        //버튼들 AddListener 달아주기
         ContinueButton.onClick.AddListener(OnClickContinue);
         LoadGameButton.onClick.AddListener(OnClickLoadGame);
         SettingButton.onClick.AddListener(OnClickSetting);

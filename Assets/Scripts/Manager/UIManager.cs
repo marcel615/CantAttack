@@ -7,24 +7,25 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     //오브젝트 중복체크를 위한 인스턴스 생성
-    private static UIManager Instance;
+    public static UIManager Instance;
 
     //자식 오브젝트 (UI 오브젝트)
     //Canvas
-    public GameObject UICanvas;
-    //HPPanel
-    public GameObject HPPanel;
-    public GameObject Portrait;
-    public GameObject HPContainer;
+    [SerializeField] private GameObject UICanvas;
+    //PlayerHUDPanel
+    [SerializeField] private GameObject PlayerHUDPanel;
     //SystemMenuPanel
-    public GameObject SystemMenuPanel;
-    //public GameObject SystemMenuSelectPanel;
-    public GameObject ContinueButton;
-    public GameObject SettingButton;
-    public GameObject SaveAndExitButton;
-
-    //MainMenu
+    [SerializeField] private GameObject SystemMenuPanel;
+    //SettingPanel
+    [SerializeField] private GameObject SettingPanel;
+    //MainMenuPanel
     [SerializeField] private GameObject MainMenuPanel;
+    //SaveSlotPanel
+    [SerializeField] private GameObject SaveSlotPanel;
+    //TutorialPanel
+    [SerializeField] private GameObject TutorialPanel;
+    //DialoguePanel
+    [SerializeField] private GameObject DialoguePanel;
 
 
 
@@ -44,20 +45,23 @@ public class UIManager : MonoBehaviour
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         if (UICanvas == null) UICanvas = transform.Find("UICanvas")?.gameObject;
 
-        if (HPPanel == null) HPPanel = transform.Find("UICanvas/HPPanel")?.gameObject;
-        if (Portrait == null) Portrait = transform.Find("UICanvas/HPPanel/Portrait")?.gameObject;
-        if (HPContainer == null) HPContainer = transform.Find("UICanvas/HPPanel/HPContainer")?.gameObject;
-
+        if (PlayerHUDPanel == null) PlayerHUDPanel = transform.Find("UICanvas/PlayerHUDPanel")?.gameObject;
         if (SystemMenuPanel == null) SystemMenuPanel = transform.Find("UICanvas/SystemMenuPanel")?.gameObject;
-        //if (MenuSelectPanel == null) MenuSelectPanel = transform.Find("UICanvas/MenuPanel/SystemMenuSelectPanel")?.gameObject;
-        if (ContinueButton == null) ContinueButton = transform.Find("UICanvas/MenuPanel/ContinueButton")?.gameObject;
-        if (SettingButton == null) SettingButton = transform.Find("UICanvas/MenuPanel/SettingButton")?.gameObject;
-        if (SaveAndExitButton == null) SaveAndExitButton = transform.Find("UICanvas/MenuPanel/SaveAndExitButton")?.gameObject;
-
-
+        if (SettingPanel == null) SettingPanel = transform.Find("UICanvas/SettingPanel")?.gameObject;
         if (MainMenuPanel == null) MainMenuPanel = transform.Find("UICanvas/MainMenuPanel")?.gameObject;
+        if (SaveSlotPanel == null) SaveSlotPanel = transform.Find("UICanvas/SaveSlotPanel")?.gameObject;
+        if (TutorialPanel == null) TutorialPanel = transform.Find("UICanvas/TutorialPanel")?.gameObject;
+        if (DialoguePanel == null) DialoguePanel = transform.Find("UICanvas/DialoguePanel")?.gameObject;
+
+
         MainMenuPanel.SetActive(true);
     }
-
+    public void Init()
+    {
+        //PlayerHUDPanel.GetComponent<PlayerHUD>().Init();
+        SystemMenuPanel.GetComponent<SystemMenu>().Init();
+        SettingPanel.GetComponent<Setting>().Init();
+        MainMenuPanel.GetComponent<MainMenu>().Init();
+    }
 
 }

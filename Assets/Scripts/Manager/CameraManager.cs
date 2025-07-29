@@ -16,8 +16,8 @@ public class CameraManager : MonoBehaviour
 
     //맵 경계
     Tilemap tilemap;
-    public Vector2 minPosition; //맵의 왼쪽 하단 경계
-    public Vector2 maxPosition; //맵의 오른쪽 상단 경계
+    public Vector3 minPosition; //맵의 왼쪽 하단 경계
+    public Vector3 maxPosition; //맵의 오른쪽 상단 경계
 
     private void Awake()
     {
@@ -35,14 +35,14 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         //타일맵 정보 획득
-        tilemap = FindObjectOfType<Tilemap>();
-        SetCameraMinMaxPosition();
+        //tilemap = FindObjectOfType<Tilemap>();
+        //SetCameraMinMaxPosition();
 
     }
 
     void LateUpdate()
     {
-        if (target == null) return;
+        if (target == null || (minPosition == maxPosition)) return;
 
         //맵 끝 경계를 마지노선으로 플레이어 기준 카메라 설정 과정
         ClampedPosition = new Vector3(
@@ -60,11 +60,13 @@ public class CameraManager : MonoBehaviour
     {
         //플레이어 스폰 이벤트 구독
         PlayerEvents.OnPlayerSpawned_CameraManager += SetTarget;
+        SystemEvents.OnGetMapPos += SetMinMaxPos;
     }
     private void OnDisable()
     {
         //플레이어 스폰 이벤트 구독
         PlayerEvents.OnPlayerSpawned_CameraManager -= SetTarget;
+        SystemEvents.OnGetMapPos -= SetMinMaxPos;
     }
 
     //플레이어 위치 받아오는 메소드
@@ -72,7 +74,12 @@ public class CameraManager : MonoBehaviour
     {
         target = t;
     }
-
+    void SetMinMaxPos(Vector3 minPos, Vector3 maxPos)
+    {
+        minPosition = minPos;
+        maxPosition = maxPos;
+    }
+    /*
     //카메라의 Min, Max Position을 획득하기 위한 메소드
     void SetCameraMinMaxPosition()
     {
@@ -91,4 +98,5 @@ public class CameraManager : MonoBehaviour
         maxPosition.y = maxPosition.y - cameraHeightHalf;
 
     }
+    */
 }

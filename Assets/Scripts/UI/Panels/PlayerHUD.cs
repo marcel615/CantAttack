@@ -24,8 +24,6 @@ public class PlayerHUD : MonoBehaviour
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         if (Portrait == null) Portrait = transform.Find("Portrait")?.gameObject;
         if (HPContainer == null) HPContainer = transform.Find("HPContainer")?.gameObject;
-
-
     }
 
     //이벤트 구독
