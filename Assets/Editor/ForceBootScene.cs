@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
-/*
+
 [InitializeOnLoad]
 public class ForceBootScene
 {
@@ -13,5 +13,5 @@ public class ForceBootScene
         EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(bootScenePath);
     }
 }
-*/
+
 #endif

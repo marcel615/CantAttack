@@ -4,6 +4,7 @@ using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SystemMenu : MonoBehaviour
@@ -114,6 +115,8 @@ public class SystemMenu : MonoBehaviour
         UIPanelController.Close(ref currentPanel, gameObject, thisContext);
         InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
         InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
+        // 메인메뉴 씬 로드
+        SceneManager.LoadScene("MainMenu");
     }
 
 
