@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         groundLayer = LayerMask.GetMask("Ground");
 
     }
-    private void Update()
+    private void FixedUpdate()
     {
         //땅 위에 있는지 체크
         isGrounded = Physics2D.OverlapCircle(groundCheckObj.position, checkRadius, groundLayer);
@@ -99,14 +99,13 @@ public class Player : MonoBehaviour
             canControl = false;
         }
 
-
         //무적 시간 제어하기
         if (isInvincible)
         {
-            if(InvincibleTimer > 0)
+            if (InvincibleTimer > 0)
             {
                 playerHitBoxCollider.enabled = false;
-                InvincibleTimer -= Time.deltaTime;
+                InvincibleTimer -= Time.fixedDeltaTime;
             }
             else
             {
@@ -122,11 +121,6 @@ public class Player : MonoBehaviour
             }
         }
 
-
-
-    }
-    private void FixedUpdate()
-    {
         //플레이어 캐릭터가 떨어지고 있을 때 작업. 1.애니메이션 변수 조정
         if (rigid.velocity.y < -0.01f)
         {
