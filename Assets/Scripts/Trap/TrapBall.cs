@@ -10,6 +10,7 @@ public class TrapBall : MonoBehaviour, IParryable
 
     //발사 변수
     GameObject Target;  //발사 대상
+    GameObject Sender;  //발사 요청한 곳
     Vector2 direction;  //발사 방향
     float speed = 12f;   //발사 속도
     float vanishTime = 3f; //존재 시간
@@ -45,9 +46,10 @@ public class TrapBall : MonoBehaviour, IParryable
     }
 
     //타겟정보 가져오기
-    public void SetTarget(GameObject target)
+    public void SetTarget(GameObject target, GameObject sender)
     {
         Target = target;
+        Sender = sender;
         SetDirection();
     }
     //발사 방향 정하기
@@ -59,7 +61,7 @@ public class TrapBall : MonoBehaviour, IParryable
     //패링 인터페이스 구현
     public void OnParried(GameObject parryOrigin)
     {
-        Vector2 reflectDir = (transform.position - parryOrigin.transform.position).normalized;
+        Vector2 reflectDir = (Sender.transform.position - parryOrigin.transform.position).normalized;
         rigid.velocity = reflectDir * speed;
 
         // 기존 타이머 취소

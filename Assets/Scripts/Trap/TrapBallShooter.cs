@@ -73,7 +73,7 @@ public class TrapBallShooter : MonoBehaviour
     void Fire()
     {
         GameObject ball = Instantiate(ballPrefab, firePoint.position, Quaternion.identity);
-        ball.GetComponent<TrapBall>().SetTarget(detectedTarget);
+        ball.GetComponent<TrapBall>().SetTarget(detectedTarget, gameObject);
 
 
     }
