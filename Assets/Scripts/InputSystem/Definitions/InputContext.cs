@@ -10,6 +10,7 @@ public enum InputContext
     MainMenu,     // 메인 메뉴 UI
     SaveSlot,     // 세이브 슬롯 리스트 UI
     Dialogue,     // 메시지(Dialogue) UI
+    Whatever,     // Context에 영향을 주지 않는 UI (Tutorial UI 등)
     //Inventory,    // 인벤토리
     //DialogueUI
 }

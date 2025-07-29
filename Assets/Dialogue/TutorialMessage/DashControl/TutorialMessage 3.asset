@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbfce61193762f49813d07454cb0670, type: 3}
   m_Name: TutorialMessage 3
   m_EditorClassIdentifier: 
-  messageID: Tuto_DC_001
-  messageKor: "C\uD0A4\uB97C \uB20C\uB7EC Dash(\uD68C\uD53C)\uD558\uAE30"
+  messageID: Tuto_Dash_001
+  messageKor: "C\uD0A4\uB97C \uB204\uB97C \uC2DC \uB300\uC2DC\\n\uB300\uC2DC\uC911\uC5D0\uB294
+    \uBB34\uC801\uC0C1\uD0DC\uC785\uB2C8\uB2E4"

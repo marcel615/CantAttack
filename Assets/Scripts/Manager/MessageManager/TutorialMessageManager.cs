@@ -38,20 +38,22 @@ public class TutorialMessageManager : MonoBehaviour
                 messageDict.Add(msg.messageID, msg.messageKor);
         }
     }
-    public void ShowMessage(List<TutorialMessageSO> msgSOs)
+    public void ShowMessage(TutorialMessageSO msgSO)
     {
-        List<string> Messages = new List<string>();
+        string Message = null;
 
-        foreach (var msg in msgSOs)
+        if (messageDict.ContainsKey(msgSO.messageID))
         {
-            if (messageDict.ContainsKey(msg.messageID))
-            {
-                Messages.Add(msg.messageKor);
-            }
+            Message = msgSO.messageKor;
         }
-        //Dialogue 열고 메시지리스트도 전달하도록 구현
-        InputEvents.Dialogue.InvokeDialogueOpen(InputContext.Player, Messages);
+        //Tutorial 열고 메시지도 전달하도록 구현
+        TutorialEvents.InvokeTutorialOpen(Message);
+    }
+    public void HideMessage(TutorialMessageSO msgSO)
+    {
 
+        //Tutorial 닫도록 구현
+        TutorialEvents.InvokeTutorialClose();
     }
 
 }
