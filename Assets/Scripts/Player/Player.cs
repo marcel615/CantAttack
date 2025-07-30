@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     /// </구현기능>
     
     //오브젝트 중복체크를 위한 인스턴스 생성
-    private static Player Instance;
+    public static Player Instance;
 
     //내 컴포넌트
     Rigidbody2D rigid;
@@ -142,6 +142,10 @@ public class Player : MonoBehaviour
         //세이브 로드 이후 초기화
         SystemEvents.OnDataLoadFinished -= InitFromSaveFileLoad;
     }
+    public void Init()
+    {
+        PlayerEvents.InvokePlayerInstance(this);
+    }
 
     //세이브 로드 이후 초기화
     void InitFromSaveFileLoad()
@@ -150,6 +154,6 @@ public class Player : MonoBehaviour
         transform.position = savePosition;
 
         //플레이어 스폰 이벤트 발행
-        PlayerEvents.InvokePlayerSpawned(transform, status.MaxHP, status.CurrentHP);
+        PlayerEvents.InvokePlayerSpawned_HPUIManager(status.MaxHP, status.CurrentHP);
     }
 }

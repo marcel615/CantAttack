@@ -7,7 +7,7 @@ using UnityEngine;
 public static class PlayerEvents
 {
     //Player가 스폰될 때
-    public static event Action<Transform> OnPlayerSpawned_CameraManager;
+    public static event Action<Player> OnPlayerInstance;
     public static event Action<int, int> OnPlayerSpawned_HPUIManager;
 
     //PlayerHitBox에서 Hit되었을 때
@@ -25,9 +25,13 @@ public static class PlayerEvents
 
 
     //Player의 Start()에서 이벤트 발행
-    public static void InvokePlayerSpawned(Transform transform, int maxHP, int currentHP)
+    public static void InvokePlayerInstance(Player player)
     {
-        OnPlayerSpawned_CameraManager?.Invoke(transform);
+        OnPlayerInstance?.Invoke(player);
+    }
+    //Player의 Start()에서 이벤트 발행
+    public static void InvokePlayerSpawned_HPUIManager(int maxHP, int currentHP)
+    {
         OnPlayerSpawned_HPUIManager?.Invoke(maxHP, currentHP);
     }
     //PlayerHitBox에서 이벤트 발행

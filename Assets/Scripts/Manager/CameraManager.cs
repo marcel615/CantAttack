@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class CameraManager : MonoBehaviour
@@ -8,16 +10,9 @@ public class CameraManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     private static CameraManager Instance;
 
-    //카메라가 따라다닐 플레이어객체
-    Transform target;
+    //Player
+    Player player;
 
-    //기본 변수들
-    Vector3 ClampedPosition; //맵의 경계에 다다르면 해당 경계를 기준으로 카메라 마지노선 설정
-
-    //맵 경계
-    Tilemap tilemap;
-    public Vector3 minPosition; //맵의 왼쪽 하단 경계
-    public Vector3 maxPosition; //맵의 오른쪽 상단 경계
 
     private void Awake()
     {
@@ -32,71 +27,31 @@ public class CameraManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
     }
-    private void Start()
-    {
-        //타일맵 정보 획득
-        //tilemap = FindObjectOfType<Tilemap>();
-        //SetCameraMinMaxPosition();
-
-    }
-
-    void LateUpdate()
-    {
-        if (target == null || (minPosition == maxPosition)) return;
-
-        //맵 끝 경계를 마지노선으로 플레이어 기준 카메라 설정 과정
-        ClampedPosition = new Vector3(
-            Mathf.Clamp(target.transform.position.x, minPosition.x, maxPosition.x),
-            Mathf.Clamp(target.transform.position.y, minPosition.y, maxPosition.y),
-            gameObject.transform.position.z
-            );
-
-        transform.position = ClampedPosition;
-
-    }
-
     //이벤트 구독
     private void OnEnable()
     {
-        //플레이어 스폰 이벤트 구독
-        PlayerEvents.OnPlayerSpawned_CameraManager += SetTarget;
-        SystemEvents.OnGetMapPos += SetMinMaxPos;
+        PlayerEvents.OnPlayerInstance += GetPlayerInstance;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
     private void OnDisable()
     {
-        //플레이어 스폰 이벤트 구독
-        PlayerEvents.OnPlayerSpawned_CameraManager -= SetTarget;
-        SystemEvents.OnGetMapPos -= SetMinMaxPos;
-    }
+        PlayerEvents.OnPlayerInstance -= GetPlayerInstance;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
 
-    //플레이어 위치 받아오는 메소드
-    public void SetTarget(Transform t)
+    }
+    void GetPlayerInstance(Player p)
     {
-        target = t;
+        player = p;
     }
-    void SetMinMaxPos(Vector3 minPos, Vector3 maxPos)
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        minPosition = minPos;
-        maxPosition = maxPos;
+        // 씬에 있는 Virtual Camera 찾아서 연결
+        CinemachineVirtualCamera currentVCam = FindObjectOfType<CinemachineVirtualCamera>();
+        if (currentVCam != null && player != null)
+        {
+            currentVCam.Follow = player.transform;
+        }
     }
-    /*
-    //카메라의 Min, Max Position을 획득하기 위한 메소드
-    void SetCameraMinMaxPosition()
-    {
-        minPosition = tilemap.localBounds.min;
-        minPosition.y = minPosition.y + 1; //타일맵의 타일앵커가 왼쪽 하단이 아니라 정중앙이기 때문에 발생하는 오차 정정
-        maxPosition = tilemap.localBounds.max;
-        maxPosition.x = maxPosition.x - 1; //오차 정정
 
-        //경계값에다가 해상도에 맞는 가로, 세로 폭을 더하고 빼는 작업으로 적절한 카메라 위치 조정
-        float cameraHeightHalf = Camera.main.orthographicSize;
-        float cameraWidthHalf = cameraHeightHalf * Camera.main.aspect;
-
-        minPosition.x = minPosition.x + cameraWidthHalf;
-        minPosition.y = minPosition.y + cameraHeightHalf;
-        maxPosition.x = maxPosition.x - cameraWidthHalf;
-        maxPosition.y = maxPosition.y - cameraHeightHalf;
-
-    }
-    */
 }

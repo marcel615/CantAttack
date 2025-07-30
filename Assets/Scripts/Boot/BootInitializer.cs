@@ -13,7 +13,7 @@ public class BootInitializer : MonoBehaviour
         //SaveManager.Instance.Init();
         //InputManager.Instance.Init();
         //MessageManager.Instance.Init();
-        //Player.Instance.Init();
+        Player.Instance.Init();
 
         // 메인메뉴 씬 로드
         SceneManager.LoadScene("MainMenu");
