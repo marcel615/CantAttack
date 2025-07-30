@@ -56,12 +56,14 @@ public class CameraManager : MonoBehaviour
     }
     void GetLocalMapManagerCamera(LocalMapManager local)
     {
+        Debug.Log("Test1");
         cineCamera = local.CineCamera;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(cineCamera != null)
         {
+            Debug.Log("Test2");
             cineCamera.Follow = player.transform;
         }
     }

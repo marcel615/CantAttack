@@ -10,9 +10,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance;
 
     public LocalMapManager localMapManager;
-    Tilemap tilemap;
-    Vector3 minPos;
-    Vector3 maxPos;
+
 
     private void Awake()
     {
@@ -31,46 +29,15 @@ public class MapManager : MonoBehaviour
     private void OnEnable()
     {
         MapEvents.OnLocalMapManagerInit += GetLocalMapManager;
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
         MapEvents.OnLocalMapManagerInit -= GetLocalMapManager;
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void GetLocalMapManager(LocalMapManager local)
     {
         localMapManager = local;        
-    }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        tilemap = FindObjectOfType<Tilemap>();
-        if (tilemap != null)
-        {
-            SetCameraMinMaxPosition();
-            SystemEvents.InvokeGetMapPos(minPos, maxPos);
-        }
-
-    }
-
-    //카메라의 Min, Max Position을 획득하기 위한 메소드
-    void SetCameraMinMaxPosition()
-    {
-        minPos = tilemap.localBounds.min;
-        minPos.y = minPos.y + 1; //타일맵의 타일앵커가 왼쪽 하단이 아니라 정중앙이기 때문에 발생하는 오차 정정
-        maxPos = tilemap.localBounds.max;
-        maxPos.x = maxPos.x - 1; //오차 정정
-
-        //경계값에다가 해상도에 맞는 가로, 세로 폭을 더하고 빼는 작업으로 적절한 카메라 위치 조정
-        float cameraHeightHalf = Camera.main.orthographicSize;
-        float cameraWidthHalf = cameraHeightHalf * Camera.main.aspect;
-
-        minPos.x = minPos.x + cameraWidthHalf;
-        minPos.y = minPos.y + cameraHeightHalf;
-        maxPos.x = maxPos.x - cameraWidthHalf;
-        maxPos.y = maxPos.y - cameraHeightHalf;
-
     }
     public void Init()
     {
