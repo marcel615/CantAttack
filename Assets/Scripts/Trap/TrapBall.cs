@@ -15,29 +15,21 @@ public class TrapBall : MonoBehaviour, IParryable
     float speed = 12f;   //발사 속도
     float vanishTime = 3f; //존재 시간
 
+    //Destroy되는 시간 코루틴
+    Coroutine vanishCoroutine;
+
     //기본 변수
     [SerializeField] private int damage = 1;
-    Coroutine vanishCoroutine;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-    void Start()
-    {
-        rigid.velocity = direction * speed;
-        vanishCoroutine = StartCoroutine(VanishAfterTime());
-
-    }
-    private IEnumerator VanishAfterTime()
-    {
-        yield return new WaitForSeconds(vanishTime);
-        Destroy(gameObject);
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject == Sender) return;
+
         if (collision.TryGetComponent<IDamageable>(out IDamageable target))
         {
             target.TakeDamage(transform.position, damage);
@@ -45,32 +37,45 @@ public class TrapBall : MonoBehaviour, IParryable
         }
     }
 
-    //타겟정보 가져오기
+    //타겟정보 설정하기
     public void SetTarget(GameObject target, GameObject sender)
     {
         Target = target;
         Sender = sender;
         SetDirection();
+        Shoot();
+    }
+    //패링 인터페이스 구현
+    public void OnParried(GameObject parryOrigin)
+    {
+        CancelDestroy();
+        SetTarget(Sender, parryOrigin);
     }
     //발사 방향 정하기
     void SetDirection()
     {
         direction = (Target.transform.position - transform.position).normalized; //방향 normalize하기
     }
-
-    //패링 인터페이스 구현
-    public void OnParried(GameObject parryOrigin)
+    //발사하기
+    void Shoot()
     {
-        Vector2 reflectDir = (Sender.transform.position - parryOrigin.transform.position).normalized;
-        rigid.velocity = reflectDir * speed;
+        rigid.velocity = direction * speed;
+        vanishCoroutine = StartCoroutine(VanishAfterTime());
+    }
 
+    //Destroy 타이머 설정
+    private IEnumerator VanishAfterTime()
+    {
+        yield return new WaitForSeconds(vanishTime);
+        Destroy(gameObject);
+    }
+    void CancelDestroy()
+    {
         // 기존 타이머 취소
         if (vanishCoroutine != null)
         {
             StopCoroutine(vanishCoroutine);
         }
-
-        vanishCoroutine = StartCoroutine(VanishAfterTime());
     }
 
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3512134341774890204}
   m_Layer: 0
   m_Name: TrapBall
-  m_TagString: Untagged
+  m_TagString: TrapProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,3 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b41cb7caa30ec745bc9d77b6005fc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1

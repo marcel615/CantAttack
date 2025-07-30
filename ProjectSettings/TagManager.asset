@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerHitBox
   - PlayerParry
+  - TrapProjectile
+  - ParriedProjectile
   layers:
   - Default
   - TransparentFX
