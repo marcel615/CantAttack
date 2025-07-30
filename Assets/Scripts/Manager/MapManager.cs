@@ -6,20 +6,43 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
+    //오브젝트 중복체크를 위한 인스턴스 생성
+    public static MapManager Instance;
+
+    public LocalMapManager localMapManager;
     Tilemap tilemap;
     Vector3 minPos;
     Vector3 maxPos;
 
+    private void Awake()
+    {
+        // 기존 인스턴스가 존재할 때 && 지금 새로운 인스턴스가 생성되려고 할 때
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);    //중복되지 않도록 지금 새롭게 생성되는 놈은 파괴시킨다
+            return;
+        }
+        // 인스턴스 처음 할당
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     //이벤트 구독
     private void OnEnable()
     {
+        MapEvents.OnLocalMapManagerInit += GetLocalMapManager;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
+        MapEvents.OnLocalMapManagerInit -= GetLocalMapManager;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    void GetLocalMapManager(LocalMapManager local)
+    {
+        localMapManager = local;        
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         tilemap = FindObjectOfType<Tilemap>();
@@ -48,5 +71,9 @@ public class MapManager : MonoBehaviour
         maxPos.x = maxPos.x - cameraWidthHalf;
         maxPos.y = maxPos.y - cameraHeightHalf;
 
+    }
+    public void Init()
+    {
+        MapEvents.InvokeMapManagerInstance(this);
     }
 }

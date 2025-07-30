@@ -929,6 +929,52 @@ MonoBehaviour:
   NPCMessages:
   - {fileID: 11400000, guid: 3ee287b19bc924448b74fbb3ef2ca94e, type: 2}
   - {fileID: 11400000, guid: 739450507d2e92a4083c9635c3e413dd, type: 2}
+--- !u!1 &775881391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775881392}
+  - component: {fileID: 775881393}
+  m_Layer: 0
+  m_Name: LocalMapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775881392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775881391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.286407, y: 1.370608, z: -0.15977086}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &775881393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775881391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901643bfe8e629643a2944fc82639008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CineCamera: {fileID: 2036242956}
+  CameraBounds: {fileID: 1654174240}
 --- !u!1 &791129054
 GameObject:
   m_ObjectHideFlags: 0
@@ -12421,8 +12467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3cba744a487f140b2be90c6bf0cc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPosition: {x: 0, y: 0, z: 0}
-  maxPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1669988258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13072,7 +13116,7 @@ GameObject:
   - component: {fileID: 2036242956}
   - component: {fileID: 2036242958}
   m_Layer: 0
-  m_Name: CMvcam1
+  m_Name: CineCamera1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13317,6 +13361,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1987201912}
   - {fileID: 1669988255}
+  - {fileID: 775881392}
+  - {fileID: 2036242957}
+  - {fileID: 1654174239}
   - {fileID: 2070708112}
   - {fileID: 423115334}
   - {fileID: 1143199186}
@@ -13329,5 +13376,3 @@ SceneRoots:
   - {fileID: 1613222947}
   - {fileID: 272435248}
   - {fileID: 685791376}
-  - {fileID: 1654174239}
-  - {fileID: 2036242957}

@@ -10,8 +10,10 @@ public class CameraManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     private static CameraManager Instance;
 
-    //Player
+    //Don't Destroy 오브젝트
     Player player;
+    MapManager mapManager;
+    CinemachineVirtualCamera cineCamera;
 
 
     private void Awake()
@@ -31,12 +33,16 @@ public class CameraManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerEvents.OnPlayerInstance += GetPlayerInstance;
+        MapEvents.OnMapManagerInstance += GetMapManagerInstance;
+        MapEvents.OnLocalMapManagerInit += GetLocalMapManagerCamera;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
     private void OnDisable()
     {
         PlayerEvents.OnPlayerInstance -= GetPlayerInstance;
+        MapEvents.OnMapManagerInstance -= GetMapManagerInstance;
+        MapEvents.OnLocalMapManagerInit -= GetLocalMapManagerCamera;
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
     }
@@ -44,13 +50,19 @@ public class CameraManager : MonoBehaviour
     {
         player = p;
     }
+    void GetMapManagerInstance(MapManager m)
+    {
+        mapManager = m;
+    }
+    void GetLocalMapManagerCamera(LocalMapManager local)
+    {
+        cineCamera = local.CineCamera;
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 씬에 있는 Virtual Camera 찾아서 연결
-        CinemachineVirtualCamera currentVCam = FindObjectOfType<CinemachineVirtualCamera>();
-        if (currentVCam != null && player != null)
+        if(cineCamera != null)
         {
-            currentVCam.Follow = player.transform;
+            cineCamera.Follow = player.transform;
         }
     }
 
