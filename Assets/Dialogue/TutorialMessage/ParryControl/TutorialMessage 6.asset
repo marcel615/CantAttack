@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TutorialMessage 6
   m_EditorClassIdentifier: 
   messageID: Tuto_Parry_001
-  messageKor: "X\uD0A4\uB97C \uB204\uB97C \uC2DC \uD328\uB9C1\\n\uD328\uB9C1\uC911\uC5D0\uB294
+  messageKor: "X\uD0A4\uB97C \uB204\uB97C \uC2DC \uD328\uB9C1\n\uD328\uB9C1\uC911\uC5D0\uB294
     \uD2B9\uC815 \uACF5\uACA9\uC744 \uD295\uACA8\uB0BC \uC218 \uC788\uC5B4\uC694"
