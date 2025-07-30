@@ -40,11 +40,12 @@ public class Player : MonoBehaviour
 
     //조작 제한 플래그
     public bool canControl = true; //조작 가능 플래그
-    public bool isJumping; //점프 관련 플래그
-    public bool isDashing; //회피 관련 플래그
-    public bool isParrying;//패링 관련 플래그
-    public bool isKnockedBack; //피격 시 넉백 관련 플래그
-    public bool isGrounded; //바닥 체크 플래그
+    public bool isJumping;          //점프 관련 플래그
+    public bool isDashing;          //회피 관련 플래그
+    public bool isParrying;         //패링 관련 플래그
+    public bool isKnockedBack;      //피격 시 넉백 관련 플래그
+    public bool isGrounded;         //바닥 체크 플래그
+    public bool isPortalEnter;      //포탈 진입 플래그
 
     //발 밑에 땅이 있는지 체크 관련 변수들
     float checkRadius = 0.2f;
@@ -90,7 +91,7 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckObj.position, checkRadius, groundLayer);
 
         //사용자 조작이 가능한 상태인지 판별
-        if (!isKnockedBack && !isDashing && !isParrying)
+        if (!isKnockedBack && !isDashing && !isParrying && !isPortalEnter)
         {
             canControl = true;
         }

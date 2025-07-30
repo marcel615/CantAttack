@@ -9,7 +9,13 @@ public class MapManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     public static MapManager Instance;
 
+    //각 씬마다의 LocalMapManager
     public LocalMapManager localMapManager;
+
+    //포탈로 씬 이동 시 관련 변수
+
+
+
 
 
     private void Awake()

@@ -3,8 +3,72 @@
   "WorkspaceRootPath": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\scriptableobject\\portalmapinfoso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobject\\portalmapinfoso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\portal\\portallinkdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\portal\\portallinkdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\scriptableobject\\npcmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobject\\npcmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\portal\\portalpositiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\portal\\portalpositiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\trap\\traputility\\trapsensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\trap\\traputility\\trapsensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\manager\\mapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manager\\mapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\playerportal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerportal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\events\\mapevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\mapevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\playerjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\particle\\explosionparticle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\particle\\explosionparticle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\playerdash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerdash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\portal\\portal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\portal\\portal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\events\\portalevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\portalevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\manager\\cameramanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manager\\cameramanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\save\\savehandler\\systemsavehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\save\\savehandler\\systemsavehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\scriptableobject\\tutorialmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobject\\tutorialmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\trap\\trapballshooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,24 +79,12 @@
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\npc\\npc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\manager\\mapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manager\\mapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\events\\mapevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\mapevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\manager\\localmapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manager\\localmapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\boot\\bootinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boot\\bootinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\events\\playerevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,10 +103,6 @@
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\panels\\playerhud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\trap\\traputility\\trapsensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\trap\\traputility\\trapsensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\trap\\trapball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\trap\\trapball.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -65,10 +113,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\ui\\panels\\dialogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\panels\\dialogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\particle\\explosionparticle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\particle\\explosionparticle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\save\\savedata\\playersavedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -203,24 +247,12 @@
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\playerdash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerdash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\save\\savehandler\\playersavehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\save\\savehandler\\playersavehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\playerstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\player\\playerjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\scriptableobject\\tutorialmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobject\\tutorialmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\dialogue\\npcmessagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -251,10 +283,6 @@
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inputsystem\\systemmenuinputcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\save\\savehandler\\systemsavehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\save\\savehandler\\systemsavehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\interface\\iinteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interface\\iinteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -265,10 +293,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\events\\inputevents\\mainmenuinputevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\events\\inputevents\\mainmenuinputevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\scriptableobject\\npcmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobject\\npcmessageso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\events\\inputevents\\settinginputevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -298,23 +322,98 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 43,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "PortalMapInfoSO.cs",
+              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\ScriptableObject\\PortalMapInfoSO.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObject\\PortalMapInfoSO.cs",
+              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\ScriptableObject\\PortalMapInfoSO.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ScriptableObject\\PortalMapInfoSO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T14:46:51.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PortalPositionData.cs",
+              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Portal\\PortalPositionData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Portal\\PortalPositionData.cs",
+              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Portal\\PortalPositionData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Portal\\PortalPositionData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T14:41:48.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PortalLinkData.cs",
+              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Portal\\PortalLinkData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Portal\\PortalLinkData.cs",
+              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Portal\\PortalLinkData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Portal\\PortalLinkData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T14:41:39.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerPortal.cs",
+              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerPortal.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerPortal.cs",
+              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerPortal.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerPortal.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADwvx8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T13:36:06.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PortalEvents.cs",
+              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\PortalEvents.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\PortalEvents.cs",
+              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\PortalEvents.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Events\\PortalEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T13:31:51.834Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Portal.cs",
+              "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Portal\\Portal.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Portal\\Portal.cs",
+              "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Portal\\Portal.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Portal\\Portal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-30T13:27:22.92Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "MapEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\MapEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\MapEvents.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\MapEvents.cs",
               "RelativeToolTip": "Assets\\Scripts\\Events\\MapEvents.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAwwAwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-30T07:22:43.548Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 19,
               "Title": "LocalMapManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\LocalMapManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\LocalMapManager.cs",
@@ -326,7 +425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 4,
               "Title": "TrapSensor.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Trap\\TrapUtility\\TrapSensor.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Trap\\TrapUtility\\TrapSensor.cs",
@@ -338,7 +437,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 10,
               "Title": "ExplosionParticle.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Particle\\ExplosionParticle.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Particle\\ExplosionParticle.cs",
@@ -350,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 29,
               "Title": "ScrollToTarget.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Utilities\\ScrollToTarget.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Utilities\\ScrollToTarget.cs",
@@ -362,7 +461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 20,
               "Title": "BootInitializer.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Boot\\BootInitializer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Boot\\BootInitializer.cs",
@@ -374,7 +473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 43,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\GameManager.cs",
@@ -386,7 +485,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 41,
               "Title": "UIManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\UIManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\UIManager.cs",
@@ -398,19 +497,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 15,
               "Title": "SystemSaveHandler.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Save\\SaveHandler\\SystemSaveHandler.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Save\\SaveHandler\\SystemSaveHandler.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Save\\SaveHandler\\SystemSaveHandler.cs",
               "RelativeToolTip": "Assets\\Scripts\\Save\\SaveHandler\\SystemSaveHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-27T06:00:48.658Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 69,
               "Title": "SystemMenuInputController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\SystemMenuInputController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\SystemMenuInputController.cs",
@@ -422,7 +521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 68,
               "Title": "SettingInputController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\SettingInputController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\SettingInputController.cs",
@@ -434,7 +533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 64,
               "Title": "MainMenuInputController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\MainMenuInputController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\MainMenuInputController.cs",
@@ -446,7 +545,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 67,
               "Title": "SaveSlotInputController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\SaveSlotInputController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\SaveSlotInputController.cs",
@@ -458,7 +557,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 57,
               "Title": "TutorialInputContorller.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\TutorialInputContorller.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\TutorialInputContorller.cs",
@@ -470,7 +569,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 66,
               "Title": "DialogueInputController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\DialogueInputController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\DialogueInputController.cs",
@@ -482,7 +581,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 24,
               "Title": "PlayerHUD.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Panels\\PlayerHUD.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Panels\\PlayerHUD.cs",
@@ -494,7 +593,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 39,
               "Title": "SystemMenu.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Panels\\SystemMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Panels\\SystemMenu.cs",
@@ -506,7 +605,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 50,
               "Title": "Setting.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Panels\\Setting.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Panels\\Setting.cs",
@@ -518,7 +617,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 40,
               "Title": "MainMenu.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Panels\\MainMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Panels\\MainMenu.cs",
@@ -530,7 +629,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 38,
               "Title": "SaveSlot.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Panels\\SaveSlot.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Panels\\SaveSlot.cs",
@@ -542,7 +641,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 49,
               "Title": "Tutorial.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Panels\\Tutorial.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Panels\\Tutorial.cs",
@@ -554,7 +653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 27,
               "Title": "Dialogue.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Panels\\Dialogue.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Panels\\Dialogue.cs",
@@ -566,7 +665,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 34,
               "Title": "InputManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\InputManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\InputManager.cs",
@@ -578,7 +677,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 42,
               "Title": "SaveManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\SaveManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\SaveManager.cs",
@@ -590,7 +689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 48,
               "Title": "MessageManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\MessageManager\\MessageManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\MessageManager\\MessageManager.cs",
@@ -602,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 45,
               "Title": "TutorialMessageManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\MessageManager\\TutorialMessageManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\MessageManager\\TutorialMessageManager.cs",
@@ -614,7 +713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 44,
               "Title": "NPCMessageManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\MessageManager\\NPCMessageManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\MessageManager\\NPCMessageManager.cs",
@@ -626,7 +725,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 47,
               "Title": "TutorialMessageController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Dialogue\\TutorialMessageController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Dialogue\\TutorialMessageController.cs",
@@ -638,7 +737,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 63,
               "Title": "NPCMessageController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Dialogue\\NPCMessageController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Dialogue\\NPCMessageController.cs",
@@ -650,32 +749,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MapManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\MapManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\MapManager.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\MapManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Manager\\MapManager.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAwB4AAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T09:32:49.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T09:32:49.952Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Player.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\Player.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\Player.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAADwv0UAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAADwv2cAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-19T09:11:29.681Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 62,
               "Title": "PlayerStatus.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerStatus.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerStatus.cs",
@@ -687,7 +785,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 61,
               "Title": "PlayerSaveHandler.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Save\\SaveHandler\\PlayerSaveHandler.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Save\\SaveHandler\\PlayerSaveHandler.cs",
@@ -699,7 +797,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 54,
               "Title": "PlayerDamageHandler.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerDamageHandler.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerDamageHandler.cs",
@@ -711,7 +809,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 53,
               "Title": "PlayerInputController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\PlayerInputController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\PlayerInputController.cs",
@@ -723,7 +821,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 60,
               "Title": "PlayerMove.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerMove.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerMove.cs",
@@ -735,31 +833,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 8,
               "Title": "PlayerJump.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerJump.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerJump.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerJump.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerJump.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAwE4AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-25T14:40:45.46Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 11,
               "Title": "PlayerDash.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerDash.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerDash.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerDash.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerDash.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAwCoAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-27T10:44:36.315Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 46,
               "Title": "PlayerParry.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerParry.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerParry.cs",
@@ -771,7 +869,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 51,
               "Title": "PlayerUIInput.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerUIInput.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerUIInput.cs",
@@ -783,7 +881,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 56,
               "Title": "PlayerInteraction.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerInteraction.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerInteraction.cs",
@@ -795,7 +893,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 30,
               "Title": "ParryHitBox.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\ParryHitBox.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\ParryHitBox.cs",
@@ -807,7 +905,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 31,
               "Title": "PlayerHitBox.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Player\\PlayerHitBox.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerHitBox.cs",
@@ -819,20 +917,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 14,
               "Title": "CameraManager.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\CameraManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Manager\\CameraManager.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Manager\\CameraManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Manager\\CameraManager.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAADwvyUAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAADMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T02:19:15.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T02:19:15.693Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 52,
               "Title": "TutorialArea.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Tutorial\\TutorialArea.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Tutorial\\TutorialArea.cs",
@@ -844,7 +941,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 23,
               "Title": "TutorialEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\TutorialEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\TutorialEvents.cs",
@@ -856,7 +953,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 58,
               "Title": "InputContext.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\InputSystem\\Definitions\\InputContext.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InputSystem\\Definitions\\InputContext.cs",
@@ -868,7 +965,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 35,
               "Title": "InputEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\InputEvents\\InputEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\InputEvents\\InputEvents.cs",
@@ -880,7 +977,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 21,
               "Title": "PlayerEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\PlayerEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\PlayerEvents.cs",
@@ -892,19 +989,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 16,
               "Title": "TutorialMessageSO.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\ScriptableObject\\TutorialMessageSO.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObject\\TutorialMessageSO.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\ScriptableObject\\TutorialMessageSO.cs",
               "RelativeToolTip": "Assets\\Scripts\\ScriptableObject\\TutorialMessageSO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-27T14:36:53.629Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 55,
               "Title": "NPCInteractable.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\NPC\\NPCInteractable.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\NPC\\NPCInteractable.cs",
@@ -916,19 +1013,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 2,
               "Title": "NPCMessageSO.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\ScriptableObject\\NPCMessageSO.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObject\\NPCMessageSO.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\ScriptableObject\\NPCMessageSO.cs",
               "RelativeToolTip": "Assets\\Scripts\\ScriptableObject\\NPCMessageSO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T15:34:58.329Z"
+              "WhenOpened": "2025-07-28T15:34:58.329Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 70,
               "Title": "IInteractable.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Interface\\IInteractable.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interface\\IInteractable.cs",
@@ -940,7 +1038,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 59,
               "Title": "PlayerInputEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\InputEvents\\PlayerInputEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\InputEvents\\PlayerInputEvents.cs",
@@ -952,7 +1050,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 18,
               "Title": "NPC.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\NPC\\NPC.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\NPC\\NPC.cs",
@@ -960,12 +1058,11 @@
               "RelativeToolTip": "Assets\\Scripts\\NPC\\NPC.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T14:47:37.278Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T14:47:37.278Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 71,
               "Title": "DialogueInputEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\InputEvents\\DialogueInputEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\InputEvents\\DialogueInputEvents.cs",
@@ -977,7 +1074,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 26,
               "Title": "TrapSaw.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Trap\\TrapSaw.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Trap\\TrapSaw.cs",
@@ -989,7 +1086,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 25,
               "Title": "TrapBall.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Trap\\TrapBall.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Trap\\TrapBall.cs",
@@ -1001,7 +1098,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 17,
               "Title": "TrapBallShooter.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Trap\\TrapBallShooter.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Trap\\TrapBallShooter.cs",
@@ -1009,12 +1106,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Trap\\TrapBallShooter.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAIwEoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-27T12:28:53.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-27T12:28:53.1Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 32,
               "Title": "IParryable.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Interface\\IParryable.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interface\\IParryable.cs",
@@ -1026,7 +1122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 74,
               "Title": "IDamageable.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Interface\\IDamageable.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interface\\IDamageable.cs",
@@ -1038,7 +1134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 65,
               "Title": "SaveData.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Save\\SaveData\\SaveData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Save\\SaveData\\SaveData.cs",
@@ -1050,7 +1146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 75,
               "Title": "SystemSaveData.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Save\\SaveData\\SystemSaveData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Save\\SaveData\\SystemSaveData.cs",
@@ -1062,7 +1158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "PlayerSaveData.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Save\\SaveData\\PlayerSaveData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Save\\SaveData\\PlayerSaveData.cs",
@@ -1074,7 +1170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 37,
               "Title": "SaveSlotPrefab.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Save\\SaveSlotPrefab.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Save\\SaveSlotPrefab.cs",
@@ -1086,7 +1182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 22,
               "Title": "SystemEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\SystemEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\SystemEvents.cs",
@@ -1098,7 +1194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 36,
               "Title": "UIPanelController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Controllers\\UIPanelController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Controllers\\UIPanelController.cs",
@@ -1110,7 +1206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 72,
               "Title": "MainMenuInputEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\InputEvents\\MainMenuInputEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\InputEvents\\MainMenuInputEvents.cs",
@@ -1122,7 +1218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 76,
               "Title": "SaveSlotInputEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\InputEvents\\SaveSlotInputEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\InputEvents\\SaveSlotInputEvents.cs",
@@ -1134,7 +1230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 77,
               "Title": "SystemMenuInputEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\InputEvents\\SystemMenuInputEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\InputEvents\\SystemMenuInputEvents.cs",
@@ -1146,7 +1242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 73,
               "Title": "SettingInputEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Events\\InputEvents\\SettingInputEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Events\\InputEvents\\SettingInputEvents.cs",
@@ -1158,7 +1254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 33,
               "Title": "UIUtility.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\UI\\Utilities\\UIUtility.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Utilities\\UIUtility.cs",
