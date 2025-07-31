@@ -22,6 +22,9 @@ public static class PlayerEvents
     //PlayerParry가 성공했을 때
     public static event Action OnPlayerParrySuccess;
 
+    //타겟 씬으로 이동한 상태에서 PlayerPortalMove가 종료했을 때
+    public static event Action OnPlayerPortalMoveOver;
+
 
 
     //Player의 Start()에서 이벤트 발행
@@ -53,5 +56,10 @@ public static class PlayerEvents
     public static void InvokePlayerParrySuccess()
     {
         OnPlayerParrySuccess?.Invoke();
+    }
+    //타겟 씬으로 이동한 상태에서 PlayerPortalMove가 종료했을 때
+    public static void InvokePlayerPortalMoveOver()
+    {
+        OnPlayerPortalMoveOver?.Invoke();
     }
 }

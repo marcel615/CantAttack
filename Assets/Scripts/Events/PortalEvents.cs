@@ -6,13 +6,15 @@ using UnityEngine;
 public static class PortalEvents
 {
     //Portal에 들어왔을 때
-    public static event Action OnPortalEnter;
+    public static event Action<string, string, string> OnPortalEnter;
+    public static event Action OnPortalEnter_NoParameter;
 
 
     //Portal에 들어왔을 때
-    public static void InvokePortalEnter()
+    public static void InvokePortalEnter(string enterPortalID, string targetScene, string targetPortalID)
     {
-        OnPortalEnter?.Invoke();
+        OnPortalEnter?.Invoke(enterPortalID, targetScene, targetPortalID);
+        OnPortalEnter_NoParameter?.Invoke();
     }
 
 }

@@ -10,7 +10,10 @@ public class Portal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PortalEvents.InvokePortalEnter();
+            //Context 변경 이벤트
+            InputEvents.InvokeContextUpdate(InputContext.SceneChange, true);
+            //Portal에 들어왔을 때
+            PortalEvents.InvokePortalEnter(portalDataSO.portalID, portalDataSO.targetScene, portalDataSO.targetPortalID);
         }
     }
 }

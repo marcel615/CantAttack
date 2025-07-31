@@ -9,11 +9,16 @@ public class PlayerPortal : MonoBehaviour
     Rigidbody2D rigid;
 
     //관련 변수들
-    float PortalMoveTime = 2f;
+    float PortalMoveTime = 0.5f;
     float PortalMoveTimer;
     float MoveSpeed = 6f;
-    bool isPortalEnterMoving;
-    float prevGravity;
+
+    //엔터 관련 플래그
+    bool Enter;  //포탈 엔터 했을 때 플래그
+
+    //플래그
+    bool isEnterPortal;    //포탈에 들어가면 true로 바뀜
+    bool isTargetScene;    //씬 이동 끝나면 true로 바뀜
 
     private void Awake()
     {
@@ -23,18 +28,18 @@ public class PlayerPortal : MonoBehaviour
     private void FixedUpdate()
     {
         //플레이어 포탈 진입 시 평범한 속도로 걸어가도록
-        if (player.isPortalEnter && !isPortalEnterMoving)
+        if (Enter)
         {
             PortalMoveTimer = PortalMoveTime;
-            isPortalEnterMoving = true;
 
+            player.isPortalEnter = true;
             player.InvincibleTimer = PortalMoveTime;
             player.isInvincible = true;
 
-            prevGravity = rigid.gravityScale;
-            rigid.gravityScale = 0;
             rigid.velocity = new Vector2(player.isHeadToRight * MoveSpeed, 0);
         }
+        Enter = false;
+
         if (player.isPortalEnter)
         {
             if (PortalMoveTimer > 0)
@@ -46,10 +51,22 @@ public class PlayerPortal : MonoBehaviour
             {
                 PortalMoveTimer = 0;
                 player.isPortalEnter = false;
-                isPortalEnterMoving = false;
 
-                rigid.gravityScale = prevGravity;
-                MapEvents.InvokeRequestMapMove();
+                if (isEnterPortal && !isTargetScene)
+                {
+                    //포탈을 통한 Map을 바꾸라는 요청
+                    MapEvents.InvokeRequestMapMove_Portal();
+                    isEnterPortal = false;
+                }
+                else if(isEnterPortal && isTargetScene)
+                {
+                    //Context 변경 이벤트
+                    InputEvents.InvokeContextUpdate(InputContext.SceneChange, false);
+                    //타겟 씬으로 이동한 상태에서 PlayerPortalMove가 종료했을 때
+                    PlayerEvents.InvokePlayerPortalMoveOver();
+                    isEnterPortal = false;
+                    isTargetScene = false;
+                }
             }
 
         }
@@ -58,16 +75,23 @@ public class PlayerPortal : MonoBehaviour
     private void OnEnable()
     {
         PortalEvents.OnPortalEnter += EnterPortal;
-        
+        MapEvents.OnGetPlayerPos += TargetPortal;
+
+
     }
     private void OnDisable()
     {
         PortalEvents.OnPortalEnter -= EnterPortal;
+        MapEvents.OnGetPlayerPos -= TargetPortal;
 
     }
-    void EnterPortal()
+    void EnterPortal(string enterP, string targetS, string targetP)
     {
-
-        player.isPortalEnter = true;
+        Enter = true;
+        isEnterPortal = true;
+    }
+    void TargetPortal(Vector2 pos)
+    {
+        isTargetScene = true;
     }
 }

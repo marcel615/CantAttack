@@ -35,6 +35,10 @@ public class LocalMapManager : MonoBehaviour
             }
         }
     }
+    public Vector2 GetPortalPos(string portalID)
+    {
+        return portalDict[portalID].position;
+    }
 
 
 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Portal1
   m_EditorClassIdentifier: 
   portalID: Portal1
-  position: {x: 122.5, y: 6.5}
+  position: {x: 122.5, y: 6}
   targetScene: Map2
   targetPortalID: Portal2

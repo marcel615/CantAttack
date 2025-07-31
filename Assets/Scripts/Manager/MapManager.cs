@@ -13,7 +13,11 @@ public class MapManager : MonoBehaviour
     public LocalMapManager localMapManager;
 
     //포탈로 씬 이동 시 관련 변수
-
+    string enterPortalID;
+    string targetScene;
+    string targetPortalID;
+    Vector2 targetPortalPos;
+    bool isPortalSceneChange;
 
 
 
@@ -34,16 +38,55 @@ public class MapManager : MonoBehaviour
     //이벤트 구독
     private void OnEnable()
     {
+        //LocalMapManager가 Awake()에서 이벤트 발행
         MapEvents.OnLocalMapManagerInit += GetLocalMapManager;
+        //Portal에서 Portal 진입 시 이벤트 발행
+        PortalEvents.OnPortalEnter += EnterPortal;
+        //PlayerPortal에서 맵 이동하라고 이벤트 발행
+        MapEvents.OnRequestMapMove_Portal += MoveScene_Portal;
+        //씬 로드 시 이벤트
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
+        //LocalMapManager가 Awake()에서 이벤트 발행
         MapEvents.OnLocalMapManagerInit -= GetLocalMapManager;
+        //Portal에서 Portal 진입 시 이벤트 발행
+        PortalEvents.OnPortalEnter -= EnterPortal;
+        //PlayerPortal에서 맵 이동하라고 이벤트 발행
+        MapEvents.OnRequestMapMove_Portal -= MoveScene_Portal;
+        //씬 로드 시 이벤트
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void GetLocalMapManager(LocalMapManager local)
     {
         localMapManager = local;        
+    }
+
+    void EnterPortal(string enterP, string targetS, string targetP)
+    {
+        enterPortalID = enterP;
+        targetScene = targetS;
+        targetPortalID = targetP;
+    }
+    void MoveScene_Portal()
+    {
+        isPortalSceneChange = true;
+        //Map 바꾸겠다고 이벤트 발행
+        MapEvents.InvokeStartChangeScene();
+
+        //타겟 씬 로드
+        SceneManager.LoadScene(targetScene);
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(isPortalSceneChange)
+        {
+            targetPortalPos = localMapManager.GetPortalPos(targetPortalID);
+            MapEvents.InvokeGetPlayerPos(targetPortalPos);
+            isPortalSceneChange = false;
+        }
     }
     public void Init()
     {

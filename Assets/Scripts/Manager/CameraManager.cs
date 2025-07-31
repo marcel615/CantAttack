@@ -35,6 +35,8 @@ public class CameraManager : MonoBehaviour
         PlayerEvents.OnPlayerInstance += GetPlayerInstance;
         MapEvents.OnMapManagerInstance += GetMapManagerInstance;
         MapEvents.OnLocalMapManagerInit += GetLocalMapManagerCamera;
+        //플레이어가 씬 이동할 때 카메라 잠시 Follow 해제
+        MapEvents.OnStartChangeScene += ResetCineCamera;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
@@ -43,6 +45,8 @@ public class CameraManager : MonoBehaviour
         PlayerEvents.OnPlayerInstance -= GetPlayerInstance;
         MapEvents.OnMapManagerInstance -= GetMapManagerInstance;
         MapEvents.OnLocalMapManagerInit -= GetLocalMapManagerCamera;
+        //플레이어가 씬 이동할 때 카메라 잠시 Follow 해제
+        MapEvents.OnStartChangeScene -= ResetCineCamera;
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
     }
@@ -54,16 +58,23 @@ public class CameraManager : MonoBehaviour
     {
         mapManager = m;
     }
+
     void GetLocalMapManagerCamera(LocalMapManager local)
     {
-        Debug.Log("Test1");
         cineCamera = local.CineCamera;
+    }
+    //플레이어가 씬 이동할 때 카메라 잠시 Follow 해제
+    void ResetCineCamera()
+    {
+        if (cineCamera != null)
+        {
+            cineCamera.Follow = null;
+        }
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(cineCamera != null)
         {
-            Debug.Log("Test2");
             cineCamera.Follow = player.transform;
         }
     }

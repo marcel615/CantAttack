@@ -61,7 +61,8 @@ public class InputManager : MonoBehaviour
         E = Input.GetButtonDown("Interact");
 
         R = Input.GetButtonDown("UseHealItem");
-
+        Debug.Log("H: " + H);
+        Debug.Log("D: " + D);
         //이벤트 발행
         switch (currentContext)
         {
@@ -116,6 +117,10 @@ public class InputManager : MonoBehaviour
 
                 break;
 
+            case InputContext.SceneChange:
+
+                break;
+
                 //InputEvents.InvokeUseHealItem(R);
 
         }
@@ -163,7 +168,10 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                Time.timeScale = 0;
+                if(context != InputContext.SceneChange)
+                {
+                    Time.timeScale = 0;
+                }
             }
         }
         //받은 컨텍스트가 Off일 때

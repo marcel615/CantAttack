@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     //내 컴포넌트
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
+    CapsuleCollider2D detectCollider;
     Animator animator;
     public PlayerStatus status;
 
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour
 
         //내 컴포넌트 연결
         rigid = GetComponent<Rigidbody2D>();
+        detectCollider = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         status = GetComponent<PlayerStatus>();
@@ -116,8 +118,7 @@ public class Player : MonoBehaviour
                 if (isKnockedBackInvincible)
                 {
                     isKnockedBackInvincible = false;
-                    PlayerEvents.InvokePlayerKnockedBackInvincibleOver();
-                    //spriteRenderer.color = new Color(1, 1, 1, 1f); //투명해졌던거 다시 원상복귀                    
+                    PlayerEvents.InvokePlayerKnockedBackInvincibleOver();                    
                 }
             }
         }
@@ -137,11 +138,19 @@ public class Player : MonoBehaviour
     {
         //세이브 로드 이후 초기화
         SystemEvents.OnDataLoadFinished += InitFromSaveFileLoad;
+        //이제 Map 바꾸겠다는 이벤트
+        MapEvents.OnStartChangeScene += StartChangeScene;
+        //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
+        MapEvents.OnGetPlayerPos += SetPlayerPos;
     }
     private void OnDisable()
     {
         //세이브 로드 이후 초기화
         SystemEvents.OnDataLoadFinished -= InitFromSaveFileLoad;
+        //이제 Map 바꾸겠다는 이벤트
+        MapEvents.OnStartChangeScene -= StartChangeScene;
+        //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
+        MapEvents.OnGetPlayerPos -= SetPlayerPos;
     }
     public void Init()
     {
@@ -157,4 +166,19 @@ public class Player : MonoBehaviour
         //플레이어 스폰 이벤트 발행
         PlayerEvents.InvokePlayerSpawned_HPUIManager(status.MaxHP, status.CurrentHP);
     }
+    void StartChangeScene()
+    {
+        //감지 콜라이더, 히트박스 등 끄기
+        detectCollider.enabled = false;
+        playerHitBoxCollider.enabled = false;
+    }
+    void SetPlayerPos(Vector2 pos)
+    {
+        //플레이어 위치 초기화
+        transform.position = pos;
+        //감지 콜라이더, 히트박스 등 켜기
+        detectCollider.enabled = true;
+        playerHitBoxCollider.enabled = true;
+    }
+
 }
