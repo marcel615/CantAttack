@@ -7,14 +7,16 @@ public class PlayerPortal : MonoBehaviour
 {
     Player player;
     Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
 
     //관련 변수들
     float PortalMoveTime = 0.5f;
     float PortalMoveTimer;
     float MoveSpeed = 6f;
 
-    //엔터 관련 플래그
-    bool Enter;  //포탈 엔터 했을 때 플래그
+    //포탈 무브 관련 변수
+    bool Enter;                     //포탈 엔터 했을 때 플래그
+    PortalWalkDirection WalkDir;    //포탈 무브 방향 설정
 
     //플래그
     bool isEnterPortal;    //포탈에 들어가면 true로 바뀜
@@ -24,6 +26,7 @@ public class PlayerPortal : MonoBehaviour
     {
         player = GetComponent<Player>();
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void FixedUpdate()
     {
@@ -87,13 +90,43 @@ public class PlayerPortal : MonoBehaviour
         MapEvents.OnGetPlayerPos -= TargetPortal;
 
     }
-    void EnterPortal(string enterP, string targetS, string targetP)
+    void EnterPortal(string enterP, string targetS, string targetP, PortalWalkDirection walkDir)
     {
+        //출발 포탈에서만 WalkDir 갱신하도록 -> 출발과 도착 포탈 둘 다 같은 방향으로 움직이도록
+        if (!isTargetScene)
+        {
+            WalkDir = walkDir;
+            SetWalkDir();
+        }
         Enter = true;
         isEnterPortal = true;
     }
     void TargetPortal(Vector2 pos)
     {
         isTargetScene = true;
+    }
+    //받은 WalkDir에 따라 플레이어가 움직일 방향 설정 
+    void SetWalkDir()
+    {
+        switch (WalkDir)
+        {
+            case PortalWalkDirection.Left:
+                player.isHeadToRight = -1f;
+                spriteRenderer.flipX = true;
+                break;
+
+            case PortalWalkDirection.Right:
+                player.isHeadToRight = 1f;
+                spriteRenderer.flipX = false;
+                break;
+
+            case PortalWalkDirection.Up:
+
+                break;
+
+            case PortalWalkDirection.Down:
+
+                break;
+        }
     }
 }

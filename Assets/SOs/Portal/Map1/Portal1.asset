@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portalID: Portal1
   position: {x: 122.5, y: 6}
+  portalWalkDirection: 1
   targetScene: Map2
   targetPortalID: Portal2

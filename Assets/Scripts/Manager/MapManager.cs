@@ -64,7 +64,7 @@ public class MapManager : MonoBehaviour
         localMapManager = local;        
     }
 
-    void EnterPortal(string enterP, string targetS, string targetP)
+    void EnterPortal(string enterP, string targetS, string targetP, PortalWalkDirection walkDir)
     {
         enterPortalID = enterP;
         targetScene = targetS;

@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     //기본 변수들
     public float normalSpeed = 6f;
     public float normaljumpPower = 10f;
-    public float isHeadToRight = 1; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
+    public float isHeadToRight = 1f; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
 
     //조작 제한 플래그
     public bool canControl = true; //조작 가능 플래그
