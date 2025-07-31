@@ -9,7 +9,7 @@ public class PlayerPortal : MonoBehaviour
     Rigidbody2D rigid;
 
     //관련 변수들
-    float PortalMoveTime = 0.5f;
+    float PortalMoveTime = 0.3f;
     float PortalMoveTimer;
     float MoveSpeed = 6f;
 

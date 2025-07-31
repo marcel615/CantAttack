@@ -76,12 +76,13 @@ public class MapManager : MonoBehaviour
         //Map 바꾸겠다고 이벤트 발행
         MapEvents.InvokeStartChangeScene();
 
-        //타겟 씬 로드
-        SceneManager.LoadScene(targetScene);
+        //로딩씬을 통해서 타겟 씬 로드
+        LoadingSceneLoader.LoadScene(targetScene);
+        //SceneManager.LoadScene(targetScene);
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(isPortalSceneChange)
+        if(isPortalSceneChange && scene.name != "LoadingScene")
         {
             targetPortalPos = localMapManager.GetPortalPos(targetPortalID);
             MapEvents.InvokeGetPlayerPos(targetPortalPos);

@@ -61,8 +61,8 @@ public class InputManager : MonoBehaviour
         E = Input.GetButtonDown("Interact");
 
         R = Input.GetButtonDown("UseHealItem");
-        Debug.Log("H: " + H);
-        Debug.Log("D: " + D);
+        //Debug.Log("H: " + H);
+        //Debug.Log("D: " + D);
         //이벤트 발행
         switch (currentContext)
         {
