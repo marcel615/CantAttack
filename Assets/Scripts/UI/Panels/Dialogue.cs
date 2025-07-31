@@ -52,7 +52,8 @@ public class Dialogue : MonoBehaviour
         else
         {
             //´Ý±â
-            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+            UIPanelController.Close(ref currentPanel, gameObject);
+            InputEvents.InvokeContextUpdate(thisContext, false);
             InputEvents.InvokeContextUpdate(InputContext.Player, true);
         }
     }
@@ -73,7 +74,8 @@ public class Dialogue : MonoBehaviour
     }
     void EndDialogue()
     {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.Player, true);
     }
     void CheckMessageMax()

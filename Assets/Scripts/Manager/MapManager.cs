@@ -76,8 +76,10 @@ public class MapManager : MonoBehaviour
         //Map 바꾸겠다고 이벤트 발행
         MapEvents.InvokeStartChangeScene();
 
+        //페이드 진행 및 로딩 씬 진행 후 타겟 씬 로드
+        FadeEvents.InvokeFadeOpen(targetScene, FadeDirection.FadeOut);
         //로딩씬을 통해서 타겟 씬 로드
-        LoadingSceneLoader.LoadScene(targetScene);
+        //LoadingSceneLoader.LoadScene(targetScene);
         //SceneManager.LoadScene(targetScene);
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

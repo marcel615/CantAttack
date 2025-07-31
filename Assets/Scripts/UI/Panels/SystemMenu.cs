@@ -72,8 +72,9 @@ public class SystemMenu : MonoBehaviour
         else
         {
             //닫기
-            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
-            if(beforeContext == InputContext.Player)
+            UIPanelController.Close(ref currentPanel, gameObject);
+            InputEvents.InvokeContextUpdate(thisContext, false);
+            if (beforeContext == InputContext.Player)
             {
                 InputEvents.InvokeContextUpdate(InputContext.Player, true);
             }
@@ -95,12 +96,14 @@ public class SystemMenu : MonoBehaviour
 
     void OnClickContinue()
     {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.Player, true);
     }
     void OnClickSetting()
     {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.Setting, true);
         InputEvents.Setting.InvokeSettingOpen(thisContext);
     }
@@ -112,7 +115,8 @@ public class SystemMenu : MonoBehaviour
     void SaveEnd()
     {
         //현재 UI 닫고 메인메뉴로 나가기
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
         InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
         // 메인메뉴 씬 로드

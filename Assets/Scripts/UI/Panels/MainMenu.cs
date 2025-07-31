@@ -97,19 +97,22 @@ public class MainMenu : MonoBehaviour
     {
         SystemEvents.InvokeNewGameORLatestSave();
 
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.Player, true);
     }
     void OnClickLoadGame()
     {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.SaveSlot, true);
         InputEvents.SaveSlot.InvokeSaveSlotOpen(thisContext);
 
     }
     void OnClickSetting()
     {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.Setting, true);
         InputEvents.Setting.InvokeSettingOpen(thisContext);
     }

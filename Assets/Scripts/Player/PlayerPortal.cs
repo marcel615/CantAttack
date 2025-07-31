@@ -9,7 +9,7 @@ public class PlayerPortal : MonoBehaviour
     Rigidbody2D rigid;
 
     //관련 변수들
-    float PortalMoveTime = 0.3f;
+    float PortalMoveTime = 0.5f;
     float PortalMoveTimer;
     float MoveSpeed = 6f;
 
@@ -52,12 +52,14 @@ public class PlayerPortal : MonoBehaviour
                 PortalMoveTimer = 0;
                 player.isPortalEnter = false;
 
+                //출발포탈에서의 무빙 끝났으니 Scene 변경하기
                 if (isEnterPortal && !isTargetScene)
                 {
-                    //포탈을 통한 Map을 바꾸라는 요청
+                    //(포탈을 통한) Map을 바꾸라는 요청 이벤트 발행
                     MapEvents.InvokeRequestMapMove_Portal();
                     isEnterPortal = false;
                 }
+                //도착포탈에서의 무빙 끝났으니 InputContext를 Player로 설정하기
                 else if(isEnterPortal && isTargetScene)
                 {
                     //Context 변경 이벤트

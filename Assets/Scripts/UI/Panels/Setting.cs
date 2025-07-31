@@ -89,7 +89,8 @@ public class Setting : MonoBehaviour
         else
         {
             //´Ý±â
-            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+            UIPanelController.Close(ref currentPanel, gameObject);
+            InputEvents.InvokeContextUpdate(thisContext, false);
             if (beforeContext == InputContext.SystemMenu)
             {
                 InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);

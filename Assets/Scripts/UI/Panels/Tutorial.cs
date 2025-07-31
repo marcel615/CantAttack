@@ -12,7 +12,7 @@ public class Tutorial : MonoBehaviour
     //컨텍스트 enum 정보
     public InputContext thisContext = InputContext.Whatever;
 
-    //Dialogue 조작 관련 변수
+    //Tutorial 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
@@ -31,9 +31,9 @@ public class Tutorial : MonoBehaviour
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
 
         message = msg;
-        StartDialogue();
+        StartTutorial();
     }
-    void StartDialogue()
+    void StartTutorial()
     {
         TextArea.text = message;
     }
@@ -41,7 +41,8 @@ public class Tutorial : MonoBehaviour
     {
         if (currentPanel != null)
         {
-            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+            UIPanelController.Close(ref currentPanel, gameObject);
+            InputEvents.InvokeContextUpdate(thisContext, false);
             message = null;
         }
     }

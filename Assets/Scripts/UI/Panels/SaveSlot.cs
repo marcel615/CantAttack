@@ -57,7 +57,8 @@ public class SaveSlot : MonoBehaviour
     //세이브 로드 시작하면
     void LoadStart(int whatever)
     {
-        UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
         InputEvents.InvokeContextUpdate(InputContext.Player, true);
 
     }
@@ -83,7 +84,8 @@ public class SaveSlot : MonoBehaviour
         else
         {
             //닫기
-            UIPanelController.Close(ref currentPanel, gameObject, thisContext);
+            UIPanelController.Close(ref currentPanel, gameObject);
+            InputEvents.InvokeContextUpdate(thisContext, false);
             if (beforeContext == InputContext.MainMenu)
             {
                 InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);

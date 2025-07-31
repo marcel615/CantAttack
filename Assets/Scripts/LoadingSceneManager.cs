@@ -14,11 +14,17 @@ public class LoadingSceneManager : MonoBehaviour
 
     private void Start()
     {
+        FadeEvents.InvokeFadeClose();
         targetScene = LoadingSceneLoader.targetScene;
         StartCoroutine(LoadSceneAsync(targetScene));
     }
     IEnumerator LoadSceneAsync(string sceneName)
     {
+        // 로딩 전 잠깐 대기 (페이드인)
+        float fadeTime = 1f;
+        FadeEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeIn);
+        yield return new WaitForSeconds(fadeTime);
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
 
@@ -47,8 +53,10 @@ public class LoadingSceneManager : MonoBehaviour
         progressBar.value = 1f;
         loadingText.text = $"Loading... 100%";
 
-        // 로딩 완료 후 잠깐 대기 (예: 페이드아웃용)
-        yield return new WaitForSeconds(1f);
+        // 로딩 완료 후 잠깐 대기 (페이드아웃)
+        fadeTime = 1f;
+        FadeEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeOut);
+        yield return new WaitForSeconds(fadeTime);
 
         // 실제 씬 전환
         asyncLoad.allowSceneActivation = true;

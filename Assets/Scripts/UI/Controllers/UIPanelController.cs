@@ -30,12 +30,11 @@ public static class UIPanelController
         InputEvents.InvokeSelectFirstSelectable(currentPanel);
     }
     //UI에서 현재 Panel을 닫을 때 사용되는 메소드 
-    public static void Close(ref GameObject currentPanel, GameObject rootPanel, InputContext thisContext)
+    public static void Close(ref GameObject currentPanel, GameObject rootPanel)
     {
         currentPanel.SetActive(false);
         currentPanel = null;
         rootPanel.SetActive(false);
-        InputEvents.InvokeContextUpdate(thisContext, false);
     }
 
 }
