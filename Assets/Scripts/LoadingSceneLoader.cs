@@ -4,11 +4,14 @@ using UnityEngine;
 
 public static class LoadingSceneLoader
 {
+    public static float fadeTime;
     public static string targetScene;
-
-    public static void LoadScene(string sceneName)
+    public static SceneChangeType sceneChangeType;
+    public static void Init(float fadeT, string target, SceneChangeType changeType)
     {
-        targetScene = sceneName;
+        fadeTime = fadeT;
+        targetScene = target;
+        sceneChangeType = changeType;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScene");
     }
 }

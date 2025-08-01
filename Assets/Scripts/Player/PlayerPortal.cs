@@ -11,7 +11,7 @@ public class PlayerPortal : MonoBehaviour
     PlayerMove playerMove;
 
     //관련 변수들
-    float PortalMoveTime = 0.5f;
+    float PortalMoveTime = 0.3f;
     float PortalMoveTimer;
     float H;    //이동 방향에 따른 PlayerMove에 넘겨줄 값
 

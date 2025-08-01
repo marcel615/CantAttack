@@ -132,7 +132,6 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isFalling", false);
         }
-        Debug.Log(playerHitBoxCollider.enabled);
     }
     private void OnEnable()
     {

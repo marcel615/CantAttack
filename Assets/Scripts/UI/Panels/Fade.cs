@@ -18,7 +18,7 @@ public class Fade : MonoBehaviour
     GameObject currentPanel;
 
     //Fade시간
-    [SerializeField] private float fadeDuration = 1f;
+    float fadeTime;
 
 
     private void Awake()
@@ -28,18 +28,20 @@ public class Fade : MonoBehaviour
     }
 
     //어디선가 Fade 패널을 열었을 때
-    public void FadeOpen(string targetScene, FadeDirection fadeDirection)
+    public void FadeOpen(float fadeT, FadeDirection fadeDirection)
     {
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
+
+        fadeTime = fadeT;
         if(fadeDirection == FadeDirection.FadeOut)
         {
             //페이드 아웃
-            StartCoroutine(StartFade(0f, 1f, targetScene));
+            StartCoroutine(StartFade(0f, 1f, fadeTime, FadeDirection.FadeOut));
         }
         else
         {
             //페이드 인
-            StartCoroutine(StartFade(1f, 0f, targetScene));
+            StartCoroutine(StartFade(1f, 0f, fadeTime, FadeDirection.FadeIn));
         }
 
     }
@@ -51,17 +53,17 @@ public class Fade : MonoBehaviour
         }
     }
      
-    private IEnumerator StartFade(float startAlpha, float endAlpha, string targetScene = null)
+    private IEnumerator StartFade(float startAlpha, float endAlpha, float fadeTime, FadeDirection fadeDir)
     {
         float elapsed = 0f;
         Color color = image.color;
         color.a = startAlpha;
         image.color = color;
 
-        while (elapsed < fadeDuration)
+        while (elapsed < fadeTime)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / fadeDuration;
+            float t = elapsed / fadeTime;
             color.a = Mathf.Lerp(startAlpha, endAlpha, t);
             image.color = color;
             yield return null;
@@ -71,11 +73,8 @@ public class Fade : MonoBehaviour
         color.a = endAlpha;
         image.color = color;
 
-        if (targetScene != null)
-        {
-            LoadingSceneLoader.LoadScene(targetScene);
-        }
-        else
+        //페이드인일 경우
+        if(fadeDir == FadeDirection.FadeIn)
         {
             FadeClose();
         }

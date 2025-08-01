@@ -30,15 +30,15 @@ public class LoadingSceneFade : MonoBehaviour
     public void FadeOpen(float fadeTime, FadeDirection fadeDirection)
     {
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
-        if (fadeDirection == FadeDirection.FadeOut)
+        if (fadeDirection == FadeDirection.FadeIn)
         {
-            //페이드 아웃
-            StartCoroutine(StartFade(0f, 1f, fadeTime));
+            //페이드 인
+            StartCoroutine(StartFade(1f, 0f, fadeTime, FadeDirection.FadeIn));
         }
         else
         {
-            //페이드 인
-            StartCoroutine(StartFade(1f, 0f, fadeTime));
+            //페이드 아웃
+            StartCoroutine(StartFade(0f, 1f, fadeTime, FadeDirection.FadeOut));
         }
 
     }
@@ -50,7 +50,7 @@ public class LoadingSceneFade : MonoBehaviour
         }
     }
 
-    private IEnumerator StartFade(float startAlpha, float endAlpha, float fadeTime)
+    private IEnumerator StartFade(float startAlpha, float endAlpha, float fadeTime, FadeDirection fadeDir)
     {
         float elapsed = 0f;
         Color color = image.color;
@@ -70,12 +70,11 @@ public class LoadingSceneFade : MonoBehaviour
         color.a = endAlpha;
         image.color = color;
 
-        //페이드 인이면
-        if(startAlpha == 1f)
+        //페이드인일 경우
+        if (fadeDir == FadeDirection.FadeIn)
         {
             FadeClose();
         }
-        
     }
 
 }

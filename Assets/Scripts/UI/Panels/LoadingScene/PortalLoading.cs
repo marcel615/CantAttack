@@ -1,0 +1,85 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class PortalLoading : MonoBehaviour
+{
+    //자식 오브젝트
+    [SerializeField] private Slider progressBar;
+    [SerializeField] private TextMeshProUGUI loadingText;
+
+    //PortalLoading 조작 관련 변수
+    Stack<GameObject> panelStack = new Stack<GameObject>();
+    GameObject currentPanel;
+
+
+
+    private void Awake()
+    {
+        //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
+        if (progressBar == null) progressBar = transform.Find("ProgressBar")?.GetComponent<Slider>();
+        if (loadingText == null) loadingText = transform.Find("LoadingText")?.GetComponent<TextMeshProUGUI>();
+    }
+
+    //어디선가 PortalLoading 패널을 열었을 때
+    public void PortalLoadingOpen(float fadeTime, string targetScene)
+    {
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
+
+        //TargetScene 로딩 진행
+        StartCoroutine(LoadSceneAsync(fadeTime, targetScene));
+
+    }
+    public void PortalLoadingClose()
+    {
+        if (currentPanel != null)
+        {
+            UIPanelController.Close(ref currentPanel, gameObject);
+        }
+    }
+
+    IEnumerator LoadSceneAsync(float fadeTime, string targetScene)
+    {
+        // 로딩 전 잠깐 대기 (페이드인)
+        LoadingSceneEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeIn);
+        yield return new WaitForSeconds(fadeTime);
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
+        asyncLoad.allowSceneActivation = false;
+
+        // 90%까지 로딩 완료될 때까지 대기
+        while (asyncLoad.progress < 0.9f)
+        {
+            // 로딩바 등 업데이트
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            progressBar.value = progress;
+            loadingText.text = $"Loading... {(int)(progress * 100)}%";
+
+            yield return null;
+        }
+
+        // 강제 대기 (테스트용)
+        float fakeWait = 0.5f;
+        float timer = 0f;
+        while (timer < fakeWait)
+        {
+            timer += Time.deltaTime;
+            progressBar.value = Mathf.Lerp(0.9f, 1f, timer / fakeWait);
+            loadingText.text = $"Loading... {(int)(progressBar.value * 100)}%";
+            yield return null;
+        }
+
+        progressBar.value = 1f;
+        loadingText.text = $"Loading... 100%";
+
+        // 로딩 완료 후 잠깐 대기 (페이드아웃)
+        LoadingSceneEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeOut);
+        yield return new WaitForSeconds(fadeTime);
+
+        // 실제 씬 전환
+        asyncLoad.allowSceneActivation = true;
+    }
+}

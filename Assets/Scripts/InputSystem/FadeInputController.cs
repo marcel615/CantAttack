@@ -30,9 +30,9 @@ public class FadeInputController : MonoBehaviour
     }
 
     //FadeOpen 이벤트 구독
-    void FadeOpen(string targetScene, FadeDirection fadeDirection)
+    void FadeOpen(float fadeTime, FadeDirection fadeDirection)
     {
-        fade.FadeOpen(targetScene, fadeDirection);
+        fade.FadeOpen(fadeTime, fadeDirection);
     }
     //FadeClose 이벤트 구독
     void FadeClose()

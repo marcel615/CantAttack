@@ -7,60 +7,31 @@ using UnityEngine.UI;
 
 public class LoadingSceneManager : MonoBehaviour
 {
-    [SerializeField] private Slider progressBar;
-    [SerializeField] private TextMeshProUGUI loadingText;
-
+    float fadeTime;
     string targetScene;
+    SceneChangeType sceneChangeType;
 
     private void Start()
     {
-        FadeEvents.InvokeFadeClose();
+        //제어 변수 할당
+        fadeTime = LoadingSceneLoader.fadeTime;
         targetScene = LoadingSceneLoader.targetScene;
-        StartCoroutine(LoadSceneAsync(targetScene));
-    }
-    IEnumerator LoadSceneAsync(string sceneName)
-    {
-        // 로딩 전 잠깐 대기 (페이드인)
-        float fadeTime = 1f;
-        FadeEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeIn);
-        yield return new WaitForSeconds(fadeTime);
+        sceneChangeType = LoadingSceneLoader.sceneChangeType;
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        asyncLoad.allowSceneActivation = false;
+        //페이드 패널 닫기 (로딩씬으로 넘어오기 전에 페이드아웃으로 활성화되었던 페이드 패널)
+        FadeEvents.InvokeFadeClose();
 
-        // 90%까지 로딩 완료될 때까지 대기
-        while (asyncLoad.progress < 0.9f)
+        switch (sceneChangeType)
         {
-            // 로딩바 등 업데이트
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-            progressBar.value = progress;
-            loadingText.text = $"Loading... {(int)(progress * 100)}%";
+            case SceneChangeType.SaveSlot:
+                LoadingSceneEvents.InvokeSaveSlotLoadingOpen(fadeTime, targetScene);
 
-            yield return null;
+                break;
+            case SceneChangeType.Portal:
+                LoadingSceneEvents.InvokePortalLoadingOpen(fadeTime, targetScene);
+
+                break;
         }
-
-        // 강제 대기 (테스트용)
-        float fakeWait = 2f;
-        float timer = 0f;
-        while (timer < fakeWait)
-        {
-            timer += Time.deltaTime;
-            progressBar.value = Mathf.Lerp(0.9f, 1f, timer / fakeWait);
-            loadingText.text = $"Loading... {(int)(progressBar.value * 100)}%";
-            yield return null;
-        }
-
-        progressBar.value = 1f;
-        loadingText.text = $"Loading... 100%";
-
-        // 로딩 완료 후 잠깐 대기 (페이드아웃)
-        fadeTime = 1f;
-        FadeEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeOut);
-        yield return new WaitForSeconds(fadeTime);
-
-        // 실제 씬 전환
-        asyncLoad.allowSceneActivation = true;
-        //MapEvents.InvokeTargetSceneLoaded();
     }
 
 

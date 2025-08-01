@@ -77,8 +77,8 @@ public class MapManager : MonoBehaviour
         isPortalSceneChange = true;
         isTargetScene = false;
 
-        //페이드 진행 및 로딩 씬 진행 후 타겟 씬 로드
-        FadeEvents.InvokeFadeOpen(targetScene, FadeDirection.FadeOut);
+        //씬 전환 실시
+        SceneTransitionEvents.InvokePortalToPortal(targetScene);
         
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

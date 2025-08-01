@@ -6,6 +6,6 @@ public class Map2 : MonoBehaviour
 {
     private void Start()
     {
-        FadeEvents.InvokeFadeOpen(null, FadeDirection.FadeIn);
+        FadeEvents.InvokeFadeOpen(SceneTransitionManager.Instance.fadeTime, FadeDirection.FadeIn);
     }
 }

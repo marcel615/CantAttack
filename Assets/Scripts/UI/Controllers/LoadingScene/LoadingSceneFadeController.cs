@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadingSceneFadeInputController : MonoBehaviour
+public class LoadingSceneFadeController : MonoBehaviour
 {
     //자식 오브젝트
     [SerializeField] private LoadingSceneFade fade;
@@ -17,16 +17,16 @@ public class LoadingSceneFadeInputController : MonoBehaviour
     private void OnEnable()
     {
         //LoadingScene의 FadeOpen 이벤트 구독
-        FadeEvents.OnLoadingSceneFadeOpen += FadeOpen;
+        LoadingSceneEvents.OnLoadingSceneFadeOpen += FadeOpen;
         //LoadingScene의 FadeClose 이벤트 구독
-        FadeEvents.OnLoadingSceneFadeClose += FadeClose;
+        LoadingSceneEvents.OnLoadingSceneFadeClose += FadeClose;
     }
     private void OnDisable()
     {
         //LoadingScene의 FadeOpen 이벤트 구독
-        FadeEvents.OnLoadingSceneFadeOpen -= FadeOpen;
+        LoadingSceneEvents.OnLoadingSceneFadeOpen -= FadeOpen;
         //LoadingScene의 FadeClose 이벤트 구독
-        FadeEvents.OnLoadingSceneFadeClose -= FadeClose;
+        LoadingSceneEvents.OnLoadingSceneFadeClose -= FadeClose;
     }
 
     //LoadingSceneFadeOpen 이벤트 구독
