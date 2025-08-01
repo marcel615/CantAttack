@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour
     string targetPortalID;
     Vector2 targetPortalPos;
     bool isPortalSceneChange;
+    bool isTargetScene;
 
 
 
@@ -42,8 +43,6 @@ public class MapManager : MonoBehaviour
         MapEvents.OnLocalMapManagerInit += GetLocalMapManager;
         //Portal에서 Portal 진입 시 이벤트 발행
         PortalEvents.OnPortalEnter += EnterPortal;
-        //PlayerPortal에서 맵 이동하라고 이벤트 발행
-        MapEvents.OnRequestMapMove_Portal += MoveScene_Portal;
         //씬 로드 시 이벤트
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -53,8 +52,6 @@ public class MapManager : MonoBehaviour
         MapEvents.OnLocalMapManagerInit -= GetLocalMapManager;
         //Portal에서 Portal 진입 시 이벤트 발행
         PortalEvents.OnPortalEnter -= EnterPortal;
-        //PlayerPortal에서 맵 이동하라고 이벤트 발행
-        MapEvents.OnRequestMapMove_Portal -= MoveScene_Portal;
         //씬 로드 시 이벤트
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
@@ -66,24 +63,31 @@ public class MapManager : MonoBehaviour
 
     void EnterPortal(string enterP, string targetS, string targetP, PortalWalkDirection walkDir)
     {
+        if (isTargetScene)
+        {
+            isTargetScene = false;  //플래그 재사용 가능하도록
+            return;  //타겟 씬에 도착한 다음의 포탈이면 바로 리턴
+        }
+
+        //출발포탈일 때만 실행
         enterPortalID = enterP;
         targetScene = targetS;
         targetPortalID = targetP;
-    }
-    void MoveScene_Portal()
-    {
+
         isPortalSceneChange = true;
-        //Map 바꾸겠다고 이벤트 발행
-        MapEvents.InvokeStartChangeScene();
+        isTargetScene = false;
 
         //페이드 진행 및 로딩 씬 진행 후 타겟 씬 로드
         FadeEvents.InvokeFadeOpen(targetScene, FadeDirection.FadeOut);
-        //로딩씬을 통해서 타겟 씬 로드
-        //LoadingSceneLoader.LoadScene(targetScene);
-        //SceneManager.LoadScene(targetScene);
+        
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //씬 로드 시 이전에 저장했던 도착포탈의 이름과 같다면
+        if(scene.name == targetScene)
+        {
+            isTargetScene = true;
+        }
         if(isPortalSceneChange && scene.name != "LoadingScene")
         {
             targetPortalPos = localMapManager.GetPortalPos(targetPortalID);

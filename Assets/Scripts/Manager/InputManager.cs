@@ -121,6 +121,10 @@ public class InputManager : MonoBehaviour
 
                 break;
 
+            case InputContext.Fade:
+
+                break;
+
                 //InputEvents.InvokeUseHealItem(R);
 
         }

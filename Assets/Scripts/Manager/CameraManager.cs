@@ -32,38 +32,51 @@ public class CameraManager : MonoBehaviour
     //이벤트 구독
     private void OnEnable()
     {
+        //Player가 스폰될 때
         PlayerEvents.OnPlayerInstance += GetPlayerInstance;
+        //MapManager가 스폰될 때
         MapEvents.OnMapManagerInstance += GetMapManagerInstance;
+        //LocalMapManager가 스폰될 때
         MapEvents.OnLocalMapManagerInit += GetLocalMapManagerCamera;
-        //플레이어가 씬 이동할 때 카메라 잠시 Follow 해제
-        MapEvents.OnStartChangeScene += ResetCineCamera;
+
+        //Camera Follow 리셋할 때
+        CameraEvents.OnCameraFollowReset += ResetCineCamera;
+        //씬 로드될 때
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
     private void OnDisable()
     {
+        //Player가 스폰될 때
         PlayerEvents.OnPlayerInstance -= GetPlayerInstance;
+        //MapManager가 스폰될 때
         MapEvents.OnMapManagerInstance -= GetMapManagerInstance;
+        //LocalMapManager가 스폰될 때
         MapEvents.OnLocalMapManagerInit -= GetLocalMapManagerCamera;
-        //플레이어가 씬 이동할 때 카메라 잠시 Follow 해제
-        MapEvents.OnStartChangeScene -= ResetCineCamera;
+
+        //Camera Follow 리셋할 때
+        CameraEvents.OnCameraFollowReset -= ResetCineCamera;
+        //씬 로드될 때
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
     }
+    //Player가 스폰될 때
     void GetPlayerInstance(Player p)
     {
         player = p;
     }
+    //MapManager가 스폰될 때
     void GetMapManagerInstance(MapManager m)
     {
         mapManager = m;
     }
-
+    //LocalMapManager가 스폰될 때
     void GetLocalMapManagerCamera(LocalMapManager local)
     {
         cineCamera = local.CineCamera;
     }
-    //플레이어가 씬 이동할 때 카메라 잠시 Follow 해제
+
+    //Camera Follow 리셋할 때
     void ResetCineCamera()
     {
         if (cineCamera != null)
@@ -71,6 +84,7 @@ public class CameraManager : MonoBehaviour
             cineCamera.Follow = null;
         }
     }
+    //씬 로드될 때
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(cineCamera != null && scene.name != "LoadingScene")

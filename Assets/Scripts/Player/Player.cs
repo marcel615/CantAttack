@@ -132,25 +132,17 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isFalling", false);
         }
-
+        Debug.Log(playerHitBoxCollider.enabled);
     }
     private void OnEnable()
     {
         //세이브 로드 이후 초기화
         SystemEvents.OnDataLoadFinished += InitFromSaveFileLoad;
-        //이제 Map 바꾸겠다는 이벤트
-        MapEvents.OnStartChangeScene += StartChangeScene;
-        //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
-        MapEvents.OnGetPlayerPos += SetPlayerPos;
     }
     private void OnDisable()
     {
         //세이브 로드 이후 초기화
         SystemEvents.OnDataLoadFinished -= InitFromSaveFileLoad;
-        //이제 Map 바꾸겠다는 이벤트
-        MapEvents.OnStartChangeScene -= StartChangeScene;
-        //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
-        MapEvents.OnGetPlayerPos -= SetPlayerPos;
     }
     public void Init()
     {
@@ -165,20 +157,6 @@ public class Player : MonoBehaviour
 
         //플레이어 스폰 이벤트 발행
         PlayerEvents.InvokePlayerSpawned_HPUIManager(status.MaxHP, status.CurrentHP);
-    }
-    void StartChangeScene()
-    {
-        //감지 콜라이더, 히트박스 등 끄기
-        detectCollider.enabled = false;
-        playerHitBoxCollider.enabled = false;
-    }
-    void SetPlayerPos(Vector2 pos)
-    {
-        //플레이어 위치 초기화
-        transform.position = pos;
-        //감지 콜라이더, 히트박스 등 켜기
-        detectCollider.enabled = true;
-        playerHitBoxCollider.enabled = true;
     }
 
 }
