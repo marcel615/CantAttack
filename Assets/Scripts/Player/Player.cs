@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckObj.position, checkRadius, groundLayer);
 
         //사용자 조작이 가능한 상태인지 판별
-        if (!isKnockedBack && !isDashing && !isParrying && !isPortalEnter)
+        if (!isKnockedBack && !isDashing && !isParrying)
         {
             canControl = true;
         }
