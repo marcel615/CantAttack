@@ -69,6 +69,13 @@ public class MainMenu : MonoBehaviour
         UIPanelController.OpenPanel(panelStack, ref currentPanel, MainMenuSelectPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext, true);
     }
+    //어디선가 MainMenu 패널을 닫았을 때
+    public void MainMenuClose(InputContext sourceInputContext)
+    {
+        //닫기
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
+    }
 
     ///<Input>
     public void ESC(bool esc)

@@ -9,6 +9,9 @@ public class MapManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     public static MapManager Instance;
 
+    //세이브, 로드 변수
+    public string saveScene;
+
     //각 씬마다의 LocalMapManager
     public LocalMapManager localMapManager;
 
@@ -19,6 +22,9 @@ public class MapManager : MonoBehaviour
     Vector2 targetPortalPos;
     bool isPortalSceneChange;
     bool isTargetScene;
+
+    //세이브슬롯에서 게임씬으로 이동 시 관련 변수
+    bool isSavedSceneLoaded;
 
 
 
@@ -93,6 +99,11 @@ public class MapManager : MonoBehaviour
             targetPortalPos = localMapManager.GetPortalPos(targetPortalID);
             MapEvents.InvokeGetPlayerPos(targetPortalPos);
             isPortalSceneChange = false;
+        }
+        if (!isSavedSceneLoaded && scene.name == saveScene)
+        {
+            MapEvents.InvokeSavedSceneLoaded();
+            isSavedSceneLoaded = true;
         }
     }
     public void Init()

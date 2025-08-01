@@ -136,12 +136,16 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         //세이브 로드 이후 초기화
-        SystemEvents.OnDataLoadFinished += InitFromSaveFileLoad;
+        //SystemEvents.OnDataLoadFinished += InitFromSaveFileLoad;
+        //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
+        MapEvents.OnSavedSceneLoaded += OnSavedSceneLoaded;
     }
     private void OnDisable()
     {
         //세이브 로드 이후 초기화
-        SystemEvents.OnDataLoadFinished -= InitFromSaveFileLoad;
+        //SystemEvents.OnDataLoadFinished -= InitFromSaveFileLoad;
+        //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
+        MapEvents.OnSavedSceneLoaded -= OnSavedSceneLoaded;
     }
     public void Init()
     {
@@ -149,7 +153,7 @@ public class Player : MonoBehaviour
     }
 
     //세이브 로드 이후 초기화
-    void InitFromSaveFileLoad()
+    void OnSavedSceneLoaded()
     {
         //플레이어 위치 초기화
         transform.position = savePosition;

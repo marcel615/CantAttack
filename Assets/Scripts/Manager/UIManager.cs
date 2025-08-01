@@ -26,6 +26,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject TutorialPanel;
     //DialoguePanel
     [SerializeField] private GameObject DialoguePanel;
+    //FadePanel
+    [SerializeField] private GameObject FadePanel;
 
 
 
@@ -52,13 +54,14 @@ public class UIManager : MonoBehaviour
         if (SaveSlotPanel == null) SaveSlotPanel = transform.Find("UICanvas/SaveSlotPanel")?.gameObject;
         if (TutorialPanel == null) TutorialPanel = transform.Find("UICanvas/TutorialPanel")?.gameObject;
         if (DialoguePanel == null) DialoguePanel = transform.Find("UICanvas/DialoguePanel")?.gameObject;
+        if (FadePanel == null) FadePanel = transform.Find("UICanvas/FadePanel")?.gameObject;
 
-
+        //검은 화면부터 시작되도록
         MainMenuPanel.SetActive(true);
+        FadePanel.SetActive(true);
     }
     public void Init()
     {
-        //PlayerHUDPanel.GetComponent<PlayerHUD>().Init();
         SystemMenuPanel.GetComponent<SystemMenu>().Init();
         SettingPanel.GetComponent<Setting>().Init();
         MainMenuPanel.GetComponent<MainMenu>().Init();

@@ -139,12 +139,15 @@ public class SaveManager : MonoBehaviour
     public void Load(SaveData saveData)
     {
         SaveLoadDic["PlayerSaveHandler"].Load(saveData.playerSaveData);
-        SaveLoadDic["SystemSaveHandler"].Load(saveData.playerSaveData);
+        SaveLoadDic["SystemSaveHandler"].Load(saveData.systemSaveData);
+        SaveLoadDic["MapSaveHandler"].Load(saveData.mapSaveData);
+
 
         Debug.Log("로드 완!");
         //Test
-        SceneManager.LoadScene("Map1");
-        SystemEvents.InvokeDataLoadFinished(); //이 이벤트 구독한 곳에서는 이벤트 발생 시 InitFromSaveFileLoad() 메소드 실행하도록 구현
+        //SceneManager.LoadScene("Map1");
+        //데이터 로드 완료했다는 이벤트 발행
+        SystemEvents.InvokeDataLoadFinished();
     }
     /// </Load>
 

@@ -33784,6 +33784,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3492880824532793790, guid: 26fa38abd3ab86b48a7d33bf1f669934, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ac1f8bb2a72db94085acf4e14f5674d, type: 2}
+    - target: {fileID: 3492880824532793790, guid: 26fa38abd3ab86b48a7d33bf1f669934, type: 3}
       propertyPath: CineCamera
       value: 
       objectReference: {fileID: 1982954755}

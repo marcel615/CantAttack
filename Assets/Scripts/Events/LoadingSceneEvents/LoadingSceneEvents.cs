@@ -11,7 +11,7 @@ public static class LoadingSceneEvents
     public static event Action OnLoadingSceneFadeClose;
 
     //SaveSlotLoading UI를 Open하기 위한 이벤트
-    public static event Action<float, string> OnSaveSlotLoadingOpen;
+    public static event Action<float, string, int> OnSaveSlotLoadingOpen;
     //SaveSlotLoading UI를 Close하기 위한 이벤트
     public static event Action OnSaveSlotLoadingClose;
 
@@ -33,9 +33,9 @@ public static class LoadingSceneEvents
     }
 
     //SaveSlotLoading UI를 Open하기 위한 이벤트
-    public static void InvokeSaveSlotLoadingOpen(float fadeTime, string targetScene)
+    public static void InvokeSaveSlotLoadingOpen(float fadeTime, string targetScene, int slotNum)
     {
-        OnSaveSlotLoadingOpen?.Invoke(fadeTime, targetScene);
+        OnSaveSlotLoadingOpen?.Invoke(fadeTime, targetScene, slotNum);
     }
     //SaveSlotLoading UI를 Close하기 위한 이벤트
     public static void InvokeSaveSlotLoadingClose()

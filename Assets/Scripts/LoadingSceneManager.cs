@@ -7,16 +7,18 @@ using UnityEngine.UI;
 
 public class LoadingSceneManager : MonoBehaviour
 {
+    SceneChangeType sceneChangeType;
     float fadeTime;
     string targetScene;
-    SceneChangeType sceneChangeType;
+    int slotNum;
 
     private void Start()
     {
         //제어 변수 할당
+        sceneChangeType = LoadingSceneLoader.sceneChangeType;
         fadeTime = LoadingSceneLoader.fadeTime;
         targetScene = LoadingSceneLoader.targetScene;
-        sceneChangeType = LoadingSceneLoader.sceneChangeType;
+        slotNum = LoadingSceneLoader.slotNum;
 
         //페이드 패널 닫기 (로딩씬으로 넘어오기 전에 페이드아웃으로 활성화되었던 페이드 패널)
         FadeEvents.InvokeFadeClose();
@@ -24,7 +26,7 @@ public class LoadingSceneManager : MonoBehaviour
         switch (sceneChangeType)
         {
             case SceneChangeType.SaveSlot:
-                LoadingSceneEvents.InvokeSaveSlotLoadingOpen(fadeTime, targetScene);
+                LoadingSceneEvents.InvokeSaveSlotLoadingOpen(fadeTime, targetScene, slotNum);
 
                 break;
             case SceneChangeType.Portal:

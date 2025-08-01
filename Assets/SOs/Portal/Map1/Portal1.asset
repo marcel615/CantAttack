@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73ad6490d09def46a846e02ea288268, type: 3}
   m_Name: Portal1
   m_EditorClassIdentifier: 
-  portalID: Portal1
+  portalID: Portal_001
   position: {x: 122.5, y: 6}
   portalWalkDirection: 1
   targetScene: Map2
-  targetPortalID: Portal2
+  targetPortalID: Portal_002

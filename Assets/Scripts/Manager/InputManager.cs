@@ -170,13 +170,15 @@ public class InputManager : MonoBehaviour
             {
                 Time.timeScale = 1;
             }
-            else
+            /*
+            else if()
             {
                 if(context != InputContext.SceneChange)
                 {
                     Time.timeScale = 0;
                 }
             }
+            */
         }
         //받은 컨텍스트가 Off일 때
         else

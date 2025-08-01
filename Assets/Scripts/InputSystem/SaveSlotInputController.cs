@@ -19,6 +19,8 @@ public class SaveSlotInputController : MonoBehaviour
     {
         //SaveSlotOpen 이벤트 구독
         InputEvents.SaveSlot.OnSaveSlotOpen += SaveSlotOpen;
+        //SaveSlotClose 이벤트 구독
+        InputEvents.SaveSlot.OnSaveSlotClose += SaveSlotClose;
         //Cancel 이벤트 구독
         InputEvents.SaveSlot.OnCancel += ESC;
         //Submit 이벤트 구독
@@ -30,6 +32,8 @@ public class SaveSlotInputController : MonoBehaviour
     {
         //SaveSlotOpen 이벤트 구독
         InputEvents.SaveSlot.OnSaveSlotOpen -= SaveSlotOpen;
+        //SaveSlotClose 이벤트 구독
+        InputEvents.SaveSlot.OnSaveSlotClose -= SaveSlotClose;
         //이동 이벤트 구독
         InputEvents.SaveSlot.OnCancel -= ESC;
         //Submit 이벤트 구독
@@ -38,10 +42,15 @@ public class SaveSlotInputController : MonoBehaviour
         InputEvents.SaveSlot.OnInteract -= E;
     }
 
-    //SettingOpen 이벤트 구독
+    //SaveSlotOpen 이벤트 구독
     void SaveSlotOpen(InputContext sourceInputContext)
     {
         saveSlot.SaveSlotOpen(sourceInputContext);
+    }
+    //SaveSlotClose 이벤트 구독
+    void SaveSlotClose(InputContext sourceInputContext)
+    {
+        saveSlot.SaveSlotClose(sourceInputContext);
     }
 
     //Cancel 이벤트 구독

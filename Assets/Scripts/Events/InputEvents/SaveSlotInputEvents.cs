@@ -7,6 +7,8 @@ public class SaveSlotInputEvents
 {
     //SaveSlot UI에 접근하기 위한 이벤트
     public event Action<InputContext> OnSaveSlotOpen;
+    //SaveSlot UI 닫는 이벤트
+    public event Action<InputContext> OnSaveSlotClose;
 
     //ESC 이벤트 (나가기, 메뉴 열기)
     public event Action<bool> OnCancel;
@@ -20,6 +22,11 @@ public class SaveSlotInputEvents
     public void InvokeSaveSlotOpen(InputContext sourceInputContext)
     {
         OnSaveSlotOpen?.Invoke(sourceInputContext);
+    }
+    //SaveSlot UI 닫는 이벤트
+    public void InvokeSaveSlotClose(InputContext sourceInputContext)
+    {
+        OnSaveSlotClose?.Invoke(sourceInputContext);
     }
 
     //ESC 이벤트 (나가기, 메뉴 열기)

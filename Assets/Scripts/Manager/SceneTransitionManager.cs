@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SceneTransitionManager : MonoBehaviour
@@ -37,22 +38,38 @@ public class SceneTransitionManager : MonoBehaviour
         //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnPortalToPortal -= PortalToPortal;
     }
-    void SaveSlotToGameScene(string targetScene)
+    void SaveSlotToGameScene(int num)
     {
+        //Context 변경 이벤트
+        InputEvents.InvokeContextUpdate(InputContext.SceneChange, true);
 
+        StartCoroutine(SaveSlotFadeOut(SceneChangeType.SaveSlot, null, num));
     }
     void PortalToPortal(string targetScene)
     {
-        StartCoroutine(FadeOutToLoadingScene(targetScene, SceneChangeType.Portal));
+        StartCoroutine(PortalFadeOut(SceneChangeType.Portal, targetScene, -1));
     }
-    IEnumerator FadeOutToLoadingScene(string targetScene, SceneChangeType sceneChangeType)
+    IEnumerator SaveSlotFadeOut(SceneChangeType sceneChangeType, string targetScene = null, int num = -1)
+    {
+        //페이드아웃 진행
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);
+        yield return new WaitForSeconds(fadeTime);
+
+        //세이브슬롯 UI 닫도록 이벤트 발행
+        InputEvents.SaveSlot.InvokeSaveSlotClose(InputContext.SceneChange);
+
+        //로딩씬 진입
+        LoadingSceneLoader.Init(sceneChangeType, fadeTime, targetScene, num);
+
+    }
+    IEnumerator PortalFadeOut(SceneChangeType sceneChangeType, string targetScene = null, int num = -1)
     {
         //페이드아웃 진행
         FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);
         yield return new WaitForSeconds(fadeTime);
 
         //로딩씬 진입
-        LoadingSceneLoader.Init(fadeTime, targetScene, sceneChangeType);
+        LoadingSceneLoader.Init(sceneChangeType, fadeTime, targetScene, num);
 
     }
 

@@ -9,6 +9,8 @@ public class LocalMapManager : MonoBehaviour
     public CinemachineVirtualCamera CineCamera;
     [SerializeField] private PolygonCollider2D CameraBounds;
 
+    //¸Ê µ¥ÀÌÅÍ
+    public MapDataSO mapDataSO;
     //Æ÷Å» °ü·Ã
     public List<PortalDataSO> portalList;
     public Dictionary<string, PortalDataSO> portalDict;

@@ -7,4 +7,5 @@ public class SaveData
 {
     public PlayerSaveData playerSaveData = new PlayerSaveData();
     public SystemSaveData systemSaveData = new SystemSaveData();
+    public MapSaveData mapSaveData = new MapSaveData();
 }

@@ -25,12 +25,12 @@ public class SaveSlotLoading : MonoBehaviour
     }
 
     //어디선가 SaveSlotLoading 패널을 열었을 때
-    public void SaveSlotLoadingOpen(float fadeTime, string targetScene)
+    public void SaveSlotLoadingOpen(float fadeTime, string targetScene, int slotNum)
     {
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
 
         //TargetScene 로딩 진행
-        StartCoroutine(LoadSceneAsync(fadeTime, targetScene));
+        StartCoroutine(LoadSceneAsync(fadeTime, targetScene, slotNum));
 
     }
     public void SaveSlotLoadingClose()
@@ -41,12 +41,29 @@ public class SaveSlotLoading : MonoBehaviour
         }
     }
 
-    IEnumerator LoadSceneAsync(float fadeTime, string targetScene)
+    IEnumerator LoadSceneAsync(float fadeTime, string targetScene, int slotNum)
     {
         // 로딩 전 잠깐 대기 (페이드인)
         LoadingSceneEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeIn);
         yield return new WaitForSeconds(fadeTime);
 
+        // 세이브파일 로드 시작
+        bool loadFinished = false;
+
+        void OnLoadFinished()
+        {
+            targetScene = MapManager.Instance.saveScene;    //타겟 씬 이름 알아냄
+            loadFinished = true;
+            SystemEvents.OnDataLoadFinished -= OnLoadFinished;
+        }
+        SystemEvents.OnDataLoadFinished += OnLoadFinished;
+
+        SystemEvents.InvokeDataLoadStart(slotNum);
+
+        // 세이브파일 로드 완료까지 대기
+        yield return new WaitUntil(() => loadFinished);
+
+        //비동기 씬 로딩 시작
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
         asyncLoad.allowSceneActivation = false;
 

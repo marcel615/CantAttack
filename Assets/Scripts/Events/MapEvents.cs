@@ -12,6 +12,8 @@ public static class MapEvents
 
     //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
     public static event Action<Vector2> OnGetPlayerPos;
+    //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
+    public static event Action OnSavedSceneLoaded;
 
 
     //LocalMapManager가 스폰될 때
@@ -29,6 +31,11 @@ public static class MapEvents
     public static void InvokeGetPlayerPos(Vector2 playerPos)
     {
         OnGetPlayerPos?.Invoke(playerPos);
+    }
+    //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
+    public static void InvokeSavedSceneLoaded()
+    {
+        OnSavedSceneLoaded?.Invoke();
     }
 
 }

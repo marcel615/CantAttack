@@ -40,7 +40,7 @@ public class SaveSlotPrefab : MonoBehaviour
     }
     public void OnSlotClicked()
     {
-        SystemEvents.InvokeDataLoadStart(slotIndex);
+        SceneTransitionEvents.InvokeSaveSlotToGameScene(slotIndex);
     }
     public void DeleteSaveFile()
     {

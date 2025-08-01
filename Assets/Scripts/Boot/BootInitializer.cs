@@ -17,7 +17,19 @@ public class BootInitializer : MonoBehaviour
         MapManager.Instance.Init();
         //SceneTransitionManager.Instance.Init();
 
-        // 메인메뉴 씬 로드
+        // 메인메뉴 로드
+        StartCoroutine(OpenMainMenuAfterFade(SceneTransitionManager.Instance.fadeTime));
+        //InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
+        //FadeEvents.InvokeFadeOpen(SceneTransitionManager.Instance.fadeTime, FadeDirection.FadeIn);
+        //SceneManager.LoadScene("MainMenu");
+    }
+    IEnumerator OpenMainMenuAfterFade(float fadeTime)
+    {
+        //InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeIn);
+        yield return new WaitForSeconds(fadeTime);
+
         SceneManager.LoadScene("MainMenu");
+
     }
 }

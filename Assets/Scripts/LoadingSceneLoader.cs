@@ -4,14 +4,16 @@ using UnityEngine;
 
 public static class LoadingSceneLoader
 {
+    public static SceneChangeType sceneChangeType;
     public static float fadeTime;
     public static string targetScene;
-    public static SceneChangeType sceneChangeType;
-    public static void Init(float fadeT, string target, SceneChangeType changeType)
+    public static int slotNum;
+    public static void Init(SceneChangeType changeType, float fadeT, string target, int num)
     {
+        sceneChangeType = changeType;
         fadeTime = fadeT;
         targetScene = target;
-        sceneChangeType = changeType;
+        slotNum = num;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScene");
     }
 }

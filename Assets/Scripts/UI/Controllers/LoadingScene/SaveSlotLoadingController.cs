@@ -30,9 +30,9 @@ public class SaveSlotLoadingController : MonoBehaviour
     }
 
     //LoadingScene의 SaveSlotLoadingOpen 이벤트 구독
-    void SaveSlotLoadingOpen(float fadeTime, string targetScene)
+    void SaveSlotLoadingOpen(float fadeTime, string targetScene, int slotNum)
     {
-        saveSlotLoading.SaveSlotLoadingOpen(fadeTime, targetScene);
+        saveSlotLoading.SaveSlotLoadingOpen(fadeTime, targetScene, slotNum);
     }
     //LoadingScene의 SaveSlotLoadingClose 이벤트 구독
     void SaveSlotLoadingClose()

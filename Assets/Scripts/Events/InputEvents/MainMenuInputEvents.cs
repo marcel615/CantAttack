@@ -7,6 +7,8 @@ public class MainMenuInputEvents
 {
     //MainMenu UI에 접근하기 위한 이벤트
     public event Action<InputContext> OnMainMenuOpen;
+    //MainMenu UI Close하기 위한 이벤트
+    public event Action<InputContext> OnMainMenuClose;
 
     //ESC 이벤트 (나가기, 메뉴 열기)
     public event Action<bool> OnCancel;
@@ -20,6 +22,11 @@ public class MainMenuInputEvents
     public void InvokeMainMenuOpen(InputContext sourceInputContext)
     {
         OnMainMenuOpen?.Invoke(sourceInputContext);
+    }
+    //MainMenu UI Close하기 위한 이벤트
+    public void InvokeMainMenuClose(InputContext sourceInputContext)
+    {
+        OnMainMenuClose?.Invoke(sourceInputContext);
     }
 
     //ESC 이벤트 (나가기, 메뉴 열기)

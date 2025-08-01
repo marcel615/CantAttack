@@ -41,28 +41,6 @@ public class SaveSlot : MonoBehaviour
         InitSaveSlotPrefab();
     }
 
-    //이벤트 구독
-    private void OnEnable()
-    {
-        //세이브 로드 시작하면
-        SystemEvents.OnDataLoadStart += LoadStart;
-
-    }
-    private void OnDisable()
-    {
-        //세이브 로드 시작하면
-        SystemEvents.OnDataLoadStart -= LoadStart;
-
-    }
-    //세이브 로드 시작하면
-    void LoadStart(int whatever)
-    {
-        UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.Player, true);
-
-    }
-
     //어디선가 SaveSlot 패널을 열었을 때
     public void SaveSlotOpen(InputContext sourceInputContext)
     {
@@ -71,6 +49,13 @@ public class SaveSlot : MonoBehaviour
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, ContentPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext, true);
+    }
+    //어디선가 SaveSlot 패널을 닫았을 때
+    public void SaveSlotClose(InputContext sourceInputContext)
+    {
+        //닫기
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
     }
 
     ///<Input>

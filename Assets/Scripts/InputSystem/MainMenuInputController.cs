@@ -19,6 +19,8 @@ public class MainMenuInputController : MonoBehaviour
     {
         //MainMenuOpen 이벤트 구독
         InputEvents.MainMenu.OnMainMenuOpen += MainMenuOpen;
+        //MainMenuClose 이벤트 구독
+        InputEvents.MainMenu.OnMainMenuClose += MainMenuClose;
         //Cancel 이벤트 구독
         InputEvents.MainMenu.OnCancel += ESC;
         //Submit 이벤트 구독
@@ -30,6 +32,8 @@ public class MainMenuInputController : MonoBehaviour
     {
         //MainMenuOpen 이벤트 구독
         InputEvents.MainMenu.OnMainMenuOpen -= MainMenuOpen;
+        //MainMenuClose 이벤트 구독
+        InputEvents.MainMenu.OnMainMenuClose -= MainMenuClose;
         //이동 이벤트 구독
         InputEvents.MainMenu.OnCancel -= ESC;
         //Submit 이벤트 구독
@@ -38,10 +42,15 @@ public class MainMenuInputController : MonoBehaviour
         InputEvents.MainMenu.OnInteract -= E;
     }
 
-    //SettingOpen 이벤트 구독
+    //MainMenuOpen 이벤트 구독
     void MainMenuOpen(InputContext sourceInputContext)
     {
         mainMenu.MainMenuOpen(sourceInputContext);
+    }
+    //MainMenuClose 이벤트 구독
+    void MainMenuClose(InputContext sourceInputContext)
+    {
+        mainMenu.MainMenuClose(sourceInputContext);
     }
 
     //Cancel 이벤트 구독
