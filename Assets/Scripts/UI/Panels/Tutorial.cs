@@ -10,7 +10,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TextArea;
 
     //컨텍스트 enum 정보
-    public InputContext thisContext = InputContext.Whatever;
+    public InputContext thisContext = InputContext.Tutorial;
 
     //Tutorial 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
@@ -38,7 +38,6 @@ public class Tutorial : MonoBehaviour
         if (currentPanel != null)
         {
             UIPanelController.Close(ref currentPanel, gameObject);
-            //InputEvents.InvokeContextUpdate(thisContext, false);
             message = null;
         }
     }

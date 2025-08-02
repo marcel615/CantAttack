@@ -13,9 +13,6 @@ public class InputManager : MonoBehaviour
     //Context 관리 변수들
     InputContext currentContext = InputContext.Boot;
 
-    //키 입력 가능한지 플래그
-    bool isInputPossible = true;
-
     //키 입력 추적 변수들
     float H; //좌우
     bool J; //점프
@@ -51,8 +48,6 @@ public class InputManager : MonoBehaviour
         //Debug.Log(isInputPossible);
         Debug.Log(currentContext);
 
-        if (!isInputPossible) return; //입력 불가능한 상태면 입력 못받도록
-
         //사용자 입력들 받아오기
         H = Input.GetAxisRaw("Horizontal");
         J = Input.GetButtonDown("Jump");
@@ -65,6 +60,7 @@ public class InputManager : MonoBehaviour
         E = Input.GetButtonDown("Interact");
 
         R = Input.GetButtonDown("UseHealItem");
+
         //이벤트 발행
         switch (currentContext)
         {
@@ -137,12 +133,6 @@ public class InputManager : MonoBehaviour
         InputEvents.OnContextUpdate += ContextManage;
         //패널 내 버튼에 포커스
         InputEvents.OnSelectFirstSelectable += SelectFirstButton;
-
-        //세이브&로드 이벤트로 입력 받는 거 제한 걸 때
-        SystemEvents.OnSaveRequest += () => BlockInput();
-        SystemEvents.OnSaveEnd += UnblockInput;
-        SystemEvents.OnDataLoadStart += BlockInput;
-        SystemEvents.OnDataLoadFinished += UnblockInput;
     }
     private void OnDisable()
     {
@@ -150,13 +140,6 @@ public class InputManager : MonoBehaviour
         InputEvents.OnContextUpdate -= ContextManage;
         //패널 내 버튼에 포커스
         InputEvents.OnSelectFirstSelectable -= SelectFirstButton;
-
-        //세이브&로드 이벤트로 입력 받는 거 제한 걸 때
-        SystemEvents.OnSaveRequest -= () => BlockInput();
-        SystemEvents.OnSaveEnd -= UnblockInput;
-        SystemEvents.OnDataLoadStart -= BlockInput;
-        SystemEvents.OnDataLoadFinished -= UnblockInput;
-
     }
     //Context 변경 이벤트
     void ContextManage(InputContext context)
@@ -173,16 +156,6 @@ public class InputManager : MonoBehaviour
         {
             firstSelectable.Select();
         }
-    }
-
-    //세이브&로드 이벤트로 입력 받는 거 제한 걸 때
-    void BlockInput(int whatever = 1)
-    {
-        isInputPossible = !isInputPossible;
-    }
-    void UnblockInput()
-    {
-        isInputPossible = !isInputPossible;
     }
 
 
