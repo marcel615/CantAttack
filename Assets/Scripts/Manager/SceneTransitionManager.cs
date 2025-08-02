@@ -25,6 +25,8 @@ public class SceneTransitionManager : MonoBehaviour
     }
     private void OnEnable()
     {
+        //메인메뉴 Continue 버튼에서 게임 씬으로 씬 전환 요청하는 경우 이벤트
+        SceneTransitionEvents.OnContinueToGameScene += ContinueToGameScene;
         //메인메뉴 세이브 슬롯에서 게임 씬으로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnSaveSlotToGameScene += SaveSlotToGameScene;
         //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
@@ -33,10 +35,19 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void OnDisable()
     {
+        //메인메뉴 Continue 버튼에서 게임 씬으로 씬 전환 요청하는 경우 이벤트
+        SceneTransitionEvents.OnContinueToGameScene -= ContinueToGameScene;
         //메인메뉴 세이브 슬롯에서 게임 씬으로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnSaveSlotToGameScene -= SaveSlotToGameScene;
         //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnPortalToPortal -= PortalToPortal;
+    }
+    void ContinueToGameScene()
+    {
+        //Context 변경 이벤트
+        InputEvents.InvokeContextUpdate(InputContext.SceneChange, true);
+
+        StartCoroutine(ContinueFadeOut(SceneChangeType.MainMenuContinue, null, -1));
     }
     void SaveSlotToGameScene(int num)
     {
@@ -48,6 +59,19 @@ public class SceneTransitionManager : MonoBehaviour
     void PortalToPortal(string targetScene)
     {
         StartCoroutine(PortalFadeOut(SceneChangeType.Portal, targetScene, -1));
+    }
+    IEnumerator ContinueFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
+    {
+        //페이드아웃 진행
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);
+        yield return new WaitForSeconds(fadeTime);
+
+        //메인메뉴 UI 닫도록 이벤트 발행
+        InputEvents.MainMenu.InvokeMainMenuClose(InputContext.SceneChange);
+
+        //로딩씬 진입
+        LoadingSceneLoader.Init(sceneChangeType, fadeTime, targetScene, num);
+
     }
     IEnumerator SaveSlotFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
     {

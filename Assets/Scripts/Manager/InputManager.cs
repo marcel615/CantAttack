@@ -47,6 +47,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(currentContext);
+        Debug.Log(isInputPossible);
         if (!isInputPossible) return; //입력 불가능한 상태면 입력 못받도록
 
         //사용자 입력들 받아오기

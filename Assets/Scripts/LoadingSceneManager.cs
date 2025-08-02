@@ -25,10 +25,16 @@ public class LoadingSceneManager : MonoBehaviour
 
         switch (sceneChangeType)
         {
-            case SceneChangeType.SaveSlot:
-                LoadingSceneEvents.InvokeSaveSlotLoadingOpen(fadeTime, targetScene, slotNum);
+            case SceneChangeType.MainMenuContinue:
+                LoadingSceneEvents.InvokeSaveSlotLoadingOpen(sceneChangeType,fadeTime, targetScene, slotNum);
 
                 break;
+
+            case SceneChangeType.SaveSlot:
+                LoadingSceneEvents.InvokeSaveSlotLoadingOpen(sceneChangeType, fadeTime, targetScene, slotNum);
+
+                break;
+
             case SceneChangeType.Portal:
                 LoadingSceneEvents.InvokePortalLoadingOpen(fadeTime, targetScene);
 

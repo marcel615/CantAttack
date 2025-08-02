@@ -102,11 +102,12 @@ public class MainMenu : MonoBehaviour
 
     void OnClickContinue()
     {
-        SystemEvents.InvokeNewGameORLatestSave();
+        //SystemEvents.InvokeNewGameORLatestSave();
+        SceneTransitionEvents.InvokeContinueToGameScene();
 
-        UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.Player, true);
+        //UIPanelController.Close(ref currentPanel, gameObject);
+        //InputEvents.InvokeContextUpdate(thisContext, false);
+        //InputEvents.InvokeContextUpdate(InputContext.Player, true);
     }
     void OnClickLoadGame()
     {

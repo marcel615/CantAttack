@@ -25,12 +25,12 @@ public class SaveSlotLoading : MonoBehaviour
     }
 
     //어디선가 SaveSlotLoading 패널을 열었을 때
-    public void SaveSlotLoadingOpen(float fadeTime, string targetScene, int slotNum)
+    public void SaveSlotLoadingOpen(SceneChangeType sceneChangeType, float fadeTime, string targetScene, int slotNum)
     {
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
 
         //TargetScene 로딩 진행
-        StartCoroutine(LoadSceneAsync(fadeTime, targetScene, slotNum));
+        StartCoroutine(LoadSceneAsync(sceneChangeType, fadeTime, targetScene, slotNum));
 
     }
     public void SaveSlotLoadingClose()
@@ -41,7 +41,7 @@ public class SaveSlotLoading : MonoBehaviour
         }
     }
 
-    IEnumerator LoadSceneAsync(float fadeTime, string targetScene, int slotNum)
+    IEnumerator LoadSceneAsync(SceneChangeType sceneChangeType, float fadeTime, string targetScene, int slotNum)
     {
         // 로딩 전 잠깐 대기 (페이드인)
         LoadingSceneEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeIn);
@@ -58,7 +58,15 @@ public class SaveSlotLoading : MonoBehaviour
         }
         SystemEvents.OnDataLoadFinished += OnLoadFinished;
 
-        SystemEvents.InvokeDataLoadStart(slotNum);
+        //sceneChangeType에 따른 발행 이벤트 차이
+        if(sceneChangeType == SceneChangeType.MainMenuContinue)
+        {
+            SystemEvents.InvokeNewGameORLatestSave();
+        }
+        else if(sceneChangeType == SceneChangeType.SaveSlot)
+        {
+            SystemEvents.InvokeDataLoadStart(slotNum);
+        }
 
         // 세이브파일 로드 완료까지 대기
         yield return new WaitUntil(() => loadFinished);
