@@ -1,25 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
 
     private void Start()
     {
-        /*
-        //제어 변수 할당
-        sceneChangeType = LoadingSceneLoader.sceneChangeType;
-        fadeTime = LoadingSceneLoader.fadeTime;
-        targetScene = LoadingSceneLoader.targetScene;
-        slotNum = LoadingSceneLoader.slotNum;
-        */
-
-        //페이드인 실행(메인메뉴 씬으로 넘어오기 전에 페이드아웃이었을 것)
-        //FadeEvents.InvokeFadeOpen(SceneTransitionManager.Instance.fadeTime, FadeDirection.FadeIn);
+        //StartCoroutine(OpenMainMenuAfterFade(SceneTransitionManager.Instance.fadeTime));
         InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
-        //FadeEvents.InvokeFadeClose();
+        InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
 
+    }
+    IEnumerator OpenMainMenuAfterFade(float fadeTime)
+    {
+        //InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeIn);
+        yield return new WaitForSeconds(fadeTime);
+
+        InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
+
+        //SceneManager.LoadScene("MainMenu");
     }
 
 }

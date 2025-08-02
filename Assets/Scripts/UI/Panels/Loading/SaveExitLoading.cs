@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PortalLoading : MonoBehaviour
+public class SaveExitLoading : MonoBehaviour
 {
     //자식 오브젝트
     [SerializeField] private Slider progressBar;
@@ -24,8 +24,8 @@ public class PortalLoading : MonoBehaviour
         if (loadingText == null) loadingText = transform.Find("LoadingText")?.GetComponent<TextMeshProUGUI>();
     }
 
-    //어디선가 PortalLoading 패널을 열었을 때
-    public void PortalLoadingOpen(float fadeTime, string targetScene)
+    //어디선가 SaveExitLoading 패널을 열었을 때
+    public void SaveExitLoadingOpen(float fadeTime, string targetScene)
     {
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
 
@@ -33,7 +33,7 @@ public class PortalLoading : MonoBehaviour
         StartCoroutine(LoadSceneAsync(fadeTime, targetScene));
 
     }
-    public void PortalLoadingClose()
+    public void SaveExitLoadingClose()
     {
         if (currentPanel != null)
         {
@@ -46,6 +46,22 @@ public class PortalLoading : MonoBehaviour
         // 로딩 전 잠깐 대기 (페이드인)
         FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeIn);
         yield return new WaitForSeconds(fadeTime);
+
+        // 세이브 시작
+        bool SaveFinished = false;
+
+        void OnSaveFinished()
+        {
+            SaveFinished = true;
+            SystemEvents.OnSaveEnd -= OnSaveFinished;
+        }
+        SystemEvents.OnSaveEnd += OnSaveFinished;
+
+        //세이브 요청 이벤트 발행
+        SystemEvents.InvokeSaveRequest();
+
+        // 세이브파일 로드 완료까지 대기
+        yield return new WaitUntil(() => SaveFinished);
 
         //비동기 씬 로딩 시작
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
@@ -63,7 +79,7 @@ public class PortalLoading : MonoBehaviour
         }
 
         // 강제 대기 (테스트용)
-        float fakeWait = 0.5f;
+        float fakeWait = 3f;
         float timer = 0f;
         while (timer < fakeWait)
         {
@@ -81,7 +97,7 @@ public class PortalLoading : MonoBehaviour
         yield return new WaitForSeconds(fadeTime);
 
         //이 패널 닫기
-        PortalLoadingClose();
+        SaveExitLoadingClose();
 
         // 실제 씬 전환
         asyncLoad.allowSceneActivation = true;

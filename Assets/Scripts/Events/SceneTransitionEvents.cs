@@ -11,6 +11,9 @@ public static class SceneTransitionEvents
     public static event Action<int> OnSaveSlotToGameScene;
     //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
     public static event Action<string> OnPortalToPortal;
+    //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
+    public static event Action<string> OnSystemMenuToMainMenu;
+
 
     //메인메뉴 Continue 버튼에서 게임 씬으로 씬 전환 요청하는 경우 이벤트
     public static void InvokeContinueToGameScene()
@@ -26,6 +29,11 @@ public static class SceneTransitionEvents
     public static void InvokePortalToPortal(string targetScene)
     {
         OnPortalToPortal?.Invoke(targetScene);
+    }
+    //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
+    public static void InvokeSystemMenuToMainMenu(string targetScene)
+    {
+        OnSystemMenuToMainMenu?.Invoke(targetScene);
     }
 
 }

@@ -41,24 +41,19 @@ public class SystemMenu : MonoBehaviour
         SaveAndExitButton.onClick.AddListener(OnClickSaveAndExit);
     }
 
-    //이벤트 구독
-    private void OnEnable()
-    {
-        //OnClickSaveAndExit 이후 세이브 완료되면 발행되는 이벤트 구독
-        SystemEvents.OnSaveEnd += SaveEnd;
-    }
-    private void OnDisable()
-    {
-        //OnClickSaveAndExit 이후 세이브 완료되면 발행되는 이벤트 구독
-        SystemEvents.OnSaveEnd -= SaveEnd;
-    }
-
     //어디선가 SystemMenu 패널을 열었을 때
     public void SystemMenuOpen(InputContext sourceInputContext)
     {
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, SystemMenuSelectPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext, true);
+    }
+    //어디선가 SystemMenu 패널을 닫았을 때
+    public void SystemMenuClose(InputContext sourceInputContext)
+    {
+        //닫기
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(thisContext, false);
     }
 
     ///<Input>
@@ -109,18 +104,7 @@ public class SystemMenu : MonoBehaviour
     }
     void OnClickSaveAndExit()
     {
-        SystemEvents.InvokeSaveRequest();
-    }
-    //OnClickSaveAndExit 이후 세이브 완료되면 발행되는 이벤트 구독
-    void SaveEnd()
-    {
-        //현재 UI 닫고 메인메뉴로 나가기
-        UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
-        InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
-        // 메인메뉴 씬 로드
-        SceneManager.LoadScene("MainMenu");
+        SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
     }
 
 

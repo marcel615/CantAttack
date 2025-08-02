@@ -39,6 +39,8 @@ public class SceneTransitionManager : MonoBehaviour
         SceneTransitionEvents.OnSaveSlotToGameScene += SaveSlotToGameScene;
         //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnPortalToPortal += PortalToPortal;
+        //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
+        SceneTransitionEvents.OnSystemMenuToMainMenu += SystemMenuToMainMenu;
 
         //씬 로드 시 이벤트 (로딩씬이 로드되었는지 확인하기 위해)
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -53,6 +55,8 @@ public class SceneTransitionManager : MonoBehaviour
         SceneTransitionEvents.OnSaveSlotToGameScene -= SaveSlotToGameScene;
         //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnPortalToPortal -= PortalToPortal;
+        //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
+        SceneTransitionEvents.OnSystemMenuToMainMenu -= SystemMenuToMainMenu;
 
         //씬 로드 시 이벤트 (로딩씬이 로드되었는지 확인하기 위해)
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -78,12 +82,20 @@ public class SceneTransitionManager : MonoBehaviour
                     LoadingEvents.InvokePortalLoadingOpen(fadeTime, targetScene);
 
                     break;
+
+                case SceneChangeType.SystemMenu:
+                    LoadingEvents.InvokeOnSaveExitLoadingOpen(fadeTime, targetScene);
+
+                    break;
             }
         }
         else
         {
-            //타겟 씬에 도착했을 때 페이드인 작업 후 Context 정상으로 돌림
-            StartCoroutine(TargetSceneFadeIn());
+            if(scene.name != "BootScene")
+            {
+                //타겟 씬에 도착했을 때 페이드인 작업 후 Context 정상으로 돌림
+                StartCoroutine(TargetSceneFadeIn());
+            }
         }
     }
 
@@ -123,6 +135,16 @@ public class SceneTransitionManager : MonoBehaviour
         //Fade 코루틴 시작
         StartCoroutine(PortalFadeOut(sceneChangeType, targetScene, saveSlotNum));
     }
+    void SystemMenuToMainMenu(string targetS)
+    {
+        //씬 전환 중요 변수 저장
+        sceneChangeType = SceneChangeType.SystemMenu;
+        targetScene = targetS;
+        saveSlotNum = -1;
+
+        //Fade 코루틴 시작
+        StartCoroutine(SystemMenuFadeOut(sceneChangeType, targetScene, saveSlotNum));
+    }
 
     //코루틴들
     IEnumerator ContinueFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
@@ -136,8 +158,6 @@ public class SceneTransitionManager : MonoBehaviour
 
         //로딩씬 진입
         SceneManager.LoadScene("LoadingScene");
-        //LoadingSceneLoader.Init(sceneChangeType, fadeTime, targetScene, num);
-
     }
     IEnumerator SaveSlotFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
     {
@@ -150,8 +170,6 @@ public class SceneTransitionManager : MonoBehaviour
 
         //로딩씬 진입
         SceneManager.LoadScene("LoadingScene");
-        //LoadingSceneLoader.Init(sceneChangeType, fadeTime, targetScene, num);
-
     }
     IEnumerator PortalFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
     {
@@ -161,9 +179,21 @@ public class SceneTransitionManager : MonoBehaviour
 
         //로딩씬 진입
         SceneManager.LoadScene("LoadingScene");
-        //LoadingSceneLoader.Init(sceneChangeType, fadeTime, targetScene, num);
-
     }
+    IEnumerator SystemMenuFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
+    {
+        //페이드아웃 진행
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);
+        yield return new WaitForSeconds(fadeTime);
+
+        //시스템메뉴 UI 닫도록 이벤트 발행
+        InputEvents.SystemMenu.InvokeSystemMenuClose(InputContext.SceneChange);
+
+        //로딩씬 진입
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+
     //타겟 씬에 도착했을 때 페이드인 작업 후 Context 정상으로 돌림
     IEnumerator TargetSceneFadeIn()
     {

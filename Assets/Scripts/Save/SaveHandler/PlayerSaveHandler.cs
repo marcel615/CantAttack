@@ -24,7 +24,7 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
         {
             MaxHP = playerStatus.MaxHP,
             CurrentHP = playerStatus.CurrentHP,
-            position = player.transform.position,
+            position = player.savePosition,
 
         };
     }
@@ -44,15 +44,25 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
     private void OnEnable()
     {
         SystemEvents.OnSaveDicKeyRequest += SaveDicKey;
+
+        //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트 (세이브하는 경우)
+        SceneTransitionEvents.OnSystemMenuToMainMenu += SavePlayerPos;
     }
     private void OnDisable()
     {
         SystemEvents.OnSaveDicKeyRequest -= SaveDicKey;
+
+        //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트 (세이브하는 경우)
+        SceneTransitionEvents.OnSystemMenuToMainMenu -= SavePlayerPos;
     }
     //SaveManager에서 딕셔너리 구성하는 과정
     void SaveDicKey(SaveManager saveManager)
     {
         saveManager.GetDicKey(this);
+    }
+    void SavePlayerPos(string targetS)
+    {
+        player.savePosition = player.transform.position;
     }
 
 }

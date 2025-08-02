@@ -18,18 +18,15 @@ public class BootInitializer : MonoBehaviour
         //SceneTransitionManager.Instance.Init();
 
         // 메인메뉴 로드
-        StartCoroutine(OpenMainMenuAfterFade(SceneTransitionManager.Instance.fadeTime));
-        //InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
-        //FadeEvents.InvokeFadeOpen(SceneTransitionManager.Instance.fadeTime, FadeDirection.FadeIn);
-        //SceneManager.LoadScene("MainMenu");
+        //StartCoroutine(OpenMainMenuAfterFade(SceneTransitionManager.Instance.fadeTime));
+        SceneManager.LoadScene("MainMenu");
     }
     IEnumerator OpenMainMenuAfterFade(float fadeTime)
     {
         //InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
-        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeIn);
-        yield return new WaitForSeconds(fadeTime);
-
+        //FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeIn);
+        yield return new WaitForSeconds(3f);
+        Debug.Log("Test");
         SceneManager.LoadScene("MainMenu");
-
     }
 }

@@ -5,13 +5,6 @@ using UnityEngine;
 
 public static class LoadingEvents
 {
-    /*
-    //LoadingScene의 Fade UI를 Open하기 위한 이벤트
-    public static event Action<float, FadeDirection> OnLoadingSceneFadeOpen;
-    //LoadingScene의 Fade UI를 Close하기 위한 이벤트
-    public static event Action OnLoadingSceneFadeClose;
-    */
-
     //SaveSlotLoading UI를 Open하기 위한 이벤트
     public static event Action<SceneChangeType, float, string, int> OnSaveSlotLoadingOpen;
     //SaveSlotLoading UI를 Close하기 위한 이벤트
@@ -22,18 +15,11 @@ public static class LoadingEvents
     //PortalLoading UI를 Close하기 위한 이벤트
     public static event Action OnPortalLoadingClose;
 
-    /*
-    //LoadingScene의 Fade UI를 Open하기 위한 이벤트
-    public static void InvokeLoadingSceneFadeOpen(float fadeTime, FadeDirection fadeDirection)
-    {
-        OnLoadingSceneFadeOpen?.Invoke(fadeTime, fadeDirection);
-    }
-    //LoadingScene의 Fade UI를 Close하기 위한 이벤트
-    public static void InvokeLoadingSceneFadeClose()
-    {
-        OnLoadingSceneFadeClose?.Invoke();
-    }
-    */
+    //SaveExitLoading UI를 Open하기 위한 이벤트
+    public static event Action<float, string> OnSaveExitLoadingOpen;
+    //SaveExitLoading UI를 Close하기 위한 이벤트
+    public static event Action OnSaveExitLoadingClose;
+
 
     //SaveSlotLoading UI를 Open하기 위한 이벤트
     public static void InvokeSaveSlotLoadingOpen(SceneChangeType sceneChangeType, float fadeTime, string targetScene, int slotNum)
@@ -55,6 +41,17 @@ public static class LoadingEvents
     public static void InvokePortalLoadingClose()
     {
         OnPortalLoadingClose?.Invoke();
+    }
+
+    //SaveExitLoading UI를 Open하기 위한 이벤트
+    public static void InvokeOnSaveExitLoadingOpen(float fadeTime, string targetScene)
+    {
+        OnSaveExitLoadingOpen?.Invoke(fadeTime, targetScene);
+    }
+    //SaveExitLoading UI를 Close하기 위한 이벤트
+    public static void InvokeOnSaveExitLoadingClose()
+    {
+        OnSaveExitLoadingClose?.Invoke();
     }
 
 }

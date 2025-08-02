@@ -63,14 +63,18 @@ public class UIManager : MonoBehaviour
         if (FadePanel == null) FadePanel = transform.Find("UICanvas/FadePanel")?.gameObject;
 
         //검은 화면부터 시작되도록
-        MainMenuPanel.SetActive(true);
-        FadePanel.SetActive(true);
+        //MainMenuPanel.SetActive(true);
+        //FadePanel.SetActive(true);
     }
     public void Init()
     {
         SystemMenuPanel.GetComponent<SystemMenu>().Init();
         SettingPanel.GetComponent<Setting>().Init();
         MainMenuPanel.GetComponent<MainMenu>().Init();
+
+        //검은 화면부터 시작되도록
+        MainMenuPanel.SetActive(true);
+        FadePanel.SetActive(true);
     }
 
 }

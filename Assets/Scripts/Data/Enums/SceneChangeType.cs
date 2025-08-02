@@ -6,5 +6,6 @@ public enum SceneChangeType
 {
     MainMenuContinue,
     SaveSlot,
-    Portal
+    Portal,
+    SystemMenu
 }
