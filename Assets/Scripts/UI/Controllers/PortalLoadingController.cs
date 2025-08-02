@@ -17,16 +17,16 @@ public class PortalLoadingController : MonoBehaviour
     private void OnEnable()
     {
         //LoadingScene의 PortalLoadingOpen 이벤트 구독
-        LoadingSceneEvents.OnPortalLoadingOpen += PortalLoadingOpen;
+        LoadingEvents.OnPortalLoadingOpen += PortalLoadingOpen;
         //LoadingScene의 PortalLoadingClose 이벤트 구독
-        LoadingSceneEvents.OnPortalLoadingClose += PortalLoadingClose;
+        LoadingEvents.OnPortalLoadingClose += PortalLoadingClose;
     }
     private void OnDisable()
     {
         //LoadingScene의 PortalLoadingOpen 이벤트 구독
-        LoadingSceneEvents.OnPortalLoadingOpen -= PortalLoadingOpen;
+        LoadingEvents.OnPortalLoadingOpen -= PortalLoadingOpen;
         //LoadingScene의 PortalLoadingClose 이벤트 구독
-        LoadingSceneEvents.OnPortalLoadingClose -= PortalLoadingClose;
+        LoadingEvents.OnPortalLoadingClose -= PortalLoadingClose;
     }
 
     //LoadingScene의 PortalLoadingOpen 이벤트

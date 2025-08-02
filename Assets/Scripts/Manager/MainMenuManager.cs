@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
 {
-    /*
-    SceneChangeType sceneChangeType;
-    float fadeTime;
-    string targetScene;
-    int slotNum;
-    */
 
     private void Start()
     {

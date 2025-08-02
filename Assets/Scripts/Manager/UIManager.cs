@@ -26,6 +26,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject TutorialPanel;
     //DialoguePanel
     [SerializeField] private GameObject DialoguePanel;
+    //SaveSlotLoadingPanel
+    [SerializeField] private GameObject SaveSlotLoadingPanel;
+    //PortalLoadingPanel
+    [SerializeField] private GameObject PortalLoadingPanel;
     //FadePanel
     [SerializeField] private GameObject FadePanel;
 
@@ -54,6 +58,8 @@ public class UIManager : MonoBehaviour
         if (SaveSlotPanel == null) SaveSlotPanel = transform.Find("UICanvas/SaveSlotPanel")?.gameObject;
         if (TutorialPanel == null) TutorialPanel = transform.Find("UICanvas/TutorialPanel")?.gameObject;
         if (DialoguePanel == null) DialoguePanel = transform.Find("UICanvas/DialoguePanel")?.gameObject;
+        if (SaveSlotLoadingPanel == null) SaveSlotLoadingPanel = transform.Find("UICanvas/LoadingPanel/SaveSlotLoadingPanel")?.gameObject;
+        if (PortalLoadingPanel == null) PortalLoadingPanel = transform.Find("UICanvas/LoadingPanel/PortalLoadingPanel")?.gameObject;
         if (FadePanel == null) FadePanel = transform.Find("UICanvas/FadePanel")?.gameObject;
 
         //검은 화면부터 시작되도록

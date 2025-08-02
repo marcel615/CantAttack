@@ -17,16 +17,16 @@ public class SaveSlotLoadingController : MonoBehaviour
     private void OnEnable()
     {
         //LoadingScene의 SaveSlotLoadingOpen 이벤트 구독
-        LoadingSceneEvents.OnSaveSlotLoadingOpen += SaveSlotLoadingOpen;
+        LoadingEvents.OnSaveSlotLoadingOpen += SaveSlotLoadingOpen;
         //LoadingScene의 SaveSlotLoadingClose 이벤트 구독
-        LoadingSceneEvents.OnSaveSlotLoadingClose += SaveSlotLoadingClose;
+        LoadingEvents.OnSaveSlotLoadingClose += SaveSlotLoadingClose;
     }
     private void OnDisable()
     {
         //LoadingScene의 SaveSlotLoadingOpen 이벤트 구독
-        LoadingSceneEvents.OnSaveSlotLoadingOpen -= SaveSlotLoadingOpen;
+        LoadingEvents.OnSaveSlotLoadingOpen -= SaveSlotLoadingOpen;
         //LoadingScene의 SaveSlotLoadingClose 이벤트 구독
-        LoadingSceneEvents.OnSaveSlotLoadingClose -= SaveSlotLoadingClose;
+        LoadingEvents.OnSaveSlotLoadingClose -= SaveSlotLoadingClose;
     }
 
     //LoadingScene의 SaveSlotLoadingOpen 이벤트 구독

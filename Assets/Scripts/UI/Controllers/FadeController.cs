@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeInputController : MonoBehaviour
+public class FadeController : MonoBehaviour
 {
     //자식 오브젝트
     [SerializeField] private Fade fade;

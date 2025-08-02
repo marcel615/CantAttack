@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PortalLoading : MonoBehaviour
+public class SaveSlotLoading : MonoBehaviour
 {
     //자식 오브젝트
     [SerializeField] private Slider progressBar;
     [SerializeField] private TextMeshProUGUI loadingText;
 
-    //PortalLoading 조작 관련 변수
+    //SaveSlotLoading 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
@@ -24,16 +24,16 @@ public class PortalLoading : MonoBehaviour
         if (loadingText == null) loadingText = transform.Find("LoadingText")?.GetComponent<TextMeshProUGUI>();
     }
 
-    //어디선가 PortalLoading 패널을 열었을 때
-    public void PortalLoadingOpen(float fadeTime, string targetScene)
+    //어디선가 SaveSlotLoading 패널을 열었을 때
+    public void SaveSlotLoadingOpen(SceneChangeType sceneChangeType, float fadeTime, string targetScene, int slotNum)
     {
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
 
         //TargetScene 로딩 진행
-        StartCoroutine(LoadSceneAsync(fadeTime, targetScene));
+        StartCoroutine(LoadSceneAsync(sceneChangeType, fadeTime, targetScene, slotNum));
 
     }
-    public void PortalLoadingClose()
+    public void SaveSlotLoadingClose()
     {
         if (currentPanel != null)
         {
@@ -41,12 +41,37 @@ public class PortalLoading : MonoBehaviour
         }
     }
 
-    IEnumerator LoadSceneAsync(float fadeTime, string targetScene)
+    IEnumerator LoadSceneAsync(SceneChangeType sceneChangeType, float fadeTime, string targetScene, int slotNum)
     {
         // 로딩 전 잠깐 대기 (페이드인)
-        LoadingSceneEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeIn);
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeIn);
         yield return new WaitForSeconds(fadeTime);
 
+        // 세이브파일 로드 시작
+        bool loadFinished = false;
+
+        void OnLoadFinished()
+        {
+            targetScene = MapManager.Instance.saveScene;    //타겟 씬 이름 알아냄
+            loadFinished = true;
+            SystemEvents.OnDataLoadFinished -= OnLoadFinished;
+        }
+        SystemEvents.OnDataLoadFinished += OnLoadFinished;
+
+        //sceneChangeType에 따른 발행 이벤트 차이
+        if(sceneChangeType == SceneChangeType.MainMenuContinue)
+        {
+            SystemEvents.InvokeNewGameORLatestSave();
+        }
+        else if(sceneChangeType == SceneChangeType.SaveSlot)
+        {
+            SystemEvents.InvokeDataLoadStart(slotNum);
+        }
+
+        // 세이브파일 로드 완료까지 대기
+        yield return new WaitUntil(() => loadFinished);
+
+        //비동기 씬 로딩 시작
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
         asyncLoad.allowSceneActivation = false;
 
@@ -62,7 +87,7 @@ public class PortalLoading : MonoBehaviour
         }
 
         // 강제 대기 (테스트용)
-        float fakeWait = 0.5f;
+        float fakeWait = 2f;
         float timer = 0f;
         while (timer < fakeWait)
         {
@@ -76,8 +101,11 @@ public class PortalLoading : MonoBehaviour
         loadingText.text = $"Loading... 100%";
 
         // 로딩 완료 후 잠깐 대기 (페이드아웃)
-        LoadingSceneEvents.InvokeLoadingSceneFadeOpen(fadeTime, FadeDirection.FadeOut);
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);
         yield return new WaitForSeconds(fadeTime);
+
+        //이 패널 닫기
+        SaveSlotLoadingClose();
 
         // 실제 씬 전환
         asyncLoad.allowSceneActivation = true;
