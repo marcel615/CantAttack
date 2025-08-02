@@ -40,6 +40,11 @@ public class SaveSlotLoading : MonoBehaviour
             UIPanelController.Close(ref currentPanel, gameObject);
         }
     }
+    void ResetPanel()
+    {
+        progressBar.value = 0f;
+        loadingText.text = $"Loading... 0%";
+    }
 
     IEnumerator LoadSceneAsync(SceneChangeType sceneChangeType, float fadeTime, string targetScene, int slotNum)
     {
@@ -105,6 +110,7 @@ public class SaveSlotLoading : MonoBehaviour
         yield return new WaitForSeconds(fadeTime);
 
         //¿Ã ∆–≥Œ ¥›±‚
+        ResetPanel();
         SaveSlotLoadingClose();
 
         // Ω«¡¶ æ¿ ¿¸»Ø

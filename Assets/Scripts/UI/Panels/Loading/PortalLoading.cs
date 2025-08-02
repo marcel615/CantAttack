@@ -40,6 +40,11 @@ public class PortalLoading : MonoBehaviour
             UIPanelController.Close(ref currentPanel, gameObject);
         }
     }
+    void ResetPanel()
+    {
+        progressBar.value = 0f;
+        loadingText.text = $"Loading... 0%";
+    }
 
     IEnumerator LoadSceneAsync(float fadeTime, string targetScene)
     {
@@ -81,6 +86,7 @@ public class PortalLoading : MonoBehaviour
         yield return new WaitForSeconds(fadeTime);
 
         //이 패널 닫기
+        ResetPanel();
         PortalLoadingClose();
 
         // 실제 씬 전환

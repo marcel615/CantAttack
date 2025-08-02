@@ -3,12 +3,12 @@
         "MaxHP": 5,
         "CurrentHP": 4,
         "position": {
-            "x": 115.00887298583985,
-            "y": 5.920009613037109
+            "x": 2.4230759143829347,
+            "y": -0.08001603186130524
         }
     },
     "systemSaveData": {},
     "mapSaveData": {
-        "saveScene": "Map1"
+        "saveScene": "Map2"
     }
 }

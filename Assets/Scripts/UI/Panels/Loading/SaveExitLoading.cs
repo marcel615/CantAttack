@@ -40,6 +40,11 @@ public class SaveExitLoading : MonoBehaviour
             UIPanelController.Close(ref currentPanel, gameObject);
         }
     }
+    void ResetPanel()
+    {
+        progressBar.value = 0f;
+        loadingText.text = $"Loading... 0%";
+    }
 
     IEnumerator LoadSceneAsync(float fadeTime, string targetScene)
     {
@@ -97,6 +102,7 @@ public class SaveExitLoading : MonoBehaviour
         yield return new WaitForSeconds(fadeTime);
 
         //이 패널 닫기
+        ResetPanel();
         SaveExitLoadingClose();
 
         // 실제 씬 전환
