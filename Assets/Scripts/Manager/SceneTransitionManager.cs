@@ -49,7 +49,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         StartCoroutine(PortalFadeOut(SceneChangeType.Portal, targetScene, -1));
     }
-    IEnumerator SaveSlotFadeOut(SceneChangeType sceneChangeType, string targetScene = null, int num = -1)
+    IEnumerator SaveSlotFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
     {
         //페이드아웃 진행
         FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);
@@ -62,7 +62,7 @@ public class SceneTransitionManager : MonoBehaviour
         LoadingSceneLoader.Init(sceneChangeType, fadeTime, targetScene, num);
 
     }
-    IEnumerator PortalFadeOut(SceneChangeType sceneChangeType, string targetScene = null, int num = -1)
+    IEnumerator PortalFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
     {
         //페이드아웃 진행
         FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);

@@ -168,7 +168,9 @@ public class SaveManager : MonoBehaviour
     {
         return new SaveData
         {
-            playerSaveData = (PlayerSaveData)SaveLoadDic["PlayerSaveHandler"].Save()
+            playerSaveData = (PlayerSaveData)SaveLoadDic["PlayerSaveHandler"].Save(),
+            systemSaveData = (SystemSaveData)SaveLoadDic["SystemSaveHandler"].Save(),
+            mapSaveData = (MapSaveData)SaveLoadDic["MapSaveHandler"].Save(),
 
         };
     }

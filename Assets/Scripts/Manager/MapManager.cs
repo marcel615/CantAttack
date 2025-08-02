@@ -64,7 +64,8 @@ public class MapManager : MonoBehaviour
 
     void GetLocalMapManager(LocalMapManager local)
     {
-        localMapManager = local;        
+        localMapManager = local;
+        saveScene = localMapManager.mapDataSO.sceneName;
     }
 
     void EnterPortal(string enterP, string targetS, string targetP, PortalWalkDirection walkDir)
@@ -89,17 +90,21 @@ public class MapManager : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //씬 로드 시 이전에 저장했던 도착포탈의 이름과 같다면
-        if(scene.name == targetScene)
+        //메인메뉴로 나가면 세이브슬롯 로드할 때 필요한 플래그 false로 초기화
+        if(scene.name == "MainMenu")
+        {
+            isSavedSceneLoaded = false;
+        }
+        //씬 로드 시 포탈 씬 체인지중이고, 씬 이름이 이전에 저장했던 도착포탈의 이름과 같다면
+        if(isPortalSceneChange && scene.name == targetScene)
         {
             isTargetScene = true;
-        }
-        if(isPortalSceneChange && scene.name != "LoadingScene")
-        {
+
             targetPortalPos = localMapManager.GetPortalPos(targetPortalID);
             MapEvents.InvokeGetPlayerPos(targetPortalPos);
             isPortalSceneChange = false;
         }
+        //세이브슬롯에서부터 로드할 때이고, 씬 이름이 저장된 씬 이름과 같다면
         if (!isSavedSceneLoaded && scene.name == saveScene)
         {
             MapEvents.InvokeSavedSceneLoaded();
