@@ -1175,8 +1175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextArea: {fileID: 6475646436471007173}
-  thisContext: 6
-  beforeContext: 0
 --- !u!1 &1892242835072372426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,6 +1911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4ce2643a531174798d8bd0eed66fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingPanel: {fileID: 7649298500221405550}
   progressBar: {fileID: 5360151608827887393}
   loadingText: {fileID: 1916292894938833337}
 --- !u!1 &2415287899652774634
@@ -3356,6 +3355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c004500030a2edb449d6d5293d8b8222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingPanel: {fileID: 7649298500221405550}
   progressBar: {fileID: 4163502368497953362}
   loadingText: {fileID: 6587785501309108482}
 --- !u!1 &3775820705485706078
@@ -3452,8 +3452,6 @@ MonoBehaviour:
   SaveSlotScrollViewPanel: {fileID: 6044815670321499311}
   ContentPanel: {fileID: 1610518337157391752}
   SlotPrefab: {fileID: 417393785844780556, guid: 20d81ec09334132438a0509b1c380338, type: 3}
-  thisContext: 5
-  beforeContext: 0
 --- !u!1 &3868365800656154799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,6 +4769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee756f11a32c5d042af81ab25463b9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingPanel: {fileID: 7649298500221405550}
   progressBar: {fileID: 7186960885590843295}
   loadingText: {fileID: 5392352196907868397}
 --- !u!1 &5230072988969862139
@@ -6290,8 +6289,6 @@ MonoBehaviour:
   AudioButton: {fileID: 3415537326910266258}
   ControlsButton: {fileID: 5483083609119590663}
   UIAndAccessibilityButton: {fileID: 5843798401798338840}
-  thisContext: 3
-  beforeContext: 0
 --- !u!1 &6513484088076881417
 GameObject:
   m_ObjectHideFlags: 0
@@ -7559,8 +7556,6 @@ MonoBehaviour:
   ContinueButton: {fileID: 817693698797390694}
   SettingButton: {fileID: 3922816874353565130}
   SaveAndExitButton: {fileID: 818146650769860735}
-  thisContext: 2
-  beforeContext: 0
 --- !u!1 &7649298500221405550
 GameObject:
   m_ObjectHideFlags: 0
@@ -7576,7 +7571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8330724302263782375
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8210,8 +8205,6 @@ MonoBehaviour:
   LoadGameButton: {fileID: 1837261141032752855}
   SettingButton: {fileID: 1034624107632045529}
   QuitButton: {fileID: 5530086454336000599}
-  thisContext: 4
-  beforeContext: 0
 --- !u!1 &8097781275883135438
 GameObject:
   m_ObjectHideFlags: 0

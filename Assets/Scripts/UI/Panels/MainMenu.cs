@@ -17,8 +17,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button QuitButton;
 
     //컨텍스트 enum 정보
-    public InputContext thisContext = InputContext.MainMenu;
-    public InputContext beforeContext;
+    InputContext thisContext = InputContext.MainMenu;
+    InputContext beforeContext;
 
     //MainMenu 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
@@ -37,8 +37,6 @@ public class MainMenu : MonoBehaviour
         if (SettingButton == null) SettingButton = transform.Find("MainMenuSelectPanel/SettingButton")?.GetComponent<Button>();
         if (QuitButton == null) QuitButton = transform.Find("MainMenuSelectPanel/QuitButton")?.GetComponent<Button>();
 
-        //초기화 작업
-        SelectFirstButton();
     }
     public void Init()
     {
@@ -49,32 +47,19 @@ public class MainMenu : MonoBehaviour
         QuitButton.onClick.AddListener(OnClickQuit);
     }
 
-    void SelectFirstButton()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-
-        Selectable firstSelectable = MainMenuSelectPanel.GetComponentInChildren<Selectable>();
-        if (firstSelectable != null)
-        {
-            firstSelectable.Select();
-        }
-        UIPanelController.OpenPanel(panelStack, ref currentPanel, MainMenuSelectPanel, gameObject);
-
-    }
-
     //어디선가 MainMenu 패널을 열었을 때
     public void MainMenuOpen(InputContext sourceInputContext)
     {
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, MainMenuSelectPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, true);
+        InputEvents.InvokeContextUpdate(thisContext);
     }
     //어디선가 MainMenu 패널을 닫았을 때
     public void MainMenuClose(InputContext sourceInputContext)
     {
+        beforeContext = sourceInputContext;
         //닫기
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
     }
 
     ///<Input>
@@ -102,26 +87,16 @@ public class MainMenu : MonoBehaviour
 
     void OnClickContinue()
     {
-        //SystemEvents.InvokeNewGameORLatestSave();
         SceneTransitionEvents.InvokeContinueToGameScene();
-
-        //UIPanelController.Close(ref currentPanel, gameObject);
-        //InputEvents.InvokeContextUpdate(thisContext, false);
-        //InputEvents.InvokeContextUpdate(InputContext.Player, true);
     }
     void OnClickLoadGame()
     {
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.SaveSlot, true);
         InputEvents.SaveSlot.InvokeSaveSlotOpen(thisContext);
-
     }
     void OnClickSetting()
     {
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.Setting, true);
         InputEvents.Setting.InvokeSettingOpen(thisContext);
     }
     void OnClickQuit()

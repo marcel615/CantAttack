@@ -11,8 +11,8 @@ public class Dialogue : MonoBehaviour
 
 
     //컨텍스트 enum 정보
-    public InputContext thisContext = InputContext.Dialogue;
-    public InputContext beforeContext;
+    InputContext thisContext = InputContext.Dialogue;
+    InputContext beforeContext;
 
     //Dialogue 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
@@ -34,7 +34,7 @@ public class Dialogue : MonoBehaviour
     {
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, true);
+        InputEvents.InvokeContextUpdate(thisContext);
 
         messages = msg;
         messagesMax = messages.Count;
@@ -53,8 +53,7 @@ public class Dialogue : MonoBehaviour
         {
             //닫기
             UIPanelController.Close(ref currentPanel, gameObject);
-            InputEvents.InvokeContextUpdate(thisContext, false);
-            InputEvents.InvokeContextUpdate(InputContext.Player, true);
+            InputEvents.InvokeContextUpdate(InputContext.Player);
         }
     }
     //Enter랑 E 둘 다 대사 넘기기 작업 구현하기
@@ -75,8 +74,7 @@ public class Dialogue : MonoBehaviour
     void EndDialogue()
     {
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.Player, true);
+        InputEvents.InvokeContextUpdate(InputContext.Player);
     }
     void CheckMessageMax()
     {

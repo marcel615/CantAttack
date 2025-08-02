@@ -102,7 +102,7 @@ public class SceneTransitionManager : MonoBehaviour
     void ContinueToGameScene()
     {
         //Context 변경 이벤트
-        InputEvents.InvokeContextUpdate(InputContext.SceneChange, true);
+        InputEvents.InvokeContextUpdate(InputContext.SceneChange);
 
         //씬 전환 중요 변수 저장
         sceneChangeType = SceneChangeType.MainMenuContinue;
@@ -115,7 +115,7 @@ public class SceneTransitionManager : MonoBehaviour
     void SaveSlotToGameScene(int num)
     {
         //Context 변경 이벤트
-        InputEvents.InvokeContextUpdate(InputContext.SceneChange, true);
+        InputEvents.InvokeContextUpdate(InputContext.SceneChange);
 
         //씬 전환 중요 변수 저장
         sceneChangeType = SceneChangeType.SaveSlot;
@@ -127,6 +127,9 @@ public class SceneTransitionManager : MonoBehaviour
     }
     void PortalToPortal(string targetS)
     {
+        //Context 변경 이벤트
+        InputEvents.InvokeContextUpdate(InputContext.SceneChange);
+
         //씬 전환 중요 변수 저장
         sceneChangeType = SceneChangeType.Portal;
         targetScene = targetS;
@@ -137,6 +140,9 @@ public class SceneTransitionManager : MonoBehaviour
     }
     void SystemMenuToMainMenu(string targetS)
     {
+        //Context 변경 이벤트
+        InputEvents.InvokeContextUpdate(InputContext.SceneChange);
+
         //씬 전환 중요 변수 저장
         sceneChangeType = SceneChangeType.SystemMenu;
         targetScene = targetS;
@@ -200,9 +206,6 @@ public class SceneTransitionManager : MonoBehaviour
         //페이드인 진행
         FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeIn);
         yield return new WaitForSeconds(fadeTime);
-
-        //컨텍스트 업데이트
-        InputEvents.InvokeContextUpdate(InputContext.SceneChange, false);
     }
 
 

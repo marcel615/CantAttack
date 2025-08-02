@@ -16,8 +16,8 @@ public class SystemMenu : MonoBehaviour
     [SerializeField] private Button SaveAndExitButton;
 
     //컨텍스트 enum 정보
-    public InputContext thisContext = InputContext.SystemMenu;
-    public InputContext beforeContext;
+    InputContext thisContext = InputContext.SystemMenu;
+    InputContext beforeContext;
 
     //SystemMenu 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
@@ -46,14 +46,14 @@ public class SystemMenu : MonoBehaviour
     {
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, SystemMenuSelectPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, true);
+        InputEvents.InvokeContextUpdate(thisContext);
     }
     //어디선가 SystemMenu 패널을 닫았을 때
     public void SystemMenuClose(InputContext sourceInputContext)
     {
+        beforeContext = sourceInputContext;
         //닫기
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
     }
 
     ///<Input>
@@ -68,14 +68,13 @@ public class SystemMenu : MonoBehaviour
         {
             //닫기
             UIPanelController.Close(ref currentPanel, gameObject);
-            InputEvents.InvokeContextUpdate(thisContext, false);
             if (beforeContext == InputContext.Player)
             {
-                InputEvents.InvokeContextUpdate(InputContext.Player, true);
+                InputEvents.InvokeContextUpdate(InputContext.Player);
             }
             if (beforeContext == InputContext.Setting)
             {
-                InputEvents.InvokeContextUpdate(InputContext.Player, true);
+                InputEvents.InvokeContextUpdate(InputContext.Player);
             }
         }
     }
@@ -92,14 +91,11 @@ public class SystemMenu : MonoBehaviour
     void OnClickContinue()
     {
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.Player, true);
+        InputEvents.InvokeContextUpdate(InputContext.Player);
     }
     void OnClickSetting()
     {
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
-        InputEvents.InvokeContextUpdate(InputContext.Setting, true);
         InputEvents.Setting.InvokeSettingOpen(thisContext);
     }
     void OnClickSaveAndExit()

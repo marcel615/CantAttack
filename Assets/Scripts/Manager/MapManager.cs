@@ -108,6 +108,8 @@ public class MapManager : MonoBehaviour
         if (!isSavedSceneLoaded && scene.name == saveScene)
         {
             MapEvents.InvokeSavedSceneLoaded();
+            //Context 업데이트
+            InputEvents.InvokeContextUpdate(InputContext.Player);
             isSavedSceneLoaded = true;
         }
     }

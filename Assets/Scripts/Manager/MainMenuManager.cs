@@ -10,7 +10,7 @@ public class MainMenuManager : MonoBehaviour
     {
         //StartCoroutine(OpenMainMenuAfterFade(SceneTransitionManager.Instance.fadeTime));
         InputEvents.MainMenu.InvokeMainMenuOpen(InputContext.Boot);
-        InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
+        //InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
 
     }
     IEnumerator OpenMainMenuAfterFade(float fadeTime)

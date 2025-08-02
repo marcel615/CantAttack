@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class SaveSlotLoading : MonoBehaviour
 {
+    //부모 패널
+    [SerializeField] private GameObject loadingPanel;
+
     //자식 오브젝트
     [SerializeField] private Slider progressBar;
     [SerializeField] private TextMeshProUGUI loadingText;
@@ -27,7 +30,7 @@ public class SaveSlotLoading : MonoBehaviour
     //어디선가 SaveSlotLoading 패널을 열었을 때
     public void SaveSlotLoadingOpen(SceneChangeType sceneChangeType, float fadeTime, string targetScene, int slotNum)
     {
-        UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, gameObject);
+        UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, loadingPanel);
 
         //TargetScene 로딩 진행
         StartCoroutine(LoadSceneAsync(sceneChangeType, fadeTime, targetScene, slotNum));
@@ -37,7 +40,7 @@ public class SaveSlotLoading : MonoBehaviour
     {
         if (currentPanel != null)
         {
-            UIPanelController.Close(ref currentPanel, gameObject);
+            UIPanelController.Close(ref currentPanel, loadingPanel);
         }
     }
     void ResetPanel()

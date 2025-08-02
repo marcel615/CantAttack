@@ -21,8 +21,8 @@ public class Setting : MonoBehaviour
     [SerializeField] private Button UIAndAccessibilityButton;
 
     //컨텍스트 enum 정보
-    public InputContext thisContext = InputContext.Setting;
-    public InputContext beforeContext;
+    InputContext thisContext = InputContext.Setting;
+    InputContext beforeContext;
 
     //Setting 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
@@ -64,7 +64,7 @@ public class Setting : MonoBehaviour
     {
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, SettingSelectPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, true);
+        InputEvents.InvokeContextUpdate(thisContext);
 
         //이전 컨텍스트가 MainMenu였을 경우 배경 투명도 반투명
         if(beforeContext == InputContext.MainMenu)
@@ -90,15 +90,12 @@ public class Setting : MonoBehaviour
         {
             //닫기
             UIPanelController.Close(ref currentPanel, gameObject);
-            InputEvents.InvokeContextUpdate(thisContext, false);
             if (beforeContext == InputContext.SystemMenu)
             {
-                InputEvents.InvokeContextUpdate(InputContext.SystemMenu, true);
                 InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
             }
             else if (beforeContext == InputContext.MainMenu)
             {
-                InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
                 InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
             }
         }

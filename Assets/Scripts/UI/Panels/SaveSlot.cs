@@ -17,8 +17,8 @@ public class SaveSlot : MonoBehaviour
     int slotCount;
 
     //컨텍스트 enum 정보
-    public InputContext thisContext = InputContext.SaveSlot;
-    public InputContext beforeContext;
+    InputContext thisContext = InputContext.SaveSlot;
+    InputContext beforeContext;
 
     //SaveSlot 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
@@ -48,14 +48,14 @@ public class SaveSlot : MonoBehaviour
 
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, ContentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, true);
+        InputEvents.InvokeContextUpdate(thisContext);
     }
     //어디선가 SaveSlot 패널을 닫았을 때
     public void SaveSlotClose(InputContext sourceInputContext)
     {
+        beforeContext = sourceInputContext;
         //닫기
         UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(thisContext, false);
     }
 
     ///<Input>
@@ -70,10 +70,8 @@ public class SaveSlot : MonoBehaviour
         {
             //닫기
             UIPanelController.Close(ref currentPanel, gameObject);
-            InputEvents.InvokeContextUpdate(thisContext, false);
             if (beforeContext == InputContext.MainMenu)
             {
-                InputEvents.InvokeContextUpdate(InputContext.MainMenu, true);
                 InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
             }
         }

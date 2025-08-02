@@ -19,9 +19,9 @@ public class TutorialArea : MonoBehaviour
 
     }
     //Context가 바뀔 때 그게 Player였고, 플레이어가 Trigger 안에 위치할 때 다시 튜토리얼 메시지 뜨도록 하는 메소드
-    void CheckTutorialUIReOpen(InputContext context, bool state)
+    void CheckTutorialUIReOpen(InputContext context)
     {
-        if((context == InputContext.Player) && state && isPlayerInside)
+        if((context == InputContext.Player) && isPlayerInside)
         {
             MessageManager.Instance.tutorialMessageManager.ShowMessage(tutorialMessage);
         }

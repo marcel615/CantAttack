@@ -56,7 +56,7 @@ public class PlayerPortal : MonoBehaviour
                 {
                     isTargetScene = false;
                     //Context 변경 이벤트
-                    InputEvents.InvokeContextUpdate(InputContext.SceneChange, false);
+                    InputEvents.InvokeContextUpdate(InputContext.Player);
                 }
             }
         }

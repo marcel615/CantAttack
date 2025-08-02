@@ -33,18 +33,18 @@ public class Tutorial : MonoBehaviour
         message = msg;
         StartTutorial();
     }
-    void StartTutorial()
-    {
-        TextArea.text = message;
-    }
     public void TutorialClose()
     {
         if (currentPanel != null)
         {
             UIPanelController.Close(ref currentPanel, gameObject);
-            InputEvents.InvokeContextUpdate(thisContext, false);
+            //InputEvents.InvokeContextUpdate(thisContext, false);
             message = null;
         }
+    }
+    void StartTutorial()
+    {
+        TextArea.text = message;
     }
 
 }

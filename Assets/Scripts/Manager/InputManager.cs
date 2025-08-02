@@ -12,7 +12,6 @@ public class InputManager : MonoBehaviour
 
     //Context 관리 변수들
     InputContext currentContext = InputContext.Boot;
-    bool currentContextState = true;
 
     //키 입력 가능한지 플래그
     bool isInputPossible = true;
@@ -47,8 +46,11 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(currentContext);
+        //Debug.Log("H: " + H);
+        //Debug.Log("D: " + D);
         //Debug.Log(isInputPossible);
+        Debug.Log(currentContext);
+
         if (!isInputPossible) return; //입력 불가능한 상태면 입력 못받도록
 
         //사용자 입력들 받아오기
@@ -63,8 +65,6 @@ public class InputManager : MonoBehaviour
         E = Input.GetButtonDown("Interact");
 
         R = Input.GetButtonDown("UseHealItem");
-        //Debug.Log("H: " + H);
-        //Debug.Log("D: " + D);
         //이벤트 발행
         switch (currentContext)
         {
@@ -80,7 +80,6 @@ public class InputManager : MonoBehaviour
                 InputEvents.Player.InvokeParry(P);
                 InputEvents.Player.InvokeCancel(Esc);
                 InputEvents.Player.InvokeInteract(E);
-
 
                 break;
 
@@ -128,7 +127,6 @@ public class InputManager : MonoBehaviour
                 break;
 
                 //InputEvents.InvokeUseHealItem(R);
-
         }
 
     }
@@ -161,33 +159,9 @@ public class InputManager : MonoBehaviour
 
     }
     //Context 변경 이벤트
-    void ContextManage(InputContext context, bool state)
+    void ContextManage(InputContext context)
     {
-        //받은 컨텍스트가 On일 때
-        if (state)
-        {
-            currentContext = context;
-            currentContextState = state;
-            if(context == InputContext.Player)
-            {
-                Time.timeScale = 1;
-            }
-            /*
-            else if()
-            {
-                if(context != InputContext.SceneChange)
-                {
-                    Time.timeScale = 0;
-                }
-            }
-            */
-        }
-        //받은 컨텍스트가 Off일 때
-        else
-        {
-            currentContext = InputContext.Player;
-            currentContextState = true;
-        }        
+        currentContext = context;
     }
     //패널 내 버튼에 포커스
     void SelectFirstButton(GameObject panel)
@@ -199,7 +173,6 @@ public class InputManager : MonoBehaviour
         {
             firstSelectable.Select();
         }
-
     }
 
     //세이브&로드 이벤트로 입력 받는 거 제한 걸 때

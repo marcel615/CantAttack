@@ -30,5 +30,23 @@ public class GameManager : MonoBehaviour
         
     }
 
+    void SetTimeScale()
+    {
+        /*
+        if (context == InputContext.Player)
+        {
+            Time.timeScale = 1;
+        }
+        
+        else if()
+        {
+            if(context != InputContext.SceneChange)
+            {
+                Time.timeScale = 0;
+            }
+        }
+        */
+    }
+
 
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 public static class InputEvents
 {
     //InputManager의 Context 관리 이벤트
-    public static event Action<InputContext, bool> OnContextUpdate;
+    public static event Action<InputContext> OnContextUpdate;
     //각 UI들의 가장 위의 Selectable 오브젝트 선택하게 해주는 이벤트
     public static event Action<GameObject> OnSelectFirstSelectable;
 
     //InputManager의 Context 관리 이벤트
-    public static void InvokeContextUpdate(InputContext context, bool state)
+    public static void InvokeContextUpdate(InputContext context)
     {
-        OnContextUpdate?.Invoke(context, state);
+        OnContextUpdate?.Invoke(context);
     }
     //각 UI들의 가장 위의 Selectable 오브젝트 선택하게 해주는 이벤트
     public static void InvokeSelectFirstSelectable(GameObject panel)
