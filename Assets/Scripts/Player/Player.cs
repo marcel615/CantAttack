@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         //땅 체크 오브젝트 연결
         if (groundCheckObj == null) groundCheckObj = transform.Find("GroundCheckObject")?.GetComponent<Transform>();
         
-        groundLayer = LayerMask.GetMask("Ground");
+        groundLayer = LayerMask.GetMask("Ground","");
 
     }
     private void FixedUpdate()
