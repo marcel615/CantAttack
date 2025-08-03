@@ -88,7 +88,7 @@ public class SaveSlot : MonoBehaviour
     //SaveSlot 생성하는 메소드
     void InitSaveSlotPrefab()
     {
-        slotCount = GameManager.Instance.slotCount;
+        slotCount = SaveManager.Instance.slotCount;
 
         for (int i = 1; i < slotCount + 1; i++)
         {

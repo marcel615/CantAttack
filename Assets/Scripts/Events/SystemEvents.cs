@@ -24,6 +24,10 @@ public static class SystemEvents
     //MapManager에서 해당 Scene에서의 map의 minpos와 maxpos를 계산완료했다는 이벤트
     public static event Action<Vector3, Vector3> OnGetMapPos;
 
+    //GameManager한테 TimeScale 바꿔달라고 요청하는 이벤트
+    public static event Action<float> OnChangeTimeScale;
+
+
 
     //SaveManager의 딕셔너리 설정 이벤트 발행
     public static void InvokeSaveDicKeyRequested(SaveManager saveManager)
@@ -63,5 +67,11 @@ public static class SystemEvents
     public static void InvokeGetMapPos(Vector3 minPos, Vector3 maxPos)
     {
         OnGetMapPos?.Invoke(minPos, maxPos);
+    }
+
+    //GameManager한테 TimeScale 바꿔달라고 요청하는 이벤트
+    public static void InvokeChangeTimeScale(float timeScale)
+    {
+        OnChangeTimeScale?.Invoke(timeScale);
     }
 }

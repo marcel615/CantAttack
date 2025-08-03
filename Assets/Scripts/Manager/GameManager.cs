@@ -8,10 +8,6 @@ public class GameManager : MonoBehaviour
     //오브젝트 중복체크를 위한 인스턴스 생성
     public static GameManager Instance { get; private set; }
 
-    //세이브슬롯 개수
-    public int slotCount = 30;
-
-
     //지금 실행이 테스트인지 체크하는 플래그
     public bool isTest;
 
@@ -29,23 +25,21 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
     }
-
-    void SetTimeScale()
+    //이벤트 구독
+    private void OnEnable()
     {
-        /*
-        if (context == InputContext.Player)
-        {
-            Time.timeScale = 1;
-        }
-        
-        else if()
-        {
-            if(context != InputContext.SceneChange)
-            {
-                Time.timeScale = 0;
-            }
-        }
-        */
+        //GameManager한테 TimeScale 바꿔달라고 요청하는 이벤트
+        SystemEvents.OnChangeTimeScale += ChangeTimeScale;
+    }
+    private void OnDisable()
+    {
+        //GameManager한테 TimeScale 바꿔달라고 요청하는 이벤트
+        SystemEvents.OnChangeTimeScale += ChangeTimeScale;
+    }
+
+    void ChangeTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
     }
 
 

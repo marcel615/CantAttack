@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class SaveManager : MonoBehaviour
 {
     //오브젝트 중복체크를 위한 인스턴스 생성
-    private static SaveManager Instance;
+    public static SaveManager Instance;
 
     //딕셔너리로 SaveData 내 여러 Data분류 가능하게 하기
     Dictionary<string, ISaveLoadable> SaveLoadDic;
@@ -22,7 +22,7 @@ public class SaveManager : MonoBehaviour
 
     //테스트인지 확인 
     bool isTestSave;
-    int slotCount; //세이브파일 개수 
+    public int slotCount = 30; //세이브파일 개수 
 
     //세이브&로드 Path 관련
     string TestSavePath => Path.Combine(Application.dataPath, "TestSaveFolder");  //테스트 경로
@@ -181,7 +181,6 @@ public class SaveManager : MonoBehaviour
     void NewGameORLatestSave()
     {
         isTestSave = GameManager.Instance.isTest;
-        slotCount = GameManager.Instance.slotCount;
 
         string fileName;
         string filePath;

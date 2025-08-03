@@ -47,6 +47,9 @@ public class SystemMenu : MonoBehaviour
         beforeContext = sourceInputContext;
         UIPanelController.OpenPanel(panelStack, ref currentPanel, SystemMenuSelectPanel, gameObject);
         InputEvents.InvokeContextUpdate(thisContext);
+
+        //게임 시간 멈추도록 이벤트 발행
+        SystemEvents.InvokeChangeTimeScale(0f);
     }
     //어디선가 SystemMenu 패널을 닫았을 때
     public void SystemMenuClose(InputContext sourceInputContext)
@@ -68,14 +71,9 @@ public class SystemMenu : MonoBehaviour
         {
             //닫기
             UIPanelController.Close(ref currentPanel, gameObject);
-            if (beforeContext == InputContext.Player)
-            {
-                InputEvents.InvokeContextUpdate(InputContext.Player);
-            }
-            if (beforeContext == InputContext.Setting)
-            {
-                InputEvents.InvokeContextUpdate(InputContext.Player);
-            }
+            InputEvents.InvokeContextUpdate(InputContext.Player);
+            //게임 시간 다시 흘러가도록 이벤트 발행
+            SystemEvents.InvokeChangeTimeScale(1f);
         }
     }
     public void Enter(bool enter)
@@ -92,6 +90,8 @@ public class SystemMenu : MonoBehaviour
     {
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
+        //게임 시간 다시 흘러가도록 이벤트 발행
+        SystemEvents.InvokeChangeTimeScale(1f);
     }
     void OnClickSetting()
     {
@@ -100,6 +100,9 @@ public class SystemMenu : MonoBehaviour
     }
     void OnClickSaveAndExit()
     {
+        //게임 시간 다시 흘러가도록 이벤트 발행
+        SystemEvents.InvokeChangeTimeScale(1f);
+        //씬 전환 시작
         SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
     }
 

@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89515fd15626d264db9e9859fedbacf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotCount: 30
   isTest: 1
 --- !u!4 &59692540
 Transform:
@@ -545,6 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18525b637a86b2d4d991951c3721aaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotCount: 30
   testSaveData: {fileID: 11400000, guid: a70cd1290ae03a74aa643e2a295a9f8d, type: 2}
   realSaveData: {fileID: 11400000, guid: 17b4b06740b85154a98e65c5d7c97c34, type: 2}
 --- !u!4 &1754338401
