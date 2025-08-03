@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TutorialMessage
   m_EditorClassIdentifier: 
   messageID: Tuto_Move_001
-  messageKor: "\uBC29\uD5A5\uD0A4(<-  ->)\uB85C \uC774\uB3D9\uD560 \uC218 \uC788\uC5B4\uC694"
+  messageKor: "\uBC29\uD5A5\uD0A4\uB85C \uC774\uB3D9\uD560 \uC218 \uC788\uC5B4\uC694"

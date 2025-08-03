@@ -229,7 +229,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1219256934720894765, guid: fd768a0a3f02b5b4580a109a48a61be8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 111
+      value: 106.91
       objectReference: {fileID: 0}
     - target: {fileID: 1219256934720894765, guid: fd768a0a3f02b5b4580a109a48a61be8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -274,6 +274,14 @@ PrefabInstance:
     - target: {fileID: 6688953009508777526, guid: fd768a0a3f02b5b4580a109a48a61be8, type: 3}
       propertyPath: m_Size.x
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688953009508777526, guid: fd768a0a3f02b5b4580a109a48a61be8, type: 3}
+      propertyPath: m_Size.y
+      value: 3.8303585
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688953009508777526, guid: fd768a0a3f02b5b4580a109a48a61be8, type: 3}
+      propertyPath: m_Offset.y
+      value: -2.0848207
       objectReference: {fileID: 0}
     - target: {fileID: 6806963806914634872, guid: fd768a0a3f02b5b4580a109a48a61be8, type: 3}
       propertyPath: tutorialMessage
@@ -34525,7 +34533,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1090555577382337781, guid: eb8e035051388144496a33c498edaab5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 111.28
+      value: 115.15
       objectReference: {fileID: 0}
     - target: {fileID: 1090555577382337781, guid: eb8e035051388144496a33c498edaab5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -34566,6 +34574,38 @@ PrefabInstance:
     - target: {fileID: 1399221428603089571, guid: eb8e035051388144496a33c498edaab5, type: 3}
       propertyPath: m_Name
       value: NPC1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476172049246172739, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265972861613660762, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735926735746073237, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_text
+      value: "\uB300\uD654"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735926735746073237, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_fontSize
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735926735746073237, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735926735746073237, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735926735746073237, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735926735746073237, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

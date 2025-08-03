@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TutorialMessage 9
   m_EditorClassIdentifier: 
   messageID: Tuto_Dialogue_001
-  messageKor: "E\uD0A4 \uD639\uC740 Enter\uD0A4\uB97C \uB20C\uB7EC\uC11C \uB300\uC0AC\uB97C
-    \uB118\uAE38 \uC218 \uC788\uC5B4\uC694"
+  messageKor: "E\uD0A4\uB97C \uB20C\uB7EC \uC0C1\uD638\uC791\uC6A9\nE\uD0A4 \uD639\uC740
+    Enter\uD0A4\uB97C \uB20C\uB7EC\uC11C \uB300\uC0AC \uB118\uAE30\uAE30"
