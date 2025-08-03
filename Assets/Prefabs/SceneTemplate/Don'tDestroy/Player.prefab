@@ -65,8 +65,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.52, y: 1.8}
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 1.3, y: 1.6}
   m_Direction: 0
 --- !u!114 &3141723527921231533
 MonoBehaviour:
@@ -156,7 +156,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.52, y: 0.01}
+  m_Size: {x: 0.9, y: 0.01}
   m_EdgeRadius: 0
 --- !u!1 &4071231574707460687
 GameObject:
@@ -222,8 +222,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.52, y: 1.8}
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 0.9, y: 1.6}
   m_Direction: 0
 --- !u!1 &4485503838152790450
 GameObject:
@@ -388,8 +388,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.52, y: 1.8}
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 1.5, y: 1.8}
   m_Direction: 0
 --- !u!95 &8943835541902880013
 Animator:
@@ -439,7 +439,6 @@ MonoBehaviour:
   isKnockedBack: 0
   isGrounded: 0
   isPortalEnter: 0
-  isScenechanging: 0
   isInvincible: 0
   InvincibleTime_Hitted: 1.5
   InvincibleTimer: 0
@@ -565,7 +564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10254f39a89cbad4eae1721e7692969b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisContext: 1
 --- !u!114 &610944824034907700
 MonoBehaviour:
   m_ObjectHideFlags: 0

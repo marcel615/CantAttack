@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c64214157963354ca4faa04f251fff3, type: 3}
   m_Name: MapData_1
   m_EditorClassIdentifier: 
-  mapID: MAP_001
+  mapID: Map_01
   mapName: "\uD29C\uD1A0\uB9AC\uC5BC \uB9F5"
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 7df21fd1525dc7f489ff77c8eafd0aea, type: 3}

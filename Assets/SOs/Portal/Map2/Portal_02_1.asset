@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7802cd1d60dec6439e01eecc3620c87, type: 3}
-  m_Name: TestSaveDataSO
+  m_Script: {fileID: 11500000, guid: c73ad6490d09def46a846e02ea288268, type: 3}
+  m_Name: Portal_02_1
   m_EditorClassIdentifier: 
-  saveDataSO:
-    playerSaveData:
-      MaxHP: 5
-      CurrentHP: 4
-      position: {x: -3.5, y: 0}
-    mapSaveData:
-      saveScene: Map3
+  portalID: Portal_02_1
+  position: {x: -1.5, y: 0.5}
+  portalWalkDirection: 0
+  targetScene: Map1
+  targetPortalID: Portal_01_1
