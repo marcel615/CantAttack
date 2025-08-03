@@ -11,5 +11,9 @@ public class PlayerUIInput : MonoBehaviour
     {
         //SystemMenu 오픈
         InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
+
+        //이 때 튜토리얼이 열려있었다면 닫도록 해야 하기 때문에 실행
+        TutorialEvents.InvokeTutorialClose();
+
     }
 }
