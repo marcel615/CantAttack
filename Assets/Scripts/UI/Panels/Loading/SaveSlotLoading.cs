@@ -95,7 +95,7 @@ public class SaveSlotLoading : MonoBehaviour
         }
 
         // 강제 대기 (테스트용)
-        float fakeWait = 2f;
+        float fakeWait = 0.3f;
         float timer = 0f;
         while (timer < fakeWait)
         {

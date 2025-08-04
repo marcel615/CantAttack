@@ -36,7 +36,8 @@ public class Player : MonoBehaviour
 
     //기본 변수들
     public float normalSpeed = 6f;
-    public float normaljumpPower = 10f;
+    public float normalJumpPower = 10f;
+    public float doubleJumpPower = 20f;
     public float isHeadToRight = 1f; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
 
     //조작 제한 플래그
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
     public bool isKnockedBack;      //피격 시 넉백 관련 플래그
     public bool isGrounded;         //바닥 체크 플래그
     public bool isPortalEnter;      //포탈 진입 플래그
+    public bool isFalling;          //낙하 상태 플래그
 
     //발 밑에 땅이 있는지 체크 관련 변수들
     float checkRadius = 0.2f;
@@ -124,12 +126,14 @@ public class Player : MonoBehaviour
         }
 
         //플레이어 캐릭터가 떨어지고 있을 때 작업. 1.애니메이션 변수 조정
-        if (rigid.velocity.y < -0.01f)
+        if (rigid.velocity.y < -0.1f)
         {
+            isFalling = true;
             animator.SetBool("isFalling", true);
         }
         else
         {
+            isFalling = false;
             animator.SetBool("isFalling", false);
         }
     }

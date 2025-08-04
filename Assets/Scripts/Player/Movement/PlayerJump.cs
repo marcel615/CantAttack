@@ -15,7 +15,7 @@ public class PlayerJump : MonoBehaviour
     bool J_Hold;
 
     //Jump 관련 변수
-    float MaxJumpTime = 0.3f;
+    float MaxJumpTime = 0.35f;
     float MaxJumpTimer;
     int jumpCount = 0;
 
@@ -32,13 +32,24 @@ public class PlayerJump : MonoBehaviour
         //점프 눌렸을 때 플래그 && 땅에 서있으면 && jumpCount가 0이면 점프하도록
         if (J && player.isGrounded && jumpCount == 0 && player.canControl)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, player.normaljumpPower);
+            rigid.velocity = new Vector2(rigid.velocity.x, player.normalJumpPower);
             jumpCount = 1;
             MaxJumpTimer = MaxJumpTime;
             player.isJumping = true;
 
             animator.SetTrigger("isJump"); //애니메이션 변수 설정
 
+        }
+        //더블점프 구현
+        if((J && jumpCount == 1 && !player.isGrounded && player.canControl) ||  (J && jumpCount == 0 && player.isFalling && player.canControl))
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, player.doubleJumpPower);
+            jumpCount = 2;
+            player.isJumping = true;
+
+            animator.SetTrigger("isDoubleJump"); //애니메이션 변수 설정
+
+            //애니메이터 설정
         }
         J = false;
 
@@ -49,7 +60,7 @@ public class PlayerJump : MonoBehaviour
             {
                 if (MaxJumpTimer > 0) //점프 높이 제약 걸기
                 {
-                    rigid.velocity = new Vector2(rigid.velocity.x, player.normaljumpPower);
+                    rigid.velocity = new Vector2(rigid.velocity.x, player.normalJumpPower);
                     MaxJumpTimer -= Time.fixedDeltaTime;
 
                 }

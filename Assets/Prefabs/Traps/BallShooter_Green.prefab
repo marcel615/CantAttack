@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1495187659983951872}
   - component: {fileID: 4043829880123450351}
   - component: {fileID: 4269690916757161524}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BallShooter_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}

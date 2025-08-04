@@ -71,7 +71,7 @@ public class PortalLoading : MonoBehaviour
         }
 
         // 강제 대기 (테스트용)
-        float fakeWait = 0.5f;
+        float fakeWait = 0.1f;
         float timer = 0f;
         while (timer < fakeWait)
         {

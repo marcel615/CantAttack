@@ -11,7 +11,7 @@ public class SceneTransitionManager : MonoBehaviour
     public static SceneTransitionManager Instance;
 
     //페이드 시간
-    public float fadeTime = 1f;
+    public float fadeTime = 0.3f;
 
     //씬 전환 중요 변수들
     SceneChangeType sceneChangeType;
