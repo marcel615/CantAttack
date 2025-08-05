@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class EnemyReactionHandler : MonoBehaviour
 {
+    [SerializeField] private EnemyFSM FSM;
     [SerializeField] private Rigidbody2D rigid;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
 
     //넉백 방향
     Vector2 KnockbackDir;
-    //피격 색 변경 시간
-    float hitColorTime = 0.3f;
 
     //피격 색 변경되는 시간 코루틴
     Coroutine hitColorCoroutine;
@@ -19,10 +18,12 @@ public class EnemyReactionHandler : MonoBehaviour
 
     private void Awake()
     {
+        FSM = GetComponent<EnemyFSM>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
-    public void HitWithKnockback(Vector2 hittedPos)
+    public void HitWithKnockback(float hitColorTime, Vector2 hittedPos)
     {
         //넉백방향 설정
         SetKnockbackDir(hittedPos);
@@ -33,7 +34,7 @@ public class EnemyReactionHandler : MonoBehaviour
         CancelhitColor(); //만약 연속으로 피격될 경우 코루틴 겹치는거 방지
         hitColorCoroutine = StartCoroutine(ChangeColor(hitColorTime));
     }
-    public void HitWithoutKnockback()
+    public void HitWithoutKnockback(float hitColorTime)
     {
         // 투명도 변화
         CancelhitColor(); //만약 연속으로 피격될 경우 코루틴 겹치는거 방지

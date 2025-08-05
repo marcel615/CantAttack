@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 3101049265406035109}
   - component: {fileID: 7626903659307084991}
   - component: {fileID: 8634557002688745451}
-  - component: {fileID: 3624363216997307398}
   m_Layer: 0
   m_Name: Melee_A
   m_TagString: Untagged
@@ -363,18 +362,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45b59f8fc6cfd94cb402a584193cefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3624363216997307398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4942369251695572563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9e507e3318f1f4f8ad04203249c62d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enemyController: {fileID: 0}
+  reactionHandler: {fileID: 0}
+  currentState: {fileID: 0}
+  idleState: {fileID: 0}
+  chaseState: {fileID: 0}
+  attackState: {fileID: 0}
+  evadeState: {fileID: 0}
+  returnState: {fileID: 0}
+  deadState: {fileID: 0}
 --- !u!1 &8160542069400860818
 GameObject:
   m_ObjectHideFlags: 0

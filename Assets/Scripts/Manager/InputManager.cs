@@ -46,7 +46,7 @@ public class InputManager : MonoBehaviour
         //Debug.Log("H: " + H);
         //Debug.Log("D: " + D);
         //Debug.Log(isInputPossible);
-        Debug.Log(currentContext);
+        //Debug.Log(currentContext);
 
         //사용자 입력들 받아오기
         H = Input.GetAxisRaw("Horizontal");
