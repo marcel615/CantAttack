@@ -32,7 +32,6 @@ public class TrapBall : MonoBehaviour, IParryable
 
         if (collision.TryGetComponent<IDamageable>(out IDamageable target))
         {
-            Debug.Log("Test");
             target.TakeDamage(transform.position, damage);
             Destroy(gameObject);
         }

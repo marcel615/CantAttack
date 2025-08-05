@@ -27,13 +27,13 @@ public class EnemyReactionHandler : MonoBehaviour
         //넉백방향 설정
         SetKnockbackDir(hittedPos);
         //넉백 주기
-        rigid.AddForce(KnockbackDir * 15, ForceMode2D.Impulse);
+        rigid.AddForce(KnockbackDir * 5, ForceMode2D.Impulse);
 
         // 투명도 변화
         CancelhitColor(); //만약 연속으로 피격될 경우 코루틴 겹치는거 방지
         hitColorCoroutine = StartCoroutine(ChangeColor(hitColorTime));
     }
-    public void HitWithNoKnockback()
+    public void HitWithoutKnockback()
     {
         // 투명도 변화
         CancelhitColor(); //만약 연속으로 피격될 경우 코루틴 겹치는거 방지

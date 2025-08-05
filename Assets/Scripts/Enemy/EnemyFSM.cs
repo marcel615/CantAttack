@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyFSM : MonoBehaviour
 {
+    public EnemyController enemyController;
+    public EnemyReactionHandler reactionHandler;
+
     //상태 추적 변수
-    private EnemyState currentState;
+    public EnemyState currentState;
 
     //여러 상태들
     public EnemyState idleState;
@@ -16,12 +19,14 @@ public class EnemyFSM : MonoBehaviour
     //public EnemyState hitState;
     public EnemyState deadState;
 
-    EnemyReactionHandler reactionHandler;
 
 
 
     private void Awake()
     {
+        enemyController = GetComponent<EnemyController>();
+        reactionHandler = GetComponent<EnemyReactionHandler>();
+
         idleState.Init(this);
         chaseState.Init(this);
         attackState.Init(this);
@@ -30,7 +35,6 @@ public class EnemyFSM : MonoBehaviour
         //hitState.Init(this);
         deadState.Init(this);
 
-        reactionHandler = GetComponent<EnemyReactionHandler>();
     }
     private void Start()
     {
@@ -44,22 +48,6 @@ public class EnemyFSM : MonoBehaviour
         {
             currentState.UpdateState();
         }
-    }
-
-    public void OnHit(Vector2 hitTargetPos)
-    {
-        if (currentState == (chaseState || attackState))
-        {
-            reactionHandler.HitWithNoKnockback();
-        }
-        else
-        {
-            reactionHandler.HitWithKnockback(hitTargetPos);
-        }
-    }
-    public void OnDead()
-    {
-        ChangeState(deadState);
     }
 
     //State 변화가 들어오면 여기서 처리

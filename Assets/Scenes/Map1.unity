@@ -39464,10 +39464,24 @@ PrefabInstance:
       propertyPath: returnState
       value: 
       objectReference: {fileID: 8986673754320577058}
+    - target: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: enemyController
+      value: 
+      objectReference: {fileID: 8986673754320577065}
+    - target: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: reactionHandler
+      value: 
+      objectReference: {fileID: 8986673754320577049}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 8986673754320577065}
+    - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 8986673754320577049}
     - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8986673754320577051}
@@ -39486,9 +39500,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8986673754320577057}
-    - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8986673754320577049}
     - targetCorrespondingSourceObject: {fileID: 40019394786572775, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1044209577}
@@ -39859,7 +39870,7 @@ MonoBehaviour:
   patrolDistance: 0
   patrolMaxDistance: 3
   moveDistance: 0
-  patrolSpeed: 2
+  waitTime: 0
 --- !u!95 &8986673754320577053 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7626903659307084991, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
@@ -39935,6 +39946,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f141e459bd4f24f9093dbdad3d917c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8986673754320577063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+  m_PrefabInstance: {fileID: 2244930932506625014}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941183712496664439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45b59f8fc6cfd94cb402a584193cefc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8986673754320577065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941183712496664439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b7dff0660e97142b1b1a9ff395c115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FSM: {fileID: 8986673754320577063}
+  reactionHandler: {fileID: 8986673754320577049}
+  MaxHP: 10
+  CurrentHP: 0
+  patrolSpeed: 2
+  chaseSpeed: 0
+  isKnockbackEnable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

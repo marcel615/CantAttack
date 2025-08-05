@@ -5,20 +5,28 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     //내 컴포넌트
-    EnemyFSM FSM;
+    public EnemyFSM FSM;
+    public EnemyReactionHandler reactionHandler;
 
-    //인스펙터 할당 컴포넌트
-    public EnemyState hitState;
-    public EnemyState deadState;
-
-    public int MaxHP;
+    //Enemy 기본 정보들
+    public int MaxHP = 10;
     public int CurrentHP;
     public float patrolSpeed;
+    public float chaseSpeed;
 
-    public void Init()
+    //Enemy 기본 플래그
+    public bool isKnockbackEnable;
+
+
+
+    private void Awake()
     {
         FSM = GetComponent<EnemyFSM>();
-    }    
+        reactionHandler = GetComponent<EnemyReactionHandler>();
+
+        CurrentHP = MaxHP;
+        isKnockbackEnable = true;
+    }
 
     //이벤트 구독
     private void OnEnable()
@@ -35,11 +43,22 @@ public class EnemyController : MonoBehaviour
         //데미지 적용시키기
         CurrentHP -= damage;
 
-        //남은 체력에 따라 FSM에 State 전달
+        //남은 체력에 따라 넉백 혹은 FSM State 전환
         if (CurrentHP > 0)
-            FSM.OnHit(hitTargetPos);
+        {
+            if (isKnockbackEnable)
+            {
+                reactionHandler.HitWithKnockback(hitTargetPos);
+            }
+            else
+            {
+                reactionHandler.HitWithoutKnockback();
+            }
+        }
         else
-            FSM.OnDead();
+        {
+            FSM.ChangeState(FSM.deadState);
+        }
     }
 
 }

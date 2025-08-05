@@ -13,7 +13,6 @@ public class MeleeAIdleState : EnemyState
     public float patrolDistance;
     public float patrolMaxDistance;
     public float moveDistance;
-    public float patrolSpeed = 2f;
     public float waitTime;
     bool isWaiting;
 
@@ -32,7 +31,7 @@ public class MeleeAIdleState : EnemyState
         //순찰 거리 추적 변수 초기화
         moveDistance = 0;
         //순찰 한 번 돌고 잠시 멈출 시간 
-        waitTime = Random.Range(1f, 3f);
+        waitTime = Random.Range(3f, 6f);
 
     }
     public override void UpdateState()
@@ -45,7 +44,7 @@ public class MeleeAIdleState : EnemyState
         //순찰 거리가 충족되기 전까지 계속 순찰돌도록 구현
         if (moveDistance < patrolDistance)
         {
-            rigid.velocity = new Vector2(patrolDir * patrolSpeed, rigid.velocity.y);
+            rigid.velocity = new Vector2(patrolDir * FSM.enemyController.patrolSpeed, rigid.velocity.y);
         }
         else
         {
@@ -64,6 +63,6 @@ public class MeleeAIdleState : EnemyState
         yield return new WaitForSeconds(waitTime);
 
         isWaiting = false;
-        FSM.ChangeState(this);
+        FSM.ChangeState(FSM.idleState);
     }
 }
