@@ -39630,6 +39630,14 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7272632664903263232, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7272632664903263232, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8160542069400860818, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -40174,9 +40182,10 @@ MonoBehaviour:
   reactionHandler: {fileID: 8986673754320577049}
   MaxHP: 10
   CurrentHP: 0
+  isHeadToRight: 1
   patrolSpeed: 2
-  patrolMinDistance: 3
-  patrolMaxDistance: 4
+  patrolMinDistance: 6
+  patrolMaxDistance: 7
   patrolMinWaitTime: 2
   patrolMaxWaitTime: 3
   hitColorTime: 0.3

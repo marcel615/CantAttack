@@ -6,6 +6,8 @@ public class MeleeAIdleState : EnemyState
 {
     //내 컴포넌트
     Rigidbody2D rigid;
+    Animator animator;
+    SpriteRenderer spriteRenderer;
 
     //순찰 관련 Controller 변수
     float patrolSpeed;
@@ -25,6 +27,8 @@ public class MeleeAIdleState : EnemyState
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public override void Enter()
     {
@@ -42,6 +46,7 @@ public class MeleeAIdleState : EnemyState
         startPos = transform.position;  //시작 방향 초기화
         moveDistance = 0;   //순찰 거리 추적 변수 초기화
 
+        //StartCoroutine(WaitBeforeStart());
     }
     public override void UpdateState()
     {
@@ -53,8 +58,11 @@ public class MeleeAIdleState : EnemyState
         //순찰 거리가 충족되기 전까지 계속 순찰돌도록 구현
         if (moveDistance < patrolDistance)
         {
-            Debug.Log(patrolDir);
             rigid.velocity = new Vector2(patrolDir * patrolSpeed, rigid.velocity.y);
+
+            spriteRenderer.flipX = patrolDir < 0;
+            animator.SetBool("isMoving", true);
+            FSM.enemyController.isHeadToRight = (patrolDir > 0) ? 1 : -1; //patrolDir가 양수면 1 저장, 음수면 -1 저장
         }
         else
         {

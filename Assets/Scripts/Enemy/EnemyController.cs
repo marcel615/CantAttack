@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     //Enemy 기본 정보들
     public int MaxHP = 10;
     public int CurrentHP;
+    public float isHeadToRight = 1f; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
 
     //Idle에서 순찰할 때 관련 변수
     public float patrolSpeed;
