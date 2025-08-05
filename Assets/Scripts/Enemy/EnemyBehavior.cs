@@ -5,15 +5,23 @@ using UnityEngine;
 public abstract class EnemyBehavior : MonoBehaviour
 {
     protected EnemyFSM fsm;
-    public void Init(EnemyFSM fsm)
+    public EnemyReactionHandler reactionHandler;
+
+    protected bool isKnockbackEnable;
+    public int MaxHP;
+    public int CurrentHP;
+
+    public void Init()
     {
-        this.fsm = fsm;
+        fsm = GetComponent<EnemyFSM>();
+        reactionHandler = GetComponent<EnemyReactionHandler>();
     }    
     public abstract void Idle();
     public abstract void DetectAndChasePlayer();
     public abstract void Attack();
     public abstract void Evade();
     public abstract void Return();
+    public abstract void Hit(Vector2 hittedPos);
     public abstract void Dead();
 
 }

@@ -11,7 +11,7 @@ public static class PlayerEvents
     public static event Action<int, int> OnPlayerSpawned_HPUIManager;
 
     //PlayerHitBox에서 Hit되었을 때
-    public static event Action<Vector2, int> OnPlayerDamaged_PlayerDamageHandler;
+    public static event Action<Vector2, int> OnPlayerHitBoxHitted_PlayerDamageHandler;
 
     //PlayerDamageHandler에서 데미지 처리할 때
     public static event Action<int, int> OnPlayerDamaged_HPUIManager;
@@ -37,7 +37,7 @@ public static class PlayerEvents
     //PlayerHitBox에서 이벤트 발행
     public static void InvokePlayerHitBoxHitted(Vector2 hitTargetPos, int damage)
     {
-        OnPlayerDamaged_PlayerDamageHandler?.Invoke(hitTargetPos, damage);
+        OnPlayerHitBoxHitted_PlayerDamageHandler?.Invoke(hitTargetPos, damage);
     }
     //PlayerDamageHandler에서 이벤트 발행
     public static void InvokePlayerDamaged(int maxHp, int currentHp)

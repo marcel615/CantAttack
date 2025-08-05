@@ -81,12 +81,12 @@ public class PlayerDamageHandler : MonoBehaviour
     //이벤트 구독
     private void OnEnable()
     {
-        PlayerEvents.OnPlayerDamaged_PlayerDamageHandler += OnDamaged;
+        PlayerEvents.OnPlayerHitBoxHitted_PlayerDamageHandler += OnDamaged;
         PlayerEvents.OnPlayerKnockedBackInvincibleOver += OnKnockedBackInvincibleOver;
     }
     private void OnDisable()
     {
-        PlayerEvents.OnPlayerDamaged_PlayerDamageHandler -= OnDamaged;
+        PlayerEvents.OnPlayerHitBoxHitted_PlayerDamageHandler -= OnDamaged;
         PlayerEvents.OnPlayerKnockedBackInvincibleOver -= OnKnockedBackInvincibleOver;
     }
     //피격 이벤트 발생 시

@@ -19,7 +19,7 @@ public class EnemyFSM : MonoBehaviour
             Debug.Log("EnemyBehavior 존재하지 않음");
         }
         //연결된 Enemy의 Init() 실행
-        enemyBehavior.Init(this);
+        //enemyBehavior.Init(this);
     }
     private void Update()
     {
@@ -48,6 +48,11 @@ public class EnemyFSM : MonoBehaviour
 
             case EnemyState.Return:
                 enemyBehavior.Return();
+
+                break;
+
+            case EnemyState.Hit:
+                //enemyBehavior.Hit();
 
                 break;
 

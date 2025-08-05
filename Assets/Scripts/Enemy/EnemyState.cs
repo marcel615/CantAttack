@@ -9,5 +9,6 @@ public enum EnemyState
     Attack,
     Evade,
     Return,
+    Hit,
     Dead
 }

@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class Melee_A : EnemyBehavior
 {
-    //EnemyBehavior에서 EnemyFSM fsm 지정됨 fsm.ChangeEnemyState(EnemyState) 메서드를 통해서 State 변경하기
+    /// <EnemyBehavior할당변수>
+    /// EnemyFSM fsm
+    /// EnemyReactionHandler reactionHandler
+    /// </EnemyBehavior할당변수>    
 
+    private void Awake()
+    {
+        //EnemyBehavior의 Init() 실행 -> 컴포넌트들 할당
+        base.Init();
+
+        //EnemyBehavior의 미할당 변수들 초기화
+        isKnockbackEnable = false;
+        MaxHP = 5;
+        CurrentHP = 5;
+    }
 
     public override void Idle()
     {
@@ -26,6 +39,17 @@ public class Melee_A : EnemyBehavior
     public override void Return()
     {
         Debug.Log("지금 원래 위치로 돌아가는 중");
+    }
+    public override void Hit(Vector2 hittedPos)
+    {
+        if (isKnockbackEnable)
+        {
+            reactionHandler.HitWithKnockback(hittedPos);
+        }
+        else
+        {
+            reactionHandler.HitWithNoKnockback();
+        }
     }
     public override void Dead()
     {
