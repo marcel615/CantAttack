@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyState
+public abstract class EnemyState : MonoBehaviour
 {
-    Idle,
-    Chase,
-    Attack,
-    Evade,
-    Return,
-    Hit,
-    Dead
+    protected EnemyFSM FSM;
+    public virtual void Init(EnemyFSM fsm)
+    {
+        FSM = fsm;
+    }
+    public abstract void Enter();
+    public abstract void UpdateState();
+    public abstract void Exit();
 }

@@ -4,67 +4,75 @@ using UnityEngine;
 
 public class EnemyFSM : MonoBehaviour
 {
-    //내 컴포넌트
-    protected EnemyBehavior enemyBehavior;
+    //상태 추적 변수
+    private EnemyState currentState;
 
-    //계속 추적할 현재 State
-    EnemyState currentState;
+    //여러 상태들
+    public EnemyState idleState;
+    public EnemyState chaseState;
+    public EnemyState attackState;
+    public EnemyState evadeState;
+    public EnemyState returnState;
+    //public EnemyState hitState;
+    public EnemyState deadState;
+
+    EnemyReactionHandler reactionHandler;
+
+
 
     private void Awake()
     {
-        //EnemyType을 상속한 Enemy가 있다면 할당하기
-        enemyBehavior = GetComponent<EnemyBehavior>();
-        if(enemyBehavior == null)
-        {
-            Debug.Log("EnemyBehavior 존재하지 않음");
-        }
-        //연결된 Enemy의 Init() 실행
-        //enemyBehavior.Init(this);
+        idleState.Init(this);
+        chaseState.Init(this);
+        attackState.Init(this);
+        evadeState.Init(this);
+        returnState.Init(this);
+        //hitState.Init(this);
+        deadState.Init(this);
+
+        reactionHandler = GetComponent<EnemyReactionHandler>();
+    }
+    private void Start()
+    {
+        //첫 번째 State로 idleState 지정
+        ChangeState(idleState);
     }
     private void Update()
     {
-
-        switch (currentState)
+        //currentState가 존재하면 UpdateState() 계속 실행시키기
+        if(currentState != null)
         {
-            case EnemyState.Idle:
-                enemyBehavior.Idle();
-
-                break;
-
-            case EnemyState.Chase:
-                enemyBehavior.DetectAndChasePlayer();
-
-                break;
-
-            case EnemyState.Attack:
-                enemyBehavior.Attack();
-
-                break;
-
-            case EnemyState.Evade:
-                enemyBehavior.Evade();
-
-                break;
-
-            case EnemyState.Return:
-                enemyBehavior.Return();
-
-                break;
-
-            case EnemyState.Hit:
-                //enemyBehavior.Hit();
-
-                break;
-
-            case EnemyState.Dead:
-                enemyBehavior.Dead();
-
-                break;
+            currentState.UpdateState();
         }
     }
-    public void ChangeEnemyState(EnemyState state)
+
+    public void OnHit(Vector2 hitTargetPos)
     {
-        currentState = state;
+        if (currentState == (chaseState || attackState))
+        {
+            reactionHandler.HitWithNoKnockback();
+        }
+        else
+        {
+            reactionHandler.HitWithKnockback(hitTargetPos);
+        }
+    }
+    public void OnDead()
+    {
+        ChangeState(deadState);
+    }
+
+    //State 변화가 들어오면 여기서 처리
+    public void ChangeState(EnemyState newState)
+    {
+        //이전 State의 Exit() 메서드 실행시키고 
+        if(currentState != null)
+        {
+            currentState.Exit();
+        }
+        //새로 들어온 State를 현재 State로 설정 후 Enter() 메서드 실행시키기
+        currentState = newState;
+        currentState.Enter();
     }
 
 }
