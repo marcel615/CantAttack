@@ -8,6 +8,7 @@ TagManager:
   - PlayerParry
   - TrapProjectile
   - ParriedProjectile
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -39436,6 +39436,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee_A_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240031500311194109, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240031500311194109, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240031500311194109, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39797,6 +39813,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429df40523281694eae05400ceb29e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &8986673754320577050
 MonoBehaviour:
   m_ObjectHideFlags: 0

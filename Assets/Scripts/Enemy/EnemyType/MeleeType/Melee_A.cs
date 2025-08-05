@@ -15,7 +15,7 @@ public class Melee_A : EnemyBehavior
         base.Init();
 
         //EnemyBehavior의 미할당 변수들 초기화
-        isKnockbackEnable = false;
+        isKnockbackEnable = true;
         MaxHP = 5;
         CurrentHP = 5;
     }
