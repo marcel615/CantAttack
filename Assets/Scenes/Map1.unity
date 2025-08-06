@@ -415,6 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 742110514}
   - component: {fileID: 742110515}
+  - component: {fileID: 742110516}
   m_Layer: 0
   m_Name: MeleeAttack1Point
   m_TagString: Untagged
@@ -482,6 +483,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1.7}
   m_EdgeRadius: 0
+--- !u!114 &742110516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742110513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7e0bd76e7a05e4fbb3c4cb2ed040d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FSM: {fileID: 8986673754320577063}
 --- !u!1 &782273202
 GameObject:
   m_ObjectHideFlags: 0
@@ -39905,7 +39919,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8986673754320577049}
     m_RemovedComponents:
-    - {fileID: 3624363216997307398, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
@@ -39927,6 +39941,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 742110514}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 8986673754320577067}
     - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: 5
       addedObject: {fileID: 8986673754320577065}
@@ -40305,7 +40322,7 @@ MonoBehaviour:
   FSM: {fileID: 8986673754320577063}
   rigid: {fileID: 8986673754320577055}
   spriteRenderer: {fileID: 8986673754320577056}
-  animator: {fileID: 8986673754320577053}
+  animator: {fileID: 0}
 --- !u!114 &8986673754320577051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40322,11 +40339,6 @@ MonoBehaviour:
   patrolDistance: 0
   patrolWaitTime: 0
   moveDistance: 0
---- !u!95 &8986673754320577053 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7626903659307084991, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
-  m_PrefabInstance: {fileID: 2244930932506625014}
-  m_PrefabAsset: {fileID: 0}
 --- !u!50 &8986673754320577055 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6240031500311194109, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
@@ -40387,8 +40399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeleeAttack1Point: {fileID: 742110514}
   attackTime: 0.5
-  slashEffectPrefab: {fileID: 8520473544211990614, guid: 333fcade12aef9841aab002226cdfaa9, type: 3}
   attackWaitTime: 2
+  slashEffectPrefab: {fileID: 8520473544211990614, guid: 333fcade12aef9841aab002226cdfaa9, type: 3}
 --- !u!114 &8986673754320577061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40442,9 +40454,30 @@ MonoBehaviour:
   player: {fileID: 0}
   chaseSpeed: 4
   isAttackEnable: 0
-  attackMinWaitTime: 1
-  attackMaxWaitTime: 2
+  attackDamage: 1
   attackTime: 0.5
+  attackWaitTime: 0.7
+--- !u!95 &8986673754320577067
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941183712496664439}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 768c7879e58187242b858636818ed667, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

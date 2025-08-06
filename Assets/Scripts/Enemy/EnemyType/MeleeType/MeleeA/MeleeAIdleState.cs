@@ -89,6 +89,7 @@ public class MeleeAIdleState : EnemyState
     public override void Exit()
     {
         rigid.velocity = new Vector2(0, rigid.velocity.y);
+        animator.SetBool("isMoving", false);
     }
 
     private IEnumerator WaitBeforeStart()

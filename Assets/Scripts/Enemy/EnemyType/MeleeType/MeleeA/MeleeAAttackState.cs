@@ -12,13 +12,11 @@ public class MeleeAAttackState : EnemyState
     public Transform MeleeAttack1Point;
 
     //공격 관련 Controller 변수
-    float attackMinWaitTime;
-    float attackMaxWaitTime;
     public float attackTime;
+    public float attackWaitTime;
 
     //공격 관련 변수
     public GameObject slashEffectPrefab;
-    public float attackWaitTime;
     bool isAttacking;
     bool isWaiting;
 
@@ -32,12 +30,10 @@ public class MeleeAAttackState : EnemyState
     public override void Enter()
     {
         //Controller 변수 초기화
-        attackMinWaitTime = FSM.enemyController.attackMinWaitTime;
-        attackMaxWaitTime = FSM.enemyController.attackMaxWaitTime;
         attackTime = FSM.enemyController.attackTime;
+        attackWaitTime = FSM.enemyController.attackWaitTime;
 
         //변수 초기화
-        attackWaitTime = Random.Range(attackMinWaitTime, attackMaxWaitTime);    //공격 한 번 하고 잠시 멈출 시간 
     }
     public override void UpdateState()
     {
@@ -64,11 +60,10 @@ public class MeleeAAttackState : EnemyState
         //공격 시작 플래그
         isAttacking = true;
 
-        //공격 이펙트 생성
-        Instantiate(slashEffectPrefab, MeleeAttack1Point.position, Quaternion.identity, MeleeAttack1Point);
-        //공격 콜라이더 활성화
-        MeleeAttack1Point.GetComponent<BoxCollider2D>().enabled = true;
-        //공격 시작 시 속도 멈추도록
+        //애니메이션 재생, EnableAttackHitBox() 애니메이션 이벤트로 실행
+        animator.SetTrigger("isAttack");
+
+        //공격 시작 시 이동 멈추도록
         rigid.velocity = new Vector2(0, rigid.velocity.y);
 
         //공격 시간 후
@@ -77,14 +72,29 @@ public class MeleeAAttackState : EnemyState
         //공격 종료 플래그
         isAttacking = false;
 
-        //공격 콜라이더 비활성화
-        MeleeAttack1Point.GetComponent<BoxCollider2D>().enabled = false;
+        //공격 콜라이더 비활성화 
+        DisableAttackHitBox();  //애니메이션 이벤트로 호출 안될 시 대비
 
         //Wait 시작 플래그
         isWaiting = true;
+
         yield return new WaitForSeconds(attackWaitTime);
 
         //Wait 종료 플래그
         isWaiting = false;
+    }
+    //애니메이션에서 애니메이션 이벤트로 호출됨
+    public void EnableAttackHitBox()
+    {
+        //공격 이펙트 생성
+        Instantiate(slashEffectPrefab, MeleeAttack1Point.position, Quaternion.identity, MeleeAttack1Point);
+        //공격 콜라이더 활성화
+        MeleeAttack1Point.GetComponent<BoxCollider2D>().enabled = true;
+    }
+    //애니메이션에서 애니메이션 이벤트로 호출됨
+    public void DisableAttackHitBox()
+    {
+        //공격 콜라이더 비활성화
+        MeleeAttack1Point.GetComponent<BoxCollider2D>().enabled = false;
     }
 }

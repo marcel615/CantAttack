@@ -41,9 +41,9 @@ public class EnemyController : MonoBehaviour
 
     //공격 관련 변수
     public bool isAttackEnable;
-    public float attackMinWaitTime;
-    public float attackMaxWaitTime;
+    public int attackDamage;
     public float attackTime;
+    public float attackWaitTime;
 
 
 

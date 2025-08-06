@@ -1,0 +1,14 @@
+{
+    "playerSaveData": {
+        "MaxHP": 5,
+        "CurrentHP": 4,
+        "position": {
+            "x": 53.19905471801758,
+            "y": 2.919987678527832
+        }
+    },
+    "systemSaveData": {},
+    "mapSaveData": {
+        "saveScene": "Map1"
+    }
+}
