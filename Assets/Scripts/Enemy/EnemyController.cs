@@ -45,6 +45,10 @@ public class EnemyController : MonoBehaviour
     public float attackTime;
     public float attackWaitTime;
 
+    //스턴 관련 변수
+    public bool isParryStun;
+    public float parryStunTime;
+
 
 
     private void Awake()

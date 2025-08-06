@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackHitBox : MonoBehaviour
+public class EnemyAttackHitBox : MonoBehaviour, IParryable
 {
     [SerializeField] private EnemyFSM FSM;
 
@@ -12,6 +12,10 @@ public class EnemyAttackHitBox : MonoBehaviour
         {
             target.TakeDamage(transform.position, FSM.enemyController.attackDamage);
         }
+    }
+    public void OnParried(GameObject player)
+    {
+        EnemyEvents.InvokeEnemyAttackParried();
     }
 
 }

@@ -18,6 +18,9 @@ public static class EnemyEvents
     //EnemyAttackTrigger에서 플레이어가 감지에서 Exit했을 때
     public static event Action<GameObject> OnEnemyAttackTriggerExit;
 
+    //EnemyAttackHitBox에서 플레이어가 패링했을 때
+    public static event Action OnEnemyAttackParried;
+
 
     //EnemyHitBox에서 Hit되었을 때
     public static void InvokeEnemyHitBoxHitted(Vector2 hitTargetPos, int damage)
@@ -45,6 +48,12 @@ public static class EnemyEvents
     public static void InvokeEnemyAttackTriggerExit(GameObject player)
     {
         OnEnemyAttackTriggerExit?.Invoke(player);
+    }
+
+    //EnemyAttackHitBox에서 플레이어가 패링했을 때
+    public static void InvokeEnemyAttackParried()
+    {
+        OnEnemyAttackParried?.Invoke();
     }
 
 }

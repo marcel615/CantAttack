@@ -40401,6 +40401,8 @@ MonoBehaviour:
   attackTime: 0.5
   attackWaitTime: 2
   slashEffectPrefab: {fileID: 8520473544211990614, guid: 333fcade12aef9841aab002226cdfaa9, type: 3}
+  isAttacking: 0
+  isWaiting: 0
 --- !u!114 &8986673754320577061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40457,6 +40459,8 @@ MonoBehaviour:
   attackDamage: 1
   attackTime: 0.5
   attackWaitTime: 0.7
+  isParryStun: 0
+  parryStunTime: 4
 --- !u!95 &8986673754320577067
 Animator:
   serializedVersion: 5

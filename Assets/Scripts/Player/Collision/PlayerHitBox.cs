@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHitBox : MonoBehaviour, IDamageable
 {
     //부모 오브젝트
-    [SerializeField] private Player player;
+    public Player player;
 
     private void Awake()
     {

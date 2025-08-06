@@ -52,6 +52,8 @@ public class MeleeAIdleState : EnemyState
         if (isWaiting) return;
         //넉백동안은 실행 안하도록
         if (FSM.enemyController.isKnockbacked) return;
+        //스턴시간동안은 실행 안하도록
+        if (FSM.enemyController.isParryStun) return;
 
         //앞에 땅이 없거나 앞에 벽이 있으면 방향 전환, 순찰 거리, startPos 재설정
         if (!FSM.enemyController.isGroundFront() || FSM.enemyController.isWallFront())

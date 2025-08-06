@@ -17,8 +17,9 @@ public class MeleeAAttackState : EnemyState
 
     //공격 관련 변수
     public GameObject slashEffectPrefab;
-    bool isAttacking;
-    bool isWaiting;
+    public bool isAttacking;
+    public bool isWaiting;
+    Coroutine attackCoroutine;
 
 
 
@@ -41,19 +42,57 @@ public class MeleeAAttackState : EnemyState
         if (isAttacking) return;
         //기다리는 시간에는 바로 종료
         if (isWaiting) return;
+        //스턴시간동안은 실행 안하도록
+        if (FSM.enemyController.isParryStun) return;
         //공격 트리거에서 벗어나면 ChaseState로 전환 후 종료
         if (!FSM.enemyController.isAttackEnable)
         {
+            Debug.Log("Test");
             FSM.ChangeState(FSM.chaseState);
             return;
         }
         
         //공격 시작
-        StartCoroutine(AttackAndWaitBeforeStart(attackTime));
+        attackCoroutine = StartCoroutine(AttackAndWaitBeforeStart(attackTime));
 
     }
     public override void Exit()
     {
+    }
+
+    private void OnEnable()
+    {
+        EnemyEvents.OnEnemyAttackParried += EnemyAttackParried;
+    }
+    private void OnDisable()
+    {
+        EnemyEvents.OnEnemyAttackParried -= EnemyAttackParried;
+    }
+    void EnemyAttackParried()
+    {
+        StartCoroutine(ParryStun());
+    }
+    private IEnumerator ParryStun()
+    {
+        if(attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+        }
+        //공격 콜라이더 비활성화
+        DisableAttackHitBox();
+        //공격 종료 플래그 초기화
+        isAttacking = false;
+        //Wait 종료 플래그 초기화
+        isWaiting = false;
+
+        //패리로 인한 스턴 플래그 true로
+        FSM.enemyController.isParryStun = true;
+
+        //스턴 시간 기다리고
+        yield return new WaitForSeconds(FSM.enemyController.parryStunTime);
+
+        //패리로 인한 스턴 플래그 false로
+        FSM.enemyController.isParryStun = false;
     }
     private IEnumerator AttackAndWaitBeforeStart(float attackTime)
     {
