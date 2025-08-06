@@ -16,8 +16,9 @@ public class PlayerDamageHandler : MonoBehaviour
     int hittedDamage;
 
     //넉백 관련 변수
-    float KnockedBackTime = 0.3f;
-    float KnockedBackTimer;
+    float KnockbackTime = 0.3f;
+    float KnockbackTimer;
+    float KnockbackPower = 15f;
 
 
     private void Awake()
@@ -43,18 +44,18 @@ public class PlayerDamageHandler : MonoBehaviour
                 player.isInvincible = true;
                 player.InvincibleTimer = player.InvincibleTime_Hitted;
 
-                player.isKnockedBackInvincible = true;
-                player.isKnockedBack = true;
-                KnockedBackTimer = KnockedBackTime;
+                player.isKnockbackInvincible = true;
+                player.isKnockbacked = true;
+                KnockbackTimer = KnockbackTime;
 
                 //넉백 구현
                 if (transform.position.x < hittedPos.x)
                 {
-                    rigid.AddForce(new Vector2(-0.5f, 1f) * 15, ForceMode2D.Impulse);
+                    rigid.AddForce(new Vector2(-0.5f, 1f) * KnockbackPower, ForceMode2D.Impulse);
                 }
                 else
                 {
-                    rigid.AddForce(new Vector2(0.5f, 1f) * 15, ForceMode2D.Impulse);
+                    rigid.AddForce(new Vector2(0.5f, 1f) * KnockbackPower, ForceMode2D.Impulse);
 
                 }
                 spriteRenderer.color = new Color(1, 1, 1, 0.4f); //피격 시 반투명하게 됨
@@ -63,16 +64,16 @@ public class PlayerDamageHandler : MonoBehaviour
         getDamage = false;
 
         //넉백 시간 제어하기
-        if (player.isKnockedBack)
+        if (player.isKnockbacked)
         {
-            if (KnockedBackTimer > 0)
+            if (KnockbackTimer > 0)
             {
-                KnockedBackTimer -= Time.fixedDeltaTime;
+                KnockbackTimer -= Time.fixedDeltaTime;
             }
             else
             {
-                KnockedBackTimer = 0;
-                player.isKnockedBack = false;
+                KnockbackTimer = 0;
+                player.isKnockbacked = false;
             }
         }
 

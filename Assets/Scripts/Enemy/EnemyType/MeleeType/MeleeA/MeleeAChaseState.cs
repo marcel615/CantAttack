@@ -31,6 +31,9 @@ public class MeleeAChaseState : EnemyState
 
     public override void UpdateState()
     {
+        //넉백동안은 실행 안하도록
+        if (FSM.enemyController.isKnockbacked) return;
+
         //chase 방향 설정
         chaseDir = (player.transform.position.x > transform.position.x) ? 1 : -1;
 
@@ -41,7 +44,7 @@ public class MeleeAChaseState : EnemyState
         //앞에 땅이 없거나 앞에 벽이 있으면 chase 상태이긴 하지만 멈추도록
         if (!FSM.enemyController.isGroundFront() || FSM.enemyController.isWallFront())
         {
-            rigid.velocity = Vector2.zero;
+            rigid.velocity = new Vector2(0, rigid.velocity.y);
             animator.SetBool("isMoving", false);
         }
         else

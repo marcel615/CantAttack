@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     public bool isJumping;          //점프 관련 플래그
     public bool isDashing;          //회피 관련 플래그
     public bool isParrying;         //패링 관련 플래그
-    public bool isKnockedBack;      //피격 시 넉백 관련 플래그
+    public bool isKnockbacked;      //피격 시 넉백 관련 플래그
     public bool isGrounded;         //바닥 체크 플래그
     public bool isPortalEnter;      //포탈 진입 플래그
     public bool isFalling;          //낙하 상태 플래그
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     public bool isInvincible = false;
     public float InvincibleTime_Hitted = 1.5f;
     public float InvincibleTimer;
-    public bool isKnockedBackInvincible;
+    public bool isKnockbackInvincible;
 
 
     private void Awake()
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckObj.position, checkRadius, groundLayer);
 
         //사용자 조작이 가능한 상태인지 판별
-        if (!isKnockedBack && !isDashing && !isParrying)
+        if (!isKnockbacked && !isDashing && !isParrying)
         {
             canControl = true;
         }
@@ -117,9 +117,9 @@ public class Player : MonoBehaviour
                 playerHitBoxCollider.enabled = true;
                 InvincibleTimer = 0;
                 isInvincible = false;
-                if (isKnockedBackInvincible)
+                if (isKnockbackInvincible)
                 {
-                    isKnockedBackInvincible = false;
+                    isKnockbackInvincible = false;
                     PlayerEvents.InvokePlayerKnockedBackInvincibleOver();                    
                 }
             }
@@ -139,15 +139,11 @@ public class Player : MonoBehaviour
     }
     private void OnEnable()
     {
-        //세이브 로드 이후 초기화
-        //SystemEvents.OnDataLoadFinished += InitFromSaveFileLoad;
         //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
         MapEvents.OnSavedSceneLoaded += OnSavedSceneLoaded;
     }
     private void OnDisable()
     {
-        //세이브 로드 이후 초기화
-        //SystemEvents.OnDataLoadFinished -= InitFromSaveFileLoad;
         //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
         MapEvents.OnSavedSceneLoaded -= OnSavedSceneLoaded;
     }

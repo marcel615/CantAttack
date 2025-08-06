@@ -52,6 +52,8 @@ public class MeleeAIdleState : EnemyState
     {
         //기다리는 시간에는 바로 종료
         if (isWaiting) return;
+        //넉백동안은 실행 안하도록
+        if (FSM.enemyController.isKnockbacked) return;
 
         //앞에 땅이 없거나 앞에 벽이 있으면 방향 전환, 순찰 거리, startPos 재설정
         if (!FSM.enemyController.isGroundFront() || FSM.enemyController.isWallFront())
@@ -81,14 +83,14 @@ public class MeleeAIdleState : EnemyState
             }
             else
             {
-                rigid.velocity = new Vector2(0f, rigid.velocity.y);
+                rigid.velocity = new Vector2(0, rigid.velocity.y);
                 StartCoroutine(WaitAndResume());
             }
         }
     }
     public override void Exit()
     {
-        rigid.velocity = Vector2.zero;
+        rigid.velocity = new Vector2(0, rigid.velocity.y);
     }
 
     private IEnumerator WaitBeforeStart()

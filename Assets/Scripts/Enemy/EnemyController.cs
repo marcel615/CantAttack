@@ -31,6 +31,9 @@ public class EnemyController : MonoBehaviour
     //피격되었을 때 관련 변수    
     public float hitColorTime = 0.3f;  //피격 색 변경 시간    
     public bool isKnockbackEnable;     //넉백 가능한지 플래그
+    public float knockbackPower = 15f;
+    public bool isKnockbacked;         //넉백 당했는지 플래그 (다른 움직임 잠깐 차단)
+    public float knockbackCantMoveTime = 0.1f;  //넉백으로 잠시동안 움직임 차단 시간
 
     //플레이어 감지했을 때 관련 변수
     public GameObject player;
