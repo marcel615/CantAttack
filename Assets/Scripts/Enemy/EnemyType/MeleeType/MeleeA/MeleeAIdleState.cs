@@ -7,7 +7,6 @@ public class MeleeAIdleState : EnemyState
     //내 컴포넌트
     Rigidbody2D rigid;
     Animator animator;
-    SpriteRenderer spriteRenderer;
 
     //순찰 관련 Controller 변수
     float patrolSpeed;
@@ -28,7 +27,6 @@ public class MeleeAIdleState : EnemyState
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public override void Enter()
     {

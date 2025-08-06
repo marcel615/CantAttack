@@ -7,7 +7,6 @@ public class MeleeAChaseState : EnemyState
     //내 컴포넌트
     Rigidbody2D rigid;
     Animator animator;
-    SpriteRenderer spriteRenderer;
 
     //Chase 관련 Controller 변수
     GameObject player;
@@ -20,7 +19,6 @@ public class MeleeAChaseState : EnemyState
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public override void Enter()
     {

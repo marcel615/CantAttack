@@ -39,6 +39,12 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
     public float chaseSpeed;
 
+    //공격 관련 변수
+    public bool isAttackEnable;
+    public float attackMinWaitTime;
+    public float attackMaxWaitTime;
+    public float attackTime;
+
 
 
     private void Awake()
@@ -68,6 +74,11 @@ public class EnemyController : MonoBehaviour
         EnemyEvents.OnEnemyPlayerDetected += OnPlayerDetect;
         //EnemyChaseRange에서 플레이어가 감지에서 Exit했을 때
         EnemyEvents.OnEnemyChaseOver += OnEnemyChaseOver;
+        //EnemyAttackTrigger에서 플레이어를 감지했을 때
+        EnemyEvents.OnEnemyAttackTriggerEnter += OnAttackTriggerEnter;
+        //EnemyAttackTrigger에서 플레이어가 감지에서 Exit했을 때
+        EnemyEvents.OnEnemyAttackTriggerExit += OnAttackTriggerExit;
+
     }
     private void OnDisable()
     {
@@ -77,6 +88,10 @@ public class EnemyController : MonoBehaviour
         EnemyEvents.OnEnemyPlayerDetected -= OnPlayerDetect;
         //EnemyChaseRange에서 플레이어가 감지에서 Exit했을 때
         EnemyEvents.OnEnemyChaseOver -= OnEnemyChaseOver;
+        //EnemyAttackTrigger에서 플레이어를 감지했을 때
+        EnemyEvents.OnEnemyAttackTriggerEnter -= OnAttackTriggerEnter;
+        //EnemyAttackTrigger에서 플레이어가 감지에서 Exit했을 때
+        EnemyEvents.OnEnemyAttackTriggerExit -= OnAttackTriggerExit;
     }
     //피격 이벤트 발생 시
     void OnDamaged(Vector2 hitTargetPos, int damage)
@@ -111,6 +126,15 @@ public class EnemyController : MonoBehaviour
     {
         player = null;
         FSM.ChangeState(FSM.idleState);
+    }
+    void OnAttackTriggerEnter(GameObject P)
+    {
+        isAttackEnable = true;
+        FSM.ChangeState(FSM.attackState);
+    }
+    void OnAttackTriggerExit(GameObject P)
+    {
+        isAttackEnable = false;
     }
 
     //앞에 땅이 있는지 체크하는 메서드 (땅이 있으면 true, 없으면 false 반환)

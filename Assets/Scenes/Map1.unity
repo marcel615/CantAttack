@@ -224,6 +224,97 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3948886682823878312, guid: f3a18307dff714c41993281c699e8dd6, type: 3}
   m_PrefabInstance: {fileID: 2707581027222464322}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &665486395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 665486396}
+  - component: {fileID: 665486397}
+  - component: {fileID: 665486398}
+  m_Layer: 0
+  m_Name: MeleeAttackTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &665486396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665486395}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4085158642205963370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &665486397
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665486395}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.5, y: -0.15}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.7}
+  m_EdgeRadius: 0
+--- !u!114 &665486398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665486395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985fe5a7a6a28bd4e94ad2ca4cc8d35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectedTarget: {fileID: 0}
 --- !u!1001 &685791376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -314,6 +405,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1090555577382337781, guid: eb8e035051388144496a33c498edaab5, type: 3}
   m_PrefabInstance: {fileID: 4671118038107290270}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &742110513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742110514}
+  - component: {fileID: 742110515}
+  m_Layer: 0
+  m_Name: MeleeAttack1Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &742110514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742110513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3, y: -0.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4085158642205963370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &742110515
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742110513}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.8, y: 0.3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1.7}
+  m_EdgeRadius: 0
 --- !u!1 &782273202
 GameObject:
   m_ObjectHideFlags: 0
@@ -39630,11 +39798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70.22
+      value: 69.07
       objectReference: {fileID: 0}
     - target: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.38
+      value: 6.04
       objectReference: {fileID: 0}
     - target: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39752,6 +39920,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 782273203}
+    - targetCorrespondingSourceObject: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 665486396}
+    - targetCorrespondingSourceObject: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 742110514}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: 5
@@ -40211,6 +40385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6e2ba01a5273d4d950d5cf0c3def33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeleeAttack1Point: {fileID: 742110514}
+  attackTime: 0.5
+  slashEffectPrefab: {fileID: 8520473544211990614, guid: 333fcade12aef9841aab002226cdfaa9, type: 3}
+  attackWaitTime: 2
 --- !u!114 &8986673754320577061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40258,8 +40436,15 @@ MonoBehaviour:
   patrolMaxWaitTime: 3
   hitColorTime: 0.3
   isKnockbackEnable: 0
+  knockbackPower: 15
+  isKnockbacked: 0
+  knockbackCantMoveTime: 0.1
   player: {fileID: 0}
   chaseSpeed: 4
+  isAttackEnable: 0
+  attackMinWaitTime: 1
+  attackMaxWaitTime: 2
+  attackTime: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
