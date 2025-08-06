@@ -31,13 +31,25 @@ public class MeleeAChaseState : EnemyState
 
     public override void UpdateState()
     {
-        //chase 방향 설정 후 chase 방향으로 chaseSpeed로 움직이기
+        //chase 방향 설정
         chaseDir = (player.transform.position.x > transform.position.x) ? 1 : -1;
-        rigid.velocity = new Vector2(chaseDir * chaseSpeed, rigid.velocity.y);
 
-        spriteRenderer.flipX = chaseDir < 0;
-        animator.SetBool("isMoving", true);
+        //chaseDir 따라 캐릭터 좌우 반전
+        transform.localScale = new Vector3(chaseDir, 1, 1);
         FSM.enemyController.isHeadToRight = (chaseDir > 0) ? 1 : -1; //chaseDir가 양수면 1 저장, 음수면 -1 저장
+
+        //앞에 땅이 없거나 앞에 벽이 있으면 chase 상태이긴 하지만 멈추도록
+        if (!FSM.enemyController.isGroundFront() || FSM.enemyController.isWallFront())
+        {
+            rigid.velocity = Vector2.zero;
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            rigid.velocity = new Vector2(chaseDir * chaseSpeed, rigid.velocity.y);
+            animator.SetBool("isMoving", true);
+        }
+
     }
 
     public override void Exit()

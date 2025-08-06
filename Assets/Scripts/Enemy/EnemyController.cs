@@ -8,6 +8,14 @@ public class EnemyController : MonoBehaviour
     public EnemyFSM FSM;
     public EnemyReactionHandler reactionHandler;
 
+    //내 자식 오브젝트
+    Transform groundCheckFront;
+    Transform wallCheckFront;
+
+    //발 밑에 땅이 있는지 체크 관련 변수들
+    float checkRadius = 0.1f;
+    LayerMask groundLayer;
+
     //Enemy 기본 정보들
     public int MaxHP = 10;
     public int CurrentHP;
@@ -34,6 +42,15 @@ public class EnemyController : MonoBehaviour
     {
         FSM = GetComponent<EnemyFSM>();
         reactionHandler = GetComponent<EnemyReactionHandler>();
+
+        //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
+        //앞에 땅이 있는지 체크하는 오브젝트 연결
+        if (groundCheckFront == null) groundCheckFront = transform.Find("GroundCheckFront")?.GetComponent<Transform>();
+        //앞에 막혀있는지 체크하는 오브젝트 연결
+        if (wallCheckFront == null) wallCheckFront = transform.Find("WallCheckFront")?.GetComponent<Transform>();
+
+        //땅 체크 변수
+        groundLayer = LayerMask.GetMask("Ground", "");
 
         CurrentHP = MaxHP;
         isKnockbackEnable = true;
@@ -91,6 +108,18 @@ public class EnemyController : MonoBehaviour
     {
         player = null;
         FSM.ChangeState(FSM.idleState);
+    }
+
+    //앞에 땅이 있는지 체크하는 메서드 (땅이 있으면 true, 없으면 false 반환)
+    public bool isGroundFront()
+    {
+        return Physics2D.Raycast(groundCheckFront.position, Vector2.down, checkRadius, groundLayer);
+    }
+    //앞에 벽이 있는지 체크하는 메서드 (벽이 있으면 true, 없으면 false 반환)
+    public bool isWallFront()
+    {
+        Vector2 checkDir = new Vector2(isHeadToRight, 0);
+        return Physics2D.Raycast(wallCheckFront.position, checkDir, checkRadius, groundLayer);
     }
 
 }

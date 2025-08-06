@@ -50,24 +50,40 @@ public class MeleeAIdleState : EnemyState
     }
     public override void UpdateState()
     {
+        //기다리는 시간에는 바로 종료
         if (isWaiting) return;
 
-        //순찰 거리 추적 변수 업데이트
-        moveDistance = Mathf.Abs(transform.position.x - startPos.x);
-
-        //순찰 거리가 충족되기 전까지 계속 순찰돌도록 구현
-        if (moveDistance < patrolDistance)
+        //앞에 땅이 없거나 앞에 벽이 있으면 방향 전환, 순찰 거리, startPos 재설정
+        if (!FSM.enemyController.isGroundFront() || FSM.enemyController.isWallFront())
         {
-            rigid.velocity = new Vector2(patrolDir * patrolSpeed, rigid.velocity.y);
+            patrolDistance -= moveDistance;
+            patrolDir *= -1;
+            startPos = transform.position;
 
-            spriteRenderer.flipX = patrolDir < 0;
-            animator.SetBool("isMoving", true);
+            //patrolDir에 따라 캐릭터 좌우 반전
+            transform.localScale = new Vector3(patrolDir, 1, 1);
             FSM.enemyController.isHeadToRight = (patrolDir > 0) ? 1 : -1; //patrolDir가 양수면 1 저장, 음수면 -1 저장
         }
         else
         {
-            rigid.velocity = new Vector2(0f, rigid.velocity.y);
-            StartCoroutine(WaitAndResume());
+            //순찰 거리 추적 변수 업데이트
+            moveDistance = Mathf.Abs(transform.position.x - startPos.x);
+
+            //순찰 거리가 충족되기 전까지 계속 순찰돌도록 구현
+            if (moveDistance < patrolDistance)
+            {
+                rigid.velocity = new Vector2(patrolDir * patrolSpeed, rigid.velocity.y);
+
+                //patrolDir에 따라 캐릭터 좌우 반전
+                transform.localScale = new Vector3(patrolDir, 1, 1);
+                FSM.enemyController.isHeadToRight = (patrolDir > 0) ? 1 : -1; //patrolDir가 양수면 1 저장, 음수면 -1 저장
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                rigid.velocity = new Vector2(0f, rigid.velocity.y);
+                StartCoroutine(WaitAndResume());
+            }
         }
     }
     public override void Exit()
@@ -85,6 +101,8 @@ public class MeleeAIdleState : EnemyState
     private IEnumerator WaitAndResume()
     {
         isWaiting = true;
+        animator.SetBool("isMoving", false);
+
         yield return new WaitForSeconds(patrolWaitTime);
 
         isWaiting = false;

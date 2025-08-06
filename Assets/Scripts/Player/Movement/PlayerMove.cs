@@ -31,9 +31,10 @@ public class PlayerMove : MonoBehaviour
         //H값에 따른 플레이어 캐릭터가 바라보는 방향 및 애니메이션 설정
         if (H != 0 && player.canControl)
         {
-            spriteRenderer.flipX = H < 0;
-            animator.SetBool("isMoving", true);
+            //H에 따라 캐릭터 좌우 반전
+            transform.localScale = new Vector3(H, 1, 1);
             player.isHeadToRight = (H > 0) ? 1 : -1; //H가 양수면 1 저장, 음수면 -1 저장
+            animator.SetBool("isMoving", true);
         }
         else
         {
