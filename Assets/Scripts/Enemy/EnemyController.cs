@@ -11,47 +11,54 @@ public class EnemyController : MonoBehaviour
     //내 자식 오브젝트
     Transform groundCheckFront;
     Transform wallCheckFront;
+    public Transform MeleeAttack1Point;
+
+    //전체 정보를 가지고 있는 DataSO
+    [SerializeField] private EnemyDataSO enemyDataSO;
 
     //발 밑에 땅이 있는지 체크 관련 변수들
     float checkRadius = 0.1f;
     LayerMask groundLayer;
 
     //Enemy 기본 정보들
-    public int MaxHP = 10;
-    public int CurrentHP;
-    public float isHeadToRight = 1f; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
+    [HideInInspector] public int MaxHP;
+    [HideInInspector] public int CurrentHP;
+    [HideInInspector] public float isHeadToRight; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
 
-    //Idle에서 순찰할 때 관련 변수
-    public float patrolSpeed;
-    public float patrolMinDistance;
-    public float patrolMaxDistance;
-    public float patrolMinWaitTime;
-    public float patrolMaxWaitTime;
+    //Idle 관련 변수
+    [HideInInspector] public float idleMinWaitTime;
+    [HideInInspector] public float idleMaxWaitTime;
+
+    //순찰 관련 변수
+    [HideInInspector] public float patrolSpeed;
+    [HideInInspector] public float patrolMinDistance;
+    [HideInInspector] public float patrolMaxDistance;
 
     //피격되었을 때 관련 변수    
-    public float hitColorTime = 0.3f;  //피격 색 변경 시간    
-    public bool isKnockbackEnable;     //넉백 가능한지 플래그
-    public float knockbackPower = 15f;
-    public bool isKnockbacked;         //넉백 당했는지 플래그 (다른 움직임 잠깐 차단)
-    public float knockbackCantMoveTime = 0.1f;  //넉백으로 잠시동안 움직임 차단 시간
+    [HideInInspector] public float hitColorTime;  //피격 색 변경 시간    
+    [HideInInspector] public bool isKnockbackEnable;     //넉백 가능한지 플래그
+    [HideInInspector] public float knockbackPower;
+    [HideInInspector] public bool isKnockbacked;         //넉백 당했는지 플래그 (다른 움직임 잠깐 차단)
+    [HideInInspector] public float knockbackCantMoveTime;  //넉백으로 잠시동안 움직임 차단 시간
 
     //플레이어 감지했을 때 관련 변수
-    public bool isPlayerDetected;
-    public GameObject player;
-    public float chaseSpeed;
+    [HideInInspector] public bool isPlayerDetected;
+    [HideInInspector] public GameObject player;
+    [HideInInspector] public float chaseSpeed;
 
     //공격 관련 변수
-    public bool isAttackEnable;
-    public int attackDamage;
-    public float attackTime;
-    public float attackWaitTime;
+    [HideInInspector] public bool isAttackEnable;
+    [HideInInspector] public int attackDamage;
+    [HideInInspector] public float attackTime;
+    [HideInInspector] public float attackWaitTime;
+    [HideInInspector] public GameObject slashEffectPrefab;
 
     //스턴 관련 변수
-    public bool isParryStun;
-    public float parryStunTime;
+    [HideInInspector] public bool isParryStun;
+    [HideInInspector] public float parryStunTime;
 
     //죽음 관련 변수
-    public bool isDead;
+    [HideInInspector] public bool isDead;
 
 
 
@@ -61,17 +68,52 @@ public class EnemyController : MonoBehaviour
         reactionHandler = GetComponent<EnemyReactionHandler>();
 
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
-        //앞에 땅이 있는지 체크하는 오브젝트 연결
         if (groundCheckFront == null) groundCheckFront = transform.Find("GroundCheckFront")?.GetComponent<Transform>();
-        //앞에 막혀있는지 체크하는 오브젝트 연결
         if (wallCheckFront == null) wallCheckFront = transform.Find("WallCheckFront")?.GetComponent<Transform>();
 
         //땅 체크 변수
         groundLayer = LayerMask.GetMask("Ground", "");
 
-        CurrentHP = MaxHP;
-        isKnockbackEnable = true;
-    }
+        //EnemyDataSO의 값으로 초기화 작업
+        MaxHP = enemyDataSO.MaxHP;
+        CurrentHP = enemyDataSO.CurrentHP;
+        isHeadToRight = 1f; //캐릭터가 바라보는 방향(1이면 오른쪽, -1이면 왼쪽)
+
+        //Idle 관련 변수
+        idleMinWaitTime = enemyDataSO.idleMinWaitTime;
+        idleMaxWaitTime = enemyDataSO.idleMaxWaitTime;
+
+        //순찰 관련 변수
+        patrolSpeed = enemyDataSO.patrolSpeed;
+        patrolMinDistance = enemyDataSO.patrolMinDistance;
+        patrolMaxDistance = enemyDataSO.patrolMaxDistance;
+
+        //피격되었을 때 관련 변수    
+        hitColorTime = 0.3f;  //피격 색 변경 시간    
+        isKnockbackEnable = enemyDataSO.isKnockbackEnable;     //넉백 가능한지 플래그
+        knockbackPower = 15f;
+        isKnockbacked = false;         //넉백 당했는지 플래그 (다른 움직임 잠깐 차단)
+        knockbackCantMoveTime = 0.1f;  //넉백으로 잠시동안 움직임 차단 시간
+
+        //플레이어 감지했을 때 관련 변수
+        isPlayerDetected = false;
+        player = null;
+        chaseSpeed = enemyDataSO.chaseSpeed;
+
+        //공격 관련 변수
+        isAttackEnable = false;
+        attackDamage = enemyDataSO.attackDamage;
+        attackTime = enemyDataSO.attackTime;
+        attackWaitTime = enemyDataSO.attackWaitTime;
+        slashEffectPrefab = enemyDataSO.slashEffectPrefab;
+
+        //스턴 관련 변수
+        isParryStun = false;
+        parryStunTime = 3f;
+
+        //죽음 관련 변수
+        isDead = false;
+    }   
 
     //이벤트 구독
     private void OnEnable()
@@ -88,7 +130,6 @@ public class EnemyController : MonoBehaviour
         EnemyEvents.OnEnemyAttackTriggerExit += OnAttackTriggerExit;
         //EnemyAttackHitBox에서 플레이어가 패링했을 때
         EnemyEvents.OnEnemyAttackParried += OnAttackParried;
-
     }
     private void OnDisable()
     {
@@ -125,7 +166,9 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            FSM.ChangeState(FSM.deadState);
+            //다음 상태로 전환되는지 체크하고 전환하도록
+            if (FSM.CanChangeState(FSM.deadState))
+                FSM.ChangeState(FSM.deadState);
         }
     }
 

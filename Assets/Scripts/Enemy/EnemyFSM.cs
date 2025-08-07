@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyFSM : MonoBehaviour
 {
     public EnemyController enemyController;
-    public EnemyReactionHandler reactionHandler;
+
 
     //상태 추적 변수
-    public EnemyState currentState;
+    [HideInInspector] public EnemyState currentState;
 
     //여러 상태들
     public EnemyState idleState;
+    public EnemyState patrolState;
     public EnemyState chaseState;
     public EnemyState attackState;
     public EnemyState stunState;
@@ -26,9 +27,9 @@ public class EnemyFSM : MonoBehaviour
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
-        reactionHandler = GetComponent<EnemyReactionHandler>();
 
         idleState.Init(this);
+        patrolState.Init(this);
         chaseState.Init(this);
         attackState.Init(this);
         stunState.Init(this);
@@ -68,7 +69,7 @@ public class EnemyFSM : MonoBehaviour
     //상태 전환 가능한 상태면 true, 상태 전환 불가능한 상태면 false 반환
     public bool CanChangeState(EnemyState newState)
     {
-        if(currentState == deadState)
+        if (currentState == deadState)
         {
             return false;
         }
@@ -77,11 +78,23 @@ public class EnemyFSM : MonoBehaviour
             if (newState == deadState) return true;
             else return false;
         }
-        else if(currentState == attackState)
+        else if (currentState == attackState)
         {
             if (newState == deadState) return true;
             else if (newState == stunState) return true;
             else return false;
+        }
+        else if (currentState == chaseState)
+        {
+            return true;
+        }
+        else if (currentState == patrolState)
+        {
+            return true;
+        }
+        else if (currentState == idleState)
+        {
+            return true;
         }
         else //currentState가 null일 때
         {

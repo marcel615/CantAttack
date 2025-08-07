@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyReactionHandler : MonoBehaviour
 {
-    [SerializeField] private EnemyFSM FSM;
-    [SerializeField] private Rigidbody2D rigid;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Animator animator;
+    EnemyFSM FSM;
+    Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
+    Animator animator;
 
     //³Ë¹é °ü·Ã º¯¼ö
     Vector2 KnockbackDir; //³Ë¹é ¹æÇâ
@@ -25,11 +25,11 @@ public class EnemyReactionHandler : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-
-        KnockbackPower = FSM.enemyController.knockbackPower;
     }
     public void HitWithKnockback(float hitColorTime, Vector2 hittedPos)
     {
+        KnockbackPower = FSM.enemyController.knockbackPower;
+
         //³Ë¹é¹æÇâ ¼³Á¤
         SetKnockbackDir(hittedPos);
         //³Ë¹é ÁÖ±â

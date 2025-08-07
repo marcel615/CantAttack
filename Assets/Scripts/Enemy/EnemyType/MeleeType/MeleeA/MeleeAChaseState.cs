@@ -31,8 +31,6 @@ public class MeleeAChaseState : EnemyState
     {
         //넉백동안은 실행 안하도록
         if (FSM.enemyController.isKnockbacked) return;
-        //스턴시간동안은 실행 안하도록
-        if (FSM.enemyController.isParryStun) return;
 
         //chase 방향 설정
         chaseDir = (player.transform.position.x > transform.position.x) ? 1 : -1;

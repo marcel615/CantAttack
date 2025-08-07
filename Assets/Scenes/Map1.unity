@@ -39911,6 +39911,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8986673754320577060}
     - target: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: patrolState
+      value: 
+      objectReference: {fileID: 8986673754320577070}
+    - target: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: returnState
       value: 
       objectReference: {fileID: 8986673754320577058}
@@ -39957,6 +39961,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8986673754320577051}
+    - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8986673754320577070}
     - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8986673754320577061}
@@ -40342,10 +40349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17743dd87c284fb44856a76e432a3179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolDir: 0
-  patrolDistance: 0
-  patrolWaitTime: 0
-  moveDistance: 0
 --- !u!50 &8986673754320577055 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6240031500311194109, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
@@ -40404,12 +40407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6e2ba01a5273d4d950d5cf0c3def33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleeAttack1Point: {fileID: 742110514}
-  attackTime: 0.5
-  attackWaitTime: 2
-  slashEffectPrefab: {fileID: 8520473544211990614, guid: 333fcade12aef9841aab002226cdfaa9, type: 3}
-  isAttacking: 0
-  isWaiting: 0
 --- !u!114 &8986673754320577061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40447,27 +40444,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FSM: {fileID: 8986673754320577063}
   reactionHandler: {fileID: 8986673754320577049}
+  MeleeAttack1Point: {fileID: 742110514}
+  enemyDataSO: {fileID: 11400000, guid: 3a757ec8531744f4d84d204b1a2fbae8, type: 2}
   MaxHP: 10
-  CurrentHP: 0
+  CurrentHP: 10
   isHeadToRight: 1
+  idleMinWaitTime: 1
+  idleMaxWaitTime: 2
   patrolSpeed: 2
   patrolMinDistance: 6
   patrolMaxDistance: 7
-  patrolMinWaitTime: 2
-  patrolMaxWaitTime: 3
   hitColorTime: 0.3
-  isKnockbackEnable: 0
+  isKnockbackEnable: 1
   knockbackPower: 15
   isKnockbacked: 0
   knockbackCantMoveTime: 0.1
+  isPlayerDetected: 0
   player: {fileID: 0}
   chaseSpeed: 4
   isAttackEnable: 0
   attackDamage: 1
   attackTime: 0.5
   attackWaitTime: 0.7
+  slashEffectPrefab: {fileID: 8520473544211990614, guid: 333fcade12aef9841aab002226cdfaa9, type: 3}
   isParryStun: 0
   parryStunTime: 4
+  isDead: 0
 --- !u!95 &8986673754320577067
 Animator:
   serializedVersion: 5
@@ -40499,6 +40501,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce588b17d13e5a845bcf02554a4a7736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8986673754320577070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941183712496664439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a4fa47668794a4e9b3a63ecb8fe841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
