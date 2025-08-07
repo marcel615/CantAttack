@@ -14,6 +14,7 @@ public class EnemyFSM : MonoBehaviour
     public EnemyState idleState;
     public EnemyState chaseState;
     public EnemyState attackState;
+    public EnemyState stunState;
     public EnemyState evadeState;
     public EnemyState returnState;
     //public EnemyState hitState;
@@ -30,6 +31,7 @@ public class EnemyFSM : MonoBehaviour
         idleState.Init(this);
         chaseState.Init(this);
         attackState.Init(this);
+        stunState.Init(this);
         evadeState.Init(this);
         returnState.Init(this);
         //hitState.Init(this);
@@ -61,6 +63,46 @@ public class EnemyFSM : MonoBehaviour
         //새로 들어온 State를 현재 State로 설정 후 Enter() 메서드 실행시키기
         currentState = newState;
         currentState.Enter();
+    }
+
+    //상태 전환 가능한 상태면 true, 상태 전환 불가능한 상태면 false 반환
+    public bool CanChangeState(EnemyState newState)
+    {
+        if(currentState == deadState)
+        {
+            return false;
+        }
+        else if (currentState == stunState)
+        {
+            if (newState == deadState) return true;
+            else return false;
+        }
+        else if(currentState == attackState)
+        {
+            if (newState == deadState) return true;
+            else if (newState == stunState) return true;
+            else return false;
+        }
+        else //currentState가 null일 때
+        {
+            return true;
+        }
+    }
+    public EnemyState DecideNextState()
+    {
+        if (enemyController.isDead)
+            return deadState;
+
+        if (enemyController.isParryStun)
+            return stunState;
+
+        if (enemyController.isAttackEnable)
+            return attackState;
+
+        if (enemyController.isPlayerDetected)
+            return chaseState;
+
+        return idleState;
     }
 
 }

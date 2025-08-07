@@ -58,23 +58,7 @@ public class MeleeAAttackState : EnemyState
     }
     public override void Exit()
     {
-    }
-
-    private void OnEnable()
-    {
-        EnemyEvents.OnEnemyAttackParried += EnemyAttackParried;
-    }
-    private void OnDisable()
-    {
-        EnemyEvents.OnEnemyAttackParried -= EnemyAttackParried;
-    }
-    void EnemyAttackParried()
-    {
-        StartCoroutine(ParryStun());
-    }
-    private IEnumerator ParryStun()
-    {
-        if(attackCoroutine != null)
+        if (attackCoroutine != null)
         {
             StopCoroutine(attackCoroutine);
         }
@@ -84,16 +68,8 @@ public class MeleeAAttackState : EnemyState
         isAttacking = false;
         //Wait 종료 플래그 초기화
         isWaiting = false;
-
-        //패리로 인한 스턴 플래그 true로
-        FSM.enemyController.isParryStun = true;
-
-        //스턴 시간 기다리고
-        yield return new WaitForSeconds(FSM.enemyController.parryStunTime);
-
-        //패리로 인한 스턴 플래그 false로
-        FSM.enemyController.isParryStun = false;
     }
+
     private IEnumerator AttackAndWaitBeforeStart(float attackTime)
     {
         //공격 시작 플래그
@@ -121,7 +97,12 @@ public class MeleeAAttackState : EnemyState
 
         //Wait 종료 플래그
         isWaiting = false;
+
+        //다음 상태로 전환되도록
+        EnemyState nextState = FSM.DecideNextState();
+        FSM.ChangeState(nextState);
     }
+
     //애니메이션에서 애니메이션 이벤트로 호출됨
     public void EnableAttackHitBox()
     {

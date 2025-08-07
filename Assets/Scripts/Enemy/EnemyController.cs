@@ -36,6 +36,7 @@ public class EnemyController : MonoBehaviour
     public float knockbackCantMoveTime = 0.1f;  //넉백으로 잠시동안 움직임 차단 시간
 
     //플레이어 감지했을 때 관련 변수
+    public bool isPlayerDetected;
     public GameObject player;
     public float chaseSpeed;
 
@@ -48,6 +49,9 @@ public class EnemyController : MonoBehaviour
     //스턴 관련 변수
     public bool isParryStun;
     public float parryStunTime;
+
+    //죽음 관련 변수
+    public bool isDead;
 
 
 
@@ -82,6 +86,8 @@ public class EnemyController : MonoBehaviour
         EnemyEvents.OnEnemyAttackTriggerEnter += OnAttackTriggerEnter;
         //EnemyAttackTrigger에서 플레이어가 감지에서 Exit했을 때
         EnemyEvents.OnEnemyAttackTriggerExit += OnAttackTriggerExit;
+        //EnemyAttackHitBox에서 플레이어가 패링했을 때
+        EnemyEvents.OnEnemyAttackParried += OnAttackParried;
 
     }
     private void OnDisable()
@@ -96,6 +102,8 @@ public class EnemyController : MonoBehaviour
         EnemyEvents.OnEnemyAttackTriggerEnter -= OnAttackTriggerEnter;
         //EnemyAttackTrigger에서 플레이어가 감지에서 Exit했을 때
         EnemyEvents.OnEnemyAttackTriggerExit -= OnAttackTriggerExit;
+        //EnemyAttackHitBox에서 플레이어가 패링했을 때
+        EnemyEvents.OnEnemyAttackParried -= OnAttackParried;
     }
     //피격 이벤트 발생 시
     void OnDamaged(Vector2 hitTargetPos, int damage)
@@ -123,22 +131,41 @@ public class EnemyController : MonoBehaviour
 
     void OnPlayerDetect(GameObject P)
     {
+        isPlayerDetected = true;
         player = P;
-        FSM.ChangeState(FSM.chaseState);
+
+        //다음 상태로 전환되는지 체크하고 전환하도록
+        if (FSM.CanChangeState(FSM.chaseState))
+            FSM.ChangeState(FSM.chaseState);
     }
     void OnEnemyChaseOver(GameObject P)
     {
+        isPlayerDetected = false;
         player = null;
-        FSM.ChangeState(FSM.idleState);
+
+        //다음 상태로 전환되는지 체크하고 전환하도록
+        if (FSM.CanChangeState(FSM.idleState))
+            FSM.ChangeState(FSM.idleState);
     }
     void OnAttackTriggerEnter(GameObject P)
     {
         isAttackEnable = true;
-        FSM.ChangeState(FSM.attackState);
+
+        //다음 상태로 전환되는지 체크하고 전환하도록
+        if (FSM.CanChangeState(FSM.attackState))
+            FSM.ChangeState(FSM.attackState);
     }
     void OnAttackTriggerExit(GameObject P)
     {
         isAttackEnable = false;
+    }
+    void OnAttackParried()
+    {
+        isParryStun = true;
+
+        //다음 상태로 전환되는지 체크하고 전환하도록
+        if (FSM.CanChangeState(FSM.stunState))
+            FSM.ChangeState(FSM.stunState);
     }
 
     //앞에 땅이 있는지 체크하는 메서드 (땅이 있으면 true, 없으면 false 반환)

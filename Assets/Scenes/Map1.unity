@@ -39895,6 +39895,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8986673754320577051}
     - target: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: stunState
+      value: 
+      objectReference: {fileID: 8986673754320577068}
+    - target: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: chaseState
       value: 
       objectReference: {fileID: 8986673754320577061}
@@ -39968,6 +39972,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8986673754320577057}
+    - targetCorrespondingSourceObject: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8986673754320577068}
     - targetCorrespondingSourceObject: {fileID: 40019394786572775, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1044209577}
@@ -40482,6 +40489,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8986673754320577068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941183712496664439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce588b17d13e5a845bcf02554a4a7736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
