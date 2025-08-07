@@ -43,8 +43,11 @@ public class Player : MonoBehaviour
     //조작 제한 플래그
     public bool canControl = true; //조작 가능 플래그
     public bool isJumping;          //점프 관련 플래그
+    public int jumpCount;           //더블 점프 관련 플래그
     public bool isDashing;          //회피 관련 플래그
+    public bool isDashedInAir;      //공중에서 이미 대시했는지 여부
     public bool isParrying;         //패링 관련 플래그
+    public bool isParriedInAir;     //공중에서 이미 패링했는지 여부
     public bool isKnockbacked;      //피격 시 넉백 관련 플래그
     public bool isGrounded;         //바닥 체크 플래그
     public bool isPortalEnter;      //포탈 진입 플래그

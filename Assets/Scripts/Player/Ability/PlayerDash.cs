@@ -34,13 +34,14 @@ public class PlayerDash : MonoBehaviour
     private void Update()
     {
         //플레이어 회피기
-        if (D && !isDashCoolTime && player.canControl)
+        if (D && !isDashCoolTime && player.canControl && !player.isDashedInAir)
         {
             DashCoolTimer = DashCoolTime;
             isDashCoolTime = true;
 
             DashTimer = DashTime;
             player.isDashing = true;
+            player.isDashedInAir = true;
             player.InvincibleTimer = DashTime;
             player.isInvincible = true;
 
@@ -49,6 +50,12 @@ public class PlayerDash : MonoBehaviour
             rigid.velocity = new Vector2(player.isHeadToRight * DashSpeed, 0);
         }
         D = false;
+
+        //땅에 닿으면 공중대시 플래그 초기화
+        if (player.isGrounded)
+        {
+            player.isDashedInAir = false;
+        }
     }
     private void FixedUpdate()
     {

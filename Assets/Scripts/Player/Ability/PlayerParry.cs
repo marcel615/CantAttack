@@ -54,18 +54,24 @@ public class PlayerParry : MonoBehaviour
         Debug.Log("Parry Success");
         player.InvincibleTimer = ParrySuccessInvincibleTime;
         player.isInvincible = true;
+
+        //공중에서 기술 사용횟수 초기화 보상
+        player.isParriedInAir = false;
+        player.isDashedInAir = false;
+        player.jumpCount = 1;
     }
 
     private void Update()
     {
         //플레이어 패링기
-        if (P && !isParryCoolTime && player.canControl)
+        if (P && !isParryCoolTime && player.canControl && !player.isParriedInAir)
         {
             ParryCoolTimer = ParryCoolTime;
             isParryCoolTime = true;
 
             ParryTimer = ParryTime;
             player.isParrying = true;
+            player.isParriedInAir = true;
 
             prevGravity = rigid.gravityScale;
             rigid.gravityScale = 0;
@@ -78,38 +84,20 @@ public class PlayerParry : MonoBehaviour
         }
         P = false;
 
-
+        //땅에 닿으면 공중패링 플래그 초기화
+        if (player.isGrounded)
+        {
+            player.isParriedInAir = false;
+        }
     }
 
     private void FixedUpdate()
     {
-        /*
-        //플레이어 패링기
-        if (P && !isParryCoolTime && player.canControl)
-        {
-            ParryCoolTimer = ParryCoolTime;
-            isParryCoolTime = true;
-
-            ParryTimer = ParryTime;
-            player.isParrying = true;
-
-            prevGravity = rigid.gravityScale;
-            rigid.gravityScale = 0;
-            rigid.velocity = new Vector2(0, 0);
-
-            //패리 이펙트 시작
-            var Effect = Instantiate(parryEffect, transform.position, Quaternion.identity).GetComponent<ParryCircleEffect>();
-            Effect.SetDeleteTime(ParryTime);
-        }
-        P = false;
-        */
-
         if (player.isParrying)
         {
             if (ParryTimer > 0)
             {
                 rigid.velocity = new Vector2(0, 0);
-                //playerParryCollider.enabled = true;
 
                 ParryTimer -= Time.fixedDeltaTime;
             }
@@ -135,8 +123,6 @@ public class PlayerParry : MonoBehaviour
                 isParryCoolTime = false;
             }
         }
-        
-
     }
     public void Parry(bool p)
     {
