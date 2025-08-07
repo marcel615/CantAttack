@@ -16,15 +16,15 @@ TagManager:
   - Ground
   - Water
   - UI
-  - TrapBody
-  - EnemyBody
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Trap
+  - Enemy
+  - PlayerAttack
+  - TrapAttack
+  - EnemyAttack
+  - PlayerSensor
+  - TrapSensor
+  - EnemySensor
   - 
   - 
   - 

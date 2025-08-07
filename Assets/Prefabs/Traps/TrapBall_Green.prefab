@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1948494841380296004}
   - component: {fileID: 7761929641485122351}
   - component: {fileID: 3512134341774890204}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrapBall_Green
   m_TagString: TrapProjectile
   m_Icon: {fileID: 0}

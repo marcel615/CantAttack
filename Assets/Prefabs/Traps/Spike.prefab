@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7514968467543754205}
   - component: {fileID: 6254340202127089652}
   - component: {fileID: 4069374723942275510}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}

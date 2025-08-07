@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9220207523933487263}
   - component: {fileID: 6189818660459610460}
   - component: {fileID: 713118236048002202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NormalSaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3790754928160631539}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

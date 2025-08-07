@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8047156602355350938}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DropPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2139262902229538650}
   - component: {fileID: 5738253207730490212}
   - component: {fileID: 5921003028352685882}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: CrusherBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 1940545711197057258}
   - component: {fileID: 525884467247511816}
   - component: {fileID: 1444472968939812680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DamageArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

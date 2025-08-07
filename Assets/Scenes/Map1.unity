@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 665486396}
   - component: {fileID: 665486397}
   - component: {fileID: 665486398}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: MeleeAttackTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 742110514}
   - component: {fileID: 742110515}
   - component: {fileID: 742110516}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MeleeAttack1Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38529,7 +38529,7 @@ GameObject:
   - component: {fileID: 1001006829}
   - component: {fileID: 1001006830}
   - component: {fileID: 1001006831}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ChaseCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39346,10 +39346,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7441745323769679018, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8594940997620046567, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.16
@@ -39661,7 +39657,7 @@ GameObject:
   - component: {fileID: 2098046323}
   - component: {fileID: 2098046324}
   - component: {fileID: 2098046325}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: DetectCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39751,11 +39747,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5561713599690707750, guid: 6a8c36d64143f384cbca9b47c68ab7ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97
+      value: 91
       objectReference: {fileID: 0}
     - target: {fileID: 5561713599690707750, guid: 6a8c36d64143f384cbca9b47c68ab7ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5561713599690707750, guid: 6a8c36d64143f384cbca9b47c68ab7ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39806,9 +39802,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1617435501}
     m_Modifications:
+    - target: {fileID: 40019394786572775, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 131742949257278395, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3450468484219959159, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39855,6 +39855,10 @@ PrefabInstance:
       value: Melee_A_1
       objectReference: {fileID: 0}
     - target: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942369251695572563, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -39884,7 +39888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8160542069400860818, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8634557002688745451, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
       propertyPath: deadState

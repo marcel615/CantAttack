@@ -6,11 +6,12 @@ public class TrapBallShooter : MonoBehaviour, IDamageable
 {
     //내 컴포넌트
     SpriteRenderer spriteRenderer;
-    [SerializeField] private BoxCollider2D activeCollider;
-    [SerializeField] private BoxCollider2D destroyCollider;
+    BoxCollider2D boxCollider;
 
     //내 자식 오브젝트
     [SerializeField] private TrapSensor detectCollider;
+    [SerializeField] private GameObject activeGroundArea;
+    [SerializeField] private GameObject destroyGroundArea;
 
     //발사 시작 포인트
     [SerializeField] private Transform firePoint;
@@ -35,10 +36,13 @@ public class TrapBallShooter : MonoBehaviour, IDamageable
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
 
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         if (firePoint == null) firePoint = transform.Find("FirePoint");
         if (detectCollider == null) detectCollider = transform.Find("DetectCollider").GetComponent<TrapSensor>();
+        if (activeGroundArea == null) activeGroundArea = transform.Find("GroundArea1").gameObject;
+        if (destroyGroundArea == null) destroyGroundArea = transform.Find("GroundArea2").gameObject;
 
     }
 
@@ -78,8 +82,9 @@ public class TrapBallShooter : MonoBehaviour, IDamageable
     {
         isDestroy = true;
         spriteRenderer.sprite = destroyImage;
-        activeCollider.enabled = false;
-        destroyCollider.enabled = true;
+        boxCollider.enabled = false;
+        activeGroundArea.GetComponent<BoxCollider2D>().enabled = false;
+        destroyGroundArea.GetComponent<BoxCollider2D>().enabled = true;
         GameObject explosion = Instantiate(explosionPrefab, firePoint.position, Quaternion.identity);
         
     }
