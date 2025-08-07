@@ -89,11 +89,8 @@ public class Player : MonoBehaviour
         groundLayer = LayerMask.GetMask("Ground","");
 
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        //땅 위에 있는지 체크
-        isGrounded = Physics2D.OverlapCircle(groundCheckObj.position, checkRadius, groundLayer);
-
         //사용자 조작이 가능한 상태인지 판별
         if (!isKnockbacked && !isDashing && !isParrying)
         {
@@ -103,6 +100,13 @@ public class Player : MonoBehaviour
         {
             canControl = false;
         }
+    }
+    private void FixedUpdate()
+    {
+        //땅 위에 있는지 체크
+        isGrounded = Physics2D.OverlapCircle(groundCheckObj.position, checkRadius, groundLayer);
+
+        
 
         //무적 시간 제어하기
         if (isInvincible)

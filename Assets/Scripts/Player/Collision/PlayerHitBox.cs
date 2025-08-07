@@ -17,7 +17,5 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     public void TakeDamage(Vector2 hitTargetPos, int damage)
     {
         PlayerEvents.InvokePlayerHitBoxHitted(hitTargetPos, damage);
-        //player.OnDamaged(hitTargetPos, damage);
-
     }
 }

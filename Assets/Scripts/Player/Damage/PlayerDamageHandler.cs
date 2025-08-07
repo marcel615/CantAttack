@@ -29,9 +29,8 @@ public class PlayerDamageHandler : MonoBehaviour
         player = GetComponent<Player>();
 
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        //OnDamaged 실행되면
         if (getDamage)
         {
             if (!player.isInvincible)
@@ -59,10 +58,13 @@ public class PlayerDamageHandler : MonoBehaviour
 
                 }
                 spriteRenderer.color = new Color(1, 1, 1, 0.4f); //피격 시 반투명하게 됨
+
             }
         }
         getDamage = false;
-
+    }
+    private void FixedUpdate()
+    {
         //넉백 시간 제어하기
         if (player.isKnockbacked)
         {
@@ -76,7 +78,6 @@ public class PlayerDamageHandler : MonoBehaviour
                 player.isKnockbacked = false;
             }
         }
-
     }
 
     //이벤트 구독

@@ -26,9 +26,8 @@ public class PlayerJump : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GetComponent<Player>();
     }
-
-    private void FixedUpdate()
-    {        
+    private void Update()
+    {
         //점프 눌렸을 때 플래그 && 땅에 서있으면 && jumpCount가 0이면 점프하도록
         if (J && player.isGrounded && jumpCount == 0 && player.canControl)
         {
@@ -41,7 +40,7 @@ public class PlayerJump : MonoBehaviour
 
         }
         //더블점프 구현
-        if((J && jumpCount == 1 && !player.isGrounded && player.canControl) ||  (J && jumpCount == 0 && player.isFalling && player.canControl))
+        if ((J && jumpCount == 1 && !player.isGrounded && player.canControl) || (J && jumpCount == 0 && player.isFalling && player.canControl))
         {
             rigid.velocity = new Vector2(rigid.velocity.x, player.doubleJumpPower);
             jumpCount = 2;
@@ -52,6 +51,10 @@ public class PlayerJump : MonoBehaviour
             //애니메이터 설정
         }
         J = false;
+    }
+
+    private void FixedUpdate()
+    {        
 
         //1단 점프 한정으로 점프키를 누르고 있는 동안 점프 높이 높아지도록 
         if (J_Hold && player.isJumping)

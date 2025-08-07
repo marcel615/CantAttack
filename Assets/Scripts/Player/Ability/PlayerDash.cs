@@ -31,7 +31,7 @@ public class PlayerDash : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GetComponent<Player>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         //플레이어 회피기
         if (D && !isDashCoolTime && player.canControl)
@@ -49,7 +49,9 @@ public class PlayerDash : MonoBehaviour
             rigid.velocity = new Vector2(player.isHeadToRight * DashSpeed, 0);
         }
         D = false;
-
+    }
+    private void FixedUpdate()
+    {
         if (player.isDashing)
         {
             if (DashTimer > 0)
@@ -78,8 +80,6 @@ public class PlayerDash : MonoBehaviour
                 isDashCoolTime = false;
             }
         }
-
-
     }
 
     public void Dash(bool d)

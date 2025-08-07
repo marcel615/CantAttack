@@ -40333,10 +40333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429df40523281694eae05400ceb29e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FSM: {fileID: 8986673754320577063}
-  rigid: {fileID: 8986673754320577055}
-  spriteRenderer: {fileID: 8986673754320577056}
-  animator: {fileID: 0}
 --- !u!114 &8986673754320577051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40349,16 +40345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17743dd87c284fb44856a76e432a3179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &8986673754320577055 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 6240031500311194109, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
-  m_PrefabInstance: {fileID: 2244930932506625014}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &8986673754320577056 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7272632664903263232, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
-  m_PrefabInstance: {fileID: 2244930932506625014}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8986673754320577057
 MonoBehaviour:
   m_ObjectHideFlags: 0

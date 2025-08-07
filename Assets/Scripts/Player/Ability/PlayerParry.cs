@@ -21,11 +21,12 @@ public class PlayerParry : MonoBehaviour
     bool P;  //Parry 눌렀을 때 플래그
 
     //Parry 관련 변수들
-    float ParryTime = 0.4f;
+    float ParryTime = 0.2f;
     float ParryTimer;
     bool isParryCoolTime;    //패리 쿨타임
     float ParryCoolTime = 1f;
     float ParryCoolTimer;
+    float ParrySuccessInvincibleTime = 0.4f;
 
     private void Awake()
     {
@@ -51,13 +52,38 @@ public class PlayerParry : MonoBehaviour
     void ParrySuccess()
     {
         Debug.Log("Parry Success");
-        player.InvincibleTimer = ParryTime;
+        player.InvincibleTimer = ParrySuccessInvincibleTime;
         player.isInvincible = true;
     }
 
+    private void Update()
+    {
+        //플레이어 패링기
+        if (P && !isParryCoolTime && player.canControl)
+        {
+            ParryCoolTimer = ParryCoolTime;
+            isParryCoolTime = true;
+
+            ParryTimer = ParryTime;
+            player.isParrying = true;
+
+            prevGravity = rigid.gravityScale;
+            rigid.gravityScale = 0;
+            rigid.velocity = new Vector2(0, 0);
+            playerParryCollider.enabled = true;
+
+            //패리 이펙트 시작
+            var Effect = Instantiate(parryEffect, transform.position, Quaternion.identity).GetComponent<ParryCircleEffect>();
+            Effect.SetDeleteTime(ParryTime);
+        }
+        P = false;
+
+
+    }
 
     private void FixedUpdate()
     {
+        /*
         //플레이어 패링기
         if (P && !isParryCoolTime && player.canControl)
         {
@@ -73,16 +99,17 @@ public class PlayerParry : MonoBehaviour
 
             //패리 이펙트 시작
             var Effect = Instantiate(parryEffect, transform.position, Quaternion.identity).GetComponent<ParryCircleEffect>();
-            Effect.SetDeleteTime(ParryTimer);
+            Effect.SetDeleteTime(ParryTime);
         }
         P = false;
+        */
 
         if (player.isParrying)
         {
             if (ParryTimer > 0)
             {
                 rigid.velocity = new Vector2(0, 0);
-                playerParryCollider.enabled = true;
+                //playerParryCollider.enabled = true;
 
                 ParryTimer -= Time.fixedDeltaTime;
             }
