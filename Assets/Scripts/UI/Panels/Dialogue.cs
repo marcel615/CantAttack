@@ -52,6 +52,7 @@ public class Dialogue : MonoBehaviour
         else
         {
             //´Ý±â
+            InputEvents.Dialogue.InvokeDialogueClose();
             UIPanelController.Close(ref currentPanel, gameObject);
             InputEvents.InvokeContextUpdate(InputContext.Player);
         }
@@ -73,6 +74,7 @@ public class Dialogue : MonoBehaviour
     }
     void EndDialogue()
     {
+        InputEvents.Dialogue.InvokeDialogueClose();
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
     }

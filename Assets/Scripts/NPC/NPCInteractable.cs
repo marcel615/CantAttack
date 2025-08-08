@@ -6,6 +6,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
 {
     //부모 오브젝트
     public NPC npc;
+    GameObject interactTarget;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     {
         if (collision.CompareTag("Player"))
         {
+            interactTarget = collision.gameObject;
             npc.ShowInteractableMessage();
         }
     }
@@ -23,6 +25,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     {
         if (collision.CompareTag("Player"))
         {
+            interactTarget = null;
             npc.HideInteractableMessage();
         }
 
@@ -30,7 +33,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     public void Interact()
     {
         MessageManager.Instance.npcMessageManager.ShowMessage(npc.NPCMessages);
-
+        npc.LookInteractTarget(interactTarget);
     }
 
 }

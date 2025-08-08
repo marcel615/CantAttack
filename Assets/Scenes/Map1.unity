@@ -209,6 +209,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
   m_PrefabInstance: {fileID: 4761164734396471277}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &309513154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2265972861613660762, guid: eb8e035051388144496a33c498edaab5, type: 3}
+  m_PrefabInstance: {fileID: 4671118038107290270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &313397518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1219256934720894765, guid: fd768a0a3f02b5b4580a109a48a61be8, type: 3}
@@ -40201,6 +40206,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6030112767110182570, guid: eb8e035051388144496a33c498edaab5, type: 3}
+      propertyPath: interactableText
+      value: 
+      objectReference: {fileID: 309513154}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

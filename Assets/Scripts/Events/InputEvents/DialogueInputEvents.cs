@@ -7,6 +7,8 @@ public class DialogueInputEvents
 {
     //Dialogue UI에 접근하기 위한 이벤트
     public event Action<InputContext, List<string>> OnDialogueOpen;
+    //Dialogue UI가 닫히면 발행하는 이벤트
+    public event Action OnDialogueClose;
 
 
     //ESC 이벤트 (나가기)
@@ -22,6 +24,11 @@ public class DialogueInputEvents
     public void InvokeDialogueOpen(InputContext sourceInputContext, List<String> messages)
     {
         OnDialogueOpen?.Invoke(sourceInputContext, messages);
+    }
+    //Dialogue UI가 닫히면 발행하는 이벤트
+    public void InvokeDialogueClose()
+    {
+        OnDialogueClose?.Invoke();
     }
 
 
