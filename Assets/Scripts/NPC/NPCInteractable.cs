@@ -28,7 +28,6 @@ public class NPCInteractable : MonoBehaviour, IInteractable
             interactTarget = null;
             npc.HideInteractableMessage();
         }
-
     }
     public void Interact()
     {

@@ -8,6 +8,9 @@ public static class SystemEvents
     //SaveManager의 딕셔너리 설정 이벤트
     public static event Action<SaveManager> OnSaveDicKeyRequest;
 
+    //SavePoint에서 저장하기 직전에 보내는 이벤트
+    public static event Action<Transform> OnSavePointNotice;
+
     //저장하라는 이벤트
     public static event Action OnSaveRequest;
     //저장이 끝났다는 이벤트
@@ -33,6 +36,12 @@ public static class SystemEvents
     public static void InvokeSaveDicKeyRequested(SaveManager saveManager)
     {
         OnSaveDicKeyRequest?.Invoke(saveManager);
+    }
+
+    //SavePoint에서 저장하기 직전에 보내는 이벤트
+    public static void InvokeSavePointNotice(Transform transform)
+    {
+        OnSavePointNotice?.Invoke(transform);
     }
 
     //저장하라는 이벤트
