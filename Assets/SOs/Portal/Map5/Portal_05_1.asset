@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Portal_05_1
   m_EditorClassIdentifier: 
   portalID: Portal_05_1
-  position: {x: 0, y: 0}
+  position: {x: 2.5, y: 4}
   portalWalkDirection: 3
   targetScene: Map4
   targetPortalID: Portal_04_2

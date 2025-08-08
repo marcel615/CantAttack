@@ -7,7 +7,7 @@ public class PortalDataSO : ScriptableObject
 {
     [Header("Æ÷Å»ID")]
     public string portalID;
-    [Header("Æ÷Å»º° Á¸Àç Position")]
+    [Header("Æ÷Å»º° µµÂø Position")]
     public Vector2 position;
     [Header("Æ÷Å»º° ÁøÀÔ ¹æÇâ")]
     public PortalWalkDirection portalWalkDirection;

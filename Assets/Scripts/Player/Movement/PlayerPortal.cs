@@ -7,6 +7,8 @@ public class PlayerPortal : MonoBehaviour
 {
     //내 컴포넌트
     Player player;
+    Rigidbody2D rigid;
+    Animator animator;
     CapsuleCollider2D detectCollider;
     PlayerMove playerMove;
 
@@ -25,6 +27,8 @@ public class PlayerPortal : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<Player>();
+        rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         detectCollider = GetComponent<CapsuleCollider2D>();
         playerMove = GetComponent<PlayerMove>();
     }
@@ -44,8 +48,16 @@ public class PlayerPortal : MonoBehaviour
         {
             if (PortalMoveTimer > 0)
             {
-                playerMove.Move(H);
-                PortalMoveTimer -= Time.fixedDeltaTime;
+                //포탈에서 위로 올라가는 경우 말고는 여기서
+                if(WalkDir != PortalWalkDirection.Up)
+                {
+                    playerMove.Move(H);
+                    PortalMoveTimer -= Time.fixedDeltaTime;
+                }
+                else  //포탈에서 위로 올라가는 경우는 여기서 처리
+                {
+                    rigid.velocity = new Vector2(H * player.normalSpeed, 1f);
+                }
             }
             else
             {
@@ -67,14 +79,14 @@ public class PlayerPortal : MonoBehaviour
         //Portal.cs에서 Portal 진입 시 이벤트 
         PortalEvents.OnPortalEnter += EnterPortal;
         //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
-        MapEvents.OnGetPlayerPos += TargetPortal;
+        MapEvents.OnGetPlayerPos += TargetScene;
     }
     private void OnDisable()
     {
         //Portal.cs에서 Portal 진입 시 이벤트 
         PortalEvents.OnPortalEnter -= EnterPortal;
         //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
-        MapEvents.OnGetPlayerPos -= TargetPortal;
+        MapEvents.OnGetPlayerPos -= TargetScene;
     }
     //Portal.cs에서 Portal 진입 시 이벤트 
     void EnterPortal(string enterP, string targetS, string targetP, PortalWalkDirection walkDir)
@@ -100,7 +112,7 @@ public class PlayerPortal : MonoBehaviour
 
     }
     //새로 진입한 씬에서 PlayerPosition값 새로 획득했을 때
-    void TargetPortal(Vector2 pos)
+    void TargetScene(Vector2 pos)
     {
         //플레이어 위치 초기화
         transform.position = pos;
@@ -110,6 +122,19 @@ public class PlayerPortal : MonoBehaviour
 
         //플래그 설정
         isTargetScene = true;
+
+        //포탈에서 위로 올라가는 경우에는 타겟씬 포탈은 타지 않기 때문에 여기서 플래그 초기화 및 Context 전환
+        if (WalkDir == PortalWalkDirection.Up)
+        {
+            isTargetScene = false;
+            player.isPortalEnter = false;
+
+            rigid.velocity = new Vector2(0, 0);
+            animator.SetTrigger("isIdle");
+
+            //Context 변경 이벤트
+            InputEvents.InvokeContextUpdate(InputContext.Player);
+        }
     }
 
     //받은 WalkDir에 따라 플레이어가 움직일 방향 설정 
@@ -126,11 +151,11 @@ public class PlayerPortal : MonoBehaviour
                 break;
 
             case PortalWalkDirection.Up:
-
+                H = 0;
                 break;
 
             case PortalWalkDirection.Down:
-
+                H = 0;
                 break;
         }
     }

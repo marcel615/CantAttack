@@ -19,6 +19,7 @@ public class MapManager : MonoBehaviour
     string enterPortalID;
     string targetScene;
     string targetPortalID;
+    PortalWalkDirection walkDirection;
     Vector2 targetPortalPos;
     bool isPortalSceneChange;
     bool isTargetScene;
@@ -80,6 +81,7 @@ public class MapManager : MonoBehaviour
         enterPortalID = enterP;
         targetScene = targetS;
         targetPortalID = targetP;
+        walkDirection = walkDir;
 
         isPortalSceneChange = true;
         isTargetScene = false;
@@ -98,7 +100,8 @@ public class MapManager : MonoBehaviour
         //씬 로드 시 포탈 씬 체인지중이고, 씬 이름이 이전에 저장했던 도착포탈의 이름과 같다면
         if(isPortalSceneChange && scene.name == targetScene)
         {
-            isTargetScene = true;
+            if(walkDirection != PortalWalkDirection.Up) //WalkDirection이 Up이었을 경우에는 isTargetScene을 true로 활성화X
+                isTargetScene = true;
 
             targetPortalPos = localMapManager.GetPortalPos(targetPortalID);
             MapEvents.InvokeGetPlayerPos(targetPortalPos);
