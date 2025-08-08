@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour
 
     //각 씬마다의 LocalMapManager
     public LocalMapManager localMapManager;
+    public string nowSceneName;
 
     //포탈로 씬 이동 시 관련 변수
     string enterPortalID;
@@ -52,6 +53,9 @@ public class MapManager : MonoBehaviour
         PortalEvents.OnPortalEnter += EnterPortal;
         //씬 로드 시 이벤트
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        //SavePoint에서 저장하기 직전에 보내는 이벤트
+        SystemEvents.OnSavePointNotice += SaveSceneName;
     }
     private void OnDisable()
     {
@@ -61,12 +65,15 @@ public class MapManager : MonoBehaviour
         PortalEvents.OnPortalEnter -= EnterPortal;
         //씬 로드 시 이벤트
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        //SavePoint에서 저장하기 직전에 보내는 이벤트
+        SystemEvents.OnSavePointNotice += SaveSceneName;
     }
 
     void GetLocalMapManager(LocalMapManager local)
     {
         localMapManager = local;
-        saveScene = localMapManager.mapDataSO.sceneName;
+        nowSceneName = localMapManager.mapDataSO.sceneName;
     }
 
     void EnterPortal(string enterP, string targetS, string targetP, PortalWalkDirection walkDir)
@@ -115,6 +122,10 @@ public class MapManager : MonoBehaviour
             InputEvents.InvokeContextUpdate(InputContext.Player);
             isSavedSceneLoaded = true;
         }
+    }
+    void SaveSceneName(SavePointSO savePointSO)
+    {
+        saveScene = savePointSO.sceneName;
     }
     public void Init()
     {

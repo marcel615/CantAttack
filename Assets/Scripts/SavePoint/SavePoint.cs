@@ -34,7 +34,7 @@ public class SavePoint : MonoBehaviour
         HideInteractableMessage();
 
         //SavePoint에서 저장하기 직전에 보내는 이벤트
-        SystemEvents.InvokeSavePointNotice(transform);
+        SystemEvents.InvokeSavePointNotice(savePointSO);
 
         //세이브 요청 이벤트 발행
         SystemEvents.InvokeSaveRequest();

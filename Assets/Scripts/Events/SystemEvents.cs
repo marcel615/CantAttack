@@ -9,7 +9,7 @@ public static class SystemEvents
     public static event Action<SaveManager> OnSaveDicKeyRequest;
 
     //SavePoint에서 저장하기 직전에 보내는 이벤트
-    public static event Action<Transform> OnSavePointNotice;
+    public static event Action<SavePointSO> OnSavePointNotice;
 
     //저장하라는 이벤트
     public static event Action OnSaveRequest;
@@ -39,9 +39,9 @@ public static class SystemEvents
     }
 
     //SavePoint에서 저장하기 직전에 보내는 이벤트
-    public static void InvokeSavePointNotice(Transform transform)
+    public static void InvokeSavePointNotice(SavePointSO savePointSO)
     {
-        OnSavePointNotice?.Invoke(transform);
+        OnSavePointNotice?.Invoke(savePointSO);
     }
 
     //저장하라는 이벤트

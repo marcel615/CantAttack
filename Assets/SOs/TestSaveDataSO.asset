@@ -16,6 +16,6 @@ MonoBehaviour:
     playerSaveData:
       MaxHP: 5
       CurrentHP: 4
-      position: {x: -7.5, y: 4}
+      position: {x: 0, y: 0}
     mapSaveData:
-      saveScene: Map5
+      saveScene: Map1

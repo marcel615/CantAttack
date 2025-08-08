@@ -66,9 +66,9 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
     {
         saveManager.GetDicKey(this);
     }
-    void SavePlayerPos(Transform saveTransform)
+    void SavePlayerPos(SavePointSO savePointSO)
     {
-        player.savePosition = saveTransform.position;
+        player.savePosition = savePointSO.position;
     }
 
 }
