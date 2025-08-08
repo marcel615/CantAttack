@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class EnemyFSM : MonoBehaviour
 {
+    //내 컴포넌트
     public EnemyController enemyController;
-
-
-    //상태 추적 변수
-    [HideInInspector] public EnemyState currentState;
 
     //여러 상태들
     public EnemyState idleState;
@@ -16,11 +13,10 @@ public class EnemyFSM : MonoBehaviour
     public EnemyState chaseState;
     public EnemyState attackState;
     public EnemyState stunState;
-    public EnemyState evadeState;
-    public EnemyState returnState;
-    //public EnemyState hitState;
     public EnemyState deadState;
 
+    //상태 추적 변수
+    [HideInInspector] public EnemyState currentState;
 
 
 
@@ -33,11 +29,7 @@ public class EnemyFSM : MonoBehaviour
         chaseState.Init(this);
         attackState.Init(this);
         stunState.Init(this);
-        evadeState.Init(this);
-        returnState.Init(this);
-        //hitState.Init(this);
         deadState.Init(this);
-
     }
     private void Start()
     {

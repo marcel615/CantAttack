@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAAttackState : EnemyState
+public class AttackState : EnemyState
 {
     //내 컴포넌트
     Rigidbody2D rigid;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeADeadState : EnemyState
+public class DeadState : EnemyState
 {
     //내 컴포넌트
     SpriteRenderer spriteRenderer; 
