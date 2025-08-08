@@ -48,6 +48,7 @@ public class PlayerDash : MonoBehaviour
             prevGravity = rigid.gravityScale;
             rigid.gravityScale = 0;
             rigid.velocity = new Vector2(player.isHeadToRight * DashSpeed, 0);
+            animator.SetTrigger("isDash");
         }
         D = false;
 

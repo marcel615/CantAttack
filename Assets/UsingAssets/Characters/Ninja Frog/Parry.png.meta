@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d315b67ba1f34b43b79f20a52a5204b
+guid: bbd4d0df0a1d2cf4e9f8467dfa9101ba
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -118,112 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hit (32x32)_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14bd7961791c34d4c8762c98a5b61c2d
-      internalID: 6868122594974341346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hit (32x32)_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25bd412ae96423c4287f7b0d874b51b0
-      internalID: 7167584040609486739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hit (32x32)_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dbb0f71bf278274baa2baf491d0b14c
-      internalID: -1675461080110260169
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hit (32x32)_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b13cde08f448df14381e1ca7d37fd218
-      internalID: 8480664182131228983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hit (32x32)_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cea3e2e13c79734c8450e5795159982
-      internalID: -953560442851353963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hit (32x32)_5
+      name: Parry
       rect:
         serializedVersion: 2
         x: 160
@@ -231,7 +126,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,27 +134,6 @@ TextureImporter:
       bones: []
       spriteID: 38f1a7edc9e4ff94eaa0c5248061f942
       internalID: -3450976776972242761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hit (32x32)_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db57bcfe7021e4441ab47fb75a63a916
-      internalID: 7062579536633761780
       vertices: []
       indices: 
       edges: []
@@ -280,8 +154,8 @@ TextureImporter:
       Hit (32x32)_2: -1675461080110260169
       Hit (32x32)_3: 8480664182131228983
       Hit (32x32)_4: -953560442851353963
-      Hit (32x32)_5: -3450976776972242761
       Hit (32x32)_6: 7062579536633761780
+      Parry: -3450976776972242761
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

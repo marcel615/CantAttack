@@ -1,14 +1,14 @@
 {
     "playerSaveData": {
         "MaxHP": 5,
-        "CurrentHP": 4,
+        "CurrentHP": 2,
         "position": {
-            "x": -7.5,
-            "y": 4.0
+            "x": -0.8042314648628235,
+            "y": -0.08002844452857971
         }
     },
     "systemSaveData": {},
     "mapSaveData": {
-        "saveScene": "Map5"
+        "saveScene": "Map4"
     }
 }

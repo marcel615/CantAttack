@@ -77,6 +77,7 @@ public class PlayerParry : MonoBehaviour
             rigid.gravityScale = 0;
             rigid.velocity = new Vector2(0, 0);
             playerParryCollider.enabled = true;
+            animator.SetBool("isParry", true);
 
             //패리 이펙트 시작
             var Effect = Instantiate(parryEffect, transform.position, Quaternion.identity).GetComponent<ParryCircleEffect>();
@@ -106,6 +107,7 @@ public class PlayerParry : MonoBehaviour
                 playerParryCollider.enabled = false;
                 ParryTimer = 0;
                 player.isParrying = false;
+                animator.SetBool("isParry", false);
 
                 rigid.gravityScale = prevGravity;
             }
