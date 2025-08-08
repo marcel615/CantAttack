@@ -40,6 +40,7 @@ public class EnemyDataSO : ScriptableObject
     //[Header("스턴 관련 변수")]
 
     //죽음 관련 변수
-    //[Header("죽음 관련 변수")]
+    [Header("죽음 관련 변수")]
+    public Sprite deadImage;
 
 }

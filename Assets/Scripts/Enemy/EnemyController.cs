@@ -59,6 +59,7 @@ public class EnemyController : MonoBehaviour
 
     //죽음 관련 변수
     [HideInInspector] public bool isDead;
+    [HideInInspector] public Sprite deadImage;
 
 
 
@@ -113,6 +114,7 @@ public class EnemyController : MonoBehaviour
 
         //죽음 관련 변수
         isDead = false;
+        deadImage = enemyDataSO.deadImage;
     }   
 
     //이벤트 구독

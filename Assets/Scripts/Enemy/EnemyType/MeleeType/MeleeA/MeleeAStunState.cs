@@ -45,6 +45,8 @@ public class MeleeAStunState : EnemyState
 
         //패리로 인한 스턴 플래그 false로
         FSM.enemyController.isParryStun = false;
+        //애니메이션 재생 종료
+        animator.SetBool("isStun", false);
 
     }
     private IEnumerator ParryStun()
@@ -53,7 +55,7 @@ public class MeleeAStunState : EnemyState
         FSM.enemyController.isParryStun = true;
 
         //애니메이션 재생
-        //animator.SetTrigger("isStun");
+        animator.SetBool("isStun", true);
 
         //이동 멈추도록
         rigid.velocity = new Vector2(0, rigid.velocity.y);
@@ -61,8 +63,12 @@ public class MeleeAStunState : EnemyState
         //스턴 시간 기다리고
         yield return new WaitForSeconds(parryStunTime);
 
+
         //패리로 인한 스턴 플래그 false로
         FSM.enemyController.isParryStun = false;
+
+        //애니메이션 재생 종료
+        animator.SetBool("isStun", false);
 
         //다음 상태로 전환되도록
         EnemyState nextState = FSM.DecideNextState();
