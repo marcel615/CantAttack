@@ -11,7 +11,6 @@ public class NPC : MonoBehaviour
     public List<NPCMessageSO> NPCMessages;
 
     //플레이어와 대화 관련 변수
-    bool isInteracting;
     Vector3 originalLocalScale;
 
     private void Awake()
@@ -29,7 +28,6 @@ public class NPC : MonoBehaviour
     }
     public void LookInteractTarget(GameObject interatTarget)
     {
-        isInteracting = true;
         interactableText.SetActive(false);
 
         if (interatTarget.transform.position.x < transform.position.x)
@@ -52,7 +50,6 @@ public class NPC : MonoBehaviour
     }
     void OnDialogueClose()
     {
-        isInteracting = false;
         interactableText.SetActive(true);
 
         transform.localScale = originalLocalScale;

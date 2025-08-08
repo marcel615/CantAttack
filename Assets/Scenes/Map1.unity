@@ -38688,6 +38688,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ca8008a14142498bad7b12c5fdce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &1044209579 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4924037322820818615, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+  m_PrefabInstance: {fileID: 2244930932506625014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1107154789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40443,7 +40448,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FSM: {fileID: 8986673754320577063}
   reactionHandler: {fileID: 8986673754320577049}
+  enemyCollider: {fileID: 8986673754320577071}
   MeleeAttack1Point: {fileID: 742110514}
+  hitboxCollider: {fileID: 1044209579}
   enemyDataSO: {fileID: 11400000, guid: 3a757ec8531744f4d84d204b1a2fbae8, type: 2}
   MaxHP: 10
   CurrentHP: 10
@@ -40469,6 +40476,7 @@ MonoBehaviour:
   isParryStun: 0
   parryStunTime: 4
   isDead: 0
+  deadImage: {fileID: 0}
 --- !u!95 &8986673754320577067
 Animator:
   serializedVersion: 5
@@ -40514,6 +40522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a4fa47668794a4e9b3a63ecb8fe841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &8986673754320577071 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3101049265406035109, guid: f4cced46dc7537b459d20b488d84b446, type: 3}
+  m_PrefabInstance: {fileID: 2244930932506625014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

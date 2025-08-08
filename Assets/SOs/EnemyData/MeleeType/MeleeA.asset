@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057b76319bfa80345b3e136fcfddc8f5, type: 3}
   m_Name: MeleeA
   m_EditorClassIdentifier: 
-  MaxHP: 10
-  CurrentHP: 10
+  MaxHP: 2
+  CurrentHP: 2
   idleMinWaitTime: 1
   idleMaxWaitTime: 2
   patrolSpeed: 2

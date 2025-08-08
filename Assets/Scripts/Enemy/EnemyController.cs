@@ -7,11 +7,13 @@ public class EnemyController : MonoBehaviour
     //내 컴포넌트
     public EnemyFSM FSM;
     public EnemyReactionHandler reactionHandler;
+    [SerializeField] private Collider2D enemyCollider;
 
     //내 자식 오브젝트
     Transform groundCheckFront;
     Transform wallCheckFront;
     public Transform MeleeAttack1Point;
+    [SerializeField] private Collider2D hitboxCollider;
 
     //전체 정보를 가지고 있는 DataSO
     [SerializeField] private EnemyDataSO enemyDataSO;
@@ -59,7 +61,6 @@ public class EnemyController : MonoBehaviour
 
     //죽음 관련 변수
     [HideInInspector] public bool isDead;
-    [HideInInspector] public Sprite deadImage;
 
 
 
@@ -114,7 +115,6 @@ public class EnemyController : MonoBehaviour
 
         //죽음 관련 변수
         isDead = false;
-        deadImage = enemyDataSO.deadImage;
     }   
 
     //이벤트 구독
@@ -168,6 +168,8 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            isDead = true;
+
             //다음 상태로 전환되는지 체크하고 전환하도록
             if (FSM.CanChangeState(FSM.deadState))
                 FSM.ChangeState(FSM.deadState);
@@ -223,6 +225,11 @@ public class EnemyController : MonoBehaviour
     {
         Vector2 checkDir = new Vector2(isHeadToRight, 0);
         return Physics2D.Raycast(wallCheckFront.position, checkDir, checkRadius, groundLayer);
+    }
+    public void DeadDisableColliders()
+    {
+        if (enemyCollider != null) enemyCollider.enabled = false;
+        if (hitboxCollider != null) hitboxCollider.enabled = false;
     }
 
 }
