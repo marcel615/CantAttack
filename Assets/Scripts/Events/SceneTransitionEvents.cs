@@ -11,6 +11,8 @@ public static class SceneTransitionEvents
     public static event Action<int> OnSaveSlotToGameScene;
     //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
     public static event Action<string> OnPortalToPortal;
+    //Dead 상태에서 Respawn 상태로 씬 전환 요청하는 경우 이벤트
+    public static event Action OnDeadToRespawn;
     //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
     public static event Action<string> OnSystemMenuToMainMenu;
 
@@ -29,6 +31,11 @@ public static class SceneTransitionEvents
     public static void InvokePortalToPortal(string targetScene)
     {
         OnPortalToPortal?.Invoke(targetScene);
+    }
+    //Dead 상태에서 Respawn 상태로 씬 전환 요청하는 경우 이벤트
+    public static void InvokeDeadToRespawn()
+    {
+        OnDeadToRespawn?.Invoke();
     }
     //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
     public static void InvokeSystemMenuToMainMenu(string targetScene)

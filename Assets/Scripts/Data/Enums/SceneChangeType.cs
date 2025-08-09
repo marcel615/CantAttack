@@ -7,5 +7,6 @@ public enum SceneChangeType
     MainMenuContinue,
     SaveSlot,
     Portal,
+    Respawn,
     SystemMenu
 }

@@ -314,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveScene: 
   localMapManager: {fileID: 0}
+  nowSceneName: 
 --- !u!4 &713660818
 Transform:
   m_ObjectHideFlags: 0

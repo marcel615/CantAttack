@@ -39,6 +39,8 @@ public class SceneTransitionManager : MonoBehaviour
         SceneTransitionEvents.OnSaveSlotToGameScene += SaveSlotToGameScene;
         //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnPortalToPortal += PortalToPortal;
+        //Dead 상태에서 Respawn 상태로 씬 전환 요청하는 경우 이벤트
+        SceneTransitionEvents.OnDeadToRespawn += DeadToRespawn;
         //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnSystemMenuToMainMenu += SystemMenuToMainMenu;
 
@@ -55,6 +57,8 @@ public class SceneTransitionManager : MonoBehaviour
         SceneTransitionEvents.OnSaveSlotToGameScene -= SaveSlotToGameScene;
         //포탈에서 포탈로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnPortalToPortal -= PortalToPortal;
+        //Dead 상태에서 Respawn 상태로 씬 전환 요청하는 경우 이벤트
+        SceneTransitionEvents.OnDeadToRespawn -= DeadToRespawn;
         //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트
         SceneTransitionEvents.OnSystemMenuToMainMenu -= SystemMenuToMainMenu;
 
@@ -80,6 +84,11 @@ public class SceneTransitionManager : MonoBehaviour
 
                 case SceneChangeType.Portal:
                     LoadingEvents.InvokePortalLoadingOpen(fadeTime, targetScene);
+
+                    break;
+
+                case SceneChangeType.Respawn:
+                    LoadingEvents.InvokeRespawnLoadingOpen(fadeTime, targetScene);
 
                     break;
 
@@ -138,6 +147,18 @@ public class SceneTransitionManager : MonoBehaviour
         //Fade 코루틴 시작
         StartCoroutine(PortalFadeOut(sceneChangeType, targetScene, saveSlotNum));
     }
+    void DeadToRespawn()
+    {
+        //Context 변경 이벤트
+        InputEvents.InvokeContextUpdate(InputContext.SceneChange);
+
+        //씬 전환 중요 변수 저장
+        sceneChangeType = SceneChangeType.Respawn;
+        targetScene = null;
+
+        //Fade 코루틴 시작
+        StartCoroutine(DeadFadeOut());
+    }
     void SystemMenuToMainMenu(string targetS)
     {
         //Context 변경 이벤트
@@ -178,6 +199,15 @@ public class SceneTransitionManager : MonoBehaviour
         SceneManager.LoadScene("LoadingScene");
     }
     IEnumerator PortalFadeOut(SceneChangeType sceneChangeType, string targetScene, int num)
+    {
+        //페이드아웃 진행
+        FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);
+        yield return new WaitForSeconds(fadeTime);
+
+        //로딩씬 진입
+        SceneManager.LoadScene("LoadingScene");
+    }
+    IEnumerator DeadFadeOut()
     {
         //페이드아웃 진행
         FadeEvents.InvokeFadeOpen(fadeTime, FadeDirection.FadeOut);

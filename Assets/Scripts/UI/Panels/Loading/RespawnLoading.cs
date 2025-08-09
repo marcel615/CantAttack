@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SaveExitLoading : MonoBehaviour
+public class RespawnLoading : MonoBehaviour
 {
     //부모 패널
     [SerializeField] private GameObject loadingPanel;
@@ -14,7 +14,7 @@ public class SaveExitLoading : MonoBehaviour
     [SerializeField] private Slider progressBar;
     [SerializeField] private TextMeshProUGUI loadingText;
 
-    //PortalLoading 조작 관련 변수
+    //RespawnLoading 조작 관련 변수
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
@@ -27,8 +27,8 @@ public class SaveExitLoading : MonoBehaviour
         if (loadingText == null) loadingText = transform.Find("LoadingText")?.GetComponent<TextMeshProUGUI>();
     }
 
-    //어디선가 SaveExitLoading 패널을 열었을 때
-    public void SaveExitLoadingOpen(float fadeTime, string targetScene)
+    //어디선가 RespawnLoading 패널을 열었을 때
+    public void RespawnLoadingOpen(float fadeTime, string targetScene)
     {
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, loadingPanel);
 
@@ -36,7 +36,7 @@ public class SaveExitLoading : MonoBehaviour
         StartCoroutine(LoadSceneAsync(fadeTime, targetScene));
 
     }
-    public void SaveExitLoadingClose()
+    public void RespawnLoadingClose()
     {
         if (currentPanel != null)
         {
@@ -71,6 +71,25 @@ public class SaveExitLoading : MonoBehaviour
         // 세이브파일 저장 완료까지 대기
         yield return new WaitUntil(() => SaveFinished);
 
+
+        // 세이브파일 로드 시작
+        bool loadFinished = false;
+
+        void OnLoadFinished()
+        {
+            targetScene = MapManager.Instance.saveScene;    //타겟 씬 이름 알아냄
+            loadFinished = true;
+            SystemEvents.OnDataLoadFinished -= OnLoadFinished;
+        }
+        SystemEvents.OnDataLoadFinished += OnLoadFinished;
+
+        //세이브 로드 이벤트 발행
+        SystemEvents.InvokeNewGameORLatestSave();        
+
+        // 세이브파일 로드 완료까지 대기
+        yield return new WaitUntil(() => loadFinished);
+
+
         //비동기 씬 로딩 시작
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
         asyncLoad.allowSceneActivation = false;
@@ -87,7 +106,7 @@ public class SaveExitLoading : MonoBehaviour
         }
 
         // 강제 대기 (테스트용)
-        float fakeWait = 0.3f;
+        float fakeWait = 0.1f;
         float timer = 0f;
         while (timer < fakeWait)
         {
@@ -106,9 +125,10 @@ public class SaveExitLoading : MonoBehaviour
 
         //이 패널 닫기
         ResetPanel();
-        SaveExitLoadingClose();
+        RespawnLoadingClose();
 
         // 실제 씬 전환
         asyncLoad.allowSceneActivation = true;
     }
+
 }

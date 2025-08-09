@@ -25,6 +25,9 @@ public class MapManager : MonoBehaviour
     bool isPortalSceneChange;
     bool isTargetScene;
 
+    //플레이어 사망 후 리스폰 관련 변수
+    bool isPlayerDeadRespawn;
+
     //세이브슬롯에서 게임씬으로 이동 시 관련 변수
     bool isSavedSceneLoaded;
 
@@ -51,6 +54,8 @@ public class MapManager : MonoBehaviour
         MapEvents.OnLocalMapManagerInit += GetLocalMapManager;
         //Portal에서 Portal 진입 시 이벤트 발행
         PortalEvents.OnPortalEnter += EnterPortal;
+        //Player가 사망했을 때
+        PlayerEvents.OnPlayerDead += OnPlayerDead;
         //씬 로드 시 이벤트
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -63,6 +68,8 @@ public class MapManager : MonoBehaviour
         MapEvents.OnLocalMapManagerInit -= GetLocalMapManager;
         //Portal에서 Portal 진입 시 이벤트 발행
         PortalEvents.OnPortalEnter -= EnterPortal;
+        //Player가 사망했을 때
+        PlayerEvents.OnPlayerDead -= OnPlayerDead;
         //씬 로드 시 이벤트
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
@@ -97,6 +104,10 @@ public class MapManager : MonoBehaviour
         SceneTransitionEvents.InvokePortalToPortal(targetScene);
         
     }
+    void OnPlayerDead()
+    {
+        isPlayerDeadRespawn = true;
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //메인메뉴로 나가면 세이브슬롯 로드할 때 필요한 플래그 false로 초기화
@@ -114,13 +125,14 @@ public class MapManager : MonoBehaviour
             MapEvents.InvokeGetPlayerPos(targetPortalPos);
             isPortalSceneChange = false;
         }
-        //세이브슬롯에서부터 로드할 때이고, 씬 이름이 저장된 씬 이름과 같다면
-        if (!isSavedSceneLoaded && scene.name == saveScene)
+        //(세이브슬롯에서부터 로드할 때 혹은 플레이어가 리스폰될때)이고, 씬 이름이 저장된 씬 이름과 같다면
+        if ((!isSavedSceneLoaded || isPlayerDeadRespawn) && scene.name == saveScene)
         {
             MapEvents.InvokeSavedSceneLoaded();
             //Context 업데이트
             InputEvents.InvokeContextUpdate(InputContext.Player);
             isSavedSceneLoaded = true;
+            isPlayerDeadRespawn = false;
         }
     }
     void SaveSceneName(SavePointSO savePointSO)

@@ -15,6 +15,11 @@ public static class LoadingEvents
     //PortalLoading UI를 Close하기 위한 이벤트
     public static event Action OnPortalLoadingClose;
 
+    //RespawnLoading UI를 Open하기 위한 이벤트
+    public static event Action<float, string> OnRespawnLoadingOpen;
+    //RespawnLoading UI를 Close하기 위한 이벤트
+    public static event Action OnRespawnLoadingClose;
+
     //SaveExitLoading UI를 Open하기 위한 이벤트
     public static event Action<float, string> OnSaveExitLoadingOpen;
     //SaveExitLoading UI를 Close하기 위한 이벤트
@@ -41,6 +46,17 @@ public static class LoadingEvents
     public static void InvokePortalLoadingClose()
     {
         OnPortalLoadingClose?.Invoke();
+    }
+
+    //RespawnLoading UI를 Open하기 위한 이벤트
+    public static void InvokeRespawnLoadingOpen(float fadeTime, string targetScene)
+    {
+        OnRespawnLoadingOpen?.Invoke(fadeTime, targetScene);
+    }
+    //RespawnLoading UI를 Close하기 위한 이벤트
+    public static void InvokeRespawnLoadingClose()
+    {
+        OnRespawnLoadingClose?.Invoke();
     }
 
     //SaveExitLoading UI를 Open하기 위한 이벤트

@@ -12,6 +12,7 @@ public class PlayerDead : MonoBehaviour
 
     //Dead 연출 관련
     [SerializeField] private GameObject bloodEffectPrefab;
+    float deadSequenceTime = 2f;
 
 
     private void Awake()
@@ -35,18 +36,25 @@ public class PlayerDead : MonoBehaviour
     }
     void OnPlayerDead()
     {
-        Debug.Log("Dead");
+        StartCoroutine(DeadSequence());
+    }
+    IEnumerator DeadSequence()
+    {
+        // 사망 연출
         //Context 변경 이벤트
         InputEvents.InvokeContextUpdate(InputContext.PlayerDead);
         //히트박스 끄고
         player.playerHitBoxCollider.enabled = false;
         //움직임 멈추고
-        rigid.velocity = new Vector2 (0, rigid.velocity.y);
+        rigid.velocity = new Vector2(0, rigid.velocity.y);
         //피 이펙트 실행하고
         GameObject blood = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
         //애니메이션 설정하고
         animator.SetBool("isDead", true);
 
+        yield return new WaitForSeconds(deadSequenceTime);
 
+        //씬 전환 실시
+        SceneTransitionEvents.InvokeDeadToRespawn();
     }
 }
