@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 610944824034907700}
   - component: {fileID: 2212724191002388805}
   - component: {fileID: 5475526002256129506}
+  - component: {fileID: 5657085291012985599}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -276,6 +277,7 @@ Transform:
   - {fileID: 3561820204959242330}
   - {fileID: 4319159557777479383}
   - {fileID: 1392403847207963938}
+  - {fileID: 5527663621840367755}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7441745323769679018
@@ -428,6 +430,7 @@ MonoBehaviour:
   status: {fileID: 278981245230312581}
   groundCheckObj: {fileID: 3561820204959242330}
   playerHitBoxCollider: {fileID: 4543901865665025950}
+  cameraFollowTransform: {fileID: 5527663621840367755}
   savePosition: {x: 0, y: 0}
   playerContext: 0
   normalSpeed: 6
@@ -608,6 +611,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodEffectPrefab: {fileID: 6907683107587052782, guid: 9bb28984cc5505941bca1062ec3e76ce, type: 3}
+--- !u!114 &5657085291012985599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485503838152790450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71c657dc14c1784c9e086910a28e69a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6437079035474282005
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +649,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8594940997620046567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8377243055689923841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5527663621840367755}
+  m_Layer: 6
+  m_Name: CameraFollow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5527663621840367755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377243055689923841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

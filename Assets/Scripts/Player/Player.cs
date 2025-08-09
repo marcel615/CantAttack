@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     //내 자식 오브젝트 관련
     public Transform groundCheckObj;
     public CapsuleCollider2D playerHitBoxCollider;
+    public Transform cameraFollowTransform;
 
     //세이브, 로드 변수
     public Vector2 savePosition;

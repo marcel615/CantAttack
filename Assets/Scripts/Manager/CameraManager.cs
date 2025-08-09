@@ -89,7 +89,7 @@ public class CameraManager : MonoBehaviour
     {
         if(cineCamera != null && scene.name != "LoadingScene")
         {
-            cineCamera.Follow = player.transform;
+            cineCamera.Follow = player.cameraFollowTransform;
         }
     }
 
