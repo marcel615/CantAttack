@@ -147,12 +147,12 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
-        MapEvents.OnSavedSceneLoaded += OnSavedSceneLoaded;
+        //MapEvents.OnSavedSceneLoaded += OnSavedSceneLoaded;
     }
     private void OnDisable()
     {
         //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
-        MapEvents.OnSavedSceneLoaded -= OnSavedSceneLoaded;
+        //MapEvents.OnSavedSceneLoaded -= OnSavedSceneLoaded;
     }
     public void Init()
     {

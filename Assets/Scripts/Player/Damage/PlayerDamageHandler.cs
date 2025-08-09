@@ -35,6 +35,28 @@ public class PlayerDamageHandler : MonoBehaviour
         {
             if (!player.isInvincible)
             {
+                //status에 데미지 적용 후 이벤트 발행
+                DamageApply(hittedDamage);
+                PlayerEvents.InvokePlayerDamaged(player.status.MaxHP, player.status.CurrentHP);
+
+                if (player.status.CurrentHP <= 0)
+                {
+                    player.isKnockbacked = true;
+                    KnockbackTimer = KnockbackTime;
+                    //넉백 구현
+                    if (transform.position.x < hittedPos.x)
+                    {
+                        rigid.AddForce(new Vector2(-0.5f, 1f) * KnockbackPower, ForceMode2D.Impulse);
+                    }
+                    else
+                    {
+                        rigid.AddForce(new Vector2(0.5f, 1f) * KnockbackPower, ForceMode2D.Impulse);
+
+                    }
+                    isKnockback = false;
+                    return;
+                }
+
                 //무적 타이머, 넉백 타이머 실행
                 player.isInvincible = true;
                 player.InvincibleTimer = player.InvincibleTime_Hitted;
@@ -90,13 +112,18 @@ public class PlayerDamageHandler : MonoBehaviour
     //피격 이벤트 발생 시
     void OnDamaged(Vector2 hitTargetPos, int damage)
     {
+        isKnockback = true;
         hittedPos = hitTargetPos;
         hittedDamage = damage;
 
-        //status에 데미지 적용 후 이벤트 발행
-        DamageApply(hittedDamage);
-        PlayerEvents.InvokePlayerDamaged(player.status.MaxHP, player.status.CurrentHP);
-
+        /*
+        if (!player.isInvincible)
+        {
+            ////status에 데미지 적용 후 이벤트 발행
+            DamageApply(hittedDamage);
+            PlayerEvents.InvokePlayerDamaged(player.status.MaxHP, player.status.CurrentHP);
+        }
+        */
     }
     void OnKnockedBackInvincibleOver()
     {
@@ -108,7 +135,7 @@ public class PlayerDamageHandler : MonoBehaviour
         if (player.status.CurrentHP - damage > 0)
         {
             player.status.CurrentHP -= damage;
-            isKnockback = true;
+            //isKnockback = true;
         }
         else
         {

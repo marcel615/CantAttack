@@ -13,6 +13,8 @@ public class PlayerDead : MonoBehaviour
     //Dead 연출 관련
     [SerializeField] private GameObject bloodEffectPrefab;
     float deadSequenceTime = 2f;
+    float deadSlowMotionTime = 1.2f;
+    float deadSlowMotionTimeScale = 0.2f;
 
 
     private void Awake()
@@ -51,6 +53,11 @@ public class PlayerDead : MonoBehaviour
         GameObject blood = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
         //애니메이션 설정하고
         animator.SetBool("isDead", true);
+
+        //슬로우모션 진행
+        Time.timeScale = deadSlowMotionTimeScale;
+        yield return new WaitForSecondsRealtime(deadSlowMotionTime);
+        Time.timeScale = 1f;
 
         yield return new WaitForSeconds(deadSequenceTime);
 

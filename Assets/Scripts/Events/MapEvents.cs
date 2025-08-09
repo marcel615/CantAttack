@@ -14,6 +14,8 @@ public static class MapEvents
     public static event Action<Vector2> OnGetPlayerPos;
     //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
     public static event Action OnSavedSceneLoaded;
+    //플레이어가 리스폰해서 게임씬으로 로드가 완료되었을 때
+    public static event Action OnRespawnSceneLoaded;
 
 
     //LocalMapManager가 스폰될 때
@@ -36,6 +38,11 @@ public static class MapEvents
     public static void InvokeSavedSceneLoaded()
     {
         OnSavedSceneLoaded?.Invoke();
+    }
+    //플레이어가 리스폰해서 게임씬으로 로드가 완료되었을 때
+    public static void InvokeRespawnSceneLoaded()
+    {
+        OnRespawnSceneLoaded?.Invoke();
     }
 
 }

@@ -125,14 +125,23 @@ public class MapManager : MonoBehaviour
             MapEvents.InvokeGetPlayerPos(targetPortalPos);
             isPortalSceneChange = false;
         }
-        //(세이브슬롯에서부터 로드할 때 혹은 플레이어가 리스폰될때)이고, 씬 이름이 저장된 씬 이름과 같다면
-        if ((!isSavedSceneLoaded || isPlayerDeadRespawn) && scene.name == saveScene)
+        //세이브슬롯에서부터 로드할 때이고, 씬 이름이 저장된 씬 이름과 같다면
+        if (!isSavedSceneLoaded && scene.name == saveScene)
         {
             MapEvents.InvokeSavedSceneLoaded();
-            //Context 업데이트
-            InputEvents.InvokeContextUpdate(InputContext.Player);
             isSavedSceneLoaded = true;
+
+            //Context 업데이트
+            //InputEvents.InvokeContextUpdate(InputContext.Player);
+        }
+        //플레이어가 리스폰될 때이고, 씬 이름이 저장된 씬 이름과 같다면
+        if (isPlayerDeadRespawn && scene.name == saveScene)
+        {
+            MapEvents.InvokeRespawnSceneLoaded();
             isPlayerDeadRespawn = false;
+
+            //Context 업데이트
+            //InputEvents.InvokeContextUpdate(InputContext.Player);
         }
     }
     void SaveSceneName(SavePointSO savePointSO)
