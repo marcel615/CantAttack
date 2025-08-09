@@ -122,6 +122,10 @@ public class InputManager : MonoBehaviour
 
                 break;
 
+            case InputContext.PlayerDead:
+
+                break;
+
                 //InputEvents.InvokeUseHealItem(R);
         }
 

@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 4916842296048485239}
   - component: {fileID: 610944824034907700}
   - component: {fileID: 2212724191002388805}
+  - component: {fileID: 5475526002256129506}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -594,6 +595,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86c979df66df524d8adf3c1d8da33ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5475526002256129506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485503838152790450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34334300ab6ec6045a6ac809b27d1074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodEffectPrefab: {fileID: 6907683107587052782, guid: 9bb28984cc5505941bca1062ec3e76ce, type: 3}
 --- !u!1 &6437079035474282005
 GameObject:
   m_ObjectHideFlags: 0

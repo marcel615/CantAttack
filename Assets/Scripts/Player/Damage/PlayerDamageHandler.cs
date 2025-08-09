@@ -11,7 +11,7 @@ public class PlayerDamageHandler : MonoBehaviour
     Player player;
 
     //OnDamaged 관련 변수
-    bool getDamage;   //OnDamaged 실행되었을 때 플래그
+    bool isKnockback;   //OnDamaged 실행되었을 때 플래그
     Vector2 hittedPos; 
     int hittedDamage;
 
@@ -31,14 +31,10 @@ public class PlayerDamageHandler : MonoBehaviour
     }
     private void Update()
     {
-        if (getDamage)
+        if (isKnockback)
         {
             if (!player.isInvincible)
             {
-                //status에 데미지 적용 후 이벤트 발행
-                DamageApply(hittedDamage);
-                PlayerEvents.InvokePlayerDamaged(player.status.MaxHP, player.status.CurrentHP);
-
                 //무적 타이머, 넉백 타이머 실행
                 player.isInvincible = true;
                 player.InvincibleTimer = player.InvincibleTime_Hitted;
@@ -61,7 +57,7 @@ public class PlayerDamageHandler : MonoBehaviour
 
             }
         }
-        getDamage = false;
+        isKnockback = false;
     }
     private void FixedUpdate()
     {
@@ -94,9 +90,12 @@ public class PlayerDamageHandler : MonoBehaviour
     //피격 이벤트 발생 시
     void OnDamaged(Vector2 hitTargetPos, int damage)
     {
-        getDamage = true;
         hittedPos = hitTargetPos;
         hittedDamage = damage;
+
+        //status에 데미지 적용 후 이벤트 발행
+        DamageApply(hittedDamage);
+        PlayerEvents.InvokePlayerDamaged(player.status.MaxHP, player.status.CurrentHP);
 
     }
     void OnKnockedBackInvincibleOver()
@@ -109,17 +108,14 @@ public class PlayerDamageHandler : MonoBehaviour
         if (player.status.CurrentHP - damage > 0)
         {
             player.status.CurrentHP -= damage;
+            isKnockback = true;
         }
         else
         {
-            Die();
+            player.status.CurrentHP = 0;
+            PlayerEvents.InvokePlayerDead();
         }
     }
 
-    //죽는 메소드(아직 미구현)
-    void Die()
-    {
-
-    }
 
 }

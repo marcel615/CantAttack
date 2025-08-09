@@ -22,6 +22,9 @@ public static class PlayerEvents
     //PlayerParry가 성공했을 때
     public static event Action OnPlayerParrySuccess;
 
+    //Player가 사망했을 때
+    public static event Action OnPlayerDead;
+
 
 
     //Player의 Start()에서 이벤트 발행
@@ -53,5 +56,10 @@ public static class PlayerEvents
     public static void InvokePlayerParrySuccess()
     {
         OnPlayerParrySuccess?.Invoke();
+    }
+    //Player가 사망했을 때
+    public static void InvokePlayerDead()
+    {
+        OnPlayerDead?.Invoke();
     }
 }

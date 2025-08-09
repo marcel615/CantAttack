@@ -25,4 +25,3 @@ MonoBehaviour:
   attackTime: 0.5
   attackWaitTime: 0.7
   slashEffectPrefab: {fileID: 8520473544211990614, guid: 333fcade12aef9841aab002226cdfaa9, type: 3}
-  deadImage: {fileID: -3939753913355333839, guid: 92bfee3761a26f64cb347357c5b922c1, type: 3}
