@@ -52,12 +52,12 @@ public class PlayerPortal : MonoBehaviour
                 if(WalkDir != PortalWalkDirection.Up)
                 {
                     playerMove.Move(H);
-                    PortalMoveTimer -= Time.fixedDeltaTime;
                 }
                 else  //포탈에서 위로 올라가는 경우는 여기서 처리
                 {
-                    rigid.velocity = new Vector2(H * player.normalSpeed, 1f);
+                    rigid.velocity = new Vector2(H * player.normalSpeed, player.normalJumpPower);
                 }
+                PortalMoveTimer -= Time.fixedDeltaTime;
             }
             else
             {
@@ -95,7 +95,7 @@ public class PlayerPortal : MonoBehaviour
         Enter = true;
 
         //도착 포탈일 때는 바로 리턴
-        if (isTargetScene) return;        
+        if (isTargetScene) return;
 
         //출발 포탈일 때만 실행
 

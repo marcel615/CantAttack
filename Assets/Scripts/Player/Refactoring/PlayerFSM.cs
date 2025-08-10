@@ -18,8 +18,7 @@ public class PlayerFSM : MonoBehaviour
     public PlayerState parryState;
     public PlayerState hitState;
     public PlayerState deadState;
-    public PlayerState respawnState;
-    public PlayerState loadState;
+    public PlayerState spawnState;
     public PlayerState portalState;
     //SubState
     public PlayerState idleState;
@@ -42,8 +41,7 @@ public class PlayerFSM : MonoBehaviour
         parryState.Init(this);
         hitState.Init(this);
         deadState.Init(this);
-        respawnState.Init(this);
-        loadState.Init(this);
+        spawnState.Init(this);
         portalState.Init(this);
 
         idleState.Init(this);

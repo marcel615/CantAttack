@@ -181,7 +181,6 @@ GameObject:
   - component: {fileID: 7197630065961034033}
   - component: {fileID: 6527222714710411809}
   - component: {fileID: 848807700429550779}
-  - component: {fileID: 5336456627289932197}
   - component: {fileID: 7747694840571472719}
   - component: {fileID: 3307982554488296682}
   - component: {fileID: 1876302280219500326}
@@ -406,7 +405,20 @@ MonoBehaviour:
   playerParryCollider: {fileID: 5810127826089959003}
   parryEffect: {fileID: 609752739202394652, guid: b4a0dbf037bc9934f8b819ebdb936772, type: 3}
   isKnockbacked: 0
+  hittedPos: {x: 0, y: 0}
+  hittedDamage: 0
+  knockbackTime: 0.3
+  knockbackPower: 15
+  isDead: 0
+  deadSequenceTime: 2
+  deadSlowMotionTime: 1.2
+  deadSlowMotionTimeScale: 0.2
+  bloodEffectPrefab: {fileID: 6907683107587052782, guid: 9bb28984cc5505941bca1062ec3e76ce, type: 3}
+  isSaveSceneLoaded: 0
+  isRespawned: 0
   isPortalEnter: 0
+  portalMoveTime: 0.3
+  walkDir: 0
 --- !u!114 &1038083946275231948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,8 +438,7 @@ MonoBehaviour:
   parryState: {fileID: 2516075628264783370}
   hitState: {fileID: 7730280017457289346}
   deadState: {fileID: 7197630065961034033}
-  respawnState: {fileID: 6527222714710411809}
-  loadState: {fileID: 5336456627289932197}
+  spawnState: {fileID: 6527222714710411809}
   portalState: {fileID: 848807700429550779}
   idleState: {fileID: 3307982554488296682}
   moveState: {fileID: 8700648549920187323}
@@ -528,18 +539,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 895b19a2e5a7a8848b9d606903c79c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5336456627289932197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3034227308546848172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 197f9068afbae3a4eae28dee22f984a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7747694840571472719

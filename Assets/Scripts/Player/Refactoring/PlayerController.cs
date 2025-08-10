@@ -95,13 +95,27 @@ public class PlayerController : MonoBehaviour
 
     //피격되었을 때 관련 변수
     public bool isKnockbacked;      //피격 시 넉백 관련 플래그
+    //public bool isKnockback;   //OnDamaged 실행되었을 때 플래그
+    public Vector2 hittedPos;
+    public int hittedDamage;
+    public float knockbackTime = 0.3f;
+    public float knockbackPower = 15f;
+
+    //사망 관련 변수
+    public bool isDead;
+    public float deadSequenceTime = 2f;
+    public float deadSlowMotionTime = 1.2f;
+    public float deadSlowMotionTimeScale = 0.2f;
+    public GameObject bloodEffectPrefab;
+
+    //스폰 관련
+    public bool isSaveSceneLoaded;
+    public bool isRespawned;
 
     //포탈 이동 관련 변수
     public bool isPortalEnter;      //포탈 진입 플래그
-
-
-    //죽음 관련 변수
-
+    public float portalMoveTime = 0.3f;
+    public PortalWalkDirection walkDir;    //포탈 무브 방향
 
     //발 밑에 땅이 있는지 체크 관련 변수들
     float checkRadius = 0.2f;
@@ -174,19 +188,22 @@ public class PlayerController : MonoBehaviour
         }
 
         //무적 관련
-        if (InvincibleTimer > 0)
+        if (isInvincible)
         {
-            InvincibleTimer -= Time.fixedDeltaTime;
-        }
-        else
-        {
-            playerHitBoxCollider.enabled = true;
-            InvincibleTimer = 0;
-            isInvincible = false;
-            if (isKnockbackInvincible)
+            if (InvincibleTimer > 0)
             {
-                isKnockbackInvincible = false;
-                PlayerEvents.InvokePlayerKnockedBackInvincibleOver();
+                InvincibleTimer -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                playerHitBoxCollider.enabled = true;
+                InvincibleTimer = 0;
+                isInvincible = false;
+                if (isKnockbackInvincible)
+                {
+                    isKnockbackInvincible = false;
+                    spriteRenderer.color = new Color(1, 1, 1, 1); //넉백 시 반투명하게 되던거 원상복구
+                }
             }
         }
 
@@ -252,9 +269,18 @@ public class PlayerController : MonoBehaviour
         //Interact 이벤트 구독
         InputEvents.Player.OnInteract += OnInteract;
 
+        //PlayerHitBox에서 Hit되었을 때
+        PlayerEvents.OnPlayerHitBoxHitted_PlayerDamageHandler += OnDamaged;
+        //Player가 사망했을 때
+        PlayerEvents.OnPlayerDead += OnPlayerDead;
 
         //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
         MapEvents.OnSavedSceneLoaded += OnSavedSceneLoaded;
+        //플레이어가 리스폰해서 게임씬으로 로드가 완료되었을 때
+        MapEvents.OnRespawnSceneLoaded += OnRespawnSceneLoaded;
+
+        //Portal 진입 시 이벤트 
+        PortalEvents.OnPortalEnter += OnPortalEnter;
     }
     private void OnDisable()
     {
@@ -271,9 +297,18 @@ public class PlayerController : MonoBehaviour
         //Interact 이벤트 구독
         InputEvents.Player.OnInteract -= OnInteract;
 
+        //PlayerHitBox에서 Hit되었을 때
+        PlayerEvents.OnPlayerHitBoxHitted_PlayerDamageHandler += OnDamaged;
+        //Player가 사망했을 때
+        PlayerEvents.OnPlayerDead -= OnPlayerDead;
 
         //세이브슬롯에서 게임씬으로 로드가 완료되었을 때
         MapEvents.OnSavedSceneLoaded -= OnSavedSceneLoaded;
+        //플레이어가 리스폰해서 게임씬으로 로드가 완료되었을 때
+        MapEvents.OnRespawnSceneLoaded -= OnRespawnSceneLoaded;
+
+        //Portal 진입 시 이벤트 
+        PortalEvents.OnPortalEnter -= OnPortalEnter;
     }
     //점프 이벤트 구독
     void OnJump(bool j)
@@ -337,13 +372,38 @@ public class PlayerController : MonoBehaviour
     {
     }
 
+    void OnDamaged(Vector2 hitTargetPos, int damage)
+    {
+        //isKnockback = true;
+        hittedPos = hitTargetPos;
+        hittedDamage = damage;
+
+        if (!isInvincible && FSM.currentState.CanChangeState(FSM.hitState))
+            FSM.ChangeState(FSM.hitState);
+    }
+    void OnPlayerDead()
+    {
+        isDead = true;
+        if (FSM.currentState.CanChangeState(FSM.deadState))
+            FSM.ChangeState(FSM.deadState);
+    }
     //임시 사용
     void OnSavedSceneLoaded()
     {
-        //플레이어 위치 초기화
-        transform.position = player.savePosition + new Vector2(1,1);
+        isSaveSceneLoaded = true;
+        FSM.ChangeState(FSM.spawnState);
     }
-
-
-
+    void OnRespawnSceneLoaded()
+    {
+        isRespawned = true;
+        if (FSM.currentState.CanChangeState(FSM.spawnState))
+            FSM.ChangeState(FSM.spawnState);
+    }
+    void OnPortalEnter(string enterP, string targetS, string targetP, PortalWalkDirection walkD)
+    {
+        walkDir = walkD;
+        isPortalEnter = true;
+        if (FSM.currentState.CanChangeState(FSM.portalState))
+            FSM.ChangeState(FSM.portalState);
+    }
 }

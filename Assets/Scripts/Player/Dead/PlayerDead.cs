@@ -29,7 +29,7 @@ public class PlayerDead : MonoBehaviour
     private void OnEnable()
     {
         //Player가 사망했을 때
-        PlayerEvents.OnPlayerDead += OnPlayerDead;        
+        PlayerEvents.OnPlayerDead += OnPlayerDead;
     }
     private void OnDisable()
     {
