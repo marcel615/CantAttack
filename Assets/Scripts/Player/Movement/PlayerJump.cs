@@ -45,9 +45,9 @@ public class PlayerJump : MonoBehaviour
             player.jumpCount = 2;
             player.isJumping = true;
 
+            //애니메이터 설정
             animator.SetTrigger("isDoubleJump"); //애니메이션 변수 설정
 
-            //애니메이터 설정
         }
         J = false;
 

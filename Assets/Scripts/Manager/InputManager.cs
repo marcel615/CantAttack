@@ -11,10 +11,10 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     //Context 관리 변수들
-    InputContext currentContext = InputContext.Boot;
+    public InputContext currentContext = InputContext.Boot;
 
     //키 입력 추적 변수들
-    float H; //좌우
+    public float H; //좌우
     bool J; //점프
     bool J_ing; //점프버튼 누르고 있는지
     bool D; //대쉬
@@ -76,6 +76,14 @@ public class InputManager : MonoBehaviour
                 InputEvents.Player.InvokeParry(P);
                 InputEvents.Player.InvokeCancel(Esc);
                 InputEvents.Player.InvokeInteract(E);
+                /*
+                if (J) InputEvents.Player.InvokeJump(J);
+                if (J_ing) InputEvents.Player.InvokeJumpHold(J_ing);
+                if (D) InputEvents.Player.InvokeDash(D);
+                if (P) InputEvents.Player.InvokeParry(P);
+                if (Esc) InputEvents.Player.InvokeCancel(Esc);
+                if (E) InputEvents.Player.InvokeInteract(E);
+                */
 
                 break;
 
