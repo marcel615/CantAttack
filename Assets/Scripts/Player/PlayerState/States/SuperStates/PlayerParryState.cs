@@ -33,29 +33,10 @@ public class PlayerParryState : PlayerState
         parryEffect = FSM.playerController.parryEffect;
 
         isCanChange = false;
+        StartParry();
     }
     public override void UpdateState()
     {
-        //플레이어 패링기
-        if (!FSM.playerController.isParryCoolTime && !FSM.playerController.isParriedInAir)
-        {
-            FSM.playerController.parryCoolTimer = parryCoolTime;
-            FSM.playerController.isParryCoolTime = true;
-
-            parryTimer = parryTime;
-            FSM.playerController.isParrying = true;
-            FSM.playerController.isParriedInAir = true;
-
-            prevGravity = rigid.gravityScale;
-            rigid.gravityScale = 0;
-            rigid.velocity = new Vector2(0, 0);
-            playerParryCollider.enabled = true;
-            animator.SetBool("isParry", true);
-
-            //패리 이펙트 시작
-            var Effect = Instantiate(parryEffect, transform.position, Quaternion.identity).GetComponent<ParryCircleEffect>();
-            Effect.SetDeleteTime(parryTime);
-        }
     }
     public override void FixedUpdateState()
     {
@@ -77,11 +58,20 @@ public class PlayerParryState : PlayerState
                 rigid.gravityScale = prevGravity;
 
                 isCanChange = true;
+
+                //플랫폼의 아주아주 끝에서 패리를 할 경우 다음 상태로 전환하지 못하게 되는 버그 임시 조치
+                FSM.ChangeState(FSM.groundState);
             }
         }
     }
     public override void Exit()
     {
+        playerParryCollider.enabled = false;
+        parryTimer = 0;
+        FSM.playerController.isParrying = false;
+        animator.SetBool("isParry", false);
+
+        rigid.gravityScale = prevGravity;
     }
     public override void SetChangeState()
     {
@@ -91,7 +81,28 @@ public class PlayerParryState : PlayerState
     }
     public override bool CanChangeState(PlayerState newState)
     {
+        if (newState == FSM.portalState)
+            return true;
         return (isCanChange && base.CanChangeState(newState));
+    }
+    void StartParry()
+    {
+        FSM.playerController.parryCoolTimer = parryCoolTime;
+        FSM.playerController.isParryCoolTime = true;
+
+        parryTimer = parryTime;
+        FSM.playerController.isParrying = true;
+        FSM.playerController.isParriedInAir = true;
+
+        prevGravity = rigid.gravityScale;
+        rigid.gravityScale = 0;
+        rigid.velocity = new Vector2(0, 0);
+        playerParryCollider.enabled = true;
+        animator.SetBool("isParry", true);
+
+        //패리 이펙트 시작
+        var Effect = Instantiate(parryEffect, transform.position, Quaternion.identity).GetComponent<ParryCircleEffect>();
+        Effect.SetDeleteTime(parryTime);
     }
 
     //이벤트 구독

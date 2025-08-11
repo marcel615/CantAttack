@@ -86,23 +86,4 @@ public class PlayerFSM : MonoBehaviour
         currentState = newState;
         currentState.Enter();
     }
-
-    /*
-    public PlayerState DecideNextState()
-    {
-        if (playerController.isDead)
-            return deadState;
-
-        if (playerController.isParryStun)
-            return stunState;
-
-        if (playerController.isAttackEnable)
-            return attackState;
-
-        if (playerController.isPlayerDetected)
-            return chaseState;
-
-        return idleState;
-    }
-    */
 }

@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
     public bool isFalling;          //낙하 상태 플래그
 
     //대시 관련 변수
-    public bool isDashEvent;
     public bool isDashing;          //회피 관련 플래그
     public bool isDashedInAir;      //공중에서 이미 대시했는지 여부
     public float dashSpeed = 12f;
@@ -66,7 +65,6 @@ public class PlayerController : MonoBehaviour
     public bool isDashCoolTime;
 
     //패리 관련 변수
-    public bool isParryEvent;
     public bool isParrying;         //패링 관련 플래그
     public bool isParriedInAir;     //공중에서 이미 패링했는지 여부
     public float parryTime = 0.2f;
@@ -87,7 +85,6 @@ public class PlayerController : MonoBehaviour
     public bool isKnockbackInvincible;
 
     //사망 관련 변수
-    public bool isDead;
     public float deadSequenceTime = 2f;
     public float deadSlowMotionTime = 1.2f;
     public float deadSlowMotionTimeScale = 0.2f;
@@ -98,18 +95,16 @@ public class PlayerController : MonoBehaviour
     public bool isRespawned;
 
     //포탈 이동 관련 변수
-    public bool isPortalEnter;      //포탈 진입 플래그
     public float portalMoveTime = 0.3f;
     public PortalWalkDirection walkDir;    //포탈 무브 방향
 
     //상호작용 관련
-    public bool isInteractionEvent;
     public IInteractable interactableTarget;
 
 
     //발 밑에 땅이 있는지 체크 관련 변수들
-    float checkRadius = 0.45f;
     LayerMask groundLayer;
+    Vector2 checkSize;
 
 
     private void Awake()
@@ -134,18 +129,36 @@ public class PlayerController : MonoBehaviour
         if (playerHitBoxCollider == null) playerHitBoxCollider = transform.Find("HitBox")?.GetComponent<CapsuleCollider2D>();
         //땅 체크 오브젝트 연결
         if (groundCheckObj == null) groundCheckObj = transform.Find("GroundCheckObject")?.GetComponent<Transform>();
-        //땅 체크 레이어 설정
-        groundLayer = LayerMask.GetMask("Ground", "");
-
+        
+        //땅 체크 관련
+        groundLayer = LayerMask.GetMask("Ground");
+        checkSize = new Vector2(0.85f, 0.02f);
     }
     private void Update()
     {
+        //무적 관련
+        if (isInvincible)
+        {
+            playerHitBoxCollider.enabled = false;
+        }
+        else
+        {
+            playerHitBoxCollider.enabled = true;
+
+            //넉백으로 인한 무적이었다면 반투명하게 되던거 원상복구
+            if (isKnockbackInvincible)
+            {
+                isKnockbackInvincible = false;
+                spriteRenderer.color = new Color(1, 1, 1, 1);
+            }
+        }
+
         //Move 관련
         if (H != 0) isMoveInput = true;
         else isMoveInput = false;
 
         //땅 위에 있는지 체크
-        isGrounded = Physics2D.OverlapCircle(groundCheckObj.position, checkRadius, groundLayer);
+        isGrounded = Physics2D.OverlapBox(groundCheckObj.position, checkSize, 0f, groundLayer);
         if (isGrounded)
         {
             if (FSM.currentState.CanChangeState(FSM.groundState))
@@ -167,23 +180,10 @@ public class PlayerController : MonoBehaviour
         {
             isFalling = false;
         }
-
-        //무적 관련
-        if (isInvincible)
-        {
-            playerHitBoxCollider.enabled = false;
-        }
-        else
-        {
-            playerHitBoxCollider.enabled = true;
-
-            //넉백으로 인한 무적이었다면 반투명하게 되던거 원상복구
-            if (isKnockbackInvincible)
-            {
-                isKnockbackInvincible = false;
-                spriteRenderer.color = new Color(1, 1, 1, 1); 
-            }
-        }
+        //점프 입력 1프레임 후 재설정
+        if (isJumpEvent) isJumpEvent = false;
+        //점프 홀딩 입력 1프레임 후 재설정
+        if (isJumpHoldEvent) isJumpHoldEvent = false;
     }
     //점프 입력 이벤트
     public void OnJump(bool j)
@@ -195,43 +195,33 @@ public class PlayerController : MonoBehaviour
     {
         isJumpHoldEvent = j_Hold;
     }
-    //대쉬 입력 이벤트
+    //대시 입력 이벤트
     public void OnDash(bool d)
     {
-        isDashEvent = d;
-
-        if (d && !isDashCoolTime && FSM.currentState.CanChangeState(FSM.dashState))
+        if (!isDashedInAir && !isDashCoolTime && FSM.currentState.CanChangeState(FSM.dashState))
             FSM.ChangeState(FSM.dashState);
     }
     //패링 입력 이벤트
     public void OnParry(bool p)
     {
-        isParryEvent = p;
-
-        if (p && !isParryCoolTime && FSM.currentState.CanChangeState(FSM.parryState))
+        if (!isParriedInAir && !isParryCoolTime && FSM.currentState.CanChangeState(FSM.parryState))
             FSM.ChangeState(FSM.parryState);
     }
 
     //ESC 입력 이벤트 (시스템 메뉴 열기)
     public void OnCancel(bool esc)
     {
-        if (esc)
-        {            
-            //SystemMenu 오픈
-            InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
+        //SystemMenu 오픈
+        InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
 
-            //이 때 튜토리얼이 열려있었다면 닫도록 해야 하기 때문에 실행
-            TutorialEvents.InvokeTutorialClose();            
-        }
+        //이 때 튜토리얼이 열려있었다면 닫도록 해야 하기 때문에 실행
+        TutorialEvents.InvokeTutorialClose();
     }
     //Interact 입력 이벤트
     public void OnInteract(bool e)
     {
         if (interactableTarget == null) return;
-
-        isInteractionEvent = e;
-
-        if (e && interactableTarget.IsInteractable() && FSM.currentState.CanChangeState(FSM.interactionState))
+        if (interactableTarget.IsInteractable() && FSM.currentState.CanChangeState(FSM.interactionState))
             FSM.ChangeState(FSM.interactionState);
     }
     //피격 이벤트
@@ -246,7 +236,6 @@ public class PlayerController : MonoBehaviour
     //Dead 이벤트
     public void OnPlayerDead()
     {
-        isDead = true;
         if (FSM.currentState.CanChangeState(FSM.deadState))
             FSM.ChangeState(FSM.deadState);
     }
@@ -267,7 +256,6 @@ public class PlayerController : MonoBehaviour
     public void OnPortalEnter(string enterP, string targetS, string targetP, PortalWalkDirection walkD)
     {
         walkDir = walkD;
-        isPortalEnter = true;
         if (FSM.currentState.CanChangeState(FSM.portalState))
             FSM.ChangeState(FSM.portalState);
     }

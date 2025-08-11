@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cef2ffbe1eaac541ba3a6771ac08040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 0}
 --- !u!114 &54416098846670043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,7 +515,6 @@ MonoBehaviour:
   normalJumpPower: 10
   doubleJumpPower: 20
   isFalling: 0
-  isDashEvent: 0
   isDashing: 0
   isDashedInAir: 0
   dashSpeed: 12
@@ -522,7 +522,6 @@ MonoBehaviour:
   dashCoolTimer: 0
   dashCoolTime: 1
   isDashCoolTime: 0
-  isParryEvent: 0
   isParrying: 0
   isParriedInAir: 0
   parryTime: 0.2
@@ -539,17 +538,14 @@ MonoBehaviour:
   knockbackPower: 15
   InvincibleTime_Hitted: 1.5
   isKnockbackInvincible: 0
-  isDead: 0
   deadSequenceTime: 2
   deadSlowMotionTime: 1.2
   deadSlowMotionTimeScale: 0.2
   bloodEffectPrefab: {fileID: 6907683107587052782, guid: 9bb28984cc5505941bca1062ec3e76ce, type: 3}
   isSaveSceneLoaded: 0
   isRespawned: 0
-  isPortalEnter: 0
   portalMoveTime: 0.3
   walkDir: 0
-  isInteractionEvent: 0
 --- !u!114 &3074210929146404492
 MonoBehaviour:
   m_ObjectHideFlags: 0

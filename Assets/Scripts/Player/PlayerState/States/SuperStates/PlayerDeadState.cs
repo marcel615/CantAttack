@@ -55,8 +55,6 @@ public class PlayerDeadState : PlayerState
         // 사망 연출
         //Context 변경 이벤트
         InputEvents.InvokeContextUpdate(InputContext.PlayerDead);
-        //히트박스 끄고
-        FSM.playerController.playerHitBoxCollider.enabled = false;
         //움직임 멈추고
         rigid.velocity = new Vector2(0, rigid.velocity.y);
         //피 이펙트 실행하고

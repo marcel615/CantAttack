@@ -69,21 +69,23 @@ public class InputManager : MonoBehaviour
                 break;
 
             case InputContext.Player:
-                InputEvents.Player.InvokeMove(H);
+                //InputEvents.Player.InvokeMove(H);
+                /*
                 InputEvents.Player.InvokeJump(J);
                 InputEvents.Player.InvokeJumpHold(J_ing);
                 InputEvents.Player.InvokeDash(D);
                 InputEvents.Player.InvokeParry(P);
                 InputEvents.Player.InvokeCancel(Esc);
                 InputEvents.Player.InvokeInteract(E);
-                /*
+                */
+                
                 if (J) InputEvents.Player.InvokeJump(J);
                 if (J_ing) InputEvents.Player.InvokeJumpHold(J_ing);
                 if (D) InputEvents.Player.InvokeDash(D);
                 if (P) InputEvents.Player.InvokeParry(P);
                 if (Esc) InputEvents.Player.InvokeCancel(Esc);
                 if (E) InputEvents.Player.InvokeInteract(E);
-                */
+                
 
                 break;
 

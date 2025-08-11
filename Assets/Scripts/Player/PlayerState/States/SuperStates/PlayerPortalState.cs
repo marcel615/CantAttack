@@ -75,7 +75,6 @@ public class PlayerPortalState : PlayerState
         else
         {
             portalMoveTimer = 0;
-            FSM.playerController.isPortalEnter = false;
             isPortalEnterStart = false;
 
             if (isTargetScene)
@@ -169,7 +168,6 @@ public class PlayerPortalState : PlayerState
         if (walkDir == PortalWalkDirection.Up)
         {
             isTargetScene = false;
-            //FSM.playerController.isPortalEnter = false;
 
             rigid.velocity = new Vector2(0, 0);
             animator.SetTrigger("isIdle");

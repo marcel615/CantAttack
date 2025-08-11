@@ -32,27 +32,10 @@ public class PlayerDashState : PlayerState
         dashTime = FSM.playerController.dashTime;
 
         isCanChange = false;
+        StartDash();
     }
     public override void UpdateState()
     {
-        //플레이어 회피기
-        if (!FSM.playerController.isDashCoolTime && !FSM.playerController.isDashedInAir)
-        {
-            FSM.playerController.dashCoolTimer = dashCoolTime;
-            FSM.playerController.isDashCoolTime = true;
-
-            dashTimer = dashTime;
-            FSM.playerController.isDashing = true;
-            FSM.playerController.isDashedInAir = true;
-
-            FSM.playerController.InvincibleTimer = dashTime;
-            FSM.playerController.isInvincible = true;
-
-            prevGravity = rigid.gravityScale;
-            rigid.gravityScale = 0;
-            rigid.velocity = new Vector2(FSM.playerController.isHeadToRight * dashSpeed, 0);
-            animator.SetTrigger("isDash");
-        }
     }
     public override void FixedUpdateState()
     {
@@ -92,6 +75,23 @@ public class PlayerDashState : PlayerState
         if (newState == FSM.portalState)
             return true;
         return (isCanChange && base.CanChangeState(newState));
+    }
+    void StartDash()
+    {
+        FSM.playerController.dashCoolTimer = dashCoolTime;
+        FSM.playerController.isDashCoolTime = true;
+
+        dashTimer = dashTime;
+        FSM.playerController.isDashing = true;
+        FSM.playerController.isDashedInAir = true;
+
+        FSM.playerController.InvincibleTimer = dashTime;
+        FSM.playerController.isInvincible = true;
+
+        prevGravity = rigid.gravityScale;
+        rigid.gravityScale = 0;
+        rigid.velocity = new Vector2(FSM.playerController.isHeadToRight * dashSpeed, 0);
+        animator.SetTrigger("isDash");
     }
     
 

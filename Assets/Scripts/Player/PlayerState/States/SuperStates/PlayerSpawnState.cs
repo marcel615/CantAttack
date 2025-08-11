@@ -61,8 +61,6 @@ public class PlayerSpawnState : PlayerState
     //리스폰 이후 초기화
     void OnRespawned()
     {
-        //히트박스 다시 키고
-        FSM.playerController.playerHitBoxCollider.enabled = true;
         //애니메이션 설정하고
         animator.SetBool("isDead", false);
         animator.SetTrigger("isIdle");
