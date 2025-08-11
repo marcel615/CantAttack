@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     //타 오브젝트 참조
     public InputManager inputManager;
-    public Player player;
+    //public Player player;
 
     //컨텍스트 enum 정보
     public InputContext thisContext = InputContext.Player;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     //세이브, 로드 변수
     public int MaxHP;
     public int CurrentHP;
+    public Vector2 savePosition;
 
     //조작 제한 플래그
     //public bool canControl = true; //조작 가능 플래그
@@ -116,6 +117,11 @@ public class PlayerController : MonoBehaviour
     public bool isPortalEnter;      //포탈 진입 플래그
     public float portalMoveTime = 0.3f;
     public PortalWalkDirection walkDir;    //포탈 무브 방향
+
+    //상호작용 관련
+    public bool isInteractionEvent;
+    public IInteractable interactableTarget;
+
 
     //발 밑에 땅이 있는지 체크 관련 변수들
     float checkRadius = 0.2f;
@@ -252,6 +258,23 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IInteractable>(out IInteractable interactable))
+        {
+            interactableTarget = interactable;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IInteractable>(out IInteractable interactable))
+        {
+            if (interactable == interactableTarget)
+            {
+                interactableTarget = null;
+            }
+        }
+    }
 
     //이벤트 구독
     private void OnEnable()
@@ -281,6 +304,9 @@ public class PlayerController : MonoBehaviour
 
         //Portal 진입 시 이벤트 
         PortalEvents.OnPortalEnter += OnPortalEnter;
+
+        //SavePoint에서 저장하기 직전에 보내는 이벤트
+        SystemEvents.OnSavePointNotice += SavePlayerPos;
     }
     private void OnDisable()
     {
@@ -309,6 +335,9 @@ public class PlayerController : MonoBehaviour
 
         //Portal 진입 시 이벤트 
         PortalEvents.OnPortalEnter -= OnPortalEnter;
+
+        //SavePoint에서 저장하기 직전에 보내는 이벤트
+        SystemEvents.OnSavePointNotice -= SavePlayerPos;
     }
     //점프 이벤트 구독
     void OnJump(bool j)
@@ -366,10 +395,30 @@ public class PlayerController : MonoBehaviour
     //ESC 이벤트 (시스템 메뉴 열기) 구독
     void OnCancel(bool esc)
     {
+        if (esc)
+        {            
+            //SystemMenu 오픈
+            InputEvents.SystemMenu.InvokeSystemMenuOpen(thisContext);
+
+            //이 때 튜토리얼이 열려있었다면 닫도록 해야 하기 때문에 실행
+            TutorialEvents.InvokeTutorialClose();            
+        }
     }
     //Interact 이벤트 구독
     void OnInteract(bool e)
     {
+        if (e)
+        {
+            if (interactableTarget == null) return;
+
+            isInteractionEvent = true;
+            if (interactableTarget.IsInteractable() && FSM.currentState.CanChangeState(FSM.interactionState))
+                FSM.ChangeState(FSM.interactionState);
+        }
+        else
+        {
+            isDashEvent = false;
+        }
     }
 
     void OnDamaged(Vector2 hitTargetPos, int damage)
@@ -405,5 +454,13 @@ public class PlayerController : MonoBehaviour
         isPortalEnter = true;
         if (FSM.currentState.CanChangeState(FSM.portalState))
             FSM.ChangeState(FSM.portalState);
+    }
+    void SavePlayerPos(SavePointSO savePointSO)
+    {
+        savePosition = savePointSO.position;
+    }
+    public void Init()
+    {
+        PlayerEvents.InvokePlayerControllerInstance(this);
     }
 }

@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
 
     //Don't Destroy 오브젝트
     Player player;
+    PlayerController playerController;
     MapManager mapManager;
     CinemachineVirtualCamera cineCamera;
 
@@ -34,6 +35,8 @@ public class CameraManager : MonoBehaviour
     {
         //Player가 스폰될 때
         PlayerEvents.OnPlayerInstance += GetPlayerInstance;
+        //PlayerController가 스폰될 때
+        PlayerEvents.OnPlayerControllerInstance += GetPlayerControllerInstance;
         //MapManager가 스폰될 때
         MapEvents.OnMapManagerInstance += GetMapManagerInstance;
         //LocalMapManager가 스폰될 때
@@ -49,6 +52,8 @@ public class CameraManager : MonoBehaviour
     {
         //Player가 스폰될 때
         PlayerEvents.OnPlayerInstance -= GetPlayerInstance;
+        //PlayerController가 스폰될 때
+        PlayerEvents.OnPlayerControllerInstance -= GetPlayerControllerInstance;
         //MapManager가 스폰될 때
         MapEvents.OnMapManagerInstance -= GetMapManagerInstance;
         //LocalMapManager가 스폰될 때
@@ -64,6 +69,11 @@ public class CameraManager : MonoBehaviour
     void GetPlayerInstance(Player p)
     {
         player = p;
+    }
+    //PlayerController가 스폰될 때
+    void GetPlayerControllerInstance(PlayerController p)
+    {
+        playerController = p;
     }
     //MapManager가 스폰될 때
     void GetMapManagerInstance(MapManager m)
@@ -89,7 +99,8 @@ public class CameraManager : MonoBehaviour
     {
         if(cineCamera != null && scene.name != "LoadingScene")
         {
-            cineCamera.Follow = player.cameraFollowTransform;
+            //cineCamera.Follow = player.cameraFollowTransform;
+            cineCamera.Follow = playerController.cameraFollowTransform;
         }
     }
 

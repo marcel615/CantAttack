@@ -20,6 +20,7 @@ public class PlayerFSM : MonoBehaviour
     public PlayerState deadState;
     public PlayerState spawnState;
     public PlayerState portalState;
+    public PlayerState interactionState;
     //SubState
     public PlayerState idleState;
     public PlayerState moveState;
@@ -43,6 +44,7 @@ public class PlayerFSM : MonoBehaviour
         deadState.Init(this);
         spawnState.Init(this);
         portalState.Init(this);
+        interactionState.Init(this);
 
         idleState.Init(this);
         moveState.Init(this);

@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour
 
     //플레이어와 대화 관련 변수
     Vector3 originalLocalScale;
+    public bool isDialogueStart;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class NPC : MonoBehaviour
     public void LookInteractTarget(GameObject interatTarget)
     {
         interactableText.SetActive(false);
+        isDialogueStart = true;
 
         if (interatTarget.transform.position.x < transform.position.x)
         {
@@ -53,6 +55,7 @@ public class NPC : MonoBehaviour
         interactableText.SetActive(true);
 
         transform.localScale = originalLocalScale;
+        isDialogueStart = false;
     }
     
 

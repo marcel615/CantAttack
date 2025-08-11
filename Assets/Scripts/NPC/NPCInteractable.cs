@@ -6,7 +6,10 @@ public class NPCInteractable : MonoBehaviour, IInteractable
 {
     //부모 오브젝트
     public NPC npc;
+
+    //인터랙트관련 변수
     GameObject interactTarget;
+    bool isInteracted;
 
     private void Awake()
     {
@@ -28,6 +31,10 @@ public class NPCInteractable : MonoBehaviour, IInteractable
             interactTarget = null;
             npc.HideInteractableMessage();
         }
+    }
+    public bool IsInteractable()
+    {
+        return !npc.isDialogueStart;
     }
     public void Interact()
     {

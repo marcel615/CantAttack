@@ -29,6 +29,11 @@ public class SavePointInteractable : MonoBehaviour, IInteractable
             savePoint.HideInteractableMessage();
         }
     }
+    public bool IsInteractable()
+    {
+        //인터랙트 한 번 한 상태면 false 반환
+        return !isInteracted;
+    }
     public void Interact()
     {
         //인터랙트 한 번 한 상태면 종료

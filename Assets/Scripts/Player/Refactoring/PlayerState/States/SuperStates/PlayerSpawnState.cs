@@ -48,7 +48,7 @@ public class PlayerSpawnState : PlayerState
     void OnSavedSceneLoaded()
     {
         //플레이어 위치 초기화
-        transform.position = FSM.playerController.player.savePosition + new Vector2(1, 1);
+        transform.position = FSM.playerController.savePosition + new Vector2(1, 1);
         //플레이어 스폰 이벤트 발행
         PlayerEvents.InvokePlayerSpawned_HPUIManager(FSM.playerController.MaxHP, FSM.playerController.CurrentHP);
         //Context 업데이트
@@ -67,7 +67,7 @@ public class PlayerSpawnState : PlayerState
         animator.SetBool("isDead", false);
 
         //플레이어 위치 초기화
-        transform.position = FSM.playerController.player.savePosition + new Vector2(1, 1);
+        transform.position = FSM.playerController.savePosition + new Vector2(1, 1);
         //플레이어 스폰 이벤트 발행
         PlayerEvents.InvokePlayerSpawned_HPUIManager(FSM.playerController.MaxHP, FSM.playerController.CurrentHP);
         //Context 업데이트

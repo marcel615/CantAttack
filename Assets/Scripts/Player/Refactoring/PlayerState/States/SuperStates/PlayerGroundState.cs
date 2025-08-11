@@ -42,6 +42,7 @@ public class PlayerGroundState : PlayerState
         allowedTransitions.Add(FSM.hitState);
         allowedTransitions.Add(FSM.deadState);
         allowedTransitions.Add(FSM.portalState);
+        allowedTransitions.Add(FSM.interactionState);
     }
 
 }
