@@ -6,10 +6,7 @@ using UnityEngine;
 
 public static class PlayerEvents
 {
-    //Player가 스폰될 때
-    public static event Action<Player> OnPlayerInstance;
-
-    //PlayerController의 Start()에서 이벤트 발행
+    //PlayerController가 스폰될 때
     public static event Action<PlayerController> OnPlayerControllerInstance;
 
     public static event Action<int, int> OnPlayerSpawned_HPUIManager;
@@ -31,12 +28,7 @@ public static class PlayerEvents
 
 
 
-    //Player의 Start()에서 이벤트 발행
-    public static void InvokePlayerInstance(Player player)
-    {
-        OnPlayerInstance?.Invoke(player);
-    }
-    //PlayerController의 Start()에서 이벤트 발행
+    //PlayerController가 스폰될 때
     public static void InvokePlayerControllerInstance(PlayerController player)
     {
         OnPlayerControllerInstance?.Invoke(player);

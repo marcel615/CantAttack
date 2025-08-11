@@ -5,15 +5,11 @@ using UnityEngine;
 public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
 {
     //세이브데이터 저장 및 불러오기 대상들
-    [SerializeField] Player player;
-    [SerializeField] PlayerStatus playerStatus;
-    [SerializeField] PlayerController playerController;
+    PlayerController playerController;
 
     private void Awake()
     {
         //내 컴포넌트 연결
-        player = GetComponent<Player>();
-        playerStatus = GetComponent<PlayerStatus>();
         playerController = GetComponent<PlayerController>();
     }
 
@@ -24,15 +20,9 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
     {
         return new PlayerSaveData
         {
-            /*
-            MaxHP = playerStatus.MaxHP,
-            CurrentHP = playerStatus.CurrentHP,
-            position = player.savePosition,
-            */
             MaxHP = playerController.MaxHP,
             CurrentHP = playerController.CurrentHP,
             position = playerController.savePosition,
-
         };
     }
     public void Load(object saveData)
@@ -40,47 +30,25 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
         PlayerSaveData playerSaveData = saveData as PlayerSaveData;
         if (playerSaveData != null)
         {
-            /*
-            playerStatus.MaxHP = playerSaveData.MaxHP;
-            playerStatus.CurrentHP = playerSaveData.CurrentHP;
-            player.savePosition = playerSaveData.position;
-            */
             playerController.MaxHP = playerSaveData.MaxHP;
             playerController.CurrentHP = playerSaveData.CurrentHP;
             playerController.savePosition = playerSaveData.position;
         }
-
     }
     //이벤트 구독
 
     private void OnEnable()
     {
         SystemEvents.OnSaveDicKeyRequest += SaveDicKey;
-
-        //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트 (세이브하는 경우)
-        //SceneTransitionEvents.OnSystemMenuToMainMenu += SavePlayerPos;
-
-        //SavePoint에서 저장하기 직전에 보내는 이벤트
-        //SystemEvents.OnSavePointNotice += SavePlayerPos;
     }
     private void OnDisable()
     {
         SystemEvents.OnSaveDicKeyRequest -= SaveDicKey;
-
-        //SystemMenu 패널에서 메인메뉴로 씬 전환 요청하는 경우 이벤트 (세이브하는 경우)
-        //SceneTransitionEvents.OnSystemMenuToMainMenu -= SavePlayerPos;
-
-        //SavePoint에서 저장하기 직전에 보내는 이벤트
-        //SystemEvents.OnSavePointNotice -= SavePlayerPos;
     }
     //SaveManager에서 딕셔너리 구성하는 과정
     void SaveDicKey(SaveManager saveManager)
     {
         saveManager.GetDicKey(this);
-    }
-    void SavePlayerPos(SavePointSO savePointSO)
-    {
-        player.savePosition = savePointSO.position;
     }
 
 }
