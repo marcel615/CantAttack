@@ -25,5 +25,17 @@ public class GameEventManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public bool isGameEventCompleted(string eventID)
+    {
+        return completedGameEventIDs.Contains(eventID);
+    }
+    public void AddGameEventCompleted(string eventID)
+    {
+        completedGameEventIDs.Add(eventID);
+    }
+
+
+
+
 
 }

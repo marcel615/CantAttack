@@ -15,7 +15,9 @@ MonoBehaviour:
   saveDataSO:
     playerSaveData:
       MaxHP: 5
-      CurrentHP: 4
-      position: {x: 0, y: 0}
+      CurrentHP: 5
+      position: {x: 4, y: 4}
     mapSaveData:
-      saveScene: Map1
+      saveScene: Map5
+    gameEventSaveData:
+      completedGameEventIDs: []

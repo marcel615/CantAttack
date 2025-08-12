@@ -58,7 +58,7 @@ public class PlayerFSM : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
         //currentState가 존재하면 UpdateState() 계속 실행시키기
         if (currentState != null)
         {
