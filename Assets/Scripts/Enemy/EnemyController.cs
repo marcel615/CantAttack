@@ -149,7 +149,7 @@ public class EnemyController : MonoBehaviour
         EnemyEvents.OnEnemyAttackParried -= OnAttackParried;
     }
     //피격 이벤트 발생 시
-    void OnDamaged(Vector2 hitTargetPos, int damage)
+    public virtual void OnDamaged(Vector2 hitTargetPos, int damage)
     {
         //데미지 적용시키기
         CurrentHP -= damage;

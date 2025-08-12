@@ -51,7 +51,8 @@ public class PatrolState : EnemyState
             startPos = transform.position;
 
             //patrolDir에 따라 캐릭터 좌우 반전
-            transform.localScale = new Vector3(patrolDir, 1, 1);
+            //transform.localScale = new Vector3(patrolDir, 1, 1);
+            SetLocalScale(patrolDir);
             FSM.enemyController.isHeadToRight = (patrolDir > 0) ? 1 : -1; //patrolDir가 양수면 1 저장, 음수면 -1 저장
             animator.SetBool("isMoving", true);
         }
@@ -66,7 +67,8 @@ public class PatrolState : EnemyState
                 rigid.velocity = new Vector2(patrolDir * patrolSpeed, rigid.velocity.y);
 
                 //patrolDir에 따라 캐릭터 좌우 반전
-                transform.localScale = new Vector3(patrolDir, 1, 1);
+                //transform.localScale = new Vector3(patrolDir, 1, 1);
+                SetLocalScale(patrolDir);
                 FSM.enemyController.isHeadToRight = (patrolDir > 0) ? 1 : -1; //patrolDir가 양수면 1 저장, 음수면 -1 저장
                 animator.SetBool("isMoving", true);
             }
@@ -85,5 +87,11 @@ public class PatrolState : EnemyState
     public override void Exit()
     {
 
+    }
+    void SetLocalScale(int dir)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * dir;
+        transform.localScale = scale;
     }
 }

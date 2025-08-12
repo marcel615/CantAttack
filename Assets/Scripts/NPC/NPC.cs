@@ -34,13 +34,22 @@ public class NPC : MonoBehaviour
 
         if (interatTarget.transform.position.x < transform.position.x)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            //transform.localScale = new Vector3(-1, 1, 1);
+            SetLocalScale(-1);
         }
         else
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            //transform.localScale = new Vector3(1, 1, 1);
+            SetLocalScale(1);
         }
     }
+    void SetLocalScale(int dir)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * dir;
+        transform.localScale = scale;
+    }
+
     //이벤트 구독
     private void OnEnable()
     {

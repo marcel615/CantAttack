@@ -35,11 +35,16 @@ public class LocalMapManager : MonoBehaviour
     {
         //보스전 시작 게임이벤트
         GameEvents.OnBossFightStart += OnBossFightStart;
+        //보스전 끝날 때 이벤트
+        GameEvents.OnBossFightEnd += OnBossFightEnd;
+
     }
     private void OnDisable()
     {
         //보스전 시작 게임이벤트
         GameEvents.OnBossFightStart -= OnBossFightStart;
+        //보스전 끝날 때 이벤트
+        GameEvents.OnBossFightEnd -= OnBossFightEnd;
     }
     void OnBossFightStart(string eventID, Transform bossT)
     {
@@ -49,7 +54,7 @@ public class LocalMapManager : MonoBehaviour
             Debug.Log("BossFight Start!");
             currentEventID = eventID;
             bossTransform = bossT;
-            StartCoroutine(BossFightStartSequence(2f));
+            StartCoroutine(BossFightStartSequence(1f));
         }
     }
     private IEnumerator BossFightStartSequence(float sequenceTime)
@@ -71,7 +76,36 @@ public class LocalMapManager : MonoBehaviour
 
         //플레이어 조작 재개(컨텍스트 변경)
         InputEvents.InvokeContextUpdate(InputContext.Player);
+    }
+    void OnBossFightEnd()
+    {
+        StartCoroutine(BossFightEndSequence(2f));
+        GameEventManager.Instance.AddGameEventCompleted(currentEventID);
+    }
+    private IEnumerator BossFightEndSequence(float sequenceTime)
+    {
+        //플레이어 조작 멈추고(컨텍스트 변경)
+        InputEvents.InvokeContextUpdate(InputContext.Sequence);
 
+        //카메라 잠시 보스 Follow하도록
+        CameraEvents.InvokeCameraFollowChange(bossTransform);
+
+        //슬로우모션 진행
+        Time.timeScale = 0.2f;
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 1f;
+
+        //연출 시간 후
+        yield return new WaitForSeconds(sequenceTime);
+
+        //카메라 다시 플레이어 Follow하도록
+        CameraEvents.InvokeCameraFollowPlayer();
+
+        //보스방 문 열고
+        GameEvents.InvokeRoomGateDeActive(currentEventID);
+
+        //플레이어 조작 재개(컨텍스트 변경)
+        InputEvents.InvokeContextUpdate(InputContext.Player);
     }
 
 

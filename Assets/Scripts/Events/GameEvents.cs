@@ -8,7 +8,7 @@ public static class GameEvents
     //보스전 시작될 때 이벤트
     public static event Action<string, Transform> OnBossFightStart;
     //보스전 끝날 때 이벤트
-    public static event Action<string> OnBossFightEnd;
+    public static event Action OnBossFightEnd;
 
     //문 Active 요청 이벤트
     public static event Action<string> OnRoomGateActive;
@@ -22,9 +22,9 @@ public static class GameEvents
         OnBossFightStart?.Invoke(gameEventID, bossTransform);
     }
     //보스전 끝날 때 이벤트
-    public static void InvokeBossFightEnd(string gameEventID)
+    public static void InvokeBossFightEnd()
     {
-        OnBossFightEnd?.Invoke(gameEventID);
+        OnBossFightEnd?.Invoke();
     }
 
     //문 Active 요청 이벤트

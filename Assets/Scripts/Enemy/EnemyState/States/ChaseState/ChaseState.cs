@@ -36,7 +36,8 @@ public class ChaseState : EnemyState
         chaseDir = (player.transform.position.x > transform.position.x) ? 1 : -1;
 
         //chaseDir 따라 캐릭터 좌우 반전
-        transform.localScale = new Vector3(chaseDir, 1, 1);
+        //transform.localScale = new Vector3(chaseDir, 1, 1);
+        SetLocalScale(chaseDir);
         FSM.enemyController.isHeadToRight = (chaseDir > 0) ? 1 : -1; //chaseDir가 양수면 1 저장, 음수면 -1 저장
 
         //앞에 땅이 없거나 앞에 벽이 있으면 chase 상태이긴 하지만 멈추도록
@@ -57,5 +58,11 @@ public class ChaseState : EnemyState
     {
         rigid.velocity = new Vector2(0, rigid.velocity.y);
         animator.SetBool("isMoving", false);
+    }
+    void SetLocalScale(int dir)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * dir;
+        transform.localScale = scale;
     }
 }

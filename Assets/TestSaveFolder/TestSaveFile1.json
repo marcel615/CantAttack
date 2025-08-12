@@ -12,6 +12,8 @@
         "saveScene": "Map5"
     },
     "gameEventSaveData": {
-        "completedGameEventIDs": []
+        "completedGameEventIDs": [
+            "Map5_BossFightStart_1"
+        ]
     }
 }

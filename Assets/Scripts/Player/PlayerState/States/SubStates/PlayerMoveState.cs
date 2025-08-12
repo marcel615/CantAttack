@@ -35,7 +35,8 @@ public class PlayerMoveState : PlayerState
         if (FSM.playerController.H != 0)
         {
             //H에 따라 캐릭터 좌우 반전
-            transform.localScale = new Vector3(FSM.playerController.H, 1, 1);
+            //transform.localScale = new Vector3(FSM.playerController.H, 1, 1);
+            SetLocalScale(FSM.playerController.H);
             FSM.playerController.isHeadToRight = (FSM.playerController.H > 0) ? 1 : -1; //H가 양수면 1 저장, 음수면 -1 저장
             animator.SetBool("isMoving", true);
         }
@@ -52,5 +53,11 @@ public class PlayerMoveState : PlayerState
     public override void SetChangeState()
     {
         //allowedTransitions.Add(FSM.groundState);
+    }
+    void SetLocalScale(float dir)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * dir;
+        transform.localScale = scale;
     }
 }

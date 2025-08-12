@@ -57,7 +57,9 @@ public class PlayerPortalState : PlayerState
                 if (H != 0)
                 {
                     //H에 따라 캐릭터 좌우 반전
-                    transform.localScale = new Vector3(H, 1, 1);
+                    //transform.localScale = new Vector3(H, 1, 1);
+                    SetLocalScale(H);
+
                     FSM.playerController.isHeadToRight = (H > 0) ? 1 : -1; //H가 양수면 1 저장, 음수면 -1 저장
                     animator.SetBool("isMoving", true);
                 }
@@ -177,6 +179,12 @@ public class PlayerPortalState : PlayerState
 
             isCanChange = true;
         }
+    }
+    void SetLocalScale(float dir)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * dir;
+        transform.localScale = scale;
     }
 
 }
