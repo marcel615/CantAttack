@@ -40,10 +40,14 @@ public class CameraManager : MonoBehaviour
         MapEvents.OnLocalMapManagerInit += GetLocalMapManagerCamera;
 
         //Camera Follow 리셋할 때
-        CameraEvents.OnCameraFollowReset += ResetCineCamera;
+        CameraEvents.OnCameraFollowReset += ResetCameraFollow;
+        //Camera Follow 변경할 때
+        CameraEvents.OnCameraFollowChange += ChangeCameraFollow;
+        //Camera Follow 플레이어로 변경할 때
+        CameraEvents.OnCameraFollowPlayer += PlayerCameraFollow;
+
         //씬 로드될 때
         SceneManager.sceneLoaded += OnSceneLoaded;
-
     }
     private void OnDisable()
     {
@@ -55,10 +59,14 @@ public class CameraManager : MonoBehaviour
         MapEvents.OnLocalMapManagerInit -= GetLocalMapManagerCamera;
 
         //Camera Follow 리셋할 때
-        CameraEvents.OnCameraFollowReset -= ResetCineCamera;
+        CameraEvents.OnCameraFollowReset -= ResetCameraFollow;
+        //Camera Follow 변경할 때
+        CameraEvents.OnCameraFollowChange -= ChangeCameraFollow;
+        //Camera Follow 플레이어로 변경할 때
+        CameraEvents.OnCameraFollowPlayer -= PlayerCameraFollow;
+
         //씬 로드될 때
         SceneManager.sceneLoaded -= OnSceneLoaded;
-
     }
     //PlayerController가 스폰될 때
     void GetPlayerControllerInstance(PlayerController p)
@@ -77,11 +85,27 @@ public class CameraManager : MonoBehaviour
     }
 
     //Camera Follow 리셋할 때
-    void ResetCineCamera()
+    void ResetCameraFollow()
     {
         if (cineCamera != null)
         {
             cineCamera.Follow = null;
+        }
+    }
+    //Camera Follow 변경할 때
+    void ChangeCameraFollow(Transform changeTransform)
+    {
+        if (cineCamera != null)
+        {
+            cineCamera.Follow = changeTransform;
+        }
+    }
+    //Camera Follow 플레이어로 변경할 때
+    void PlayerCameraFollow()
+    {
+        if (cineCamera != null)
+        {
+            cineCamera.Follow = playerController.cameraFollowTransform;
         }
     }
     //씬 로드될 때

@@ -6,6 +6,7 @@ public class BossBattleTrigger : MonoBehaviour
 {
     //GameEventDataSO
     [SerializeField] private GameEventDataSO gameEventDataSO;
+    [SerializeField] private Transform bossTransform;
 
     //플레이어 감지 변수
     GameObject detectedTarget;
@@ -24,7 +25,7 @@ public class BossBattleTrigger : MonoBehaviour
             if (!isCompleted && !isStarted)
             {
                 isStarted = true;
-                GameEvents.InvokeBossFightStart(gameEventDataSO.gameEventID);
+                GameEvents.InvokeBossFightStart(gameEventDataSO.gameEventID, bossTransform);
             }
         }
     }

@@ -18,6 +18,8 @@ public class LocalMapManager : MonoBehaviour
     public Dictionary<string, PortalDataSO> portalDict;
 
     //GameEvent 관련
+    string currentEventID;
+    Transform bossTransform;
 
 
 
@@ -39,14 +41,39 @@ public class LocalMapManager : MonoBehaviour
         //보스전 시작 게임이벤트
         GameEvents.OnBossFightStart -= OnBossFightStart;
     }
-    void OnBossFightStart(string eventID)
+    void OnBossFightStart(string eventID, Transform bossT)
     {
         //들어온 EventID가 여기서 가지고 있는 Event들 중에 있을 때
         if (mapDataSO.gameEvents.Any(e => e.gameEventID == eventID))
         {
             Debug.Log("BossFight Start!");
+            currentEventID = eventID;
+            bossTransform = bossT;
+            StartCoroutine(BossFightStartSequence(2f));
         }
     }
+    private IEnumerator BossFightStartSequence(float sequenceTime)
+    {
+        //플레이어 조작 멈추고(컨텍스트 변경)
+        InputEvents.InvokeContextUpdate(InputContext.Sequence);
+
+        //보스방 문 닫고
+        GameEvents.InvokeRoomGateActive(currentEventID);
+
+        //카메라 잠시 보스 Follow하도록
+        CameraEvents.InvokeCameraFollowChange(bossTransform);
+
+        //연출 시간 후
+        yield return new WaitForSeconds(sequenceTime);
+
+        //카메라 다시 플레이어 Follow하도록
+        CameraEvents.InvokeCameraFollowPlayer();
+
+        //플레이어 조작 재개(컨텍스트 변경)
+        InputEvents.InvokeContextUpdate(InputContext.Player);
+
+    }
+
 
     //포탈 관련
     void SetPortalDic()

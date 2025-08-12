@@ -136,6 +136,10 @@ public class InputManager : MonoBehaviour
 
                 break;
 
+            case InputContext.Sequence:
+
+                break;
+
                 //InputEvents.InvokeUseHealItem(R);
         }
 
