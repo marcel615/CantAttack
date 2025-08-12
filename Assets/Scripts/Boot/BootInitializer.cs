@@ -15,6 +15,7 @@ public class BootInitializer : MonoBehaviour
         //MessageManager.Instance.Init();
         PlayerController.Instance.Init();
         MapManager.Instance.Init();
+        //EventManager.Instance.Init();
         //SceneTransitionManager.Instance.Init();
 
         // 메인메뉴 로드

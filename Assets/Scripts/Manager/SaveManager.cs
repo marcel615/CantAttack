@@ -141,6 +141,7 @@ public class SaveManager : MonoBehaviour
         SaveLoadDic["PlayerSaveHandler"].Load(saveData.playerSaveData);
         SaveLoadDic["SystemSaveHandler"].Load(saveData.systemSaveData);
         SaveLoadDic["MapSaveHandler"].Load(saveData.mapSaveData);
+        SaveLoadDic["GameEventSaveHandler"].Load(saveData.gameEventSaveData);
 
 
         Debug.Log("·Îµå ¿Ï!");
@@ -171,6 +172,7 @@ public class SaveManager : MonoBehaviour
             playerSaveData = (PlayerSaveData)SaveLoadDic["PlayerSaveHandler"].Save(),
             systemSaveData = (SystemSaveData)SaveLoadDic["SystemSaveHandler"].Save(),
             mapSaveData = (MapSaveData)SaveLoadDic["MapSaveHandler"].Save(),
+            gameEventSaveData = (GameEventSaveData)SaveLoadDic["GameEventSaveHandler"].Save(),
 
         };
     }

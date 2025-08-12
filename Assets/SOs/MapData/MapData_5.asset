@@ -19,3 +19,6 @@ MonoBehaviour:
     m_ScenePath: Assets/Scenes/Map5.unity
   sceneName: Map5
   bgm: {fileID: 0}
+  gameEvents:
+  - {fileID: 11400000, guid: 7efd7c3daf3e0f94db0a5bd83922ce6e, type: 2}
+  - {fileID: 11400000, guid: 4658701fd0c3ddf42b86b2efd2a2787a, type: 2}
