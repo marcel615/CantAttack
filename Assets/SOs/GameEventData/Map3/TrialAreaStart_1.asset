@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d61c7023ed30441b70cc19e87b9f95, type: 3}
+  m_Name: TrialAreaStart_1
+  m_EditorClassIdentifier: 
+  gameEventID: Map3_TrialAreaStart_1
+  gameEventType: 2
+  gameEventName: "\uB3C4\uC804\uBC29 \uC2DC\uC791"
+  description: "Map3\uC758 \uB3C4\uC804\uBC29 \uC131\uACF5\uD558\uBA74 \uC644\uB8CC\uB418\uB294
+    \uC774\uBCA4\uD2B8"

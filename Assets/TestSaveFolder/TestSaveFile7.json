@@ -1,0 +1,19 @@
+{
+    "playerSaveData": {
+        "MaxHP": 5,
+        "CurrentHP": 5,
+        "position": {
+            "x": -16.0,
+            "y": 3.0
+        }
+    },
+    "systemSaveData": {},
+    "mapSaveData": {
+        "saveScene": "Map3"
+    },
+    "gameEventSaveData": {
+        "completedGameEventIDs": [
+            "Map3_TrialAreaStart_1"
+        ]
+    }
+}

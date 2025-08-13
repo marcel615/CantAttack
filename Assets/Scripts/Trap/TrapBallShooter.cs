@@ -86,6 +86,8 @@ public class TrapBallShooter : MonoBehaviour, IDamageable
         activeGroundArea.GetComponent<BoxCollider2D>().enabled = false;
         destroyGroundArea.GetComponent<BoxCollider2D>().enabled = true;
         GameObject explosion = Instantiate(explosionPrefab, firePoint.position, Quaternion.identity);
-        
+
+        //파괴되었다는 이벤트 발행
+        TrapEvents.InvokeTrapDestroyed(gameObject);        
     }
 }

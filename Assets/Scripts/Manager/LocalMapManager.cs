@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,11 @@ public class LocalMapManager : MonoBehaviour
         //보스전 끝날 때 이벤트
         GameEvents.OnBossFightEnd += OnBossFightEnd;
 
+        //도전 구역(Trial Area) 시작될 때 이벤트
+        GameEvents.OnTrialAreaStart += OnTrialAreaStart;
+        //도전 구역(Trial Area) 끝날 때 이벤트
+        GameEvents.OnTrialAreaEnd += OnTrialAreaEnd;
+
     }
     private void OnDisable()
     {
@@ -45,6 +51,11 @@ public class LocalMapManager : MonoBehaviour
         GameEvents.OnBossFightStart -= OnBossFightStart;
         //보스전 끝날 때 이벤트
         GameEvents.OnBossFightEnd -= OnBossFightEnd;
+
+        //도전 구역(Trial Area) 시작될 때 이벤트
+        GameEvents.OnTrialAreaStart -= OnTrialAreaStart;
+        //도전 구역(Trial Area) 끝날 때 이벤트
+        GameEvents.OnTrialAreaEnd -= OnTrialAreaEnd;
     }
     void OnBossFightStart(string eventID, Transform bossT)
     {
@@ -80,6 +91,8 @@ public class LocalMapManager : MonoBehaviour
     void OnBossFightEnd()
     {
         StartCoroutine(BossFightEndSequence(2f));
+
+        //해당 이벤트 완료되었다고 추가
         GameEventManager.Instance.AddGameEventCompleted(currentEventID);
     }
     private IEnumerator BossFightEndSequence(float sequenceTime)
@@ -108,6 +121,28 @@ public class LocalMapManager : MonoBehaviour
         InputEvents.InvokeContextUpdate(InputContext.Player);
     }
 
+    void OnTrialAreaStart(string eventID)
+    {
+        //들어온 EventID가 여기서 가지고 있는 Event들 중에 있을 때
+        if (mapDataSO.gameEvents.Any(e => e.gameEventID == eventID))
+        {
+            Debug.Log("Trial Start!");
+            currentEventID = eventID;
+
+            //도전방 문 닫고
+            GameEvents.InvokeRoomGateActive(currentEventID);
+        }
+    }
+    void OnTrialAreaEnd()
+    {
+        Debug.Log("Trial End!");
+
+        //도전방 문 열고
+        GameEvents.InvokeRoomGateDeActive(currentEventID);
+
+        //해당 이벤트 완료되었다고 추가
+        GameEventManager.Instance.AddGameEventCompleted(currentEventID);
+    }
 
     //포탈 관련
     void SetPortalDic()

@@ -6,4 +6,5 @@ public enum GameEventType
 {
     BossFightStart,
     BossFightEnd,
+    TrialAreaStart,
 }
