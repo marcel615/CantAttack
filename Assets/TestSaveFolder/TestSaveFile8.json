@@ -1,0 +1,17 @@
+{
+    "playerSaveData": {
+        "MaxHP": 5,
+        "CurrentHP": 5,
+        "position": {
+            "x": 4.0,
+            "y": 4.0
+        }
+    },
+    "systemSaveData": {},
+    "mapSaveData": {
+        "saveScene": "Map5"
+    },
+    "gameEventSaveData": {
+        "completedGameEventIDs": []
+    }
+}

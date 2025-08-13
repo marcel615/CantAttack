@@ -107,7 +107,7 @@ public class SaveManager : MonoBehaviour
         {
             string json = JsonUtility.ToJson(saveDataSO, true);
             File.WriteAllText(NowSavePath, json);
-            saveData = saveDataSO;
+            saveData = JsonUtility.FromJson<SaveData>(json);
         }
         MakeDicKeyAndLoad();
     }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4668511586747781590}
   - component: {fileID: 4144126530698776834}
   - component: {fileID: 702797762925862168}
+  - component: {fileID: 3406396232984906353}
   - component: {fileID: 3361438075567649865}
   - component: {fileID: 3735660459056511578}
   - component: {fileID: 4062390347767309766}
@@ -189,6 +190,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3406396232984906353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882835456683346473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd06b4763f8517408f769dd75da3eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEventDataSO: {fileID: 11400000, guid: 7efd7c3daf3e0f94db0a5bd83922ce6e, type: 2}
 --- !u!114 &3361438075567649865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,7 +655,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 12}
+  m_Size: {x: 57, y: 12}
   m_EdgeRadius: 0
 --- !u!114 &9027647841066927997
 MonoBehaviour:

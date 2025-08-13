@@ -1127,10 +1127,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9115957512406469111, guid: 06e4422f130781a43ab453997a946ae3, type: 3}
-      propertyPath: m_Size.x
-      value: 57
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1203,6 +1199,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1811844865}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1700631390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700631391}
+  m_Layer: 0
+  m_Name: SavePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1700631391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700631390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1730812239
@@ -30129,10 +30156,6 @@ PrefabInstance:
       propertyPath: bossTransform
       value: 
       objectReference: {fileID: 1467832304}
-    - target: {fileID: 460392585562316384, guid: 7f4f9c2a1abc66548806354c0b295904, type: 3}
-      propertyPath: gameEventDataSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 7efd7c3daf3e0f94db0a5bd83922ce6e, type: 2}
     - target: {fileID: 2496536532204383099, guid: 7f4f9c2a1abc66548806354c0b295904, type: 3}
       propertyPath: m_Name
       value: BossBattleTrigger
@@ -30200,3 +30223,4 @@ SceneRoots:
   - {fileID: 710697275}
   - {fileID: 1730812240}
   - {fileID: 1856156534}
+  - {fileID: 1700631391}
