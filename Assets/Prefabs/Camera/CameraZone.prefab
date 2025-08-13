@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5733391091020964893
+--- !u!1 &8626438362719122959
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3636000019995224006}
-  - component: {fileID: 4373039187430407487}
+  - component: {fileID: 3213073725518973408}
+  - component: {fileID: 6005006299476236674}
   m_Layer: 0
-  m_Name: CameraBounds
+  m_Name: CameraZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3636000019995224006
+--- !u!4 &3213073725518973408
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5733391091020964893}
+  m_GameObject: {fileID: 8626438362719122959}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &4373039187430407487
-PolygonCollider2D:
+--- !u!61 &6005006299476236674
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5733391091020964893}
+  m_GameObject: {fileID: 8626438362719122959}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -74,10 +74,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0}
-      - {x: 0, y: 20}
-      - {x: 100, y: 20}
-      - {x: 100, y: 0}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 21.82, y: 9.82}
+  m_EdgeRadius: 0

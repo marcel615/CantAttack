@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ public static class CameraEvents
     public static event Action<Transform> OnCameraFollowChange;
     //Camera Follow 플레이어로 변경할 때
     public static event Action OnCameraFollowPlayer;
+    //CineCamera 교체할 때
+    public static event Action<CinemachineVirtualCamera> OnSwitchCamera;
 
 
     //Camera Follow 리셋할 때
@@ -27,6 +30,11 @@ public static class CameraEvents
     public static void InvokeCameraFollowPlayer()
     {
         OnCameraFollowPlayer?.Invoke();
+    }
+    //CineCamera 교체할 때
+    public static void InvokeSwitchCamera(CinemachineVirtualCamera newCam)
+    {
+        OnSwitchCamera?.Invoke(newCam);
     }
 
 }

@@ -8,11 +8,13 @@ using UnityEngine.Tilemaps;
 public class CameraManager : MonoBehaviour
 {
     //오브젝트 중복체크를 위한 인스턴스 생성
-    private static CameraManager Instance;
+    public static CameraManager Instance;
 
     //Don't Destroy 오브젝트
     PlayerController playerController;
     MapManager mapManager;
+
+    //추적할 씨네카메라
     CinemachineVirtualCamera cineCamera;
 
 
@@ -45,6 +47,8 @@ public class CameraManager : MonoBehaviour
         CameraEvents.OnCameraFollowChange += ChangeCameraFollow;
         //Camera Follow 플레이어로 변경할 때
         CameraEvents.OnCameraFollowPlayer += PlayerCameraFollow;
+        //CineCamera 교체할 때
+        CameraEvents.OnSwitchCamera += SwitchCamera;
 
         //씬 로드될 때
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -64,6 +68,8 @@ public class CameraManager : MonoBehaviour
         CameraEvents.OnCameraFollowChange -= ChangeCameraFollow;
         //Camera Follow 플레이어로 변경할 때
         CameraEvents.OnCameraFollowPlayer -= PlayerCameraFollow;
+        //CineCamera 교체할 때
+        CameraEvents.OnSwitchCamera -= SwitchCamera;
 
         //씬 로드될 때
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -115,6 +121,11 @@ public class CameraManager : MonoBehaviour
         {
             cineCamera.Follow = playerController.cameraFollowTransform;
         }
+    }
+    void SwitchCamera(CinemachineVirtualCamera newCam)
+    {
+        cineCamera = newCam;
+        cineCamera.Follow = playerController.cameraFollowTransform;
     }
 
 }

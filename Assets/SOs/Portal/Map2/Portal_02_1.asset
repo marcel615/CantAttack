@@ -15,5 +15,5 @@ MonoBehaviour:
   portalID: Portal_02_1
   position: {x: -1.5, y: 0.5}
   portalWalkDirection: 0
-  targetScene: Map1
-  targetPortalID: Portal_01_1
+  targetScene: Map6
+  targetPortalID: Portal_06_2
