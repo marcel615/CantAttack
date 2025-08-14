@@ -29,6 +29,11 @@ public class PlayerEventHandler : MonoBehaviour
 
         //SavePoint에서 저장하기 직전에 보내는 이벤트
         SystemEvents.OnSavePointNotice += playerController.SavePlayerPos;
+
+        //DoubleJump 기술 해금될 때
+        PlayerEvents.OnDoubleJumpUnlock += playerController.UnlockDoubleJump;
+
+
     }
     private void OnDisable()
     {
@@ -47,6 +52,10 @@ public class PlayerEventHandler : MonoBehaviour
 
         //SavePoint에서 저장하기 직전에 보내는 이벤트
         SystemEvents.OnSavePointNotice -= playerController.SavePlayerPos;
+
+        //DoubleJump 기술 해금될 때
+        PlayerEvents.OnDoubleJumpUnlock -= playerController.UnlockDoubleJump;
+
     }
 
 

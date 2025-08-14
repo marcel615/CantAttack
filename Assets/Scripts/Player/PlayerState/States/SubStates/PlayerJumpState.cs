@@ -42,6 +42,8 @@ public class PlayerJumpState : PlayerState
         //더블점프 구현
         if ((FSM.playerController.isJumpEvent && FSM.playerController.jumpCount == 1 && !FSM.playerController.isGrounded) || (FSM.playerController.isJumpEvent && FSM.playerController.jumpCount == 0 && FSM.playerController.isFalling))
         {
+            if(!FSM.playerController.isDoubleJumpUnlocked) return;
+
             rigid.velocity = new Vector2(rigid.velocity.x, doubleJumpPower);
             FSM.playerController.jumpCount = 2;
             FSM.playerController.isJumping = true;

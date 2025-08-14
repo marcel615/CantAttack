@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSaveData
 {
-    //PlayerStatus.cs
+    //PlayerController.cs
     public int MaxHP;   
     public int CurrentHP;
-    //Player.cs
     public Vector2 position;
+    public bool isDoubleJumpUnlocked;
 }

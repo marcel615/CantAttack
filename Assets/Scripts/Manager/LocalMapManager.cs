@@ -90,6 +90,8 @@ public class LocalMapManager : MonoBehaviour
     }
     void OnBossFightEnd()
     {
+        Debug.Log("BossFight End!");
+
         StartCoroutine(BossFightEndSequence(2f));
 
         //해당 이벤트 완료되었다고 추가
@@ -133,15 +135,36 @@ public class LocalMapManager : MonoBehaviour
             GameEvents.InvokeRoomGateActive(currentEventID);
         }
     }
-    void OnTrialAreaEnd()
+    void OnTrialAreaEnd(GameObject rewardObject)
     {
         Debug.Log("Trial End!");
 
-        //도전방 문 열고
-        GameEvents.InvokeRoomGateDeActive(currentEventID);
+        StartCoroutine(TrialAreaEndSequence(1f, rewardObject));
 
         //해당 이벤트 완료되었다고 추가
         GameEventManager.Instance.AddGameEventCompleted(currentEventID);
+    }
+    private IEnumerator TrialAreaEndSequence(float sequenceTime, GameObject rewardObject)
+    {
+        //도전방 문 열고
+        GameEvents.InvokeRoomGateDeActive(currentEventID);
+
+        if (rewardObject != null)
+        {
+            rewardObject.SetActive(true);
+
+            //플레이어 조작 멈추고(컨텍스트 변경)
+            InputEvents.InvokeContextUpdate(InputContext.Sequence);
+
+            //연출 시간 후
+            yield return new WaitForSeconds(sequenceTime);
+
+            //플레이어 조작 재개(컨텍스트 변경)
+            InputEvents.InvokeContextUpdate(InputContext.Player);
+
+            //보상 아이템의 OnAcquire() 메서드 실행
+            rewardObject.GetComponent<ItemBase>().OnAcquire();
+        }
     }
 
     //포탈 관련

@@ -26,6 +26,10 @@ public static class PlayerEvents
     //Player가 사망했을 때
     public static event Action OnPlayerDead;
 
+    //DoubleJump 기술 해금될 때
+    public static event Action OnDoubleJumpUnlock;
+
+
 
 
     //PlayerController가 스폰될 때
@@ -62,5 +66,10 @@ public static class PlayerEvents
     public static void InvokePlayerDead()
     {
         OnPlayerDead?.Invoke();
+    }
+    //DoubleJump 기술 해금될 때
+    public static void InvokeDoubleJumpUnlock()
+    {
+        OnDoubleJumpUnlock?.Invoke();
     }
 }

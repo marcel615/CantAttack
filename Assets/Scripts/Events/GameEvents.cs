@@ -18,7 +18,7 @@ public static class GameEvents
     //도전 구역(Trial Area) 시작될 때 이벤트
     public static event Action<string> OnTrialAreaStart;
     //도전 구역(Trial Area) 끝날 때 이벤트
-    public static event Action OnTrialAreaEnd;
+    public static event Action<GameObject> OnTrialAreaEnd;
 
 
     //문 Active 요청 이벤트
@@ -49,9 +49,9 @@ public static class GameEvents
         OnTrialAreaStart?.Invoke(gameEventID);
     }
     //도전 구역(Trial Area) 끝날 때 이벤트
-    public static void InvokeTrialAreaEnd()
+    public static void InvokeTrialAreaEnd(GameObject rewardObject)
     {
-        OnTrialAreaEnd?.Invoke();
+        OnTrialAreaEnd?.Invoke(rewardObject);
     }
 
 }

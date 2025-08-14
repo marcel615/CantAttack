@@ -23,6 +23,7 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
             MaxHP = playerController.MaxHP,
             CurrentHP = playerController.CurrentHP,
             position = playerController.savePosition,
+            isDoubleJumpUnlocked = playerController.isDoubleJumpUnlocked,
         };
     }
     public void Load(object saveData)
@@ -33,6 +34,7 @@ public class PlayerSaveHandler : MonoBehaviour, ISaveLoadable
             playerController.MaxHP = playerSaveData.MaxHP;
             playerController.CurrentHP = playerSaveData.CurrentHP;
             playerController.savePosition = playerSaveData.position;
+            playerController.isDoubleJumpUnlocked = playerSaveData.isDoubleJumpUnlocked;
         }
     }
     //이벤트 구독

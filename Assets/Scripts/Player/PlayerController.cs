@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public int MaxHP;
     public int CurrentHP;
     public Vector2 savePosition;
+    public bool isDoubleJumpUnlocked;
 
     //상태 관련 정보
 
@@ -264,6 +265,12 @@ public class PlayerController : MonoBehaviour
     {
         savePosition = savePointSO.position;
     }
+    //더블점프 해금
+    public void UnlockDoubleJump()
+    {
+        isDoubleJumpUnlocked = true;
+    }
+
     //BootInitializer에서 실행하는 초기화 함수
     public void Init()
     {
