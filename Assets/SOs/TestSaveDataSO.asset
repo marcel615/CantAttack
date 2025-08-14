@@ -16,8 +16,9 @@ MonoBehaviour:
     playerSaveData:
       MaxHP: 5
       CurrentHP: 5
-      position: {x: -16, y: 3}
+      position: {x: 53, y: 3}
+      isDoubleJumpUnlocked: 0
     mapSaveData:
-      saveScene: Map3
+      saveScene: Map1
     gameEventSaveData:
       completedGameEventIDs: []

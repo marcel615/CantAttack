@@ -256,11 +256,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.5
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -294,10 +294,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2783280189430914047, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783280189430914047, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3790754928160631539, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_Name
       value: NormalSaw1
       objectReference: {fileID: 0}
+    - target: {fileID: 6402533503414064069, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: waitTime
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402533503414064069, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402533503414064069, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: targetPoint
+      value: 
+      objectReference: {fileID: 432199682}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -306,6 +326,11 @@ PrefabInstance:
 --- !u!4 &432199681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+  m_PrefabInstance: {fileID: 432199680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &432199682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2783280189430914047, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
   m_PrefabInstance: {fileID: 432199680}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &435822580
@@ -465,11 +490,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.5
+      value: 18.5
       objectReference: {fileID: 0}
     - target: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 84113043980436841, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -503,9 +528,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2783280189430914047, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783280189430914047, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3790754928160631539, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_Name
       value: NormalSaw2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402533503414064069, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: waitTime
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402533503414064069, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: moveSpeed
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18252,9 +18293,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2783280189430914047, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3790754928160631539, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
       propertyPath: m_Name
       value: NormalSaw3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402533503414064069, guid: d585f5074b4e17b4fadeec0544073ce0, type: 3}
+      propertyPath: targetPoint
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -500,6 +500,7 @@ MonoBehaviour:
   MaxHP: 0
   CurrentHP: 0
   savePosition: {x: 0, y: 0}
+  isDoubleJumpUnlocked: 0
   isInvincible: 0
   InvincibleTimer: 0
   isGrounded: 0
@@ -511,7 +512,7 @@ MonoBehaviour:
   isJumpHoldEvent: 0
   isJumping: 0
   jumpCount: 0
-  MaxJumpTime: 0.35
+  MaxJumpTime: 0.4
   normalJumpPower: 10
   doubleJumpPower: 20
   isFalling: 0
