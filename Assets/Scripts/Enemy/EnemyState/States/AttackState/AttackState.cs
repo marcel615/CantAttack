@@ -51,6 +51,9 @@ public class AttackState : EnemyState
 
     private IEnumerator AttackAndWaitBeforeStart(float attackTime)
     {
+        //SFX 재생
+        AudioEvents.InvokeSFXRequest(SFXType.Enemy_Attack, transform);
+
         //애니메이션 재생, EnableAttackHitBox() 애니메이션 이벤트로 실행
         animator.SetTrigger("isAttack");
 

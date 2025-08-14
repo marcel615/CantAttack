@@ -17,6 +17,9 @@ public class DeadState : EnemyState
 
     public override void Enter()
     {
+        //SFX 재생
+        AudioEvents.InvokeSFXRequest(SFXType.Enemy_Dead, transform);
+
         //콜라이더 끄기
         FSM.enemyController.DeadDisableColliders();
         //Dead 시 반투명하게 됨

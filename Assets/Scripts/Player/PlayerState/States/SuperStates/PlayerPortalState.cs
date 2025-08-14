@@ -42,7 +42,6 @@ public class PlayerPortalState : PlayerState
     }
     public override void UpdateState()
     {
-        Debug.Log(H);
     }
     public override void FixedUpdateState()
     {

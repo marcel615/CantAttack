@@ -38,6 +38,9 @@ public class PlayerJumpState : PlayerState
 
             animator.SetTrigger("isJump"); //애니메이션 변수 설정
 
+            //SFX 재생
+            AudioEvents.InvokeSFXRequest(SFXType.Player_Jump, transform);
+
         }
         //더블점프 구현
         if ((FSM.playerController.isJumpEvent && FSM.playerController.jumpCount == 1 && !FSM.playerController.isGrounded) || (FSM.playerController.isJumpEvent && FSM.playerController.jumpCount == 0 && FSM.playerController.isFalling))
@@ -50,7 +53,9 @@ public class PlayerJumpState : PlayerState
 
             animator.SetTrigger("isDoubleJump"); //애니메이션 변수 설정
 
-            //애니메이터 설정
+            //SFX 재생
+            AudioEvents.InvokeSFXRequest(SFXType.Player_Jump, transform);
+
         }
 
         // 점프 후 땅에 도달하면 다시 jumpCount 초기화, 애니메이션 변수 설정

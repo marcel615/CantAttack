@@ -73,6 +73,9 @@ public class TrapBallShooter : MonoBehaviour, IDamageable
     //발사
     void Fire()
     {
+        //SFX 재생
+        AudioEvents.InvokeSFXRequest(SFXType.Trap_BallShooter_Shoot, transform);
+
         GameObject ball = Instantiate(ballPrefab, firePoint.position, Quaternion.identity);
         ball.GetComponent<TrapBall>().SetTarget(detectCollider.detectedTarget, gameObject);
 
@@ -80,6 +83,9 @@ public class TrapBallShooter : MonoBehaviour, IDamageable
     //IDamageable인터페이스 구현
     public void TakeDamage(Vector2 pos, int damage)
     {
+        //SFX 재생
+        AudioEvents.InvokeSFXRequest(SFXType.Trap_BallShooter_Dead, transform);
+
         isDestroy = true;
         spriteRenderer.sprite = destroyImage;
         boxCollider.enabled = false;

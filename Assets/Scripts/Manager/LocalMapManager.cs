@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class LocalMapManager : MonoBehaviour
@@ -66,6 +67,9 @@ public class LocalMapManager : MonoBehaviour
             currentEventID = eventID;
             bossTransform = bossT;
             StartCoroutine(BossFightStartSequence(1f));
+
+            //BGM 재생
+            AudioEvents.InvokeBGMRequest(BGMType.Boss, eventID);
         }
     }
     private IEnumerator BossFightStartSequence(float sequenceTime)
@@ -121,6 +125,10 @@ public class LocalMapManager : MonoBehaviour
 
         //플레이어 조작 재개(컨텍스트 변경)
         InputEvents.InvokeContextUpdate(InputContext.Player);
+
+        //BGM 종료
+        AudioEvents.InvokeBGMEnd();
+
     }
 
     void OnTrialAreaStart(string eventID)
@@ -133,6 +141,9 @@ public class LocalMapManager : MonoBehaviour
 
             //도전방 문 닫고
             GameEvents.InvokeRoomGateActive(currentEventID);
+
+            //BGM 재생
+            AudioEvents.InvokeBGMRequest(BGMType.TrialArea, eventID);
         }
     }
     void OnTrialAreaEnd(GameObject rewardObject)
@@ -165,6 +176,8 @@ public class LocalMapManager : MonoBehaviour
             //보상 아이템의 OnAcquire() 메서드 실행
             rewardObject.GetComponent<ItemBase>().OnAcquire();
         }
+        //BGM 종료
+        AudioEvents.InvokeBGMEnd();
     }
 
     //포탈 관련

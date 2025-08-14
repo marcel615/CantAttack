@@ -30,6 +30,9 @@ public class RoomGate : MonoBehaviour
     }
     void OnGateActive(string eventID)
     {
+        //SFX Àç»ý
+        AudioEvents.InvokeSFXRequest(SFXType.DoorClose, transform);
+
         //¹® ´ÝÈû
         animator.SetTrigger("isActivate");
         deActivatedCollider.enabled = false;
@@ -37,6 +40,9 @@ public class RoomGate : MonoBehaviour
     }
     void OnGateDeActive(string eventID)
     {
+        //SFX Àç»ý
+        AudioEvents.InvokeSFXRequest(SFXType.DoorOpen, transform);
+
         //¹® ¿­¸²
         animator.SetTrigger("isDeActivate");
         deActivatedCollider.enabled = true;

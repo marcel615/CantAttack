@@ -78,6 +78,9 @@ public class PlayerDashState : PlayerState
     }
     void StartDash()
     {
+        //SFX Àç»ý
+        AudioEvents.InvokeSFXRequest(SFXType.Player_Dash, transform);
+
         FSM.playerController.dashCoolTimer = dashCoolTime;
         FSM.playerController.isDashCoolTime = true;
 

@@ -80,6 +80,9 @@ public class TrapCrusherBlock : MonoBehaviour
     }
     private IEnumerator WaitAndReset(float waitTime)
     {
+        //SFX 재생
+        AudioEvents.InvokeSFXRequest(SFXType.Trap_Crusher_Drop, transform);
+
         //플래그 세팅
         isDropedAndWait = true;
         isResetAndWait = false;

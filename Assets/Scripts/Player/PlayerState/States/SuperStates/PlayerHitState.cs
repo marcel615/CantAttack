@@ -40,27 +40,6 @@ public class PlayerHitState : PlayerState
     }
     public override void UpdateState()
     {
-        //status에 데미지 적용 후 이벤트 발행
-
-        /*
-        if (FSM.playerController.CurrentHP <= 0)
-        {
-            FSM.playerController.isKnockbacked = true;
-            knockbackTimer = knockbackTime;
-            //넉백 구현
-            if (transform.position.x < hittedPos.x)
-            {
-                rigid.AddForce(new Vector2(-0.5f, 1f) * knockbackPower, ForceMode2D.Impulse);
-            }
-            else
-            {
-                rigid.AddForce(new Vector2(0.5f, 1f) * knockbackPower, ForceMode2D.Impulse);
-            }
-        }
-        */
-
-        //무적 타이머, 넉백 타이머 실행
-
 
     }
     public override void FixedUpdateState()
@@ -108,6 +87,9 @@ public class PlayerHitState : PlayerState
     {
         if (FSM.playerController.CurrentHP - damage > 0)
         {
+            //SFX 재생
+            AudioEvents.InvokeSFXRequest(SFXType.Player_Hit, transform);
+
             FSM.playerController.CurrentHP -= damage;
             Knockback();
             SetInvincibleTimer();

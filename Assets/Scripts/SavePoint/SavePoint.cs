@@ -52,6 +52,9 @@ public class SavePoint : MonoBehaviour
     }
     void OnSaveFinished()
     {
+        //SFX Àç»ý
+        AudioEvents.InvokeSFXRequest(SFXType.SavePointComplete, transform);
+
         afterInteractText.SetActive(true);
     }
 

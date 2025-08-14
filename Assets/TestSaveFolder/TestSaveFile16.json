@@ -1,20 +1,21 @@
 {
     "playerSaveData": {
         "MaxHP": 5,
-        "CurrentHP": 5,
+        "CurrentHP": 2,
         "position": {
-            "x": 26.0,
+            "x": 16.0,
             "y": 1.0
         },
         "isDoubleJumpUnlocked": true
     },
     "systemSaveData": {},
     "mapSaveData": {
-        "saveScene": "Map6"
+        "saveScene": "Map4"
     },
     "gameEventSaveData": {
         "completedGameEventIDs": [
-            "Map3_TrialAreaStart_1"
+            "Map3_TrialAreaStart_1",
+            "Map5_BossFightStart_1"
         ]
     }
 }

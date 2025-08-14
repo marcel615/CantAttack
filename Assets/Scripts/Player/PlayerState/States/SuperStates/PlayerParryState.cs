@@ -87,6 +87,9 @@ public class PlayerParryState : PlayerState
     }
     void StartParry()
     {
+        //SFX Àç»ý
+        AudioEvents.InvokeSFXRequest(SFXType.Player_Parry, transform);
+
         FSM.playerController.parryCoolTimer = parryCoolTime;
         FSM.playerController.isParryCoolTime = true;
 

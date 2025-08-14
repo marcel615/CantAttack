@@ -53,6 +53,8 @@ public class PlayerDeadState : PlayerState
     IEnumerator DeadSequence()
     {
         // 사망 연출
+        //SFX 재생
+        AudioEvents.InvokeSFXRequest(SFXType.Player_Dead, transform);
         //Context 변경 이벤트
         InputEvents.InvokeContextUpdate(InputContext.PlayerDead);
         //움직임 멈추고
