@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDataSO:
     playerSaveData:
-      MaxHP: 4
-      CurrentHP: 3
+      MaxHP: 5
+      CurrentHP: 4
       position: {x: 0, y: 0}
+      isDoubleJumpUnlocked: 0
     mapSaveData:
       saveScene: Map1
+    gameEventSaveData:
+      completedGameEventIDs: []

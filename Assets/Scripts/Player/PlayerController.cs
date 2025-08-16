@@ -181,10 +181,6 @@ public class PlayerController : MonoBehaviour
         {
             isFalling = false;
         }
-        //점프 입력 1프레임 후 재설정
-        if (isJumpEvent) isJumpEvent = false;
-        //점프 홀딩 입력 1프레임 후 재설정
-        if (isJumpHoldEvent) isJumpHoldEvent = false;
     }
     //점프 입력 이벤트
     public void OnJump(bool j)
