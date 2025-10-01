@@ -43,6 +43,8 @@ public class PlayerInputHandler : MonoBehaviour
         InputEvents.Player.OnCancel += playerController.OnCancel;
         //Interact 입력 이벤트 구독
         InputEvents.Player.OnInteract += playerController.OnInteract;
+        //Tab 입력 이벤트 구독
+        InputEvents.Player.OnTab += playerController.OnTab;
     }
     private void OnDisable()
     {
@@ -58,6 +60,8 @@ public class PlayerInputHandler : MonoBehaviour
         InputEvents.Player.OnCancel -= playerController.OnCancel;
         //Interact 입력 이벤트 구독
         InputEvents.Player.OnInteract -= playerController.OnInteract;
+        //Tab 입력 이벤트 구독
+        InputEvents.Player.OnTab -= playerController.OnTab;
     }
 
 

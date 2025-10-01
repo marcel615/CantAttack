@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject UICanvas;
     //PlayerHUDPanel
     [SerializeField] private GameObject PlayerHUDPanel;
+    //ParryModePanel
+    [SerializeField] private GameObject ParryModePanel;
     //SystemMenuPanel
     [SerializeField] private GameObject SystemMenuPanel;
     //SettingPanel
@@ -52,6 +54,7 @@ public class UIManager : MonoBehaviour
         if (UICanvas == null) UICanvas = transform.Find("UICanvas")?.gameObject;
 
         if (PlayerHUDPanel == null) PlayerHUDPanel = transform.Find("UICanvas/PlayerHUDPanel")?.gameObject;
+        if (ParryModePanel == null) ParryModePanel = transform.Find("UICanvas/ParryModePanel")?.gameObject;
         if (SystemMenuPanel == null) SystemMenuPanel = transform.Find("UICanvas/SystemMenuPanel")?.gameObject;
         if (SettingPanel == null) SettingPanel = transform.Find("UICanvas/SettingPanel")?.gameObject;
         if (MainMenuPanel == null) MainMenuPanel = transform.Find("UICanvas/MainMenuPanel")?.gameObject;
@@ -68,6 +71,7 @@ public class UIManager : MonoBehaviour
     }
     public void Init()
     {
+        ParryModePanel.GetComponent<ParryMode>().Init();
         SystemMenuPanel.GetComponent<SystemMenu>().Init();
         SettingPanel.GetComponent<Setting>().Init();
         MainMenuPanel.GetComponent<MainMenu>().Init();

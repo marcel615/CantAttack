@@ -16,6 +16,8 @@ public class PlayerInputEvents
     public event Action<bool> OnCancel;
     //E 이벤트 (인터랙션)
     public event Action<bool> OnInteract;
+    //Tab 이벤트 (ParryMode 패널 열기)
+    public event Action<bool> OnTab;
 
     //Horizontal 이동 이벤트
     public void InvokeMove(float h)
@@ -51,5 +53,10 @@ public class PlayerInputEvents
     public void InvokeInteract(bool e)
     {
         OnInteract?.Invoke(e);
+    }
+    //Tab 이벤트 (ParryMode 패널 열기)
+    public void InvokeTab(bool tab)
+    {
+        OnTab?.Invoke(tab);
     }
 }

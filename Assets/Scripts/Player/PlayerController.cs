@@ -221,6 +221,17 @@ public class PlayerController : MonoBehaviour
         if (interactableTarget.IsInteractable() && FSM.currentState.CanChangeState(FSM.interactionState))
             FSM.ChangeState(FSM.interactionState);
     }
+
+    //Tab 입력 이벤트 (ParryMode 패널 열기)
+    public void OnTab(bool tab)
+    {
+        //ParryMode 오픈
+        InputEvents.ParryMode.InvokeParryModeOpen(thisContext);
+
+        //이 때 튜토리얼이 열려있었다면 닫도록 해야 하기 때문에 실행
+        TutorialEvents.InvokeTutorialClose();
+    }
+
     //피격 이벤트
     public void OnDamaged(Vector2 hitTargetPos, int damage)
     {

@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
     bool Esc; //Cancel
     bool Enter; //Submit
     bool E; //Interact
+    bool Tab; //ParryModeChange
 
     bool R; //UseHealItem
 
@@ -59,6 +60,7 @@ public class InputManager : MonoBehaviour
         Esc = Input.GetButtonDown("Cancel");
         Enter = Input.GetButtonDown("Submit");
         E = Input.GetButtonDown("Interact");
+        Tab = Input.GetButtonDown("ParryModeChange");
 
         R = Input.GetButtonDown("UseHealItem");
 
@@ -86,7 +88,13 @@ public class InputManager : MonoBehaviour
                 if (P) InputEvents.Player.InvokeParry(P);
                 if (Esc) InputEvents.Player.InvokeCancel(Esc);
                 if (E) InputEvents.Player.InvokeInteract(E);
-                
+                if (Tab) InputEvents.Player.InvokeTab(Tab);
+
+
+                break;
+
+            case InputContext.ParryMode:
+                InputEvents.ParryMode.InvokeTab(Tab);
 
                 break;
 
