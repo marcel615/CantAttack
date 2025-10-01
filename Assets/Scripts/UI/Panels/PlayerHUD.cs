@@ -11,6 +11,7 @@ public class PlayerHUD : MonoBehaviour
     public GameObject HPContainer;
     [SerializeField] private GameObject ShieldSlotPanel;
     [SerializeField] private GameObject ShieldContainer;
+    [SerializeField] private GameObject ParryModePanel;
 
     //HP 아이콘 프리팹
     public GameObject HPOnCellPrefab;
@@ -30,6 +31,7 @@ public class PlayerHUD : MonoBehaviour
         if (HPContainer == null) HPContainer = transform.Find("StatusPanel/HPContainer")?.gameObject;
         if (ShieldSlotPanel == null) ShieldSlotPanel = transform.Find("ShieldSlotPanel")?.gameObject;
         if (ShieldContainer == null) ShieldContainer = transform.Find("ShieldSlotPanel/ShieldContainer")?.gameObject;
+        if (ParryModePanel == null) ParryModePanel = transform.Find("ParryModePanel")?.gameObject;
     }
 
     //이벤트 구독
