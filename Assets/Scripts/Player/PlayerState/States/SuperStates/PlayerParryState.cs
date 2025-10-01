@@ -121,7 +121,7 @@ public class PlayerParryState : PlayerState
     }
     void ParrySuccess()
     {
-        Debug.Log("Parry Success");
+        //Debug.Log("Parry Success");
         FSM.playerController.InvincibleTimer = FSM.playerController.parrySuccessInvincibleTime;
         FSM.playerController.isInvincible = true;
 

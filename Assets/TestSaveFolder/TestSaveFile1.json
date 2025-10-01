@@ -1,0 +1,18 @@
+{
+    "playerSaveData": {
+        "MaxHP": 5,
+        "CurrentHP": 5,
+        "position": {
+            "x": 53.0,
+            "y": 3.0
+        },
+        "isDoubleJumpUnlocked": false
+    },
+    "systemSaveData": {},
+    "mapSaveData": {
+        "saveScene": "Map1"
+    },
+    "gameEventSaveData": {
+        "completedGameEventIDs": []
+    }
+}

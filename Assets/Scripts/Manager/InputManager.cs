@@ -43,6 +43,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(currentContext);
         //Debug.Log("H: " + H);
         //Debug.Log("D: " + D);
         //Debug.Log(isInputPossible);

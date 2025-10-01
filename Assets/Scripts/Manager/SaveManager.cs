@@ -144,7 +144,7 @@ public class SaveManager : MonoBehaviour
         SaveLoadDic["GameEventSaveHandler"].Load(saveData.gameEventSaveData);
 
 
-        Debug.Log("로드 완!");
+        //Debug.Log("로드 완!");
         //Test
         //SceneManager.LoadScene("Map1");
         //데이터 로드 완료했다는 이벤트 발행

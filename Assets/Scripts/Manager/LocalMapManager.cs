@@ -62,7 +62,7 @@ public class LocalMapManager : MonoBehaviour
         //들어온 EventID가 여기서 가지고 있는 Event들 중에 있을 때
         if (mapDataSO.gameEvents.Any(e => e.gameEventID == eventID))
         {
-            Debug.Log("BossFight Start!");
+            //Debug.Log("BossFight Start!");
             currentEventID = eventID;
             bossTransform = bossT;
             StartCoroutine(BossFightStartSequence(1f));
@@ -93,7 +93,7 @@ public class LocalMapManager : MonoBehaviour
     }
     void OnBossFightEnd()
     {
-        Debug.Log("BossFight End!");
+        //Debug.Log("BossFight End!");
 
         StartCoroutine(BossFightEndSequence(2f));
 
@@ -135,7 +135,7 @@ public class LocalMapManager : MonoBehaviour
         //들어온 EventID가 여기서 가지고 있는 Event들 중에 있을 때
         if (mapDataSO.gameEvents.Any(e => e.gameEventID == eventID))
         {
-            Debug.Log("Trial Start!");
+            //Debug.Log("Trial Start!");
             currentEventID = eventID;
 
             //도전방 문 닫고
@@ -147,7 +147,7 @@ public class LocalMapManager : MonoBehaviour
     }
     void OnTrialAreaEnd(GameObject rewardObject)
     {
-        Debug.Log("Trial End!");
+        //Debug.Log("Trial End!");
 
         StartCoroutine(TrialAreaEndSequence(1f, rewardObject));
 

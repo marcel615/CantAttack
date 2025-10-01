@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class PlayerHUD : MonoBehaviour
 {
     //자식 오브젝트들
+    [SerializeField] private GameObject StatusPanel;
     public GameObject Portrait;
     public GameObject HPContainer;
+    [SerializeField] private GameObject ShieldSlotPanel;
+    [SerializeField] private GameObject ShieldContainer;
 
     //HP 아이콘 프리팹
     public GameObject HPOnCellPrefab;
@@ -22,8 +25,11 @@ public class PlayerHUD : MonoBehaviour
     private void Awake()
     {
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
-        if (Portrait == null) Portrait = transform.Find("Portrait")?.gameObject;
-        if (HPContainer == null) HPContainer = transform.Find("HPContainer")?.gameObject;
+        if (StatusPanel == null) StatusPanel = transform.Find("StatusPanel")?.gameObject;
+        if (Portrait == null) Portrait = transform.Find("StatusPanel/Portrait")?.gameObject;
+        if (HPContainer == null) HPContainer = transform.Find("StatusPanel/HPContainer")?.gameObject;
+        if (ShieldSlotPanel == null) ShieldSlotPanel = transform.Find("ShieldSlotPanel")?.gameObject;
+        if (ShieldContainer == null) ShieldContainer = transform.Find("ShieldSlotPanel/ShieldContainer")?.gameObject;
     }
 
     //이벤트 구독
