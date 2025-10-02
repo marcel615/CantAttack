@@ -77,7 +77,7 @@ public class TrapBallShooter : MonoBehaviour, IDamageable
         AudioEvents.InvokeSFXRequest(SFXType.Trap_BallShooter_Shoot, transform);
 
         GameObject ball = Instantiate(ballPrefab, firePoint.position, Quaternion.identity);
-        ball.GetComponent<TrapBall>().SetTarget(detectCollider.detectedTarget, gameObject);
+        ball.GetComponent<ProjectileBase>().SetTarget(detectCollider.detectedTarget, gameObject);
 
     }
     //IDamageable인터페이스 구현

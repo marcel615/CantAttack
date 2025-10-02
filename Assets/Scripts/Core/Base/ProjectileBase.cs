@@ -9,7 +9,7 @@ public abstract class ProjectileBase : MonoBehaviour
 
     //발사 관련 변수
     protected GameObject Target;
-    protected GameObject Sender;
+    public GameObject Sender;
     protected Vector2 Direction;
 
     //개별 설정
@@ -39,18 +39,21 @@ public abstract class ProjectileBase : MonoBehaviour
     {
         Target = target;
         Sender = sender;
-        SetDirection();
+
+        Direction = (Target.transform.position - transform.position).normalized;
         Shoot();
     }
 
-    //발사 방향 정하기
-    protected virtual void SetDirection()
+    //발사 방향 설정하기
+    public virtual void SetDirection(Vector2 dir, GameObject sender)
     {
-        Direction = (Target.transform.position - transform.position).normalized;
+        Sender = sender;
+
+        Direction = dir.normalized;
+        Shoot();
     }
 
     //발사하기
-
     protected virtual void Shoot()
     {
         rigid.velocity = Direction * speed;

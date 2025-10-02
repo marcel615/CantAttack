@@ -17,9 +17,9 @@ public class TrapBall : ProjectileBase, IParryable
     {
         base.SetTarget(target, sender);
     }
-    protected override void SetDirection()
+    public override void SetDirection(Vector2 dir, GameObject sender)
     {
-        base.SetDirection();
+        base.SetDirection(dir, sender);
     }
     protected override void Shoot()
     {
