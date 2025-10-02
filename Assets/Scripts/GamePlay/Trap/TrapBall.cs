@@ -29,9 +29,7 @@ public class TrapBall : ProjectileBase, IParryable
     //IParryable 인터페이스 구현
     public void OnParried(GameObject parryOrigin)
     {
-        gameObject.layer = LayerMask.NameToLayer("PlayerAttack");
-        CancelDestroy();
-        SetTarget(Sender, parryOrigin);
+        Destroy(gameObject);
     }
 
 }

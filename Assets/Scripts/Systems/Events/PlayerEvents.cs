@@ -23,6 +23,9 @@ public static class PlayerEvents
     //PlayerParry가 성공했을 때
     public static event Action OnPlayerParrySuccess;
 
+    //PlayerParry가 투사체 패링에 성공했을 때
+    public static event Action<ProjectileBase, GameObject> OnProjectileParried;
+
     //Player가 사망했을 때
     public static event Action OnPlayerDead;
 
@@ -61,6 +64,11 @@ public static class PlayerEvents
     public static void InvokePlayerParrySuccess()
     {
         OnPlayerParrySuccess?.Invoke();
+    }
+    //PlayerParry가 투사체 패링에 성공했을 때
+    public static void InvokeProjectileParried(ProjectileBase prefab, GameObject sender)
+    {
+        OnProjectileParried?.Invoke(prefab, sender);
     }
     //Player가 사망했을 때
     public static void InvokePlayerDead()

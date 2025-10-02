@@ -11,17 +11,17 @@ public class ParryHitBox : MonoBehaviour
             //패리 가능한 투사체
             if(collision.TryGetComponent<ProjectileBase>(out var parriedProjectile))
             {
-                //parriedProjectile.Sender
-                parriedTarget.OnParried(gameObject);
-                PlayerEvents.InvokePlayerParrySuccess();    //패리 성공했다는 이벤트 발행
+                PlayerEvents.InvokeProjectileParried(parriedProjectile, parriedProjectile.Sender);
             }
             //패리 가능한 근접 공격
             else
             {
-                parriedTarget.OnParried(gameObject);
-                PlayerEvents.InvokePlayerParrySuccess();    //패리 성공했다는 이벤트 발행
+
             }
         }
+
+        parriedTarget.OnParried(gameObject);
+        PlayerEvents.InvokePlayerParrySuccess();    //패리 성공했다는 이벤트 발행
 
     }
 }
