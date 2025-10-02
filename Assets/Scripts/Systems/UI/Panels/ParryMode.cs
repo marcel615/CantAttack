@@ -76,6 +76,7 @@ public class ParryMode : MonoBehaviour
 
     void OnClickedTop()
     {
+        Debug.Log("Top Selected");
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
@@ -83,6 +84,7 @@ public class ParryMode : MonoBehaviour
     }
     void OnClickedRight()
     {
+        Debug.Log("Right Selected");
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
@@ -90,6 +92,7 @@ public class ParryMode : MonoBehaviour
     }
     void OnClickedBottom()
     {
+        Debug.Log("Bottom Selected");
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
@@ -97,6 +100,7 @@ public class ParryMode : MonoBehaviour
     }
     void OnClickedLeft()
     {
+        Debug.Log("Left Selected");
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
