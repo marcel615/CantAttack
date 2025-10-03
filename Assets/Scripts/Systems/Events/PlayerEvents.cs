@@ -32,6 +32,9 @@ public static class PlayerEvents
     //DoubleJump 기술 해금될 때
     public static event Action OnDoubleJumpUnlock;
 
+    //PlayerShieldSlot이 업데이트되었을 때
+    public static event Action<ShieldDataSO[]> OnShieldSlotUpdated;
+
 
 
 
@@ -79,5 +82,10 @@ public static class PlayerEvents
     public static void InvokeDoubleJumpUnlock()
     {
         OnDoubleJumpUnlock?.Invoke();
+    }
+    //PlayerShieldSlot이 업데이트되었을 때
+    public static void InvokeShieldSlotUpdated(ShieldDataSO[] slots)
+    {
+        OnShieldSlotUpdated?.Invoke(slots);
     }
 }

@@ -16,6 +16,9 @@ public class PlayerHUD : MonoBehaviour
     public GameObject HPOnCellPrefab;
     public GameObject HPOffCellPrefab;
 
+    //EmptyShield 아이콘 프리팹
+    public GameObject EmptyShieldPrefab;
+
     //현재 HP 참조
     int CurrentHP;
     int MaxHP;
@@ -39,6 +42,9 @@ public class PlayerHUD : MonoBehaviour
         PlayerEvents.OnPlayerSpawned_HPUIManager += SetHP;
         //플레이어 데미지 이벤트 구독
         PlayerEvents.OnPlayerDamaged_HPUIManager += SetHP;
+
+        //PlayerShieldSlot이 업데이트되었을 때
+        PlayerEvents.OnShieldSlotUpdated += SetShieldSlot;
     }
     private void OnDisable()
     {
@@ -46,6 +52,9 @@ public class PlayerHUD : MonoBehaviour
         PlayerEvents.OnPlayerSpawned_HPUIManager -= SetHP;
         //플레이어 데미지 이벤트 구독
         PlayerEvents.OnPlayerDamaged_HPUIManager -= SetHP;
+
+        //PlayerShieldSlot이 업데이트되었을 때
+        PlayerEvents.OnShieldSlotUpdated -= SetShieldSlot;
     }
     //HP칸 채우기
     void SetHP(int maxHP, int currentHP)
@@ -67,6 +76,28 @@ public class PlayerHUD : MonoBehaviour
         for (int i = CurrentHP; i < MaxHP; i++)
         {
             Instantiate(HPOffCellPrefab, HPContainer.transform);
+        }
+    }
+
+    //PlayerShieldSlot이 업데이트되었을 때
+    void SetShieldSlot(ShieldDataSO[] slots)
+    {
+        //일단 shieldPrefab들 다 제거
+        foreach (Transform child in ShieldContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        //shieldPrefab들 채우기
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if(slots[i] != null)
+            {
+                Instantiate(slots[i].iconPrefab, ShieldContainer.transform);
+            }
+            else
+            {
+                Instantiate(EmptyShieldPrefab, ShieldContainer.transform);                
+            }
         }
     }
 }

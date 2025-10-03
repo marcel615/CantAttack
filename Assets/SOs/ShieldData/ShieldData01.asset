@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83ee5e943bfc3048a9de2b01531282d, type: 3}
+  m_Name: ShieldData01
+  m_EditorClassIdentifier: 
+  shieldID: ShieldData01
+  iconPrefab: {fileID: 5339111402985468280, guid: 30e9722047a9818468e864dbc6023af5, type: 3}
+  parryProjectilePrefab: {fileID: 6865310504973106056, guid: 5dedd99650ddaa3439553d7f2f1eda8e, type: 3}
