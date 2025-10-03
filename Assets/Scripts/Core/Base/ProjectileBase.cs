@@ -13,9 +13,9 @@ public abstract class ProjectileBase : MonoBehaviour
     protected Vector2 Direction;
 
     //개별 설정
-    [SerializeField] protected float speed;
-    [SerializeField] protected float vanishTime;
-    [SerializeField] protected int damage;
+    [SerializeField] public float speed;
+    [SerializeField] public float vanishTime;
+    [SerializeField] public int damage;
 
     //Destroy되는 시간 코루틴
     protected Coroutine vanishCoroutine;

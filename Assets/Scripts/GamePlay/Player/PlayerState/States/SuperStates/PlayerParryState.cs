@@ -112,12 +112,12 @@ public class PlayerParryState : PlayerState
     private void OnEnable()
     {
         //PlayerParry가 성공했을 때
-        PlayerEvents.OnPlayerParrySuccess += ParrySuccess;
+        //PlayerEvents.OnPlayerParrySuccess += ParrySuccess;
     }
     private void OnDisable()
     {
         //PlayerParry가 성공했을 때
-        PlayerEvents.OnPlayerParrySuccess -= ParrySuccess;
+        //PlayerEvents.OnPlayerParrySuccess -= ParrySuccess;
     }
     void ParrySuccess()
     {

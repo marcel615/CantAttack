@@ -806,6 +806,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7957501127654244754, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
+      propertyPath: shieldDataSOs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957501127654244754, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
+      propertyPath: shieldDataSOs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f83a8e9d92d9277459a98520421f6c5e, type: 2}
+    - target: {fileID: 7957501127654244754, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
+      propertyPath: shieldDataSOs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2bdcbb38e13eac545a9ae82cb07f6d63, type: 2}
+    - target: {fileID: 7957501127654244754, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
+      propertyPath: shieldDataSOs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d358002e9cef764dbcc8bc392ac7a3a, type: 2}
     - target: {fileID: 8528216636109274893, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
       propertyPath: inputManager
       value: 

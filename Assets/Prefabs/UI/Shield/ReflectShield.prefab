@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 794058869937891773}
   - component: {fileID: 877974872042548489}
   m_Layer: 5
-  m_Name: ReflectorShield
+  m_Name: ReflectShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
