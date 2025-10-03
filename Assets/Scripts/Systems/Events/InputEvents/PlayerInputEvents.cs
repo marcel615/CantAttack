@@ -18,6 +18,8 @@ public class PlayerInputEvents
     public event Action<bool> OnInteract;
     //Tab 이벤트 (ParryMode 패널 열기)
     public event Action<bool> OnTab;
+    //ShieldSlot 선택 이벤트 (1번~4번 숫자키로 슬롯 선택)
+    public event Action<int> OnShieldSlot;
 
     //Horizontal 이동 이벤트
     public void InvokeMove(float h)
@@ -58,5 +60,10 @@ public class PlayerInputEvents
     public void InvokeTab(bool tab)
     {
         OnTab?.Invoke(tab);
+    }
+    //ShieldSlot 선택 이벤트 (1번~4번 숫자키로 슬롯 선택)
+    public void InvokeShieldSlot(int index)
+    {
+        OnShieldSlot?.Invoke(index);
     }
 }

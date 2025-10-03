@@ -35,6 +35,9 @@ public static class PlayerEvents
     //PlayerShieldSlot이 업데이트되었을 때
     public static event Action<ShieldDataSO[]> OnShieldSlotUpdated;
 
+    //ShieldSlot 변경 요청이 들어올 때
+    public static event Action<int> OnShieldSlotSelected;
+
 
 
 
@@ -87,5 +90,10 @@ public static class PlayerEvents
     public static void InvokeShieldSlotUpdated(ShieldDataSO[] slots)
     {
         OnShieldSlotUpdated?.Invoke(slots);
+    }
+    //ShieldSlot 변경 요청이 들어올 때
+    public static void InvokeShieldSlotSelected(int index)
+    {
+        OnShieldSlotSelected?.Invoke(index);
     }
 }

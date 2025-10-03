@@ -25,6 +25,11 @@ public class InputManager : MonoBehaviour
     bool E; //Interact
     bool Tab; //ParryModeChange
 
+    bool num1; //ShieldSlotNum1;
+    bool num2; //ShieldSlotNum2;
+    bool num3; //ShieldSlotNum3;
+    bool num4; //ShieldSlotNum4;
+
     bool R; //UseHealItem
 
 
@@ -62,6 +67,11 @@ public class InputManager : MonoBehaviour
         E = Input.GetButtonDown("Interact");
         Tab = Input.GetButtonDown("ParryModeChange");
 
+        num1 = Input.GetButtonDown("ShieldSlot1");
+        num2 = Input.GetButtonDown("ShieldSlot2");
+        num3 = Input.GetButtonDown("ShieldSlot3");
+        num4 = Input.GetButtonDown("ShieldSlot4");
+
         R = Input.GetButtonDown("UseHealItem");
 
         //이벤트 발행
@@ -89,6 +99,10 @@ public class InputManager : MonoBehaviour
                 if (Esc) InputEvents.Player.InvokeCancel(Esc);
                 if (E) InputEvents.Player.InvokeInteract(E);
                 if (Tab) InputEvents.Player.InvokeTab(Tab);
+                if (num1) InputEvents.Player.InvokeShieldSlot(0);
+                if (num2) InputEvents.Player.InvokeShieldSlot(1);
+                if (num3) InputEvents.Player.InvokeShieldSlot(2);
+                if (num4) InputEvents.Player.InvokeShieldSlot(3);
 
 
                 break;

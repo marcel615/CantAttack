@@ -45,6 +45,8 @@ public class PlayerInputHandler : MonoBehaviour
         InputEvents.Player.OnInteract += playerController.OnInteract;
         //Tab 입력 이벤트 구독
         InputEvents.Player.OnTab += playerController.OnTab;
+        //ShieldSlot 선택 이벤트 (1번~4번 숫자키로 슬롯 선택)
+        InputEvents.Player.OnShieldSlot += OnShieldSlot;
     }
     private void OnDisable()
     {
@@ -62,6 +64,14 @@ public class PlayerInputHandler : MonoBehaviour
         InputEvents.Player.OnInteract -= playerController.OnInteract;
         //Tab 입력 이벤트 구독
         InputEvents.Player.OnTab -= playerController.OnTab;
+        //ShieldSlot 선택 이벤트 (1번~4번 숫자키로 슬롯 선택)
+        InputEvents.Player.OnShieldSlot -= OnShieldSlot;
+    }
+
+    //ShieldSlot 선택 이벤트 (1번~4번 숫자키로 슬롯 선택)
+    void OnShieldSlot(int index)
+    {
+        PlayerEvents.InvokeShieldSlotSelected(index);
     }
 
 
