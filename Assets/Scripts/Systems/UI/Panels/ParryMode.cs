@@ -7,9 +7,13 @@ public class ParryMode : MonoBehaviour
 {
     //자식 오브젝트
     [SerializeField] private Button Top;
+    [SerializeField] private GameObject TopContainer;
     [SerializeField] private Button Right;
+    [SerializeField] private GameObject RightContainer;
     [SerializeField] private Button Bottom;
+    [SerializeField] private GameObject BottomContainer;
     [SerializeField] private Button Left;
+    [SerializeField] private GameObject LeftContainer;
 
     //컨텍스트 enum 정보
     InputContext thisContext = InputContext.ParryMode;
@@ -24,9 +28,13 @@ public class ParryMode : MonoBehaviour
     {
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         if (Top == null) Top = transform.Find("Top")?.GetComponent<Button>();
+        if (TopContainer == null) TopContainer = transform.Find("Top/ZeroRotationContainer").gameObject;
         if (Right == null) Right = transform.Find("Right")?.GetComponent<Button>();
+        if (RightContainer == null) RightContainer = transform.Find("Right/ZeroRotationContainer").gameObject;
         if (Bottom == null) Bottom = transform.Find("Bottom")?.GetComponent<Button>();
+        if (BottomContainer == null) BottomContainer = transform.Find("Bottom/ZeroRotationContainer").gameObject;
         if (Left == null) Left = transform.Find("Left")?.GetComponent<Button>();
+        if (LeftContainer == null) LeftContainer = transform.Find("Left/ZeroRotationContainer").gameObject;
     }
     public void Init()
     {

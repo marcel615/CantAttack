@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerParryHandler : MonoBehaviour
+public class PlayerParryActionHandler : MonoBehaviour
 {
     PlayerController playerController;
     private void Awake()

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26cc233845f005b46bd6a6ea43648def, type: 3}
+  m_Name: ParryModeData01
+  m_EditorClassIdentifier: 
+  parryModeID: ParryModeData01
+  parryModeType: 0
+  iconPrefab: {fileID: 5270636795898382751, guid: 5ab69910913f89340b261c20ef68cd03, type: 3}
