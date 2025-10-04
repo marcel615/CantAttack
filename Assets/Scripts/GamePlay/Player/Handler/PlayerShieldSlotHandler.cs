@@ -47,6 +47,7 @@ public class PlayerShieldSlotHandler : MonoBehaviour
         {
             currentIndex = index;
             currentShieldDataSO = shieldSlot[index];
+            Debug.Log(currentShieldDataSO.shieldType + " is Selected");
         }
     }
 

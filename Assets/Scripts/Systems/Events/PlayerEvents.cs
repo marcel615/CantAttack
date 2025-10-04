@@ -38,6 +38,12 @@ public static class PlayerEvents
     //ShieldSlot 변경 요청이 들어올 때
     public static event Action<int> OnShieldSlotSelected;
 
+    //ParryModeSlot이 업데이트되었을 때
+    public static event Action<ParryModeDataSO[]> OnParryModeSlotUpdated;
+
+    //ParryModeSlot 변경 요청이 들어올 때
+    public static event Action<int> OnParryModeSlotSelected;
+
 
 
 
@@ -95,5 +101,15 @@ public static class PlayerEvents
     public static void InvokeShieldSlotSelected(int index)
     {
         OnShieldSlotSelected?.Invoke(index);
+    }
+    //ParryModeSlot이 업데이트되었을 때
+    public static void InvokeParryModeSlotUpdated(ParryModeDataSO[] slots)
+    {
+        OnParryModeSlotUpdated?.Invoke(slots);
+    }
+    //ParryModeSlot 변경 요청이 들어올 때
+    public static void InvokeParryModeSlotSelected(int index)
+    {
+        OnParryModeSlotSelected?.Invoke(index);
     }
 }

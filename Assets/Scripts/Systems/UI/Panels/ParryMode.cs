@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ParryMode : MonoBehaviour
 {
+    //참조할 PlayerParryHandler.cs
+    [SerializeField] private PlayerParryModeHandler parryModeHandler;
+
     //자식 오브젝트
     [SerializeField] private Button Top;
     [SerializeField] private GameObject TopContainer;
@@ -44,6 +47,20 @@ public class ParryMode : MonoBehaviour
         Bottom.onClick.AddListener(OnClickedBottom);
         Left.onClick.AddListener(OnClickedLeft);
     }
+    //이벤트 구독
+    private void OnEnable()
+    {
+        //이 UI 패널 활성화되었을 때 현재 패리모드 슬롯으로 업데이트하기
+        SetParryModeSlot(parryModeHandler.parryModeSlot);
+
+        //ParryModeSlot이 업데이트되었을 때
+        PlayerEvents.OnParryModeSlotUpdated += SetParryModeSlot;
+    }
+    private void OnDisable()
+    {
+        //ParryModeSlot이 업데이트되었을 때
+        PlayerEvents.OnParryModeSlotUpdated -= SetParryModeSlot;
+    }
 
     //어디선가 ParryMode 패널을 열었을 때
     public void ParryModeOpen(InputContext sourceInputContext)
@@ -82,9 +99,34 @@ public class ParryMode : MonoBehaviour
     }
     /// </Input>
 
+    //ParryModeSlot이 업데이트되었을 때
+    void SetParryModeSlot(ParryModeDataSO[] slots)
+    {
+        SetSlotPrefab(TopContainer.transform, slots[0]);
+        SetSlotPrefab(RightContainer.transform, slots[1]);
+        SetSlotPrefab(BottomContainer.transform, slots[2]);
+        SetSlotPrefab(LeftContainer.transform, slots[3]);
+    }
+    //슬롯에 프리팹 채우기
+    void SetSlotPrefab(Transform container, ParryModeDataSO parryModeDataSO)
+    {
+        //일단 Slot 안의 프리팹 제거
+        if(container.childCount > 0)
+        {
+            Destroy(container.GetChild(0).gameObject);
+        }
+        //들어온 프리팹으로 채우기
+        if (parryModeDataSO != null)
+        {
+            Instantiate(parryModeDataSO.iconPrefab, container.transform);
+        }
+    }
     void OnClickedTop()
     {
-        Debug.Log("Top Selected");
+        //Debug.Log("Top Selected");
+        //패리 모드 선택했다는 이벤트 발행
+        PlayerEvents.InvokeParryModeSlotSelected(0);
+
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
@@ -92,7 +134,10 @@ public class ParryMode : MonoBehaviour
     }
     void OnClickedRight()
     {
-        Debug.Log("Right Selected");
+        //Debug.Log("Right Selected");
+        //패리 모드 선택했다는 이벤트 발행
+        PlayerEvents.InvokeParryModeSlotSelected(1);
+
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
@@ -100,7 +145,10 @@ public class ParryMode : MonoBehaviour
     }
     void OnClickedBottom()
     {
-        Debug.Log("Bottom Selected");
+        //Debug.Log("Bottom Selected");
+        //패리 모드 선택했다는 이벤트 발행
+        PlayerEvents.InvokeParryModeSlotSelected(2);
+
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
@@ -108,7 +156,10 @@ public class ParryMode : MonoBehaviour
     }
     void OnClickedLeft()
     {
-        Debug.Log("Left Selected");
+        //Debug.Log("Left Selected");
+        //패리 모드 선택했다는 이벤트 발행
+        PlayerEvents.InvokeParryModeSlotSelected(3);
+
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행

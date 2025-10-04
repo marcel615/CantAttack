@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 8489810546770059990}
   - component: {fileID: 4482489389461167494}
   - component: {fileID: 7957501127654244754}
+  - component: {fileID: 1650384106868276480}
   - component: {fileID: 1209800107791713199}
   - component: {fileID: 3594095913598308680}
   - component: {fileID: 3074210929146404492}
@@ -496,7 +497,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldDataSOs:
+  - {fileID: 11400000, guid: f83a8e9d92d9277459a98520421f6c5e, type: 2}
   - {fileID: 11400000, guid: 2bdcbb38e13eac545a9ae82cb07f6d63, type: 2}
+  - {fileID: 11400000, guid: 3d358002e9cef764dbcc8bc392ac7a3a, type: 2}
+--- !u!114 &1650384106868276480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485503838152790450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9016e98b9d6afc649afb4cec932da8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parryModeSlot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  parryModeDataSOs:
+  - {fileID: 11400000, guid: 8248c98bce44ef04aafd27797a5ca2f9, type: 2}
+  - {fileID: 11400000, guid: 4a634f21a58881d48bd51ad9f1b3fb65, type: 2}
+  - {fileID: 11400000, guid: f881aa1905f93514e98cb32c6a6324eb, type: 2}
+  - {fileID: 11400000, guid: d492874d00337e14f9b9c514b9197f02, type: 2}
 --- !u!114 &1209800107791713199
 MonoBehaviour:
   m_ObjectHideFlags: 0
