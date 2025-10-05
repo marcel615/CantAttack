@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,11 +34,18 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     void AssignShieldToSlot()
     {
         int totalNum = shieldDataSOs.Length;
+        int minIndex = 4;
         for(int i = 0; (i < 4 && i < totalNum); i++)
         {
             if (shieldDataSOs[i] != null)
             {
                 shieldSlot[i] = shieldDataSOs[i];
+                //게임 시작 시 임시로 일단 제일 작은 인덱스 슬롯을 현재 선택한 것으로 치기
+                if(i < minIndex)
+                {
+                    minIndex = i;
+                    ShieldSlotSelected(i);
+                }
             }
         }
         PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);

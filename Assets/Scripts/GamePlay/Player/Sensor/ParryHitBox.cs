@@ -18,10 +18,11 @@ public class ParryHitBox : MonoBehaviour
             {
 
             }
+
+            parriedTarget.OnParried(gameObject);
+            PlayerEvents.InvokePlayerParrySuccess();    //패리 성공했다는 이벤트 발행
         }
 
-        parriedTarget.OnParried(gameObject);
-        PlayerEvents.InvokePlayerParrySuccess();    //패리 성공했다는 이벤트 발행
 
     }
 }

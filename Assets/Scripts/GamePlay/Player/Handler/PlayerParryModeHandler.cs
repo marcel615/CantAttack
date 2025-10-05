@@ -32,11 +32,18 @@ public class PlayerParryModeHandler : MonoBehaviour
     void AssignParryModeToSlot()
     {
         int totalNum = parryModeDataSOs.Length;
+        int minIndex = 4;
         for (int i = 0; (i < 4 && i < totalNum); i++)
         {
             if (parryModeDataSOs[i] != null)
             {
                 parryModeSlot[i] = parryModeDataSOs[i];
+                //게임 시작 시 임시로 일단 제일 작은 인덱스 슬롯을 현재 선택한 것으로 치기
+                if (i < minIndex)
+                {
+                    minIndex = i;
+                    ParryModeSlotSelected(i);
+                }
             }
         }
         PlayerEvents.InvokeParryModeSlotUpdated(parryModeSlot);
