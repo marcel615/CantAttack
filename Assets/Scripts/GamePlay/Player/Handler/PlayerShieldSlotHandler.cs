@@ -11,6 +11,7 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     [SerializeField] ShieldDataSO[] shieldDataSOs;
 
     //현재 선택된 슬롯 추적 변수
+    int beforeIndex;
     int currentIndex;
     ShieldDataSO currentShieldDataSO;
 
@@ -40,6 +41,7 @@ public class PlayerShieldSlotHandler : MonoBehaviour
             }
         }
         PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);
+
     }
     void ShieldSlotSelected(int index)
     {
@@ -48,6 +50,7 @@ public class PlayerShieldSlotHandler : MonoBehaviour
             currentIndex = index;
             currentShieldDataSO = shieldSlot[index];
             Debug.Log(currentShieldDataSO.shieldType + " is Selected");
+            PlayerEvents.InvokeCurrentShieldUpdated(currentShieldDataSO, currentIndex);
         }
     }
 

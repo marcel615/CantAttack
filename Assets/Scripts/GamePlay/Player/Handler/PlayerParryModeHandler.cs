@@ -48,6 +48,7 @@ public class PlayerParryModeHandler : MonoBehaviour
             currentIndex = index;
             currentParryModeDataSO = parryModeSlot[index];
             Debug.Log(currentParryModeDataSO.parryModeType + " is Selected");
+            PlayerEvents.InvokeCurrentParryModeUpdated(currentParryModeDataSO, currentIndex);
         }
     }
 }
