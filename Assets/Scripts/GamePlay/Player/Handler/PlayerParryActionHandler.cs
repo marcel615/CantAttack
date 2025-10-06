@@ -95,13 +95,29 @@ public class PlayerParryActionHandler : MonoBehaviour
         switch (currentParryMode.parryModeType)
         {
             case ParryModeType.Counter:
-                projectile.GetComponent<ProjectileBase>().SetTarget(sender, gameObject);
-
+                if (sender != null)
+                {
+                    projectile.GetComponent<ProjectileBase>().SetTarget(sender, gameObject);
+                }
+                else 
+                {
+                    Vector2 DefaultDir = new Vector2(playerController.isHeadToRight, 0);
+                    projectile.GetComponent<ProjectileBase>().SetDirection(DefaultDir, gameObject);
+                }
                 break;
 
             case ParryModeType.Proximity:
                 GameObject target = FindProximityObject(ProximityMaxRadius);
-                projectile.GetComponent<ProjectileBase>().SetTarget(target, gameObject);
+
+                if (target != null)
+                {
+                    projectile.GetComponent<ProjectileBase>().SetTarget(target, gameObject);
+                }
+                else
+                {
+                    Vector2 DefaultDir = new Vector2(playerController.isHeadToRight, 0);
+                    projectile.GetComponent<ProjectileBase>().SetDirection(DefaultDir, gameObject);
+                }
                 break;
 
             case ParryModeType.Directional:
@@ -141,20 +157,21 @@ public class PlayerParryActionHandler : MonoBehaviour
     }
     IEnumerator FindDirectionAndShoot(GameObject projectile)
     {
-        float slowModeScale = 0.0f;
+        float slowModeScale = 0.2f;
         float confirmDelay = 0.2f;
-        float maxWaitTime = 1.0f;
+        float maxWaitTime = 1.6f;
 
         Time.timeScale = slowModeScale;
 
         Vector2 inputDir = Vector2.zero;
-        Vector2 finalDir = Vector2.right;
+        Vector2 finalDir = Vector2.zero;
 
         bool firstInputDetected = false;
         float waitTimer = 0f;
         float confirmTimer = 0f;
 
-        yield return new WaitForSecondsRealtime(0.2f);
+        //일단 입력 가능 상태까지 대기
+        yield return new WaitForSecondsRealtime(0.5f);
 
         while (waitTimer < maxWaitTime)
         {
@@ -163,8 +180,10 @@ public class PlayerParryActionHandler : MonoBehaviour
             // 첫 입력 감지
             if (!firstInputDetected && input.sqrMagnitude > 0.01f)
             {
-                firstInputDetected = true;
                 inputDir = input.normalized;
+                finalDir = inputDir;
+
+                firstInputDetected = true;
                 confirmTimer = 0f; // 0.2초 카운트다운 시작
             }
 
@@ -176,12 +195,13 @@ public class PlayerParryActionHandler : MonoBehaviour
                 {
                     confirmTimer += Time.unscaledDeltaTime;
                     if (input.sqrMagnitude > 0.01f)
+                    {
                         inputDir = input.normalized;
+                        finalDir = inputDir;
+                    }
                 }
-                else
-                {
-                    // 0.2초 지남 → 방향 확정 및 발사
-                    finalDir = inputDir;
+                else // 0.2초 지남 → 방향 확정 및 발사
+                {                    
                     break;
                 }
             }
@@ -193,7 +213,7 @@ public class PlayerParryActionHandler : MonoBehaviour
         // 1초 동안 입력이 없었던 경우
         if (!firstInputDetected)
         {
-            finalDir = Vector2.right; // 기본 방향
+            finalDir = new Vector2(playerController.isHeadToRight, 0); // 기본 방향
         }
 
         Time.timeScale = 1f;
