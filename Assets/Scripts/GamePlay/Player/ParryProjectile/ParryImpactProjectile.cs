@@ -15,12 +15,26 @@ public class ParryImpactProjectile : ProjectileBase
 
     public override void SetDirection(Vector2 dir, GameObject sender)
     {
-        base.SetDirection(dir, sender);
+        if (sender == null) return;
+
+        Direction = dir.normalized;
+        Rigidbody2D senderRB = sender.GetComponent<Rigidbody2D>();
+
+        Vector2 impctDir = -Direction;
+
+        senderRB.AddForce(impctDir * 15f, ForceMode2D.Impulse);
     }
 
     public override void SetTarget(GameObject target, GameObject sender)
     {
-        base.SetTarget(target, sender);
+        if (sender == null) return;
+
+        Direction = (target.transform.position - transform.position).normalized;
+        Rigidbody2D senderRB = sender.GetComponent<Rigidbody2D>();
+
+        Vector2 impctDir = -Direction;
+
+        senderRB.AddForce(impctDir * 15f, ForceMode2D.Impulse);
     }
 
     protected override void Shoot()

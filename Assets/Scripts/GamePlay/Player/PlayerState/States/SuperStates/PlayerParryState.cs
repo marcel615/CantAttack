@@ -112,22 +112,15 @@ public class PlayerParryState : PlayerState
     private void OnEnable()
     {
         //PlayerParry가 성공했을 때
-        //PlayerEvents.OnPlayerParrySuccess += ParrySuccess;
+        PlayerEvents.OnPlayerParrySuccess += ParrySuccess;
     }
     private void OnDisable()
     {
         //PlayerParry가 성공했을 때
-        //PlayerEvents.OnPlayerParrySuccess -= ParrySuccess;
+        PlayerEvents.OnPlayerParrySuccess -= ParrySuccess;
     }
     void ParrySuccess()
     {
-        //Debug.Log("Parry Success");
-        FSM.playerController.InvincibleTimer = FSM.playerController.parrySuccessInvincibleTime;
-        FSM.playerController.isInvincible = true;
-
-        //공중에서 기술 사용횟수 초기화 보상
-        FSM.playerController.isParriedInAir = false;
-        FSM.playerController.isDashedInAir = false;
-        FSM.playerController.jumpCount = 1;
+        parryTimer = 0;
     }
 }

@@ -90,6 +90,11 @@ public class PlayerParryActionHandler : MonoBehaviour
                 projectile.layer = LayerMask.NameToLayer("PlayerAttack");
 
                 break;
+
+            case ShieldType.Impact:
+                projectile = Instantiate(currentShield.parryProjectilePrefab, transform.position, Quaternion.identity);
+
+                break;
         }
         //패리 모드 설정
         switch (currentParryMode.parryModeType)
@@ -157,7 +162,7 @@ public class PlayerParryActionHandler : MonoBehaviour
     }
     IEnumerator FindDirectionAndShoot(GameObject projectile)
     {
-        float slowModeScale = 0.2f;
+        float slowModeScale = 0.0f;
         float confirmDelay = 0.2f;
         float maxWaitTime = 1.6f;
 
