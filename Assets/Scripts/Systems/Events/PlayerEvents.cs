@@ -50,6 +50,12 @@ public static class PlayerEvents
     //currentParryMode가 변경되었을 때
     public static event Action<ParryModeDataSO, int> OnCurrentParryModeUpdated;
 
+    //parryAction의 방향이 정해졌을 때
+    public static event Action<Vector2> OnParryActionDirectionSet;
+
+    //parryAction의 타겟이 정해졌을 때
+    public static event Action<GameObject> OnParryActionTargetSet;
+
 
 
 
@@ -128,4 +134,16 @@ public static class PlayerEvents
     {
         OnCurrentParryModeUpdated?.Invoke(currentParryMode, currentIndex);
     }
+    //parryAction의 방향이 정해졌을 때
+    public static void InvokeParryActionDirectionSet(Vector2 dir)
+    {
+        OnParryActionDirectionSet?.Invoke(dir);
+    }
+    //parryAction의 타겟이 정해졌을 때
+    public static void InvokeParryActionTargetSet(GameObject gameObject)
+    {
+        OnParryActionTargetSet?.Invoke(gameObject);
+    }
+
+
 }

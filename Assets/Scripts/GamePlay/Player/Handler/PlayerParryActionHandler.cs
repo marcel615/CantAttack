@@ -51,11 +51,13 @@ public class PlayerParryActionHandler : MonoBehaviour
     void CurrentShieldUpdated(ShieldDataSO curShield, int curIndex)
     {
         currentShield = curShield;
+        playerController.currentShield = curShield;
     }
     //현재 선택된 패리모드가 업데이트 되었을 때
     void CurrentParryModeUpdated(ParryModeDataSO curParryMode, int curIndex)
     {
         currentParryMode = curParryMode;
+        playerController.currentParryMode = curParryMode;
     }
 
     //PlayerParry가 성공했을 때
@@ -103,11 +105,13 @@ public class PlayerParryActionHandler : MonoBehaviour
                 if (sender != null)
                 {
                     projectile.GetComponent<ProjectileBase>().SetTarget(sender, gameObject);
+                    PlayerEvents.InvokeParryActionTargetSet(sender);
                 }
                 else 
                 {
                     Vector2 DefaultDir = new Vector2(playerController.isHeadToRight, 0);
                     projectile.GetComponent<ProjectileBase>().SetDirection(DefaultDir, gameObject);
+                    PlayerEvents.InvokeParryActionDirectionSet(DefaultDir);
                 }
                 break;
 
@@ -117,11 +121,13 @@ public class PlayerParryActionHandler : MonoBehaviour
                 if (target != null)
                 {
                     projectile.GetComponent<ProjectileBase>().SetTarget(target, gameObject);
+                    PlayerEvents.InvokeParryActionTargetSet(target);
                 }
                 else
                 {
                     Vector2 DefaultDir = new Vector2(playerController.isHeadToRight, 0);
                     projectile.GetComponent<ProjectileBase>().SetDirection(DefaultDir, gameObject);
+                    PlayerEvents.InvokeParryActionDirectionSet(DefaultDir);
                 }
                 break;
 
@@ -223,6 +229,7 @@ public class PlayerParryActionHandler : MonoBehaviour
 
         Time.timeScale = 1f;
         projectile.GetComponent<ProjectileBase>().SetDirection(finalDir, gameObject);
+        PlayerEvents.InvokeParryActionDirectionSet(finalDir);
 
     }
 

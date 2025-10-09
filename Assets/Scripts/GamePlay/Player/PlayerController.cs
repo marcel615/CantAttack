@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
     public float parrySuccessInvincibleTime = 0.4f;
     public CircleCollider2D playerParryCollider;    //패리 콜라이더
     public GameObject parryEffect;  //패리 이펙트 프리팹
+    //현재 선택된 방패 및 패리 모드
+    public ShieldDataSO currentShield;
+    public ParryModeDataSO currentParryMode;
 
     //피격되었을 때 관련 변수
     public bool isKnockbacked;      //피격 시 넉백 관련 플래그

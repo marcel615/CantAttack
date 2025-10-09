@@ -22,7 +22,7 @@ public class ParryImpactProjectile : ProjectileBase
 
         Vector2 impctDir = -Direction;
 
-        senderRB.AddForce(impctDir * 15f, ForceMode2D.Impulse);
+        //senderRB.AddForce(impctDir * 15f, ForceMode2D.Impulse);
     }
 
     public override void SetTarget(GameObject target, GameObject sender)
@@ -34,7 +34,7 @@ public class ParryImpactProjectile : ProjectileBase
 
         Vector2 impctDir = -Direction;
 
-        senderRB.AddForce(impctDir * 15f, ForceMode2D.Impulse);
+        //senderRB.AddForce(impctDir * 15f, ForceMode2D.Impulse);
     }
 
     protected override void Shoot()

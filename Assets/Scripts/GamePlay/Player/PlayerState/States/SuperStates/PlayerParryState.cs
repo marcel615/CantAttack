@@ -13,11 +13,24 @@ public class PlayerParryState : PlayerState
     float parryTime;
     CircleCollider2D playerParryCollider;
     GameObject parryEffect;
+    ShieldDataSO currentShield;
+    ParryModeDataSO currentParryMode;
+
 
     //Parry 관련 변수
     float parryTimer;
     float prevGravity;
+    bool isParrySuccess;
+    Vector2 parryActionDir;
+    bool isDirSet;
+    GameObject parryActionTarget;
+    bool isTargetSet;
+    bool isParryAction;
+    float parryActionTimer;
+    Vector2 impactDirection;
+
     bool isCanChange;
+
 
 
     private void Awake()
@@ -31,7 +44,16 @@ public class PlayerParryState : PlayerState
         parryTime = FSM.playerController.parryTime;
         playerParryCollider = FSM.playerController.playerParryCollider;
         parryEffect = FSM.playerController.parryEffect;
+        currentShield = FSM.playerController.currentShield;
+        currentParryMode = FSM.playerController.currentParryMode;
 
+        parryActionDir = Vector2.zero;
+        isDirSet = false;
+        parryActionTarget = null;
+        isTargetSet = false;
+        isParrySuccess = false;
+        isParryAction = false;
+        impactDirection = Vector2.zero;
         isCanChange = false;
         StartParry();
     }
@@ -40,27 +62,98 @@ public class PlayerParryState : PlayerState
     }
     public override void FixedUpdateState()
     {
-        if (FSM.playerController.isParrying)
+        //패리 성공 시 로직
+        if (isParrySuccess)
         {
-            if (parryTimer > 0)
+            //방패 분기
+            switch (currentShield.shieldType)
             {
-                rigid.velocity = new Vector2(0, 0);
+                case ShieldType.Impact:
+                    if (!isDirSet && !isTargetSet) break;
 
-                parryTimer -= Time.fixedDeltaTime;
+                    if (!isParryAction)
+                    {
+                        if (isDirSet)
+                        {
+                            impactDirection = -parryActionDir;
+                        }
+                        else if (isTargetSet)
+                        {
+                            impactDirection = -(parryActionTarget.transform.position - transform.position).normalized;
+                        }
+                        rigid.AddForce(impactDirection * 25f, ForceMode2D.Impulse);
+
+                        isParryAction = true;
+                        parryActionTimer = 0.3f;
+                    }
+                    else
+                    {
+                        if (parryActionTimer > 0)
+                        {
+                            parryActionTimer -= Time.fixedDeltaTime;
+                        }
+                        else
+                        {
+                            parryActionTimer = 0;
+                            isDirSet = false;
+                            isTargetSet = false;
+
+                            isCanChange = true;
+
+                            //플랫폼의 아주아주 끝에서 패리를 할 경우 다음 상태로 전환하지 못하게 되는 버그 임시 조치
+                            FSM.ChangeState(FSM.groundState);
+                        }
+                    }
+                    break;
+
+                default:
+                    isCanChange = true;
+
+                    //플랫폼의 아주아주 끝에서 패리를 할 경우 다음 상태로 전환하지 못하게 되는 버그 임시 조치
+                    FSM.ChangeState(FSM.groundState);
+
+                    break;
             }
-            else
+            //패리 모드 분기
+            switch (currentParryMode.parryModeType)
             {
-                playerParryCollider.enabled = false;
-                parryTimer = 0;
-                FSM.playerController.isParrying = false;
-                animator.SetBool("isParry", false);
+                case ParryModeType.Absorb:
+                    isCanChange = true;
 
-                rigid.gravityScale = prevGravity;
+                    //플랫폼의 아주아주 끝에서 패리를 할 경우 다음 상태로 전환하지 못하게 되는 버그 임시 조치
+                    FSM.ChangeState(FSM.groundState);
 
-                isCanChange = true;
+                    break;
 
-                //플랫폼의 아주아주 끝에서 패리를 할 경우 다음 상태로 전환하지 못하게 되는 버그 임시 조치
-                FSM.ChangeState(FSM.groundState);
+                default:
+                    break;
+            }
+        }
+        else //패리 진행 중 로직
+        {
+            //패리 진행
+            if (FSM.playerController.isParrying)
+            {
+                if (parryTimer > 0)
+                {
+                    rigid.velocity = new Vector2(0, 0);
+
+                    parryTimer -= Time.fixedDeltaTime;
+                }
+                else
+                {
+                    playerParryCollider.enabled = false;
+                    parryTimer = 0;
+                    FSM.playerController.isParrying = false;
+                    animator.SetBool("isParry", false);
+
+                    rigid.gravityScale = prevGravity;
+
+                    isCanChange = true;
+
+                    //플랫폼의 아주아주 끝에서 패리를 할 경우 다음 상태로 전환하지 못하게 되는 버그 임시 조치
+                    FSM.ChangeState(FSM.groundState);
+                }
             }
         }
     }
@@ -113,14 +206,38 @@ public class PlayerParryState : PlayerState
     {
         //PlayerParry가 성공했을 때
         PlayerEvents.OnPlayerParrySuccess += ParrySuccess;
+        //parryAction의 방향이 정해졌을 때
+        PlayerEvents.OnParryActionDirectionSet += DirectionSet;
+        //parryAction의 타겟이 정해졌을 때
+        PlayerEvents.OnParryActionTargetSet += TargetSet;
     }
     private void OnDisable()
     {
         //PlayerParry가 성공했을 때
         PlayerEvents.OnPlayerParrySuccess -= ParrySuccess;
+        //parryAction의 방향이 정해졌을 때
+        PlayerEvents.OnParryActionDirectionSet -= DirectionSet;
+        //parryAction의 타겟이 정해졌을 때
+        PlayerEvents.OnParryActionTargetSet -= TargetSet;
     }
     void ParrySuccess()
     {
+        isParrySuccess = true;
+
+        playerParryCollider.enabled = false;
         parryTimer = 0;
+        FSM.playerController.isParrying = false;
+        animator.SetBool("isParry", false);
+        rigid.gravityScale = prevGravity;
+    }
+    void DirectionSet(Vector2 dir)
+    {
+        isDirSet = true;
+        parryActionDir = dir;
+    }
+    void TargetSet(GameObject gameObject)
+    {
+        isTargetSet = true;
+        parryActionTarget = gameObject;
     }
 }
