@@ -6,10 +6,17 @@ public class PlayerParryActionHandler : MonoBehaviour
 {
     PlayerController playerController;
 
+    //패리 성공 당시 정보들
+    ProjectileBase parriedProjectile; //패리 성공한 투사체
+    Vector2 parriedPosition;          //패리 성공한 위치
+    GameObject parriedProjectileSender; //패리한 투사체를 발사했던 곳
+    GameObject parriedProjectileCopy; //패리 성공한 투사체 복사본
+
     //현재 선택된 방패 및 패리 모드
     ShieldDataSO currentShield;
     ParryModeDataSO currentParryMode;
 
+    //Proximity 패리모드 관련
     float ProximityMaxRadius = 10f;
     LayerMask EnemyAndTrapLayerMask;
 
@@ -76,73 +83,58 @@ public class PlayerParryActionHandler : MonoBehaviour
     //PlayerParry가 투사체 패링에 성공했을 때
     void ProjectileParried(ProjectileBase prefab, GameObject sender)
     {
-        //발사될 투사체
-        GameObject projectile = null;
+        parriedProjectile = prefab;
+        parriedPosition = prefab.gameObject.transform.position;
+        parriedProjectileSender = sender;
 
-        //투사체 설정
-        switch (currentShield.shieldType)
-        {
-            case ShieldType.Flame:
-                projectile = Instantiate(currentShield.parryProjectilePrefab, prefab.gameObject.transform.position, Quaternion.identity);
+        if(currentShield.shieldType == ShieldType.Reflect && currentParryMode.parryModeType != ParryModeType.Absorb)
+            parriedProjectileCopy = Instantiate(prefab.gameObject, parriedPosition, Quaternion.identity);
 
-                break;
+        HandleParryMode();
+    }
+    //ParryMode에 따라서 Direction 혹은 Target 계산
+    void HandleParryMode()
+    {
+        GameObject target = null;
+        Vector2 direction = Vector2.zero;
 
-            case ShieldType.Reflect:
-                projectile = Instantiate(prefab.gameObject, prefab.gameObject.transform.position, Quaternion.identity);
-                projectile.layer = LayerMask.NameToLayer("PlayerAttack");
-
-                break;
-
-            case ShieldType.Impact:
-                projectile = Instantiate(currentShield.parryProjectilePrefab, transform.position, Quaternion.identity);
-
-                break;
-        }
-        //패리 모드 설정
+        //계산 진행
         switch (currentParryMode.parryModeType)
         {
             case ParryModeType.Counter:
-                if (sender != null)
-                {
-                    projectile.GetComponent<ProjectileBase>().SetTarget(sender, gameObject);
-                    PlayerEvents.InvokeParryActionTargetSet(sender);
-                }
-                else 
-                {
-                    Vector2 DefaultDir = new Vector2(playerController.isHeadToRight, 0);
-                    projectile.GetComponent<ProjectileBase>().SetDirection(DefaultDir, gameObject);
-                    PlayerEvents.InvokeParryActionDirectionSet(DefaultDir);
-                }
+
+                if (parriedProjectileSender != null)                
+                    target = parriedProjectileSender;                
+                else
+                    direction = new Vector2(playerController.isHeadToRight, 0);
+
+                HandleShieldType(target, direction);
+
                 break;
 
             case ParryModeType.Proximity:
-                GameObject target = FindProximityObject(ProximityMaxRadius);
+                target = FindProximityObject(ProximityMaxRadius);
 
-                if (target != null)
-                {
-                    projectile.GetComponent<ProjectileBase>().SetTarget(target, gameObject);
-                    PlayerEvents.InvokeParryActionTargetSet(target);
-                }
-                else
-                {
-                    Vector2 DefaultDir = new Vector2(playerController.isHeadToRight, 0);
-                    projectile.GetComponent<ProjectileBase>().SetDirection(DefaultDir, gameObject);
-                    PlayerEvents.InvokeParryActionDirectionSet(DefaultDir);
-                }
+                if (target == null)
+                    direction = new Vector2(playerController.isHeadToRight, 0);
+
+                HandleShieldType(target, direction);
+
                 break;
 
             case ParryModeType.Directional:
-                StartCoroutine(FindDirectionAndShoot(projectile));
+
+                StartCoroutine(FindDirection());
+
                 break;
 
             case ParryModeType.Absorb:
                 Debug.Log("Attack Absorbed!");
-                Destroy(projectile);
 
                 break;
         }
-
     }
+    //패리모드가 Proximity일 때 범위 내 가장 가까운 적 찾는 메서드
     GameObject FindProximityObject(float radius)
     {
         Collider2D[] Objects = Physics2D.OverlapCircleAll(transform.position, radius, EnemyAndTrapLayerMask);
@@ -166,7 +158,8 @@ public class PlayerParryActionHandler : MonoBehaviour
 
         return ProximityObject;
     }
-    IEnumerator FindDirectionAndShoot(GameObject projectile)
+    //패리모드가 Direction일 때 방향 계산하는 코루틴 메서드
+    IEnumerator FindDirection()
     {
         float slowModeScale = 0.0f;
         float confirmDelay = 0.2f;
@@ -212,7 +205,7 @@ public class PlayerParryActionHandler : MonoBehaviour
                     }
                 }
                 else // 0.2초 지남 → 방향 확정 및 발사
-                {                    
+                {
                     break;
                 }
             }
@@ -228,9 +221,57 @@ public class PlayerParryActionHandler : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        projectile.GetComponent<ProjectileBase>().SetDirection(finalDir, gameObject);
-        PlayerEvents.InvokeParryActionDirectionSet(finalDir);
+        HandleShieldType(null, finalDir);
 
     }
+    //계산된 Direction 혹은 Target으로 투사체 만들기
+    void HandleShieldType(GameObject target, Vector2 direction)
+    {
+        //만들 투사체
+        GameObject projectile = null;
+
+        //투사체 생성
+        switch (currentShield.shieldType)
+        {
+            case ShieldType.Flame:
+                projectile = Instantiate(currentShield.parryProjectilePrefab, parriedPosition, Quaternion.identity);
+
+                ShootParryAction(projectile, target, direction);
+
+                break;
+
+            case ShieldType.Reflect:
+                projectile = parriedProjectileCopy;
+                projectile.layer = LayerMask.NameToLayer("PlayerAttack");
+                projectile.GetComponent<Collider2D>().enabled = true;
+
+                ShootParryAction(projectile, target, direction);
+
+                break;
+
+            case ShieldType.Impact:
+                projectile = Instantiate(currentShield.parryProjectilePrefab, transform.position, Quaternion.identity);
+
+                ShootParryAction(projectile, target, direction);
+
+                break;
+        }
+    }
+    // 만들어진 투사체를 발사하기
+    void ShootParryAction(GameObject projectile, GameObject target, Vector2 direction)
+    {
+        if (target != null)
+        {
+            projectile.GetComponent<ProjectileBase>().SetTarget(target, gameObject);
+            PlayerEvents.InvokeParryActionTargetSet(target);
+        }
+        else if (direction != Vector2.zero)
+        {
+            projectile.GetComponent<ProjectileBase>().SetDirection(direction, gameObject);
+            PlayerEvents.InvokeParryActionDirectionSet(direction);
+        }
+    }
+
+
 
 }
