@@ -806,6 +806,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7957501127654244754, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
+      propertyPath: shieldDataSOs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957501127654244754, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
+      propertyPath: shieldDataSOs.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 67859c2025bd9f642861e2dd1371e115, type: 2}
     - target: {fileID: 8528216636109274893, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
       propertyPath: inputManager
       value: 

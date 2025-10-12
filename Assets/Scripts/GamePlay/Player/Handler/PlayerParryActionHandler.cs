@@ -255,11 +255,52 @@ public class PlayerParryActionHandler : MonoBehaviour
                 ShootParryAction(projectile, target, direction);
 
                 break;
+
+            case ShieldType.Scatter:
+
+                int pelletCount = 7;
+                float spreadDeg = 14f;
+                float jitterDeg = 1.5f;
+                float speedVariance = 0.2f;
+
+                Vector2 baseDir = direction == Vector2.zero
+                    ? (target.transform.position - transform.position).normalized
+                    : direction.normalized;
+
+                float half = spreadDeg * 0.5f;
+                float step = pelletCount > 1 ? spreadDeg / (pelletCount - 1) : 0f;
+
+                for (int i = 0; i < pelletCount; i++)
+                {
+                    float angle = -half + step * i + Random.Range(-jitterDeg, jitterDeg);
+                    Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
+                    Vector2 shotDir = rot * baseDir;
+
+                    // 개별 탄환 생성
+                    var pellet = Instantiate(currentShield.parryProjectilePrefab, parriedPosition, rot);
+                    var proj = pellet.GetComponent<ProjectileBase>();
+
+                    // 속도 랜덤 적용
+                    proj.speed *= Random.Range(1f - speedVariance, 1f + speedVariance);
+
+                    // 발사 처리 (각 pellet마다)
+                    ShootParryAction(pellet, target, shotDir);
+                }
+
+                break;
         }
     }
     // 만들어진 투사체를 발사하기
     void ShootParryAction(GameObject projectile, GameObject target, Vector2 direction)
     {
+        // Scatter 쉴드는 항상 방향 기반으로 쏴야 한다
+        if (currentShield.shieldType == ShieldType.Scatter)
+        {
+            projectile.GetComponent<ProjectileBase>().SetDirection(direction, gameObject);
+            PlayerEvents.InvokeParryActionDirectionSet(direction);
+            return;
+        }
+
         if (target != null)
         {
             projectile.GetComponent<ProjectileBase>().SetTarget(target, gameObject);
@@ -270,6 +311,7 @@ public class PlayerParryActionHandler : MonoBehaviour
             projectile.GetComponent<ProjectileBase>().SetDirection(direction, gameObject);
             PlayerEvents.InvokeParryActionDirectionSet(direction);
         }
+
     }
 
 
