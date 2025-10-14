@@ -14,4 +14,17 @@ public class ShieldDataSO : ScriptableObject
     [Header("패리 성공 시 투사체 프리팹")]
     public GameObject parryProjectilePrefab;
 
+    public ScatterShieldData scatter;
 }
+
+[System.Serializable]
+public struct ScatterShieldData
+{
+    public int pelletCount;
+    public float spreadDeg;
+    public float jitterDeg;
+    public float speedVariance;
+}
+
+
+

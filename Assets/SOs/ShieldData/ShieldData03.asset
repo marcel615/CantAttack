@@ -16,3 +16,8 @@ MonoBehaviour:
   shieldType: 2
   iconPrefab: {fileID: 6301156282068405102, guid: bec8e56edddff1c43b44fd4d9a3766ad, type: 3}
   parryProjectilePrefab: {fileID: 6865310504973106056, guid: 91fd2a676a37ad745871092080149f62, type: 3}
+  scatter:
+    pelletCount: 0
+    spreadDeg: 0
+    jitterDeg: 0
+    speedVariance: 0

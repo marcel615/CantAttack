@@ -158,7 +158,7 @@ public class PlayerParryActionHandler : MonoBehaviour
 
         return ProximityObject;
     }
-    //패리모드가 Direction일 때 방향 계산하는 코루틴 메서드
+    //패리모드가 Directional일 때 방향 계산하는 코루틴 메서드
     IEnumerator FindDirection()
     {
         float slowModeScale = 0.0f;
@@ -258,21 +258,26 @@ public class PlayerParryActionHandler : MonoBehaviour
 
             case ShieldType.Scatter:
 
-                int pelletCount = 7;
-                float spreadDeg = 14f;
-                float jitterDeg = 1.5f;
-                float speedVariance = 0.2f;
+                //현재 방패에서 값 가져오기
+                int pelletCount = currentShield.scatter.pelletCount;
+                float spreadDeg = currentShield.scatter.spreadDeg;
+                float jitterDeg = currentShield.scatter.jitterDeg;
+                float speedVariance = currentShield.scatter.speedVariance;
 
-                Vector2 baseDir = direction == Vector2.zero
+                // 기본 방향 설정
+                Vector2 baseDir = (direction == Vector2.zero)
                     ? (target.transform.position - transform.position).normalized
                     : direction.normalized;
 
+                //전체 퍼짐 각도(spreadDeg)의 절반 구하기
                 float half = spreadDeg * 0.5f;
+                //펠릿마다의 간격 구하기
                 float step = pelletCount > 1 ? spreadDeg / (pelletCount - 1) : 0f;
 
+                //펠릿 개수만큼 반복 생성하기
                 for (int i = 0; i < pelletCount; i++)
                 {
-                    float angle = -half + step * i + Random.Range(-jitterDeg, jitterDeg);
+                    float angle = -half + (step * i) + Random.Range(-jitterDeg, jitterDeg);
                     Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
                     Vector2 shotDir = rot * baseDir;
 
