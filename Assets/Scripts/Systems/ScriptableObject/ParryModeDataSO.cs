@@ -12,4 +12,14 @@ public class ParryModeDataSO : ScriptableObject
     [Header("패리 모드 아이콘")]
     public GameObject iconPrefab;
 
+    public DirectionalParryModeData directional;
+
+}
+
+[System.Serializable]
+public struct DirectionalParryModeData
+{
+    public float slowModeScale;
+    public float confirmDelay;
+    public float maxWaitTime;
 }

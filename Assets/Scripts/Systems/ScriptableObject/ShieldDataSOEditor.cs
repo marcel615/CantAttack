@@ -23,10 +23,10 @@ public class ShieldDataSOEditor : Editor
         switch (so.shieldType)
         {
             case ShieldType.Scatter:
-                so.scatter.pelletCount = EditorGUILayout.IntField("Pellet Count", so.scatter.pelletCount);
-                so.scatter.spreadDeg = EditorGUILayout.FloatField("Spread Deg", so.scatter.spreadDeg);
-                so.scatter.jitterDeg = EditorGUILayout.FloatField("Jitter Deg", so.scatter.jitterDeg);
-                so.scatter.speedVariance = EditorGUILayout.FloatField("Speed Variance", so.scatter.speedVariance);
+                so.scatter.pelletCount = EditorGUILayout.IntField("펠릿 개수", so.scatter.pelletCount);
+                so.scatter.spreadDeg = EditorGUILayout.FloatField("퍼지는 최대 각도", so.scatter.spreadDeg);
+                so.scatter.jitterDeg = EditorGUILayout.FloatField("오차 각도", so.scatter.jitterDeg);
+                so.scatter.speedVariance = EditorGUILayout.FloatField("펠릿 간 속도 오차 정도", so.scatter.speedVariance);
                 break;
         }
 

@@ -15,3 +15,7 @@ MonoBehaviour:
   parryModeID: ParryModeData03
   parryModeType: 2
   iconPrefab: {fileID: 5270636795898382751, guid: 1b5763f4bef149d47908ce8462ebb30b, type: 3}
+  directional:
+    slowModeScale: 0.1
+    confirmDelay: 0.2
+    maxWaitTime: 1.6

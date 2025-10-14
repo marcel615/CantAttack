@@ -161,22 +161,27 @@ public class PlayerParryActionHandler : MonoBehaviour
     //패리모드가 Directional일 때 방향 계산하는 코루틴 메서드
     IEnumerator FindDirection()
     {
-        float slowModeScale = 0.0f;
-        float confirmDelay = 0.2f;
-        float maxWaitTime = 1.6f;
+        //SO에서 변수 가져오기
+        float slowModeScale = currentParryMode.directional.slowModeScale;
+        float confirmDelay = currentParryMode.directional.confirmDelay;
+        float maxWaitTime = currentParryMode.directional.maxWaitTime;
 
+        //슬로우 모드 설정
         Time.timeScale = slowModeScale;
 
+        //입력받을 방향벡터들 생성
         Vector2 inputDir = Vector2.zero;
         Vector2 finalDir = Vector2.zero;
 
+        //변수들 생성
         bool firstInputDetected = false;
         float waitTimer = 0f;
         float confirmTimer = 0f;
 
-        //일단 입력 가능 상태까지 대기
+        //일단 입력 가능 상태까지 잠깐 대기
         yield return new WaitForSecondsRealtime(0.5f);
 
+        //최대 대기 시간동안 방향 입력 받기
         while (waitTimer < maxWaitTime)
         {
             Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -188,7 +193,7 @@ public class PlayerParryActionHandler : MonoBehaviour
                 finalDir = inputDir;
 
                 firstInputDetected = true;
-                confirmTimer = 0f; // 0.2초 카운트다운 시작
+                confirmTimer = 0f; // confirmDelay 카운트다운 시작
             }
 
             // 첫 입력이 감지된 이후
@@ -214,13 +219,16 @@ public class PlayerParryActionHandler : MonoBehaviour
             yield return null;
         }
 
-        // 1초 동안 입력이 없었던 경우
+        // 최대 대기 시간 동안 입력이 없었던 경우
         if (!firstInputDetected)
         {
             finalDir = new Vector2(playerController.isHeadToRight, 0); // 기본 방향
         }
 
+        //슬로우 모드 해제
         Time.timeScale = 1f;
+
+        //다음 단계로 넘어감 (투사체 생성 단계)
         HandleShieldType(null, finalDir);
 
     }
