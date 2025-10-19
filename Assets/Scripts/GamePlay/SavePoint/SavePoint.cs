@@ -38,6 +38,9 @@ public class SavePoint : MonoBehaviour
 
         //세이브 요청 이벤트 발행
         SystemEvents.InvokeSaveRequest();
+
+        //세이브포인트 메뉴 오픈하라는 이벤트 발행
+        InputEvents.SavePointMenu.InvokeSavePointMenuOpen(InputContext.Player);
     }
     //이벤트 구독
     private void OnEnable()

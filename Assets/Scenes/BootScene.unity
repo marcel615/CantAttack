@@ -653,13 +653,14 @@ GameObject:
   - component: {fileID: 199959571}
   - component: {fileID: 199959573}
   - component: {fileID: 199959572}
+  - component: {fileID: 199959574}
   m_Layer: 5
   m_Name: SavePointMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &199959571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -718,6 +719,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199959570}
   m_CullTransparentMesh: 1
+--- !u!114 &199959574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199959570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521a8f83adbef5c4a857cdfe104eaf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavePointMenuSelectPanel: {fileID: 2100161195}
+  ShieldButton: {fileID: 1301162446}
+  ParryModeButton: {fileID: 2017146886}
+  SettingButton: {fileID: 721127807}
+  ExitButton: {fileID: 1293922721}
 --- !u!1 &245347250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5988,6 +6006,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4455849683660992626, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: SavePointMenuPanel
+      value: 
+      objectReference: {fileID: 199959570}
     - target: {fileID: 6316477898852356692, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6013,8 +6035,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5729290143707741335, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 666604031}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9151475432236054219, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4028789106588059892}
   m_SourcePrefab: {fileID: 100100000, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+--- !u!1 &4028789106588059891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9151475432236054219, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+  m_PrefabInstance: {fileID: 4028789106588059890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4028789106588059892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4028789106588059891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ebd76ca2b490148b5d228da86a4876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savePointMenu: {fileID: 199959574}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

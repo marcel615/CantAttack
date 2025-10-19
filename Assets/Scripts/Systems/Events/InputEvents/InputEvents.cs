@@ -26,6 +26,7 @@ public static class InputEvents
     public static MainMenuInputEvents MainMenu { get; private set; } = new MainMenuInputEvents();
     public static SaveSlotInputEvents SaveSlot { get; private set; } = new SaveSlotInputEvents();
     public static DialogueInputEvents Dialogue { get; private set; } = new DialogueInputEvents();
+    public static SavePointMenuInputEvents SavePointMenu { get; private set; } = new SavePointMenuInputEvents();
 
 
     /*

@@ -3,14 +3,14 @@
         "MaxHP": 5,
         "CurrentHP": 5,
         "position": {
-            "x": 66.0,
+            "x": 26.0,
             "y": 1.0
         },
         "isDoubleJumpUnlocked": false
     },
     "systemSaveData": {},
     "mapSaveData": {
-        "saveScene": "Map1"
+        "saveScene": "Map6"
     },
     "gameEventSaveData": {
         "completedGameEventIDs": []

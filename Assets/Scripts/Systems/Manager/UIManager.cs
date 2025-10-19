@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PortalLoadingPanel;
     //FadePanel
     [SerializeField] private GameObject FadePanel;
+    //SavePointMenuPanel
+    [SerializeField] private GameObject SavePointMenuPanel;
 
 
 
@@ -64,6 +66,7 @@ public class UIManager : MonoBehaviour
         if (SaveSlotLoadingPanel == null) SaveSlotLoadingPanel = transform.Find("UICanvas/LoadingPanel/SaveSlotLoadingPanel")?.gameObject;
         if (PortalLoadingPanel == null) PortalLoadingPanel = transform.Find("UICanvas/LoadingPanel/PortalLoadingPanel")?.gameObject;
         if (FadePanel == null) FadePanel = transform.Find("UICanvas/FadePanel")?.gameObject;
+        if (SavePointMenuPanel == null) SavePointMenuPanel = transform.Find("UICanvas/SavePointMenuPanel")?.gameObject;
 
         //검은 화면부터 시작되도록
         //MainMenuPanel.SetActive(true);
@@ -75,6 +78,7 @@ public class UIManager : MonoBehaviour
         SystemMenuPanel.GetComponent<SystemMenu>().Init();
         SettingPanel.GetComponent<Setting>().Init();
         MainMenuPanel.GetComponent<MainMenu>().Init();
+        SavePointMenuPanel.GetComponent<SavePointMenu>().Init();
 
         //검은 화면부터 시작되도록
         MainMenuPanel.SetActive(true);
