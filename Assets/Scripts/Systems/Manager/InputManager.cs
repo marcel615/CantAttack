@@ -162,6 +162,18 @@ public class InputManager : MonoBehaviour
             case InputContext.Sequence:
 
                 break;
+            case InputContext.SavePointMenu:
+                InputEvents.SavePointMenu.InvokeCancel(Esc);
+                InputEvents.SavePointMenu.InvokeSubmit(Enter);
+                InputEvents.SavePointMenu.InvokeInteract(E);
+
+                break;
+            case InputContext.ShieldInventory:
+                InputEvents.ShieldInventory.InvokeCancel(Esc);
+                InputEvents.ShieldInventory.InvokeSubmit(Enter);
+                InputEvents.ShieldInventory.InvokeInteract(E);
+
+                break;
 
                 //InputEvents.InvokeUseHealItem(R);
         }

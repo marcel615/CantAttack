@@ -18,7 +18,7 @@ public enum InputContext
     Fade,         // Fade In & Out UI
     PlayerDead,   // 플레이어가 사망할 때
     Sequence,     // 연출이 시작될 때
-    SavePointMenu // 세이브포인트에서 메뉴를 열 때
-    //Inventory,    // 인벤토리
+    SavePointMenu, // 세이브포인트에서 메뉴를 열 때
+    ShieldInventory, // 방패 인벤토리 UI
     //DialogueUI
 }

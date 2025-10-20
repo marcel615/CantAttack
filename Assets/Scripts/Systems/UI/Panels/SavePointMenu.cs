@@ -88,9 +88,7 @@ public class SavePointMenu : MonoBehaviour
     void OnClickShield()
     {
         UIPanelController.Close(ref currentPanel, gameObject);
-        //InputEvents.InvokeContextUpdate(InputContext.Player);
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
+        InputEvents.ShieldInventory.InvokeShieldInventoryOpen(thisContext);
     }
     void OnClickParryMode()
     {
