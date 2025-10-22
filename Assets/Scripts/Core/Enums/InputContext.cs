@@ -20,5 +20,6 @@ public enum InputContext
     Sequence,     // 연출이 시작될 때
     SavePointMenu, // 세이브포인트에서 메뉴를 열 때
     ShieldInventory, // 방패 인벤토리 UI
+    ParryModeInventory, // 패리 모드 인벤토리 UI
     //DialogueUI
 }

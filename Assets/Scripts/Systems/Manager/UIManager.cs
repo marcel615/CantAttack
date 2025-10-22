@@ -38,6 +38,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject SavePointMenuPanel;
     //ShieldInventoryPanel
     [SerializeField] private GameObject ShieldInventoryPanel;
+    //ParryModeInventoryPanel
+    [SerializeField] private GameObject ParryModeInventoryPanel;
 
 
 
@@ -70,6 +72,7 @@ public class UIManager : MonoBehaviour
         if (FadePanel == null) FadePanel = transform.Find("UICanvas/FadePanel")?.gameObject;
         if (SavePointMenuPanel == null) SavePointMenuPanel = transform.Find("UICanvas/SavePointMenuPanel")?.gameObject;
         if (ShieldInventoryPanel == null) ShieldInventoryPanel = transform.Find("UICanvas/InventoryPanel/ShieldInventoryPanel")?.gameObject;
+        if (ParryModeInventoryPanel == null) ParryModeInventoryPanel = transform.Find("UICanvas/InventoryPanel/ParryModeInventoryPanel")?.gameObject;
 
         //검은 화면부터 시작되도록
         //MainMenuPanel.SetActive(true);
@@ -83,6 +86,7 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.GetComponent<MainMenu>().Init();
         SavePointMenuPanel.GetComponent<SavePointMenu>().Init();
         ShieldInventoryPanel.GetComponent<ShieldInventory>().Init();
+        ParryModeInventoryPanel.GetComponent<ParryModeInventory>().Init();
 
         //검은 화면부터 시작되도록
         MainMenuPanel.SetActive(true);

@@ -93,7 +93,7 @@ public class SavePointMenu : MonoBehaviour
     void OnClickParryMode()
     {
         UIPanelController.Close(ref currentPanel, gameObject);
-        //InputEvents.Setting.InvokeSettingOpen(thisContext);
+        InputEvents.ParryModeInventory.InvokeParryModeInventoryOpen(thisContext);
     }
     void OnClickSetting()
     {

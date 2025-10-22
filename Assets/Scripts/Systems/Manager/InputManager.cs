@@ -174,6 +174,12 @@ public class InputManager : MonoBehaviour
                 InputEvents.ShieldInventory.InvokeInteract(E);
 
                 break;
+            case InputContext.ParryModeInventory:
+                InputEvents.ParryModeInventory.InvokeCancel(Esc);
+                InputEvents.ParryModeInventory.InvokeSubmit(Enter);
+                InputEvents.ParryModeInventory.InvokeInteract(E);
+
+                break;
 
                 //InputEvents.InvokeUseHealItem(R);
         }
