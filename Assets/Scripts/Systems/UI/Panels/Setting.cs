@@ -98,6 +98,10 @@ public class Setting : MonoBehaviour
             {
                 InputEvents.MainMenu.InvokeMainMenuOpen(thisContext);
             }
+            else if (beforeContext == InputContext.SavePointMenu)
+            {
+                InputEvents.SavePointMenu.InvokeSavePointMenuOpen(thisContext);
+            }
         }
     }
     public void Enter(bool enter)

@@ -97,17 +97,14 @@ public class SavePointMenu : MonoBehaviour
     }
     void OnClickSetting()
     {
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
-        //씬 전환 시작
-        //SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.Setting.InvokeSettingOpen(thisContext);
     }
     void OnClickExit()
     {
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
-        //씬 전환 시작
-        //SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
+        //닫기
+        UIPanelController.Close(ref currentPanel, gameObject);
+        InputEvents.InvokeContextUpdate(InputContext.Player);
     }
 
 }
