@@ -10,12 +10,13 @@ public class ShieldInventory : MonoBehaviour
 
     //자식 오브젝트
     [SerializeField] private GameObject Shield_EquipPanel;
+    [SerializeField] private List<Button> EquipSlotButtons;
     [SerializeField] private Button Shield_Slot1Button;
     [SerializeField] private Button Shield_Slot2Button;
     [SerializeField] private Button Shield_Slot3Button;
     [SerializeField] private Button Shield_Slot4Button;
-
     [SerializeField] private GameObject Shield_InventoryPanel;
+    [SerializeField] private List<Button> InventorySlotButtons;
 
     //컨텍스트 enum 정보
     InputContext thisContext = InputContext.ShieldInventory;
@@ -25,6 +26,10 @@ public class ShieldInventory : MonoBehaviour
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
+    //장착하는 로직
+    bool isEquiping;
+    GameObject EquipIcon;
+    GameObject EquipSlot;
 
     private void Awake()
     {
@@ -41,10 +46,26 @@ public class ShieldInventory : MonoBehaviour
     public void Init()
     {
         //버튼들 AddListener 달아주기
+        /*
         Shield_Slot1Button.onClick.AddListener(OnClickShield_Slot1);
         Shield_Slot2Button.onClick.AddListener(OnClickShield_Slot2);
         Shield_Slot3Button.onClick.AddListener(OnClickShield_Slot3);
         Shield_Slot4Button.onClick.AddListener(OnClickShield_Slot4);
+        */
+
+        //각 장착 버튼에 애드리스너 달아주기
+        for (int i = 0; i < EquipSlotButtons.Count; i++)
+        {
+            int index = i;
+            EquipSlotButtons[i].onClick.AddListener(() => OnClickEquipSlot(index));
+        }
+        //각 인벤토리 버튼에 애드리스너 달아주기
+        for (int i = 0; i < InventorySlotButtons.Count; i++)
+        {
+            int index = i;
+            InventorySlotButtons[i].onClick.AddListener(() => OnClickInventorySlot(index));
+        } 
+
     }
 
     //어디선가 ShieldInventory 패널을 열었을 때
@@ -118,6 +139,79 @@ public class ShieldInventory : MonoBehaviour
         //SystemEvents.InvokeChangeTimeScale(1f);
         //씬 전환 시작
         //SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
+    }
+    void OnClickEquipSlot(int index)
+    {
+        Debug.Log("Test" + index);
+
+        EquipSlot = EquipSlotButtons[index].gameObject;
+
+        if (!isEquiping)
+        {
+            isEquiping = true;
+
+            //장착 슬롯 버튼들 비활성화
+            foreach (var btn in EquipSlotButtons)
+                btn.interactable = false;
+
+            //상호작용 가능한 버튼 포커스 되도록
+            InputEvents.InvokeSelectFirstSelectable(currentPanel);
+        }
+        else
+        {
+            foreach(Transform child in EquipSlotButtons[index].transform)
+                Destroy(child.gameObject);
+
+            Instantiate(EquipIcon, EquipSlot.transform);
+
+            //인벤토리 슬롯 버튼들 활성화
+            foreach (var btn in InventorySlotButtons)
+                btn.interactable = true;
+
+            EquipSlot.GetComponent<Selectable>().Select();
+
+            EquipSlot = null;
+            EquipIcon = null;
+
+            isEquiping = false;
+        }
+    }
+    void OnClickInventorySlot(int index)
+    {
+        Debug.Log("Test" + index);
+
+        EquipIcon = InventorySlotButtons[index].GetComponentInChildren<SlotIconUI>().IconPrefab;
+
+        if (!isEquiping)
+        {
+            isEquiping = true;
+
+            //인벤토리 슬롯 버튼들 비활성화
+            foreach (var btn in InventorySlotButtons)
+                btn.interactable = false;
+
+            //상호작용 가능한 버튼 포커스 되도록
+            InputEvents.InvokeSelectFirstSelectable(currentPanel);
+        }
+        else
+        {
+            foreach (Transform child in EquipSlot.transform)
+                Destroy(child.gameObject);
+
+            Instantiate(EquipIcon, EquipSlot.transform);
+
+            //장착 슬롯 버튼들 활성화
+            foreach (var btn in EquipSlotButtons)
+                btn.interactable = true;
+
+            EquipSlot.GetComponent<Selectable>().Select();
+
+            EquipSlot = null;
+            EquipIcon = null;
+
+            isEquiping = false;
+        }
+
     }
 
 }

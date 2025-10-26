@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 4144393642878080578}
   - component: {fileID: 3113253507548389985}
   - component: {fileID: 2507873236497515510}
+  - component: {fileID: 5700003907881029324}
   m_Layer: 5
   m_Name: ImpactShield
   m_TagString: Untagged
@@ -210,3 +211,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5700003907881029324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301156282068405102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c8aacb2ae52bc4d9755ccd97d50b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconPrefab: {fileID: 6301156282068405102}
