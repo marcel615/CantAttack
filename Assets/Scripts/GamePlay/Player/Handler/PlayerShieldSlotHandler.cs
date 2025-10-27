@@ -22,6 +22,9 @@ public class PlayerShieldSlotHandler : MonoBehaviour
         SystemEvents.OnDataLoadFinished += AssignShieldToSlot;
         //ShieldSlot 변경 요청이 들어올 때
         PlayerEvents.OnShieldSlotSelected += ShieldSlotSelected;
+
+        //PlayerShieldSlot이 업데이트되었을 때
+        PlayerEvents.OnShieldSlotUpdated += SetShieldSlot;
     }
     private void OnDisable()
     {
@@ -29,6 +32,9 @@ public class PlayerShieldSlotHandler : MonoBehaviour
         SystemEvents.OnDataLoadFinished -= AssignShieldToSlot;
         //ShieldSlot 변경 요청이 들어올 때
         PlayerEvents.OnShieldSlotSelected -= ShieldSlotSelected;
+
+        //PlayerShieldSlot이 업데이트되었을 때
+        PlayerEvents.OnShieldSlotUpdated -= SetShieldSlot;
     }
 
     void AssignShieldToSlot()
@@ -60,6 +66,12 @@ public class PlayerShieldSlotHandler : MonoBehaviour
             Debug.Log(currentShieldDataSO.shieldType + " is Selected");
             PlayerEvents.InvokeCurrentShieldUpdated(currentShieldDataSO, currentIndex);
         }
+    }
+
+    //PlayerShieldSlot이 업데이트되었을 때
+    void SetShieldSlot(ShieldDataSO[] slots)
+    {
+        shieldSlot = slots;
     }
 
 

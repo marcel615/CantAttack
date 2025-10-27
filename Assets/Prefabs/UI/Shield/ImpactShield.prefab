@@ -224,3 +224,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IconPrefab: {fileID: 6301156282068405102}
+  DataSO: {fileID: 11400000, guid: 3d358002e9cef764dbcc8bc392ac7a3a, type: 2}

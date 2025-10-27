@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlotIconUI : MonoBehaviour
 {
     [SerializeField] public GameObject IconPrefab;
+    [SerializeField] public ScriptableObject DataSO;
 
 
 }

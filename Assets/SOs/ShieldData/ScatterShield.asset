@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c83ee5e943bfc3048a9de2b01531282d, type: 3}
-  m_Name: ShieldData04
+  m_Name: ScatterShield
   m_EditorClassIdentifier: 
-  shieldID: ShieldData04
+  shieldID: ScatterShield
   shieldType: 3
   iconPrefab: {fileID: 2808222676305919437, guid: 4f157bb5080bf81458838a3b96daeacb, type: 3}
   parryProjectilePrefab: {fileID: 1201759956104077371, guid: 866be14e7d1373e42a4dd54ccd336402, type: 3}

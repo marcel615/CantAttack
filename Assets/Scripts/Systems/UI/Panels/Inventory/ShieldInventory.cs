@@ -11,10 +11,6 @@ public class ShieldInventory : MonoBehaviour
     //자식 오브젝트
     [SerializeField] private GameObject Shield_EquipPanel;
     [SerializeField] private List<Button> EquipSlotButtons;
-    [SerializeField] private Button Shield_Slot1Button;
-    [SerializeField] private Button Shield_Slot2Button;
-    [SerializeField] private Button Shield_Slot3Button;
-    [SerializeField] private Button Shield_Slot4Button;
     [SerializeField] private GameObject Shield_InventoryPanel;
     [SerializeField] private List<Button> InventorySlotButtons;
 
@@ -34,25 +30,12 @@ public class ShieldInventory : MonoBehaviour
     private void Awake()
     {
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
-        if (Shield_EquipPanel == null) Shield_EquipPanel = transform.Find("Shield_EquipPanel")?.gameObject;
-        if (Shield_Slot1Button == null) Shield_Slot1Button = transform.Find("Shield_EquipPanel/Shield_Slot1Button")?.GetComponent<Button>();
-        if (Shield_Slot2Button == null) Shield_Slot2Button = transform.Find("Shield_EquipPanel/Shield_Slot2Button")?.GetComponent<Button>();
-        if (Shield_Slot3Button == null) Shield_Slot3Button = transform.Find("Shield_EquipPanel/Shield_Slot3Button")?.GetComponent<Button>();
-        if (Shield_Slot4Button == null) Shield_Slot4Button = transform.Find("Shield_EquipPanel/Shield_Slot4Button")?.GetComponent<Button>();
-
+        if (Shield_EquipPanel == null) Shield_EquipPanel = transform.Find("Shield_EquipPanel")?.gameObject;        
         if (Shield_InventoryPanel == null) Shield_InventoryPanel = transform.Find("Shield_InventoryPanel")?.gameObject;
 
     }
     public void Init()
     {
-        //버튼들 AddListener 달아주기
-        /*
-        Shield_Slot1Button.onClick.AddListener(OnClickShield_Slot1);
-        Shield_Slot2Button.onClick.AddListener(OnClickShield_Slot2);
-        Shield_Slot3Button.onClick.AddListener(OnClickShield_Slot3);
-        Shield_Slot4Button.onClick.AddListener(OnClickShield_Slot4);
-        */
-
         //각 장착 버튼에 애드리스너 달아주기
         for (int i = 0; i < EquipSlotButtons.Count; i++)
         {
@@ -75,8 +58,6 @@ public class ShieldInventory : MonoBehaviour
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, InventoryPanel);
         InputEvents.InvokeContextUpdate(thisContext);
 
-        //게임 시간 멈추도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(0f);
     }
     //어디선가 ShieldInventory 패널을 닫았을 때
     public void ShieldInventoryClose(InputContext sourceInputContext)
@@ -114,38 +95,13 @@ public class ShieldInventory : MonoBehaviour
     }
     /// </Input>
 
-    void OnClickShield_Slot1()
-    {
-        UIPanelController.Close(ref currentPanel, gameObject);
-        //InputEvents.InvokeContextUpdate(InputContext.Player);
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
-    }
-    void OnClickShield_Slot2()
-    {
-        UIPanelController.Close(ref currentPanel, gameObject);
-        //InputEvents.Setting.InvokeSettingOpen(thisContext);
-    }
-    void OnClickShield_Slot3()
-    {
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
-        //씬 전환 시작
-        //SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
-    }
-    void OnClickShield_Slot4()
-    {
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
-        //씬 전환 시작
-        //SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
-    }
     void OnClickEquipSlot(int index)
     {
         Debug.Log("Test" + index);
 
         EquipSlot = EquipSlotButtons[index].gameObject;
 
+        //슬롯 장착 로직
         if (!isEquiping)
         {
             isEquiping = true;
@@ -155,7 +111,7 @@ public class ShieldInventory : MonoBehaviour
                 btn.interactable = false;
 
             //상호작용 가능한 버튼 포커스 되도록
-            InputEvents.InvokeSelectFirstSelectable(currentPanel);
+            InputEvents.InvokeSelectFirstSelectable(Shield_InventoryPanel);
         }
         else
         {
@@ -168,7 +124,11 @@ public class ShieldInventory : MonoBehaviour
             foreach (var btn in InventorySlotButtons)
                 btn.interactable = true;
 
+            //지금 막 교체된 슬롯에 포커스되도록
             EquipSlot.GetComponent<Selectable>().Select();
+
+            //방패 슬롯 HUD UI 업데이트하기
+            StartCoroutine(UpdateShieldSlots());
 
             EquipSlot = null;
             EquipIcon = null;
@@ -182,6 +142,7 @@ public class ShieldInventory : MonoBehaviour
 
         EquipIcon = InventorySlotButtons[index].GetComponentInChildren<SlotIconUI>().IconPrefab;
 
+        //슬롯 장착 로직
         if (!isEquiping)
         {
             isEquiping = true;
@@ -191,7 +152,7 @@ public class ShieldInventory : MonoBehaviour
                 btn.interactable = false;
 
             //상호작용 가능한 버튼 포커스 되도록
-            InputEvents.InvokeSelectFirstSelectable(currentPanel);
+            InputEvents.InvokeSelectFirstSelectable(Shield_EquipPanel);
         }
         else
         {
@@ -204,7 +165,11 @@ public class ShieldInventory : MonoBehaviour
             foreach (var btn in EquipSlotButtons)
                 btn.interactable = true;
 
+            //지금 막 교체된 슬롯에 포커스되도록
             EquipSlot.GetComponent<Selectable>().Select();
+
+            //방패 슬롯 HUD UI 업데이트하기
+            StartCoroutine(UpdateShieldSlots());
 
             EquipSlot = null;
             EquipIcon = null;
@@ -212,6 +177,27 @@ public class ShieldInventory : MonoBehaviour
             isEquiping = false;
         }
 
+    }
+
+    IEnumerator UpdateShieldSlots()
+    {
+        //UI 갱신되는거 1프레임 기다리기
+        yield return new WaitForEndOfFrame();
+
+        //방패 슬롯 배열
+        ShieldDataSO[] shieldSlot = new ShieldDataSO[4];
+
+        int totalSlotsNum = 4;
+
+        for (int i = 0; i < totalSlotsNum; i++)
+        {
+            var slotIconUI = EquipSlotButtons[i].GetComponentInChildren<SlotIconUI>();
+            if (slotIconUI?.DataSO is ShieldDataSO nowSlot)
+                shieldSlot[i] = nowSlot;
+        }
+
+        //방패 슬롯 업데이트 이벤트 발행
+        PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);
     }
 
 }

@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IconPrefab: {fileID: 2808222676305919437}
+  DataSO: {fileID: 11400000, guid: 67859c2025bd9f642861e2dd1371e115, type: 2}
 --- !u!1 &8418633475679760063
 GameObject:
   m_ObjectHideFlags: 0

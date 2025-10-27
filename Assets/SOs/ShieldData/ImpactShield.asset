@@ -10,8 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c83ee5e943bfc3048a9de2b01531282d, type: 3}
-  m_Name: ShieldData02
+  m_Name: ImpactShield
   m_EditorClassIdentifier: 
-  shieldID: ShieldData02
-  iconPrefab: {fileID: 9197391952569453138, guid: 8d96a5d60759a7b4cb0cf4e919ebc114, type: 3}
-  parryProjectilePrefab: {fileID: 6865310504973106056, guid: a5b523a007030d54280662ed68596496, type: 3}
+  shieldID: ImpactShield
+  shieldType: 2
+  iconPrefab: {fileID: 6301156282068405102, guid: bec8e56edddff1c43b44fd4d9a3766ad, type: 3}
+  parryProjectilePrefab: {fileID: 6865310504973106056, guid: 91fd2a676a37ad745871092080149f62, type: 3}
+  scatter:
+    pelletCount: 0
+    spreadDeg: 0
+    jitterDeg: 0
+    speedVariance: 0
