@@ -14,7 +14,8 @@ public class ParryModeDataSOEditor : Editor
 
         so.parryModeID = EditorGUILayout.TextField("패리 모드 ID", so.parryModeID);
         so.parryModeType = (ParryModeType)EditorGUILayout.EnumPopup("패리 모드 타입", so.parryModeType);
-        so.iconPrefab = (GameObject)EditorGUILayout.ObjectField("패리 모드 아이콘", so.iconPrefab, typeof(GameObject), false);
+        so.equipIconPrefab = (GameObject)EditorGUILayout.ObjectField("패리 모드 장착 아이콘", so.equipIconPrefab, typeof(GameObject), false);
+        so.inventoryIconPrefab = (GameObject)EditorGUILayout.ObjectField("패리 모드 인벤토리 아이콘", so.inventoryIconPrefab, typeof(GameObject), false);
 
         EditorGUILayout.Space();
 

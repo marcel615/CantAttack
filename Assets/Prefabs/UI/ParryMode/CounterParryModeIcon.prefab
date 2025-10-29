@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8728670556662646289}
   - component: {fileID: 9167203435263510216}
   - component: {fileID: 4353675768785497561}
+  - component: {fileID: -2054098299415801147}
   m_Layer: 5
   m_Name: CounterParryModeIcon
   m_TagString: Untagged
@@ -33,10 +34,10 @@ RectTransform:
   - {fileID: 8600815951998830109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9167203435263510216
 CanvasRenderer:
@@ -76,6 +77,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-2054098299415801147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189952897444857198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c8aacb2ae52bc4d9755ccd97d50b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconPrefab: {fileID: 1189952897444857198}
+  DataSO: {fileID: 11400000, guid: 8248c98bce44ef04aafd27797a5ca2f9, type: 2}
 --- !u!1 &4448431401963464883
 GameObject:
   m_ObjectHideFlags: 0

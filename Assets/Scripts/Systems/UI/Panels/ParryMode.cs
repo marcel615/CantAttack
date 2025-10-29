@@ -118,7 +118,7 @@ public class ParryMode : MonoBehaviour
         //들어온 프리팹으로 채우기
         if (parryModeDataSO != null)
         {
-            Instantiate(parryModeDataSO.iconPrefab, container.transform);
+            Instantiate(parryModeDataSO.equipIconPrefab, container.transform);
         }
     }
     void OnClickedTop()

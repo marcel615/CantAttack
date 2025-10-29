@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7662544990969722187}
   - component: {fileID: 5825790068396893602}
   - component: {fileID: 4742262741855462573}
+  - component: {fileID: 3256229203950032555}
   m_Layer: 5
   m_Name: DirectionalParryMode
   m_TagString: Untagged
@@ -134,3 +135,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3256229203950032555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5270636795898382751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c8aacb2ae52bc4d9755ccd97d50b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconPrefab: {fileID: 1189952897444857198, guid: 2a6ec7523cdb81d4988d3494f63db2f3, type: 3}
+  DataSO: {fileID: 11400000, guid: f881aa1905f93514e98cb32c6a6324eb, type: 2}

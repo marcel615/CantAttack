@@ -97,8 +97,7 @@ public class ShieldInventory : MonoBehaviour
 
     void OnClickEquipSlot(int index)
     {
-        Debug.Log("Test" + index);
-
+        //ÀåÂø ½½·Ô ÀúÀå
         EquipSlot = EquipSlotButtons[index].gameObject;
 
         //½½·Ô ÀåÂø ·ÎÁ÷
@@ -115,8 +114,8 @@ public class ShieldInventory : MonoBehaviour
         }
         else
         {
-            foreach(Transform child in EquipSlotButtons[index].transform)
-                Destroy(child.gameObject);
+            foreach(Transform child in EquipSlot.transform)
+                Destroy(child?.gameObject);
 
             Instantiate(EquipIcon, EquipSlot.transform);
 
@@ -138,8 +137,7 @@ public class ShieldInventory : MonoBehaviour
     }
     void OnClickInventorySlot(int index)
     {
-        Debug.Log("Test" + index);
-
+        //ÀåÂø ¾ÆÀÌÄÜ ÀúÀå
         EquipIcon = InventorySlotButtons[index].GetComponentInChildren<SlotIconUI>().IconPrefab;
 
         //½½·Ô ÀåÂø ·ÎÁ÷
@@ -157,7 +155,7 @@ public class ShieldInventory : MonoBehaviour
         else
         {
             foreach (Transform child in EquipSlot.transform)
-                Destroy(child.gameObject);
+                Destroy(child?.gameObject);
 
             Instantiate(EquipIcon, EquipSlot.transform);
 

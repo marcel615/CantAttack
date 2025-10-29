@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum ParryModeType
 {
+    Empty,
     Counter,
     Proximity,
     Directional,

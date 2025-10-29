@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26cc233845f005b46bd6a6ea43648def, type: 3}
-  m_Name: ParryModeData02
+  m_Name: CounterParryMode
   m_EditorClassIdentifier: 
-  parryModeID: ParryModeData02
+  parryModeID: CounterParryMode
   parryModeType: 1
-  iconPrefab: {fileID: 5270636795898382751, guid: 036fc06eecc96524e99cec04b33b99c4, type: 3}
+  equipIconPrefab: {fileID: 5270636795898382751, guid: 5ab69910913f89340b261c20ef68cd03, type: 3}
+  inventoryIconPrefab: {fileID: 1189952897444857198, guid: 1abac5ef0a401324c9449de849d89037, type: 3}
+  directional:
+    slowModeScale: 0
+    confirmDelay: 0
+    maxWaitTime: 0

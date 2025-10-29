@@ -9,8 +9,10 @@ public class ParryModeDataSO : ScriptableObject
     public string parryModeID;
     [Header("패리 모드 타입")]
     public ParryModeType parryModeType;
-    [Header("패리 모드 아이콘")]
-    public GameObject iconPrefab;
+    [Header("패리 모드 장착 아이콘")]
+    public GameObject equipIconPrefab;
+    [Header("패리 모드 인벤토리 아이콘")]
+    public GameObject inventoryIconPrefab;
 
     public DirectionalParryModeData directional;
 

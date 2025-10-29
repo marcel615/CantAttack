@@ -10,16 +10,11 @@ public class ParryModeInventory : MonoBehaviour
 
     //자식 오브젝트
     [SerializeField] private GameObject ParryMode_EquipPanel;
-    [SerializeField] private Button ParryMode_SlotTopButton;
-    [SerializeField] private GameObject TopContainer;
-    [SerializeField] private Button ParryMode_SlotRightButton;
-    [SerializeField] private GameObject RightContainer;
-    [SerializeField] private Button ParryMode_SlotBottomButton;
-    [SerializeField] private GameObject BottomContainer;
-    [SerializeField] private Button ParryMode_SlotLeftButton;
-    [SerializeField] private GameObject LeftContainer;
+    [SerializeField] private List<Button> EquipSlotButtons;
+    [SerializeField] private List<GameObject> EquipSlotContainers;
 
     [SerializeField] private GameObject ParryMode_InventoryPanel;
+    [SerializeField] private List<Button> InventorySlotButtons;
 
     //컨텍스트 enum 정보
     InputContext thisContext = InputContext.ParryModeInventory;
@@ -29,26 +24,34 @@ public class ParryModeInventory : MonoBehaviour
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
+    //장착하는 로직
+    bool isEquiping;
+    GameObject EquipIcon;
+    GameObject EquipSlot;
+    GameObject EquipSlotContainer;
+
 
     private void Awake()
     {
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
         if (ParryMode_EquipPanel == null) ParryMode_EquipPanel = transform.Find("ParryMode_EquipPanel")?.gameObject;
-        if (ParryMode_SlotTopButton == null) ParryMode_SlotTopButton = transform.Find("ParryMode_EquipPanel/Top")?.GetComponent<Button>();
-        if (ParryMode_SlotRightButton == null) ParryMode_SlotRightButton = transform.Find("ParryMode_EquipPanel/Right")?.GetComponent<Button>();
-        if (ParryMode_SlotBottomButton == null) ParryMode_SlotBottomButton = transform.Find("ParryMode_EquipPanel/Bottom")?.GetComponent<Button>();
-        if (ParryMode_SlotLeftButton == null) ParryMode_SlotLeftButton = transform.Find("ParryMode_EquipPanel/Left")?.GetComponent<Button>();
-
         if (ParryMode_InventoryPanel == null) ParryMode_InventoryPanel = transform.Find("ParryMode_InventoryPanel")?.gameObject;
 
     }
     public void Init()
     {
-        //버튼들 AddListener 달아주기
-        ParryMode_SlotTopButton.onClick.AddListener(OnClickParryMode_SlotTop);
-        ParryMode_SlotRightButton.onClick.AddListener(OnClickParryMode_SlotRight);
-        ParryMode_SlotBottomButton.onClick.AddListener(OnClickParryMode_SlotBottom);
-        ParryMode_SlotLeftButton.onClick.AddListener(OnClickParryMode_SlotLeft);
+        //각 장착 버튼에 애드리스너 달아주기
+        for (int i = 0; i < EquipSlotButtons.Count; i++)
+        {
+            int index = i;
+            EquipSlotButtons[i].onClick.AddListener(() => OnClickEquipSlot(index));
+        }
+        //각 인벤토리 버튼에 애드리스너 달아주기
+        for (int i = 0; i < InventorySlotButtons.Count; i++)
+        {
+            int index = i;
+            InventorySlotButtons[i].onClick.AddListener(() => OnClickInventorySlot(index));
+        }
     }
 
     //어디선가 ParryModeInventory 패널을 열었을 때
@@ -58,8 +61,6 @@ public class ParryModeInventory : MonoBehaviour
         UIPanelController.OpenPanel(panelStack, ref currentPanel, gameObject, InventoryPanel);
         InputEvents.InvokeContextUpdate(thisContext);
 
-        //게임 시간 멈추도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(0f);
     }
     //어디선가 ParryModeInventory 패널을 닫았을 때
     public void ParryModeInventoryClose(InputContext sourceInputContext)
@@ -96,32 +97,111 @@ public class ParryModeInventory : MonoBehaviour
         UIUtility.TriggerSelectAction();
     }
     /// </Input>
+    void OnClickEquipSlot(int index)
+    {
+        //장착 슬롯 및 컨테이너 저장
+        EquipSlot = EquipSlotButtons[index].gameObject;
+        EquipSlotContainer = EquipSlotContainers[index].gameObject;
 
-    void OnClickParryMode_SlotTop()
-    {
-        UIPanelController.Close(ref currentPanel, gameObject);
-        //InputEvents.InvokeContextUpdate(InputContext.Player);
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
+        //슬롯 장착 로직
+        if (!isEquiping)
+        {
+            isEquiping = true;
+
+            //장착 슬롯 버튼들 비활성화
+            foreach (var btn in EquipSlotButtons)
+                btn.interactable = false;
+
+            //상호작용 가능한 버튼 포커스 되도록
+            InputEvents.InvokeSelectFirstSelectable(ParryMode_InventoryPanel);
+        }
+        else
+        {
+            foreach (Transform child in EquipSlotContainer.transform)
+                Destroy(child?.gameObject);
+
+            Instantiate(EquipIcon, EquipSlotContainer.transform);
+
+            //인벤토리 슬롯 버튼들 활성화
+            foreach (var btn in InventorySlotButtons)
+                btn.interactable = true;
+
+            //지금 막 교체된 슬롯에 포커스되도록
+            EquipSlot.GetComponent<Selectable>().Select();
+
+            //방패 슬롯 HUD UI 업데이트하기
+            StartCoroutine(UpdateParryModeSlots());
+
+            EquipSlot = null;
+            EquipSlotContainer = null;
+            EquipIcon = null;
+
+            isEquiping = false;
+        }
     }
-    void OnClickParryMode_SlotRight()
+    void OnClickInventorySlot(int index)
     {
-        UIPanelController.Close(ref currentPanel, gameObject);
-        //InputEvents.Setting.InvokeSettingOpen(thisContext);
+        //장착 아이콘 저장
+        var slotIconUI = InventorySlotButtons[index].GetComponentInChildren<SlotIconUI>();
+        if (slotIconUI?.DataSO is ParryModeDataSO nowSlot)
+            EquipIcon = nowSlot.equipIconPrefab;
+
+        //슬롯 장착 로직
+        if (!isEquiping)
+        {
+            isEquiping = true;
+
+            //인벤토리 슬롯 버튼들 비활성화
+            foreach (var btn in InventorySlotButtons)
+                btn.interactable = false;
+
+            //상호작용 가능한 버튼 포커스 되도록
+            InputEvents.InvokeSelectFirstSelectable(ParryMode_EquipPanel);
+        }
+        else
+        {
+            foreach (Transform child in EquipSlotContainer.transform)
+                Destroy(child?.gameObject);
+
+            Instantiate(EquipIcon, EquipSlotContainer.transform);
+
+            //장착 슬롯 버튼들 활성화
+            foreach (var btn in EquipSlotButtons)
+                btn.interactable = true;
+
+            //지금 막 교체된 슬롯에 포커스되도록
+            EquipSlot.GetComponent<Selectable>().Select();
+
+            //방패 슬롯 HUD UI 업데이트하기
+            StartCoroutine(UpdateParryModeSlots());
+
+            EquipSlot = null;
+            EquipSlotContainer = null;
+            EquipIcon = null;
+
+            isEquiping = false;
+        }
+
     }
-    void OnClickParryMode_SlotBottom()
+    IEnumerator UpdateParryModeSlots()
     {
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
-        //씬 전환 시작
-        //SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
-    }
-    void OnClickParryMode_SlotLeft()
-    {
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        //SystemEvents.InvokeChangeTimeScale(1f);
-        //씬 전환 시작
-        //SceneTransitionEvents.InvokeSystemMenuToMainMenu("MainMenu");
+        //UI 갱신되는거 1프레임 기다리기
+        yield return new WaitForEndOfFrame();
+
+        //방패 슬롯 배열
+        ParryModeDataSO[] parryModeSlot = new ParryModeDataSO[4];
+
+        int totalSlotsNum = 4;
+
+        for (int i = 0; i < totalSlotsNum; i++)
+        {
+            var slotIconUI = EquipSlotContainers[i].GetComponentInChildren<SlotIconUI>();
+            if (slotIconUI?.DataSO is ParryModeDataSO nowSlot)
+                parryModeSlot[i] = nowSlot;
+        }
+
+        //방패 슬롯 업데이트 이벤트 발행
+        PlayerEvents.InvokeParryModeSlotUpdated(parryModeSlot);
     }
 
 }

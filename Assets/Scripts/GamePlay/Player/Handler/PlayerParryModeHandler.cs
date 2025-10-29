@@ -20,6 +20,9 @@ public class PlayerParryModeHandler : MonoBehaviour
         SystemEvents.OnDataLoadFinished += AssignParryModeToSlot;
         //ParryModeSlot 변경 요청이 들어올 때
         PlayerEvents.OnParryModeSlotSelected += ParryModeSlotSelected;
+
+        //PlayerParryModeSlot이 업데이트되었을 때
+        PlayerEvents.OnParryModeSlotUpdated += SetParryModeSlot;
     }
     private void OnDisable()
     {
@@ -27,6 +30,9 @@ public class PlayerParryModeHandler : MonoBehaviour
         SystemEvents.OnDataLoadFinished -= AssignParryModeToSlot;
         //ParryModeSlot 변경 요청이 들어올 때
         PlayerEvents.OnParryModeSlotSelected -= ParryModeSlotSelected;
+
+        //PlayerParryModeSlot이 업데이트되었을 때
+        PlayerEvents.OnParryModeSlotUpdated -= SetParryModeSlot;
     }
 
     void AssignParryModeToSlot()
@@ -57,5 +63,11 @@ public class PlayerParryModeHandler : MonoBehaviour
             Debug.Log(currentParryModeDataSO.parryModeType + " is Selected");
             PlayerEvents.InvokeCurrentParryModeUpdated(currentParryModeDataSO, currentIndex);
         }
+    }
+
+    //PlayerParryModeSlot이 업데이트되었을 때
+    void SetParryModeSlot(ParryModeDataSO[] slots)
+    {
+        parryModeSlot = slots;
     }
 }
