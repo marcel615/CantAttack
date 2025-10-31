@@ -25,7 +25,10 @@ public class PlayerShieldSlotHandler : MonoBehaviour
 
         //PlayerShieldSlot이 업데이트되었을 때
         PlayerEvents.OnShieldSlotUpdated += SetShieldSlot;
-    }
+
+        //Shield 인벤토리에서 슬롯 교체 요청할 때
+        PlayerEvents.OnRequestEquipShield += OnRequestEquipShield;
+}
     private void OnDisable()
     {
         //세이브데이터 로드가 완료되는 이벤트 구독
@@ -35,6 +38,9 @@ public class PlayerShieldSlotHandler : MonoBehaviour
 
         //PlayerShieldSlot이 업데이트되었을 때
         PlayerEvents.OnShieldSlotUpdated -= SetShieldSlot;
+
+        //Shield 인벤토리에서 슬롯 교체 요청할 때
+        PlayerEvents.OnRequestEquipShield -= OnRequestEquipShield;
     }
 
     void AssignShieldToSlot()
@@ -73,6 +79,14 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     {
         shieldSlot = slots;
     }
+
+    //Shield 인벤토리에서 슬롯 교체 요청할 때
+    void OnRequestEquipShield(ShieldDataSO shieldData, int index)
+    {
+        shieldSlot[index] = shieldData;
+        PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);
+    }
+
     //현재 방패 슬롯 내보내기
     public ShieldDataSO[] GetShieldSlots()
     {

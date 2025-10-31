@@ -30,11 +30,11 @@ public class ShieldInventory : MonoBehaviour
 
     //장착하는 로직
     bool isEquiping;
-    GameObject EquipIcon;
-    GameObject EquipSlot;
+    ShieldDataSO equipShieldDataSO;
+    int equipIndex;
 
     //EmptyShieldSO
-    [SerializeField] private ShieldDataSO EmptyShieldSO;
+    [SerializeField] private ShieldDataSO emptyShieldSO;
 
     private void Awake()
     {
@@ -63,6 +63,14 @@ public class ShieldInventory : MonoBehaviour
         //인벤토리 UI 켜질때 인벤토리 슬롯들 가져와서 보여주기
         UpdateEquipSlot();
         UpdateInventory();
+
+        //PlayerShieldSlot이 업데이트되었을 때
+        PlayerEvents.OnShieldSlotUpdated += UpdateEquipSlot;
+    }
+    private void OnDisable()
+    {
+        //PlayerShieldSlot이 업데이트되었을 때
+        PlayerEvents.OnShieldSlotUpdated -= UpdateEquipSlot;
     }
 
     //어디선가 ShieldInventory 패널을 열었을 때
@@ -109,7 +117,7 @@ public class ShieldInventory : MonoBehaviour
     }
     /// </Input>
 
-    void UpdateEquipSlot()
+    void UpdateEquipSlot(ShieldDataSO[] slot = null)
     {
         ShieldDataSO[] shieldDataSOs = playerShieldSlotHandler.GetShieldSlots();
 
@@ -139,17 +147,17 @@ public class ShieldInventory : MonoBehaviour
             }
             else
             {
-                GameObject icon = EmptyShieldSO.iconPrefab;
+                GameObject icon = emptyShieldSO.iconPrefab;
                 Instantiate(icon, InventorySlotButtons[i].transform);
             }
         }
     }
     void OnClickEquipSlot(int index)
     {
-        //장착 슬롯 저장
-        EquipSlot = EquipSlotButtons[index].gameObject;
+        //장착 슬롯 인덱스 저장
+        equipIndex = index;
 
-        //슬롯 장착 로직
+        //슬롯 교체 이전
         if (!isEquiping)
         {
             isEquiping = true;
@@ -161,35 +169,35 @@ public class ShieldInventory : MonoBehaviour
             //상호작용 가능한 버튼 포커스 되도록
             InputEvents.InvokeSelectFirstSelectable(Shield_InventoryPanel);
         }
-        else
+        else //슬롯 교체
         {
-            foreach(Transform child in EquipSlot.transform)
-                Destroy(child?.gameObject);
-
-            Instantiate(EquipIcon, EquipSlot.transform);
+            //슬롯 교체 해달라고 이벤트 발행
+            PlayerEvents.InvokeRequestEquipShield(equipShieldDataSO, equipIndex);
 
             //인벤토리 슬롯 버튼들 활성화
             foreach (var btn in InventorySlotButtons)
                 btn.interactable = true;
 
             //지금 막 교체된 슬롯에 포커스되도록
-            EquipSlot.GetComponent<Selectable>().Select();
+            EquipSlotButtons[equipIndex].GetComponent<Selectable>().Select();
 
-            //방패 슬롯 HUD UI 업데이트하기
-            StartCoroutine(UpdateShieldSlots());
-
-            EquipSlot = null;
-            EquipIcon = null;
-
+            //변수 초기화
+            equipIndex = 0;
+            equipShieldDataSO = null;
             isEquiping = false;
         }
     }
     void OnClickInventorySlot(int index)
     {
-        //장착 아이콘 저장
-        EquipIcon = InventorySlotButtons[index].GetComponentInChildren<SlotIconUI>().IconPrefab;
+        IReadOnlyList<ShieldDataSO> shieldDataSOs = inventoryManager.GetShieldInventory();
 
-        //슬롯 장착 로직
+        //장착 데이터 저장
+        if (index < inventoryManager.GetShieldInventory().Count)
+            equipShieldDataSO = inventoryManager.GetShieldInventory()[index];
+        else
+            equipShieldDataSO = emptyShieldSO;
+
+        //슬롯 교체 이전
         if (!isEquiping)
         {
             isEquiping = true;
@@ -201,50 +209,22 @@ public class ShieldInventory : MonoBehaviour
             //상호작용 가능한 버튼 포커스 되도록
             InputEvents.InvokeSelectFirstSelectable(Shield_EquipPanel);
         }
-        else
+        else //슬롯 교체
         {
-            foreach (Transform child in EquipSlot.transform)
-                Destroy(child?.gameObject);
-
-            Instantiate(EquipIcon, EquipSlot.transform);
+            PlayerEvents.InvokeRequestEquipShield(equipShieldDataSO, equipIndex);
 
             //장착 슬롯 버튼들 활성화
             foreach (var btn in EquipSlotButtons)
                 btn.interactable = true;
 
             //지금 막 교체된 슬롯에 포커스되도록
-            EquipSlot.GetComponent<Selectable>().Select();
+            EquipSlotButtons[equipIndex].GetComponent<Selectable>().Select();
 
-            //방패 슬롯 HUD UI 업데이트하기
-            StartCoroutine(UpdateShieldSlots());
-
-            EquipSlot = null;
-            EquipIcon = null;
-
+            //변수 초기화
+            equipIndex = 0;
+            equipShieldDataSO = null;
             isEquiping = false;
         }
-
-    }
-
-    IEnumerator UpdateShieldSlots()
-    {
-        //UI 갱신되는거 1프레임 기다리기
-        yield return new WaitForEndOfFrame();
-
-        //방패 슬롯 배열
-        ShieldDataSO[] shieldSlot = new ShieldDataSO[4];
-
-        int totalSlotsNum = 4;
-
-        for (int i = 0; i < totalSlotsNum; i++)
-        {
-            var slotIconUI = EquipSlotButtons[i].GetComponentInChildren<SlotIconUI>();
-            if (slotIconUI?.DataSO is ShieldDataSO nowSlot)
-                shieldSlot[i] = nowSlot;
-        }
-
-        //방패 슬롯 업데이트 이벤트 발행
-        PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);
     }
 
 }

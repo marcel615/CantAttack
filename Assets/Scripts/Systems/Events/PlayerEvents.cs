@@ -41,6 +41,10 @@ public static class PlayerEvents
     //currentShield가 변경되었을 때
     public static event Action<ShieldDataSO, int> OnCurrentShieldUpdated;
 
+    //Shield 인벤토리에서 슬롯 교체 요청할 때
+    public static event Action<ShieldDataSO, int> OnRequestEquipShield;
+
+
     //ParryModeSlot이 업데이트되었을 때
     public static event Action<ParryModeDataSO[]> OnParryModeSlotUpdated;
 
@@ -49,6 +53,10 @@ public static class PlayerEvents
 
     //currentParryMode가 변경되었을 때
     public static event Action<ParryModeDataSO, int> OnCurrentParryModeUpdated;
+
+    //ParryMode 인벤토리에서 슬롯 교체 요청할 때
+    //public static event Action<ParryModeDataSO, int> OnRequestEquipParryMode;
+
 
     //parryAction의 방향이 정해졌을 때
     public static event Action<Vector2> OnParryActionDirectionSet;
@@ -119,6 +127,12 @@ public static class PlayerEvents
     {
         OnCurrentShieldUpdated?.Invoke(currentShield, currentIndex);
     }
+    //currentShield가 변경되었을 때
+    public static void InvokeRequestEquipShield(ShieldDataSO shieldData, int index)
+    {
+        OnRequestEquipShield?.Invoke(shieldData, index);
+    }
+
     //ParryModeSlot이 업데이트되었을 때
     public static void InvokeParryModeSlotUpdated(ParryModeDataSO[] slots)
     {
@@ -134,6 +148,14 @@ public static class PlayerEvents
     {
         OnCurrentParryModeUpdated?.Invoke(currentParryMode, currentIndex);
     }
+    //currentParryMode가 변경되었을 때
+    /*
+    public static void InvokeRequestEquipParryMode(ParryModeDataSO parryModeData, int index)
+    {
+        OnRequestEquipParryMode?.Invoke(parryModeData, index);
+    }
+    */
+
     //parryAction의 방향이 정해졌을 때
     public static void InvokeParryActionDirectionSet(Vector2 dir)
     {
