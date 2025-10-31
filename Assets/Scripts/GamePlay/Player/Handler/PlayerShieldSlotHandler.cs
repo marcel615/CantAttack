@@ -73,6 +73,11 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     {
         shieldSlot = slots;
     }
+    //현재 방패 슬롯 내보내기
+    public ShieldDataSO[] GetShieldSlots()
+    {
+        return shieldSlot;
+    }
 
 
 

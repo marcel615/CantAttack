@@ -2509,6 +2509,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9016e98b9d6afc649afb4cec932da8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1399347771668004910 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7957501127654244754, guid: 47353076dd89cd04c83b9360a5573cea, type: 3}
+  m_PrefabInstance: {fileID: 1399347771668004891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6860e1a7a00f0f448acf3528c3b1a1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1610538722912442712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2722,8 +2733,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7582166390682213781, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: EmptyShieldSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 601ae677e039e424da0ca69503d01a8f, type: 2}
+    - target: {fileID: 7582166390682213781, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: EmptySlotIcon
+      value: 
+      objectReference: {fileID: 7998242992465400478, guid: 1e8cd8cd692e88542b31f530dbf20178, type: 3}
+    - target: {fileID: 7582166390682213781, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1615926551}
+    - target: {fileID: 7582166390682213781, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: playerShieldSlotHandler
+      value: 
+      objectReference: {fileID: 1399347771668004910}
     - target: {fileID: 7587798946419490410, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
       propertyPath: parryModeHandler
+      value: 
+      objectReference: {fileID: 1399347771668004893}
+    - target: {fileID: 8131334186532297859, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: EmptyParryModeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 41c716d047ac098428fa79fbfa745b01, type: 2}
+    - target: {fileID: 8131334186532297859, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1615926551}
+    - target: {fileID: 8131334186532297859, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: playerParryModeHandler
       value: 
       objectReference: {fileID: 1399347771668004893}
     - target: {fileID: 8131334186532297859, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}

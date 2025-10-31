@@ -1,10 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShieldInventory : MonoBehaviour
 {
+    //다른 오브젝트
+    [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private PlayerShieldSlotHandler playerShieldSlotHandler;
+
     //부모 오브젝트
     [SerializeField] private GameObject InventoryPanel;
 
@@ -27,6 +33,9 @@ public class ShieldInventory : MonoBehaviour
     GameObject EquipIcon;
     GameObject EquipSlot;
 
+    //EmptyShieldSO
+    [SerializeField] private ShieldDataSO EmptyShieldSO;
+
     private void Awake()
     {
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
@@ -48,7 +57,12 @@ public class ShieldInventory : MonoBehaviour
             int index = i;
             InventorySlotButtons[i].onClick.AddListener(() => OnClickInventorySlot(index));
         } 
-
+    }
+    private void OnEnable()
+    {
+        //인벤토리 UI 켜질때 인벤토리 슬롯들 가져와서 보여주기
+        UpdateEquipSlot();
+        UpdateInventory();
     }
 
     //어디선가 ShieldInventory 패널을 열었을 때
@@ -95,6 +109,41 @@ public class ShieldInventory : MonoBehaviour
     }
     /// </Input>
 
+    void UpdateEquipSlot()
+    {
+        ShieldDataSO[] shieldDataSOs = playerShieldSlotHandler.GetShieldSlots();
+
+        for (int i = 0; i < shieldDataSOs.Length; i++)
+        {
+            foreach (Transform child in EquipSlotButtons[i].transform)
+                Destroy(child?.gameObject);
+
+            GameObject icon = shieldDataSOs[i]?.iconPrefab;
+            if (icon != null)
+                Instantiate(icon, EquipSlotButtons[i].transform);
+        }
+    }
+    void UpdateInventory()
+    {
+        IReadOnlyList<ShieldDataSO> shieldDataSOs = inventoryManager.GetShieldInventory();
+
+        for (int i = 0; i < InventorySlotButtons.Count; i++)
+        {
+            foreach (Transform child in InventorySlotButtons[i].transform)
+                Destroy(child?.gameObject);
+
+            if (i < shieldDataSOs.Count)
+            {
+                GameObject icon = shieldDataSOs[i].iconPrefab;
+                Instantiate(icon, InventorySlotButtons[i].transform);
+            }
+            else
+            {
+                GameObject icon = EmptyShieldSO.iconPrefab;
+                Instantiate(icon, InventorySlotButtons[i].transform);
+            }
+        }
+    }
     void OnClickEquipSlot(int index)
     {
         //장착 슬롯 저장

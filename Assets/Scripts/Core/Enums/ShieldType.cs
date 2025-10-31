@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum ShieldType
 {
+    Empty,
     Reflect,
     Flame,
     Impact,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ScatterShield
   m_EditorClassIdentifier: 
   shieldID: ScatterShield
-  shieldType: 3
+  shieldType: 4
   iconPrefab: {fileID: 2808222676305919437, guid: 4f157bb5080bf81458838a3b96daeacb, type: 3}
   parryProjectilePrefab: {fileID: 1201759956104077371, guid: 866be14e7d1373e42a4dd54ccd336402, type: 3}
   scatter:

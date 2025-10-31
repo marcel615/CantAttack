@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ReflectShield
   m_EditorClassIdentifier: 
   shieldID: ReflectShield
-  shieldType: 0
+  shieldType: 1
   iconPrefab: {fileID: 9197391952569453138, guid: 8d96a5d60759a7b4cb0cf4e919ebc114, type: 3}
   parryProjectilePrefab: {fileID: 6865310504973106056, guid: a5b523a007030d54280662ed68596496, type: 3}
   scatter:

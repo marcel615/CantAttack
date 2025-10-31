@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class ParryModeInventory : MonoBehaviour
 {
+    //다른 오브젝트
+    [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private PlayerParryModeHandler playerParryModeHandler;
+
     //부모 오브젝트
     [SerializeField] private GameObject InventoryPanel;
 
@@ -30,6 +34,8 @@ public class ParryModeInventory : MonoBehaviour
     GameObject EquipSlot;
     GameObject EquipSlotContainer;
 
+    //EmptyParryModeSO
+    [SerializeField] private ParryModeDataSO EmptyParryModeSO;
 
     private void Awake()
     {
@@ -52,6 +58,12 @@ public class ParryModeInventory : MonoBehaviour
             int index = i;
             InventorySlotButtons[i].onClick.AddListener(() => OnClickInventorySlot(index));
         }
+    }
+    private void OnEnable()
+    {
+        //인벤토리 UI 켜질때 인벤토리 슬롯들 가져와서 보여주기
+        UpdateEquipSlot();
+        UpdateInventory();
     }
 
     //어디선가 ParryModeInventory 패널을 열었을 때
@@ -97,6 +109,42 @@ public class ParryModeInventory : MonoBehaviour
         UIUtility.TriggerSelectAction();
     }
     /// </Input>
+
+    void UpdateEquipSlot()
+    {
+        ParryModeDataSO[] parryModeDataSOs = playerParryModeHandler.GetParryModeSlots();
+
+        for (int i = 0; i < parryModeDataSOs.Length; i++)
+        {
+            foreach (Transform child in EquipSlotContainers[i].transform)
+                Destroy(child?.gameObject);
+
+            GameObject icon = parryModeDataSOs[i]?.equipIconPrefab;
+            if (icon != null)
+                Instantiate(icon, EquipSlotContainers[i].transform);
+        }
+    }
+    void UpdateInventory()
+    {
+        IReadOnlyList<ParryModeDataSO> parryModeDataSOs = inventoryManager.GetParryModeInventory();
+
+        for (int i = 0; i < InventorySlotButtons.Count; i++)
+        {
+            foreach (Transform child in InventorySlotButtons[i].transform)
+                Destroy(child?.gameObject);
+
+            if (i < parryModeDataSOs.Count)
+            {
+                GameObject icon = parryModeDataSOs[i].inventoryIconPrefab;
+                Instantiate(icon, InventorySlotButtons[i].transform);
+            }
+            else
+            {
+                GameObject icon = EmptyParryModeSO.inventoryIconPrefab;
+                Instantiate(icon, InventorySlotButtons[i].transform);
+            }
+        }
+    }
     void OnClickEquipSlot(int index)
     {
         //장착 슬롯 및 컨테이너 저장

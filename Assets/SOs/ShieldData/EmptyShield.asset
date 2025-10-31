@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c83ee5e943bfc3048a9de2b01531282d, type: 3}
-  m_Name: FlameShield
+  m_Name: EmptyShield
   m_EditorClassIdentifier: 
-  shieldID: FlameShield
-  shieldType: 2
-  iconPrefab: {fileID: 5339111402985468280, guid: 30e9722047a9818468e864dbc6023af5, type: 3}
-  parryProjectilePrefab: {fileID: 6865310504973106056, guid: 5dedd99650ddaa3439553d7f2f1eda8e, type: 3}
+  shieldID: EmptyShield
+  shieldType: 0
+  iconPrefab: {fileID: 7998242992465400478, guid: 1e8cd8cd692e88542b31f530dbf20178, type: 3}
+  parryProjectilePrefab: {fileID: 0}
   scatter:
     pelletCount: 0
     spreadDeg: 0

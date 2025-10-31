@@ -70,4 +70,10 @@ public class PlayerParryModeHandler : MonoBehaviour
     {
         parryModeSlot = slots;
     }
+
+    //현재 패리 모드 슬롯 내보내기
+    public ParryModeDataSO[] GetParryModeSlots()
+    {
+        return parryModeSlot;
+    }
 }
