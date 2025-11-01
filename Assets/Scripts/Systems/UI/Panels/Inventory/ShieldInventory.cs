@@ -211,6 +211,7 @@ public class ShieldInventory : MonoBehaviour
         }
         else //슬롯 교체
         {
+            //슬롯 교체 해달라고 이벤트 발행
             PlayerEvents.InvokeRequestEquipShield(equipShieldDataSO, equipIndex);
 
             //장착 슬롯 버튼들 활성화

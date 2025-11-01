@@ -21,8 +21,8 @@ public class PlayerParryModeHandler : MonoBehaviour
         //ParryModeSlot 변경 요청이 들어올 때
         PlayerEvents.OnParryModeSlotSelected += ParryModeSlotSelected;
 
-        //PlayerParryModeSlot이 업데이트되었을 때
-        PlayerEvents.OnParryModeSlotUpdated += SetParryModeSlot;
+        //ParryMode 인벤토리에서 슬롯 교체 요청할 때
+        PlayerEvents.OnRequestEquipParryMode += OnRequestEquipParryMode;
     }
     private void OnDisable()
     {
@@ -31,8 +31,8 @@ public class PlayerParryModeHandler : MonoBehaviour
         //ParryModeSlot 변경 요청이 들어올 때
         PlayerEvents.OnParryModeSlotSelected -= ParryModeSlotSelected;
 
-        //PlayerParryModeSlot이 업데이트되었을 때
-        PlayerEvents.OnParryModeSlotUpdated -= SetParryModeSlot;
+        //ParryMode 인벤토리에서 슬롯 교체 요청할 때
+        PlayerEvents.OnRequestEquipParryMode -= OnRequestEquipParryMode;
     }
 
     void AssignParryModeToSlot()
@@ -65,10 +65,11 @@ public class PlayerParryModeHandler : MonoBehaviour
         }
     }
 
-    //PlayerParryModeSlot이 업데이트되었을 때
-    void SetParryModeSlot(ParryModeDataSO[] slots)
+    //ParryMode 인벤토리에서 슬롯 교체 요청할 때
+    void OnRequestEquipParryMode(ParryModeDataSO parryModeData, int index)
     {
-        parryModeSlot = slots;
+        parryModeSlot[index] = parryModeData;
+        PlayerEvents.InvokeParryModeSlotUpdated(parryModeSlot);
     }
 
     //현재 패리 모드 슬롯 내보내기

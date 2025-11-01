@@ -55,7 +55,7 @@ public static class PlayerEvents
     public static event Action<ParryModeDataSO, int> OnCurrentParryModeUpdated;
 
     //ParryMode 인벤토리에서 슬롯 교체 요청할 때
-    //public static event Action<ParryModeDataSO, int> OnRequestEquipParryMode;
+    public static event Action<ParryModeDataSO, int> OnRequestEquipParryMode;
 
 
     //parryAction의 방향이 정해졌을 때
@@ -148,13 +148,12 @@ public static class PlayerEvents
     {
         OnCurrentParryModeUpdated?.Invoke(currentParryMode, currentIndex);
     }
-    //currentParryMode가 변경되었을 때
-    /*
+    //ParryMode 인벤토리에서 슬롯 교체 요청할 때
     public static void InvokeRequestEquipParryMode(ParryModeDataSO parryModeData, int index)
     {
         OnRequestEquipParryMode?.Invoke(parryModeData, index);
     }
-    */
+    
 
     //parryAction의 방향이 정해졌을 때
     public static void InvokeParryActionDirectionSet(Vector2 dir)

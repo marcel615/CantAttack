@@ -23,9 +23,6 @@ public class PlayerShieldSlotHandler : MonoBehaviour
         //ShieldSlot 변경 요청이 들어올 때
         PlayerEvents.OnShieldSlotSelected += ShieldSlotSelected;
 
-        //PlayerShieldSlot이 업데이트되었을 때
-        PlayerEvents.OnShieldSlotUpdated += SetShieldSlot;
-
         //Shield 인벤토리에서 슬롯 교체 요청할 때
         PlayerEvents.OnRequestEquipShield += OnRequestEquipShield;
 }
@@ -35,9 +32,6 @@ public class PlayerShieldSlotHandler : MonoBehaviour
         SystemEvents.OnDataLoadFinished -= AssignShieldToSlot;
         //ShieldSlot 변경 요청이 들어올 때
         PlayerEvents.OnShieldSlotSelected -= ShieldSlotSelected;
-
-        //PlayerShieldSlot이 업데이트되었을 때
-        PlayerEvents.OnShieldSlotUpdated -= SetShieldSlot;
 
         //Shield 인벤토리에서 슬롯 교체 요청할 때
         PlayerEvents.OnRequestEquipShield -= OnRequestEquipShield;
@@ -72,12 +66,6 @@ public class PlayerShieldSlotHandler : MonoBehaviour
             Debug.Log(currentShieldDataSO.shieldType + " is Selected");
             PlayerEvents.InvokeCurrentShieldUpdated(currentShieldDataSO, currentIndex);
         }
-    }
-
-    //PlayerShieldSlot이 업데이트되었을 때
-    void SetShieldSlot(ShieldDataSO[] slots)
-    {
-        shieldSlot = slots;
     }
 
     //Shield 인벤토리에서 슬롯 교체 요청할 때
