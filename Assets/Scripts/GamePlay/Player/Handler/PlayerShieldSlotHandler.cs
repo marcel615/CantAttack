@@ -59,7 +59,7 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     }
     void ShieldSlotSelected(int index)
     {
-        if (shieldSlot[index] != null)
+        if (shieldSlot[index] != null && shieldSlot[index].shieldType != ShieldType.Empty)
         {
             currentIndex = index;
             currentShieldDataSO = shieldSlot[index];

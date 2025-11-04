@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\ui\\panels\\inventory\\shieldinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\gameplay\\player\\handler\\playershieldslothandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameplay\\player\\handler\\playershieldslothandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\systems\\ui\\panels\\inventory\\shieldinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systems\\ui\\panels\\inventory\\shieldinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\ui\\utilities\\uiutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systems\\ui\\utilities\\uiutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\ui\\panels\\inventory\\parrymodeinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systems\\ui\\panels\\inventory\\parrymodeinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\gameplay\\player\\handler\\playerparrymodehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameplay\\player\\handler\\playerparrymodehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\events\\playerevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systems\\events\\playerevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\gameplay\\player\\handler\\playershieldslothandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameplay\\player\\handler\\playershieldslothandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\ui\\utilities\\uiutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systems\\ui\\utilities\\uiutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\ui\\panels\\playerhud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\ui\\controllers\\inputcontroller\\shieldinventoryinputcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systems\\ui\\controllers\\inputcontroller\\shieldinventoryinputcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|c:\\users\\alswo\\desktop\\unityprojects\\cantattack\\assets\\scripts\\systems\\ui\\panels\\inventory\\parrymodeinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systems\\ui\\panels\\inventory\\parrymodeinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\gameplay\\player\\handler\\playerparrymodehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameplay\\player\\handler\\playerparrymodehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56F58C10-66C8-5A5D-54FD-26DFF19F88C1}|Assembly-CSharp.csproj|C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\assets\\scripts\\systems\\manager\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -314,17 +314,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 34,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "PlayerEvents.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\Events\\PlayerEvents.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Systems\\Events\\PlayerEvents.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\Events\\PlayerEvents.cs",
               "RelativeToolTip": "Assets\\Scripts\\Systems\\Events\\PlayerEvents.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAACwAAABHAAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAuwIgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T08:06:23.145Z",
               "IsPinned": true,
@@ -384,13 +384,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "PlayerShieldSlotHandler.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerShieldSlotHandler.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerShieldSlotHandler.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerShieldSlotHandler.cs",
               "RelativeToolTip": "Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerShieldSlotHandler.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAADwv1YAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwCEAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T00:47:34.17Z",
               "IsPinned": true,
@@ -424,7 +424,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "PlayerHUD.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Panels\\PlayerHUD.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Systems\\UI\\Panels\\PlayerHUD.cs",
@@ -433,8 +433,7 @@
               "ViewState": "AgIAAEkAAAAAAAAAAAAUwFgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T03:14:44.713Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -490,20 +489,21 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "PlayerParryModeHandler.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerParryModeHandler.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerParryModeHandler.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerParryModeHandler.cs",
               "RelativeToolTip": "Assets\\Scripts\\GamePlay\\Player\\Handler\\PlayerParryModeHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAQwD8AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T14:25:01.239Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ParryMode.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Panels\\ParryMode.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Systems\\UI\\Panels\\ParryMode.cs",
@@ -512,8 +512,7 @@
               "ViewState": "AgIAAB8AAAAAAAAAAAAAwDgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T14:37:13.349Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -764,13 +763,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ShieldInventory.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ShieldInventory.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ShieldInventory.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ShieldInventory.cs",
               "RelativeToolTip": "Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ShieldInventory.cs",
-              "ViewState": "AgIAALwAAAAAAAAAAAAnwNQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAADgv3cAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-20T13:00:17.881Z",
               "IsPinned": true,
@@ -791,7 +790,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ShieldInventoryInputController.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Controllers\\InputController\\ShieldInventoryInputController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Systems\\UI\\Controllers\\InputController\\ShieldInventoryInputController.cs",
@@ -800,8 +799,7 @@
               "ViewState": "AgIAAAoAAAAAAAAAAAAAwEgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-20T13:08:12.045Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -844,13 +842,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "ParryModeInventory.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ParryModeInventory.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ParryModeInventory.cs",
               "ToolTip": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ParryModeInventory.cs",
               "RelativeToolTip": "Assets\\Scripts\\Systems\\UI\\Panels\\Inventory\\ParryModeInventory.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAuwH0AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAgwEMAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-22T10:54:08.521Z",
               "IsPinned": true,
@@ -884,7 +882,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "UIUtility.cs",
               "DocumentMoniker": "C:\\Users\\alswo\\Desktop\\UnityProjects\\CantAttack\\Assets\\Scripts\\Systems\\UI\\Utilities\\UIUtility.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Systems\\UI\\Utilities\\UIUtility.cs",
@@ -892,8 +890,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Systems\\UI\\Utilities\\UIUtility.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T08:41:17.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T08:41:17.308Z"
             },
             {
               "$type": "Document",
