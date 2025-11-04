@@ -59,7 +59,7 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     }
     void ShieldSlotSelected(int index)
     {
-        if (shieldSlot[index] != null && shieldSlot[index].shieldType != ShieldType.Empty)
+        if (shieldSlot[index] != null)
         {
             currentIndex = index;
             currentShieldDataSO = shieldSlot[index];
@@ -72,6 +72,11 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     void OnRequestEquipShield(ShieldDataSO shieldData, int index)
     {
         shieldSlot[index] = shieldData;
+        if(index == currentIndex)
+        {
+            currentShieldDataSO = shieldSlot[currentIndex];
+            PlayerEvents.InvokeCurrentShieldUpdated(currentShieldDataSO, currentIndex);
+        }
         PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);
     }
 

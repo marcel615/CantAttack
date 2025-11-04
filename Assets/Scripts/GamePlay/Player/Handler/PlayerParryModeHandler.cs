@@ -56,7 +56,7 @@ public class PlayerParryModeHandler : MonoBehaviour
     }
     void ParryModeSlotSelected(int index)
     {
-        if (parryModeSlot[index] != null && parryModeSlot[index].parryModeType != ParryModeType.Empty)
+        if (parryModeSlot[index] != null)
         {
             currentIndex = index;
             currentParryModeDataSO = parryModeSlot[index];
@@ -69,6 +69,11 @@ public class PlayerParryModeHandler : MonoBehaviour
     void OnRequestEquipParryMode(ParryModeDataSO parryModeData, int index)
     {
         parryModeSlot[index] = parryModeData;
+        if (index == currentIndex)
+        {
+            currentParryModeDataSO = parryModeSlot[currentIndex];
+            PlayerEvents.InvokeCurrentParryModeUpdated(currentParryModeDataSO, currentIndex);
+        }
         PlayerEvents.InvokeParryModeSlotUpdated(parryModeSlot);
     }
 

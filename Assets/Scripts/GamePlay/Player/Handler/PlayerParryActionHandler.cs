@@ -98,6 +98,14 @@ public class PlayerParryActionHandler : MonoBehaviour
         GameObject target = null;
         Vector2 direction = Vector2.zero;
 
+        //방패가 EmptyShield일 경우 예외처리
+        if(currentShield.shieldType == ShieldType.Empty)
+        {
+            Debug.Log("Shield Unselected");
+
+            return;
+        }
+
         //계산 진행
         switch (currentParryMode.parryModeType)
         {
@@ -130,6 +138,11 @@ public class PlayerParryActionHandler : MonoBehaviour
 
             case ParryModeType.Absorb:
                 Debug.Log("Attack Absorbed!");
+
+                break;
+
+            case ParryModeType.Empty:
+                Debug.Log("ParryMode Unselected");
 
                 break;
         }

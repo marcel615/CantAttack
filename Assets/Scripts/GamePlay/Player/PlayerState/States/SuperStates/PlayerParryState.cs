@@ -125,6 +125,14 @@ public class PlayerParryState : PlayerState
 
                     break;
 
+                case ParryModeType.Empty:
+                    isCanChange = true;
+
+                    //플랫폼의 아주아주 끝에서 패리를 할 경우 다음 상태로 전환하지 못하게 되는 버그 임시 조치
+                    FSM.ChangeState(FSM.groundState);
+
+                    break;
+
                 default:
                     break;
             }
