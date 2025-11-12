@@ -87,8 +87,15 @@ public class PlayerParryActionHandler : MonoBehaviour
         parriedPosition = prefab.gameObject.transform.position;
         parriedProjectileSender = sender;
 
-        if(currentShield.shieldType == ShieldType.Reflect && currentParryMode.parryModeType != ParryModeType.Absorb)
+        if(currentShield.shieldType == ShieldType.Reflect && currentParryMode.parryModeType != ParryModeType.Absorb && currentParryMode.parryModeType != ParryModeType.Empty)
             parriedProjectileCopy = Instantiate(prefab.gameObject, parriedPosition, Quaternion.identity);
+
+        //방패가 EmptyShield일 경우 예외처리
+        if (currentShield.shieldType == ShieldType.Empty)
+        {
+            Debug.Log("Shield Unselected");
+            return;
+        }
 
         HandleParryMode();
     }
@@ -97,14 +104,6 @@ public class PlayerParryActionHandler : MonoBehaviour
     {
         GameObject target = null;
         Vector2 direction = Vector2.zero;
-
-        //방패가 EmptyShield일 경우 예외처리
-        if(currentShield.shieldType == ShieldType.Empty)
-        {
-            Debug.Log("Shield Unselected");
-
-            return;
-        }
 
         //계산 진행
         switch (currentParryMode.parryModeType)
