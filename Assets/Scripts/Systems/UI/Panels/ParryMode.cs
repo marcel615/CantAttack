@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ParryMode : MonoBehaviour
@@ -9,14 +11,8 @@ public class ParryMode : MonoBehaviour
     [SerializeField] private PlayerParryModeHandler parryModeHandler;
 
     //자식 오브젝트
-    [SerializeField] private Button Top;
-    [SerializeField] private GameObject TopContainer;
-    [SerializeField] private Button Right;
-    [SerializeField] private GameObject RightContainer;
-    [SerializeField] private Button Bottom;
-    [SerializeField] private GameObject BottomContainer;
-    [SerializeField] private Button Left;
-    [SerializeField] private GameObject LeftContainer;
+    [SerializeField] private List<Button> SlotButtons;
+    [SerializeField] private List<GameObject> SlotContainers;
 
     //컨텍스트 enum 정보
     InputContext thisContext = InputContext.ParryMode;
@@ -26,27 +22,35 @@ public class ParryMode : MonoBehaviour
     Stack<GameObject> panelStack = new Stack<GameObject>();
     GameObject currentPanel;
 
+    //ParryModeSlot 하이라이트 관련
+    GameObject prevSelectedIcon;
+    GameObject selectedIcon;
+
 
     private void Awake()
     {
         //자식 오브젝트들 인스펙터에서 연결 까먹었을 경우에 대비
-        if (Top == null) Top = transform.Find("Top")?.GetComponent<Button>();
-        if (TopContainer == null) TopContainer = transform.Find("Top/ZeroRotationContainer").gameObject;
-        if (Right == null) Right = transform.Find("Right")?.GetComponent<Button>();
-        if (RightContainer == null) RightContainer = transform.Find("Right/ZeroRotationContainer").gameObject;
-        if (Bottom == null) Bottom = transform.Find("Bottom")?.GetComponent<Button>();
-        if (BottomContainer == null) BottomContainer = transform.Find("Bottom/ZeroRotationContainer").gameObject;
-        if (Left == null) Left = transform.Find("Left")?.GetComponent<Button>();
-        if (LeftContainer == null) LeftContainer = transform.Find("Left/ZeroRotationContainer").gameObject;
     }
     public void Init()
     {
-        //버튼들 AddListener 달아주기
-        Top.onClick.AddListener(OnClickedTop);
-        Right.onClick.AddListener(OnClickedRight);
-        Bottom.onClick.AddListener(OnClickedBottom);
-        Left.onClick.AddListener(OnClickedLeft);
+        //각 슬롯 버튼에 애드리스너 달아주기
+        for (int i = 0; i < SlotButtons.Count; i++)
+        {
+            int index = i;
+            SlotButtons[i].onClick.AddListener(() => OnClickSlot(index));
+        }
+
     }
+    private void Update()
+    {
+        selectedIcon = EventSystem.current.currentSelectedGameObject;
+        if(selectedIcon != prevSelectedIcon)
+        {
+            HighlightParryModeSlot();
+            prevSelectedIcon = selectedIcon;
+        }
+    }
+
     //이벤트 구독
     private void OnEnable()
     {
@@ -102,10 +106,10 @@ public class ParryMode : MonoBehaviour
     //ParryModeSlot이 업데이트되었을 때
     void SetParryModeSlot(ParryModeDataSO[] slots)
     {
-        SetSlotPrefab(TopContainer.transform, slots[0]);
-        SetSlotPrefab(RightContainer.transform, slots[1]);
-        SetSlotPrefab(BottomContainer.transform, slots[2]);
-        SetSlotPrefab(LeftContainer.transform, slots[3]);
+        for (int i = 0; i < slots.Length; i++)
+        {
+            SetSlotPrefab(SlotContainers[i].transform, slots[i]);
+        }
     }
     //슬롯에 프리팹 채우기
     void SetSlotPrefab(Transform container, ParryModeDataSO parryModeDataSO)
@@ -121,50 +125,29 @@ public class ParryMode : MonoBehaviour
             Instantiate(parryModeDataSO.equipIconPrefab, container.transform);
         }
     }
-    void OnClickedTop()
+
+    //ParryModeSlot 선택 변경 될 때
+    void HighlightParryModeSlot()
     {
-        //Debug.Log("Top Selected");
+        //이전에 선택된 아이콘 하이라이트 초기화
+        if (prevSelectedIcon != null)
+            prevSelectedIcon.transform.localScale = Vector3.one;
+
+        //선택된 아이콘 하이라이트
+        if(selectedIcon != null)        
+            selectedIcon.transform.localScale = Vector3.one * 1.1f;
+        
+    }
+
+    void OnClickSlot(int index)
+    {
         //패리 모드 선택했다는 이벤트 발행
-        PlayerEvents.InvokeParryModeSlotSelected(0);
+        PlayerEvents.InvokeParryModeSlotSelected(index);
 
         UIPanelController.Close(ref currentPanel, gameObject);
         InputEvents.InvokeContextUpdate(InputContext.Player);
         //게임 시간 다시 흘러가도록 이벤트 발행
         SystemEvents.InvokeChangeTimeScale(1f);
     }
-    void OnClickedRight()
-    {
-        //Debug.Log("Right Selected");
-        //패리 모드 선택했다는 이벤트 발행
-        PlayerEvents.InvokeParryModeSlotSelected(1);
-
-        UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(InputContext.Player);
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        SystemEvents.InvokeChangeTimeScale(1f);
-    }
-    void OnClickedBottom()
-    {
-        //Debug.Log("Bottom Selected");
-        //패리 모드 선택했다는 이벤트 발행
-        PlayerEvents.InvokeParryModeSlotSelected(2);
-
-        UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(InputContext.Player);
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        SystemEvents.InvokeChangeTimeScale(1f);
-    }
-    void OnClickedLeft()
-    {
-        //Debug.Log("Left Selected");
-        //패리 모드 선택했다는 이벤트 발행
-        PlayerEvents.InvokeParryModeSlotSelected(3);
-
-        UIPanelController.Close(ref currentPanel, gameObject);
-        InputEvents.InvokeContextUpdate(InputContext.Player);
-        //게임 시간 다시 흘러가도록 이벤트 발행
-        SystemEvents.InvokeChangeTimeScale(1f);
-    }
-
 
 }
