@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public class PlayerHUD : MonoBehaviour
     int CurrentHP;
     int MaxHP;
 
+    //ShieldSlot 하이라이트 관련
+    GameObject selectedIcon;
 
 
     private void Awake()
@@ -45,6 +48,8 @@ public class PlayerHUD : MonoBehaviour
 
         //PlayerShieldSlot이 업데이트되었을 때
         PlayerEvents.OnShieldSlotUpdated += SetShieldSlot;
+        //ShieldSlot 변경 요청이 들어올 때
+        PlayerEvents.OnShieldSlotSelected += HighlightShieldSlot;
     }
     private void OnDisable()
     {
@@ -55,6 +60,8 @@ public class PlayerHUD : MonoBehaviour
 
         //PlayerShieldSlot이 업데이트되었을 때
         PlayerEvents.OnShieldSlotUpdated -= SetShieldSlot;
+        //ShieldSlot 변경 요청이 들어올 때
+        PlayerEvents.OnShieldSlotSelected -= HighlightShieldSlot;
     }
     //HP칸 채우기
     void SetHP(int maxHP, int currentHP)
@@ -99,5 +106,19 @@ public class PlayerHUD : MonoBehaviour
                 Instantiate(EmptyShieldPrefab, ShieldContainer.transform);                
             }
         }
+    }
+
+    //ShieldSlot 변경 요청이 들어올 때
+    void HighlightShieldSlot(int index)
+    {
+        //이전에 선택된 아이콘 하이라이트 초기화
+        if(selectedIcon != null) 
+            selectedIcon.transform.localScale = Vector3.one;
+
+        //새롭게 선택된 아이콘
+        selectedIcon = ShieldContainer.transform.GetChild(index).gameObject;
+
+        //선택된 아이콘 하이라이트
+        selectedIcon.transform.localScale = Vector3.one * 1.2f;
     }
 }

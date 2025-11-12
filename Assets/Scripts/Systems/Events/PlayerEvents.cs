@@ -127,7 +127,7 @@ public static class PlayerEvents
     {
         OnCurrentShieldUpdated?.Invoke(currentShield, currentIndex);
     }
-    //currentShield가 변경되었을 때
+    //Shield 인벤토리에서 슬롯 교체 요청할 때
     public static void InvokeRequestEquipShield(ShieldDataSO shieldData, int index)
     {
         OnRequestEquipShield?.Invoke(shieldData, index);
