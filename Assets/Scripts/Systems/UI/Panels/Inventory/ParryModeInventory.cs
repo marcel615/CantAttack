@@ -60,6 +60,8 @@ public class ParryModeInventory : MonoBehaviour
     }
     private void OnEnable()
     {
+        //인벤토리 UI 켜지기 전에 UI 리셋 먼저 실행
+        ResetUI();
         //인벤토리 UI 켜질때 인벤토리 슬롯들 가져와서 보여주기
         UpdateEquipSlot();
         UpdateInventory();
@@ -86,7 +88,7 @@ public class ParryModeInventory : MonoBehaviour
     {
         beforeContext = sourceInputContext;
         //닫기
-        UIPanelController.Close(ref currentPanel, gameObject);
+        UIPanelController.Close(ref currentPanel, InventoryPanel);
     }
 
     ///<Input>
@@ -224,6 +226,21 @@ public class ParryModeInventory : MonoBehaviour
             equipParryModeDataSO = null;
             isEquiping = false;
         }
+    }
+    void ResetUI()
+    {
+        //변수 초기화
+        equipIndex = 0;
+        equipParryModeDataSO = null;
+        isEquiping = false;
+
+        //장착 슬롯 버튼들 활성화
+        foreach (var btn in EquipSlotButtons)
+            btn.interactable = true;
+
+        //인벤토리 슬롯 버튼들 활성화
+        foreach (var btn in InventorySlotButtons)
+            btn.interactable = true;
     }
 
 }
