@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class ParryMode : MonoBehaviour
 {
     //참조할 PlayerParryHandler.cs
-    [SerializeField] private PlayerParryModeHandler parryModeHandler;
+    [SerializeField] private PlayerParryModeHandler playerParryModeHandler;
 
     //자식 오브젝트
     [SerializeField] private List<Button> SlotButtons;
@@ -55,15 +55,7 @@ public class ParryMode : MonoBehaviour
     private void OnEnable()
     {
         //이 UI 패널 활성화되었을 때 현재 패리모드 슬롯으로 업데이트하기
-        SetParryModeSlot(parryModeHandler.parryModeSlot);
-
-        //ParryModeSlot이 업데이트되었을 때
-        PlayerEvents.OnParryModeSlotUpdated += SetParryModeSlot;
-    }
-    private void OnDisable()
-    {
-        //ParryModeSlot이 업데이트되었을 때
-        PlayerEvents.OnParryModeSlotUpdated -= SetParryModeSlot;
+        SetParryModeSlot();
     }
 
     //어디선가 ParryMode 패널을 열었을 때
@@ -103,26 +95,19 @@ public class ParryMode : MonoBehaviour
     }
     /// </Input>
 
-    //ParryModeSlot이 업데이트되었을 때
-    void SetParryModeSlot(ParryModeDataSO[] slots)
+    //패리모드 UI 켜질때 현재 패리모드 슬롯상태 가져와서 띄워주기
+    void SetParryModeSlot()
     {
-        for (int i = 0; i < slots.Length; i++)
+        ParryModeDataSO[] parryModeDataSOs = playerParryModeHandler.GetParryModeSlots();
+
+        for (int i = 0; i < parryModeDataSOs.Length; i++)
         {
-            SetSlotPrefab(SlotContainers[i].transform, slots[i]);
-        }
-    }
-    //슬롯에 프리팹 채우기
-    void SetSlotPrefab(Transform container, ParryModeDataSO parryModeDataSO)
-    {
-        //일단 Slot 안의 프리팹 제거
-        if(container.childCount > 0)
-        {
-            Destroy(container.GetChild(0).gameObject);
-        }
-        //들어온 프리팹으로 채우기
-        if (parryModeDataSO != null)
-        {
-            Instantiate(parryModeDataSO.equipIconPrefab, container.transform);
+            foreach (Transform child in SlotContainers[i].transform)
+                Destroy(child?.gameObject);
+
+            GameObject icon = parryModeDataSOs[i]?.equipIconPrefab;
+            if (icon != null)
+                Instantiate(icon, SlotContainers[i].transform);
         }
     }
 

@@ -2425,6 +2425,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7587798946419490410, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
+      propertyPath: playerParryModeHandler
+      value: 
+      objectReference: {fileID: 1399347771668004893}
+    - target: {fileID: 7587798946419490410, guid: f0de5c99a32436a408da6fa36fd4c65e, type: 3}
       propertyPath: SlotButtons.Array.data[0]
       value: 
       objectReference: {fileID: 877833578}
