@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerParryModeHandler : MonoBehaviour
 {
     //패리 모드 슬롯 배열
-    public ParryModeDataSO[] parryModeSlot = new ParryModeDataSO[4];
-
-    //ParryModeDataSO들
-    [SerializeField] ParryModeDataSO[] parryModeDataSOs;
+    ParryModeDataSO[] currentParryModeSlots = new ParryModeDataSO[4];
 
     //현재 선택된 슬롯 추적 변수
-    int currentIndex;
+    public int currentIndex;
     ParryModeDataSO currentParryModeDataSO;
+
+    //세이브로드 시 이용할 방패 Type 배열
+    public ParryModeType[] currentParryModeSlotsType = new ParryModeType[4];
 
     private void OnEnable()
     {
@@ -37,29 +37,20 @@ public class PlayerParryModeHandler : MonoBehaviour
 
     void AssignParryModeToSlot()
     {
-        int totalNum = parryModeDataSOs.Length;
-        int minIndex = 4;
-        for (int i = 0; (i < 4 && i < totalNum); i++)
+        for (int i = 0; i < currentParryModeSlotsType.Length; i++)
         {
-            if (parryModeDataSOs[i] != null)
-            {
-                parryModeSlot[i] = parryModeDataSOs[i];
-                //게임 시작 시 임시로 일단 제일 작은 인덱스 슬롯을 현재 선택한 것으로 치기
-                if (i < minIndex)
-                {
-                    minIndex = i;
-                    ParryModeSlotSelected(i);
-                }
-            }
+            currentParryModeSlots[i] = ParryModeDatabaseSO.Instance.GetParryModeDataSOByType(currentParryModeSlotsType[i]);
         }
-        PlayerEvents.InvokeParryModeSlotUpdated(parryModeSlot);
+
+        ParryModeSlotSelected(currentIndex);
+        PlayerEvents.InvokeParryModeSlotUpdated(currentParryModeSlots);
     }
     void ParryModeSlotSelected(int index)
     {
-        if (parryModeSlot[index] != null)
+        if (currentParryModeSlots[index] != null)
         {
             currentIndex = index;
-            currentParryModeDataSO = parryModeSlot[index];
+            currentParryModeDataSO = currentParryModeSlots[index];
             Debug.Log(currentParryModeDataSO.parryModeType + " is Selected");
             PlayerEvents.InvokeCurrentParryModeUpdated(currentParryModeDataSO, currentIndex);
         }
@@ -68,18 +59,19 @@ public class PlayerParryModeHandler : MonoBehaviour
     //ParryMode 인벤토리에서 슬롯 교체 요청할 때
     void OnRequestEquipParryMode(ParryModeDataSO parryModeData, int index)
     {
-        parryModeSlot[index] = parryModeData;
+        currentParryModeSlotsType[index] = parryModeData.parryModeType;
+        currentParryModeSlots[index] = parryModeData;
         if (index == currentIndex)
         {
-            currentParryModeDataSO = parryModeSlot[currentIndex];
+            currentParryModeDataSO = currentParryModeSlots[currentIndex];
             PlayerEvents.InvokeCurrentParryModeUpdated(currentParryModeDataSO, currentIndex);
         }
-        PlayerEvents.InvokeParryModeSlotUpdated(parryModeSlot);
+        PlayerEvents.InvokeParryModeSlotUpdated(currentParryModeSlots);
     }
 
     //현재 패리 모드 슬롯 내보내기
     public ParryModeDataSO[] GetParryModeSlots()
     {
-        return parryModeSlot;
+        return currentParryModeSlots;
     }
 }

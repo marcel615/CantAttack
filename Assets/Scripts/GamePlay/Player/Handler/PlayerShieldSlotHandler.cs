@@ -6,15 +6,14 @@ using UnityEngine;
 public class PlayerShieldSlotHandler : MonoBehaviour
 {
     //방패 슬롯 배열
-    ShieldDataSO[] shieldSlot = new ShieldDataSO[4];
-
-    //ShieldDataSO들
-    [SerializeField] ShieldDataSO[] shieldDataSOs;
+    ShieldDataSO[] currentShieldSlots = new ShieldDataSO[4];
 
     //현재 선택된 슬롯 추적 변수
-    int beforeIndex;
-    int currentIndex;
+    public int currentIndex;
     ShieldDataSO currentShieldDataSO;
+
+    //세이브로드 시 이용할 방패 Type 배열
+    public ShieldType[] currentShieldSlotsType = new ShieldType[4];
 
     private void OnEnable()
     {
@@ -39,30 +38,20 @@ public class PlayerShieldSlotHandler : MonoBehaviour
 
     void AssignShieldToSlot()
     {
-        int totalNum = shieldDataSOs.Length;
-        int minIndex = 4;
-        for(int i = 0; (i < 4 && i < totalNum); i++)
+        for (int i = 0; i < currentShieldSlotsType.Length; i++)
         {
-            if (shieldDataSOs[i] != null)
-            {
-                shieldSlot[i] = shieldDataSOs[i];
-                //게임 시작 시 임시로 일단 제일 작은 인덱스 슬롯을 현재 선택한 것으로 치기
-                if(i < minIndex)
-                {
-                    minIndex = i;
-                    ShieldSlotSelected(i);
-                }
-            }
+            currentShieldSlots[i] = ShieldDatabaseSO.Instance.GetShieldDataSOByType(currentShieldSlotsType[i]);
         }
-        PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);
 
+        ShieldSlotSelected(currentIndex);
+        PlayerEvents.InvokeShieldSlotUpdated(currentShieldSlots);
     }
     void ShieldSlotSelected(int index)
     {
-        if (shieldSlot[index] != null)
+        if (currentShieldSlots[index] != null)
         {
             currentIndex = index;
-            currentShieldDataSO = shieldSlot[index];
+            currentShieldDataSO = currentShieldSlots[index];
             Debug.Log(currentShieldDataSO.shieldType + " is Selected");
             PlayerEvents.InvokeCurrentShieldUpdated(currentShieldDataSO, currentIndex);
         }
@@ -71,19 +60,20 @@ public class PlayerShieldSlotHandler : MonoBehaviour
     //Shield 인벤토리에서 슬롯 교체 요청할 때
     void OnRequestEquipShield(ShieldDataSO shieldData, int index)
     {
-        shieldSlot[index] = shieldData;
+        currentShieldSlotsType[index] = shieldData.shieldType;
+        currentShieldSlots[index] = shieldData;
         if(index == currentIndex)
         {
-            currentShieldDataSO = shieldSlot[currentIndex];
+            currentShieldDataSO = currentShieldSlots[currentIndex];
             PlayerEvents.InvokeCurrentShieldUpdated(currentShieldDataSO, currentIndex);
         }
-        PlayerEvents.InvokeShieldSlotUpdated(shieldSlot);
+        PlayerEvents.InvokeShieldSlotUpdated(currentShieldSlots);
     }
 
     //현재 방패 슬롯 내보내기
     public ShieldDataSO[] GetShieldSlots()
     {
-        return shieldSlot;
+        return currentShieldSlots;
     }
 
 

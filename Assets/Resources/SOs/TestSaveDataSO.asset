@@ -10,14 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7802cd1d60dec6439e01eecc3620c87, type: 3}
-  m_Name: FirstSaveDataSO
+  m_Name: TestSaveDataSO
   m_EditorClassIdentifier: 
   saveDataSO:
     playerSaveData:
       MaxHP: 5
-      CurrentHP: 4
-      position: {x: 0, y: 0}
+      CurrentHP: 5
+      position: {x: 66, y: 1}
       isDoubleJumpUnlocked: 0
+      currentShieldSlotsType: 00000000000000000000000000000000
+      cuSSO:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      currentShieldSlotIndex: 0
+      currentParryModeSlotsType: 00000000000000000000000000000000
+      cuPMSO:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      currentParryModeSlotIndex: 0
     mapSaveData:
       saveScene: Map1
     gameEventSaveData:

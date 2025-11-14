@@ -1,30 +1,30 @@
 {
     "playerSaveData": {
         "MaxHP": 5,
-        "CurrentHP": 4,
+        "CurrentHP": 5,
         "position": {
-            "x": 26.0,
+            "x": 66.0,
             "y": 1.0
         },
         "isDoubleJumpUnlocked": false,
         "currentShieldSlotsType": [
             0,
             0,
-            4,
-            3
+            0,
+            0
         ],
-        "currentShieldSlotIndex": 2,
+        "currentShieldSlotIndex": 0,
         "currentParryModeSlotsType": [
             0,
             0,
-            1,
-            4
+            0,
+            0
         ],
-        "currentParryModeSlotIndex": 2
+        "currentParryModeSlotIndex": 0
     },
     "systemSaveData": {},
     "mapSaveData": {
-        "saveScene": "Map6"
+        "saveScene": "Map1"
     },
     "gameEventSaveData": {
         "completedGameEventIDs": []
