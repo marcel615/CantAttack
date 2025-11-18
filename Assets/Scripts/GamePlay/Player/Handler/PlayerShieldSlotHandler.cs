@@ -43,8 +43,8 @@ public class PlayerShieldSlotHandler : MonoBehaviour
             currentShieldSlots[i] = ShieldDatabaseSO.Instance.GetShieldDataSOByType(currentShieldSlotsType[i]);
         }
 
-        ShieldSlotSelected(currentIndex);
         PlayerEvents.InvokeShieldSlotUpdated(currentShieldSlots);
+        PlayerEvents.InvokeShieldSlotSelected(currentIndex);
     }
     void ShieldSlotSelected(int index)
     {

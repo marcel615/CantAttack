@@ -89,6 +89,17 @@ public class PlayerHUD : MonoBehaviour
     //PlayerShieldSlot이 업데이트되었을 때
     void SetShieldSlot(ShieldDataSO[] slots)
     {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            foreach (Transform child in ShieldContainer.transform.GetChild(i))
+                Destroy(child?.gameObject);
+
+            GameObject icon = slots[i]?.iconPrefab;
+            if (icon != null)
+                Instantiate(icon, ShieldContainer.transform.GetChild(i));
+        }
+
+        /*
         //일단 shieldPrefab들 다 제거
         foreach (Transform child in ShieldContainer.transform)
         {
@@ -106,6 +117,7 @@ public class PlayerHUD : MonoBehaviour
                 Instantiate(EmptyShieldPrefab, ShieldContainer.transform);                
             }
         }
+        */
     }
 
     //ShieldSlot 변경 요청이 들어올 때
