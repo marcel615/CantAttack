@@ -29,6 +29,8 @@ public static class InputEvents
     public static SavePointMenuInputEvents SavePointMenu { get; private set; } = new SavePointMenuInputEvents();
     public static ShieldInventoryInputEvents ShieldInventory { get; private set; } = new ShieldInventoryInputEvents();
     public static ParryModeInventoryInputEvents ParryModeInventory { get; private set; } = new ParryModeInventoryInputEvents();
+    public static PlayerHUDInputEvents PlayerHUD { get; private set; } = new PlayerHUDInputEvents();
+
 
 
     /*

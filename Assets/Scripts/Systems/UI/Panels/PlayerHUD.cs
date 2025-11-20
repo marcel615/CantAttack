@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
+    //내 컴포넌트
+    [SerializeField] CanvasGroup hudCanvasGroup;
+
     //자식 오브젝트들
     [SerializeField] private GameObject StatusPanel;
     public GameObject Portrait;
@@ -63,6 +66,15 @@ public class PlayerHUD : MonoBehaviour
         //ShieldSlot 변경 요청이 들어올 때
         PlayerEvents.OnShieldSlotSelected -= HighlightShieldSlot;
     }
+
+    //PlayerHUD UI를 보이게 할지 조절하기 위한 메서드
+    public void PlayerHUDVisible(bool visible)
+    {
+        hudCanvasGroup.alpha = visible ? 1f : 0f;
+        hudCanvasGroup.interactable = visible;
+        hudCanvasGroup.blocksRaycasts = visible;
+    }
+
     //HP칸 채우기
     void SetHP(int maxHP, int currentHP)
     {
