@@ -108,6 +108,9 @@ public class InputManager : MonoBehaviour
                 break;
 
             case InputContext.ParryMode:
+                InputEvents.ParryMode.InvokeCancel(Esc);
+                InputEvents.ParryMode.InvokeSubmit(Enter);
+                InputEvents.ParryMode.InvokeInteract(E);
                 InputEvents.ParryMode.InvokeTab(Tab);
 
                 break;

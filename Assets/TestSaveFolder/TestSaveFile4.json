@@ -1,0 +1,34 @@
+{
+    "playerSaveData": {
+        "MaxHP": 5,
+        "CurrentHP": 5,
+        "position": {
+            "x": 26.0,
+            "y": 1.0
+        },
+        "isDoubleJumpUnlocked": true,
+        "currentShieldSlotsType": [
+            3,
+            1,
+            0,
+            0
+        ],
+        "currentShieldSlotIndex": 0,
+        "currentParryModeSlotsType": [
+            1,
+            3,
+            0,
+            0
+        ],
+        "currentParryModeSlotIndex": 1
+    },
+    "systemSaveData": {},
+    "mapSaveData": {
+        "saveScene": "Map6"
+    },
+    "gameEventSaveData": {
+        "completedGameEventIDs": [
+            "Map3_TrialAreaStart_1"
+        ]
+    }
+}

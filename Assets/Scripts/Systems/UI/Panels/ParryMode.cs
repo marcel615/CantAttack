@@ -77,6 +77,27 @@ public class ParryMode : MonoBehaviour
     }
 
     ///<Input>
+    public void ESC(bool esc)
+    {
+        if (panelStack.Count > 0)
+        {
+            //뒤로가기
+            UIPanelController.Back(panelStack, ref currentPanel);
+        }
+        else
+        {
+            Tab(true);
+            //닫기
+        }
+    }
+    public void Enter(bool enter)
+    {
+
+    }
+    public void E(bool e)
+    {
+        UIUtility.TriggerSelectAction();
+    }
     public void Tab(bool tab)
     {
         if (panelStack.Count > 0)

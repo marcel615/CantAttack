@@ -21,6 +21,12 @@ public class ParryModeInputController : MonoBehaviour
         InputEvents.ParryMode.OnParryModeOpen += ParryModeOpen;
         //ParryModeClose 이벤트 구독
         InputEvents.ParryMode.OnParryModeClose += ParryModeClose;
+        //Cancel 이벤트 구독
+        InputEvents.ParryMode.OnCancel += ESC;
+        //Submit 이벤트 구독
+        InputEvents.ParryMode.OnSubmit += Enter;
+        //Interact 이벤트 구독
+        InputEvents.ParryMode.OnInteract += E;
         //Tab 이벤트 구독
         InputEvents.ParryMode.OnTab += Tab;
     }
@@ -30,6 +36,12 @@ public class ParryModeInputController : MonoBehaviour
         InputEvents.ParryMode.OnParryModeOpen -= ParryModeOpen;
         //ParryModeClose 이벤트 구독
         InputEvents.ParryMode.OnParryModeClose -= ParryModeClose;
+        //Cancel 이벤트 구독
+        InputEvents.ParryMode.OnCancel -= ESC;
+        //Submit 이벤트 구독
+        InputEvents.ParryMode.OnSubmit -= Enter;
+        //Interact 이벤트 구독
+        InputEvents.ParryMode.OnInteract -= E;
         //Tab 이벤트 구독
         InputEvents.ParryMode.OnTab -= Tab;
     }
@@ -45,6 +57,24 @@ public class ParryModeInputController : MonoBehaviour
         parryMode.ParryModeClose(sourceInputContext);
     }
 
+    //Cancel 이벤트 구독
+    void ESC(bool esc)
+    {
+        if (esc)
+            parryMode.ESC(esc);
+    }
+    //Submit 이벤트 구독
+    void Enter(bool enter)
+    {
+        if (enter)
+            parryMode.Enter(enter);
+    }
+    //Interact 이벤트 구독
+    void E(bool e)
+    {
+        if (e)
+            parryMode.E(e);
+    }
     //Tab 이벤트 구독
     void Tab(bool tab)
     {
