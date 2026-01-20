@@ -212,8 +212,8 @@ public class PlayerParryState : PlayerState
     //이벤트 구독
     private void OnEnable()
     {
-        //PlayerParry가 성공했을 때
-        PlayerEvents.OnPlayerParrySuccess += ParrySuccess;
+        //PlayerParry가 투사체 패링에 성공했을 때
+        PlayerEvents.OnProjectileParried += ProjectileParrySuccess;
         //parryAction의 방향이 정해졌을 때
         PlayerEvents.OnParryActionDirectionSet += DirectionSet;
         //parryAction의 타겟이 정해졌을 때
@@ -221,14 +221,14 @@ public class PlayerParryState : PlayerState
     }
     private void OnDisable()
     {
-        //PlayerParry가 성공했을 때
-        PlayerEvents.OnPlayerParrySuccess -= ParrySuccess;
+        //PlayerParry가 투사체 패링에 성공했을 때
+        PlayerEvents.OnProjectileParried -= ProjectileParrySuccess;
         //parryAction의 방향이 정해졌을 때
         PlayerEvents.OnParryActionDirectionSet -= DirectionSet;
         //parryAction의 타겟이 정해졌을 때
         PlayerEvents.OnParryActionTargetSet -= TargetSet;
     }
-    void ParrySuccess()
+    void ProjectileParrySuccess(ProjectileBase prefab, GameObject sender)
     {
         isParrySuccess = true;
 
