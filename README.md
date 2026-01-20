@@ -6,7 +6,7 @@
 ---
 
 ## 링크 
-- [시연 영상](https://youtu.be/oiBJkhpCp4E) [시연 영상2](https://youtu.be/E5hpkMD6Yg8)
+- [시연 영상1](https://youtu.be/oiBJkhpCp4E) [시연 영상2](https://youtu.be/E5hpkMD6Yg8)
 - [다운로드](https://drive.google.com/file/d/1_3tUhmpuJYJW9ZinUiCFpGVAaRS3Oe8z/view?usp=sharing)
 - [상세 설계 문서(Notion)](https://prickly-amusement-3e8.notion.site/Can-t-Attack-_-2D-250208fe9b8a805fa7fec577af6e9486?pvs=74))
 
