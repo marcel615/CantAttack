@@ -7,7 +7,7 @@
 
 ## 링크 
 - [시연 영상](https://youtu.be/oiBJkhpCp4E)
-- [다운로드](https://drive.google.com/file/d/1XfgjTdon8xwWinQP3tbmrCBW3oaWvdjt/view?usp=drive_link)
+- [다운로드](https://drive.google.com/file/d/1_3tUhmpuJYJW9ZinUiCFpGVAaRS3Oe8z/view?usp=sharing)
 - [상세 설계 문서(Notion)](https://prickly-amusement-3e8.notion.site/Can-t-Attack-_-2D-250208fe9b8a805fa7fec577af6e9486?pvs=74))
 
 ---
